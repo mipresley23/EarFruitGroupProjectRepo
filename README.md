@@ -1,6 +1,6 @@
 # EarFruitGroupProjectRepo
 
-> * live site
+> * Live Site: https://earfruit.herokuapp.com/
 
 > * tech used
 
