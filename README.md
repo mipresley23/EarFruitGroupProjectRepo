@@ -1,5 +1,6 @@
 # EarFruit
 
+
 ## Index
 [Feature List Documentation](https://github.com/mipresley23/EarFruitGroupProjectRepo/wiki/MVP-Feature-List)
 
@@ -42,6 +43,8 @@
 
 ### Playlist/Song/Profile Pages
 ![image](https://user-images.githubusercontent.com/59783664/180312282-2d64b072-1186-4c87-95d5-56522b636275.png)
+
+
 
 
 
