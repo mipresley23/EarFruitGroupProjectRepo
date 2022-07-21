@@ -44,9 +44,14 @@
 ### Playlist/Song/Profile Pages
 ![image](https://user-images.githubusercontent.com/59783664/180312282-2d64b072-1186-4c87-95d5-56522b636275.png)
 
+### Signup Page
+![Screen Shot 2022-07-21 at 4 05 33 PM](https://user-images.githubusercontent.com/93172512/180329561-cf9e320a-75d9-4ae5-9c70-96807139641b.png)
 
+### Sign in Error
+![Screen Shot 2022-07-21 at 4 05 09 PM](https://user-images.githubusercontent.com/93172512/180329583-c546bdcc-ca82-4cb2-824f-ce28cfb5706f.png)
 
-
+### Sign in Error
+![Screen Shot 2022-07-21 at 4 04 55 PM](https://user-images.githubusercontent.com/93172512/180329676-f9fb2fa8-b27e-4b89-91c8-d3ec5c4563f9.png)##
 
 > * instructions for starting proj
 
