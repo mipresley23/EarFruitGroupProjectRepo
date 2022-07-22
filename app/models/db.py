@@ -54,7 +54,7 @@ class Song(db.Model):
   album = db.Column(db.String(50), nullable=False)
   genre = db.Column(db.String(25), nullable=False)
   artist = db.Column(db.String(50), nullable=False)
-  source = db.Column(JSON, nullable=False)
+  source = db.Column(db.String(250), nullable=False)
   user_Id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship("User", back_populates='songs')
