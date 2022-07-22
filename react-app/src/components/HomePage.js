@@ -1,34 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
-    const [search, setSearch] = useState('')
+	const [search, setSearch] = useState("");
+	const [searchResults, setSearchResults] = useState([]);
 
-    useEffect(() => {
-        async function fetchData() {
-          const response = await fetch(`/api/playlists/${search}`);
-          const responseData = await response.json();
-          console.log(responseData)
-        }
-        fetchData();
-    }, [search]);
+	// useEffect(() => {
+	//     async function fetchData() {
+	//       const response = await fetch(`/api/playlists/${search}`);
+	//       const responseData = await response.json();
+	//       console.log(responseData)
+	//     }
+	//     fetchData();
+	// }, [search]);
 
-    async function onSubmit(e) {
-        e.preventDefault();
-        console.log(search)
+	async function onSubmit(e) {
+		e.preventDefault();
+		// console.log(search);
+		async function fetchData() {
+			const response = await fetch(`/api/playlists/${search}`);
+            const responseData = await response.json();
+            // console.log(responseData.playlists)
+            setSearchResults(responseData.playlists)
+		}
+		fetchData();
     }
 
-    return (
-        <div>
-            <h1>Home</h1>
-            <form onSubmit={onSubmit}>
-                <input type="search" id="search" name="search" onChange={e=>setSearch(e.target.value)}/>
-                <button>Search</button>
-            </form>
-            <h1>Search Results: </h1>
-            {/* <ul>{playlistComponents}</ul> */}
-        </div>
-    )
+    const playlistSearchResults = searchResults.map((playlist) => {
+        // console.log(playlist.name)
+        return (
+            <div key={playlist.name}>
+                {playlist.name}
+            </div>
+        )
+    })
+	return (
+		<div>
+			<h1>Home</h1>
+			<form onSubmit={onSubmit}>
+				<input
+					type="search"
+					id="search"
+					name="search"
+					onChange={(e) => setSearch(e.target.value)}
+				/>
+				<button>Search</button>
+			</form>
+			<h1>Search Results: </h1>
+            <div>{playlistSearchResults}</div>
+		</div>
+	);
 }
 
-export default HomePage
+export default HomePage;
