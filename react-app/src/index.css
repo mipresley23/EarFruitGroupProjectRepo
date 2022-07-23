@@ -8,3 +8,29 @@ body{
     font-family: Arial, Helvetica, sans-serif
 
 }
+
+#root {
+    height: 100vh;
+    display: grid;
+    grid-template-columns:minmax(175px,7vw) 93vw;
+    grid-template-rows: 10vh 90vh;
+    grid-template-areas:
+    'sidebar navbar'
+    'sidebar content';
+}
+
+.nav-bar {
+    grid-area: navbar;
+    background-color: rgba(0,0,0,97%);
+}
+
+.content {
+    grid-area: content;
+    background-color: #121212;
+}
+
+.side-bar {
+    grid-area: sidebar;
+    min-width: 150px;
+    background-color: #050203;
+}

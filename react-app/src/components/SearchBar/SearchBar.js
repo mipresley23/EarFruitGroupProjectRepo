@@ -32,7 +32,7 @@ export default function SearchBar() {
 	});
 
 	return (
-		<div>
+		<div className="search-container">
 			<form onSubmit={onSubmit}>
 				<input
 					type="search"
