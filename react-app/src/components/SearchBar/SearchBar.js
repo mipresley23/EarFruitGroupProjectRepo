@@ -42,7 +42,7 @@ export default function SearchBar() {
 				/>
 				<button>Search</button>
 			</form>
-			{searchResults.length>1 && (
+			{searchResults.length>0 && (
 				<>
 					<h2>Playlists: </h2>
 					<div className="playlists-container">{playlistSearchResults}</div>
