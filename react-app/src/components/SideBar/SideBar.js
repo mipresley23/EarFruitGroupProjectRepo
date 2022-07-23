@@ -6,8 +6,11 @@ export default function SideBar() {
 
     return (
         <div>
-            <NavLink to='/' exact={true} activeClassName='active'>
+            <NavLink to='/' exact={true} >
                 Home
+            </NavLink>
+            <NavLink to='/search' exact={true} >
+                Search
             </NavLink>
         </div>
     )
