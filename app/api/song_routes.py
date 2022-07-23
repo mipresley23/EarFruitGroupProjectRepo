@@ -19,3 +19,20 @@ def validation_errors_to_error_messages(validation_errors):
 @song_routes.route('/')
 def songs():
     return '<h1>Songs</h1>'
+
+@song_routes.route('/', methods=['POST'])
+@login_required
+def add_song():
+    form = AddSong()
+
+    song = Song(
+        name=form.data['name'],
+        artist=form.data['artist'],
+        album=form.data['album'],
+        genre=form.data['genre'],
+        source=form.data['source'],
+        userId=current_user.id
+    )
+    db.session.add(song)
+    db.session.commit()
+    return song.to_dict()

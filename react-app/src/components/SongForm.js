@@ -8,12 +8,26 @@ const SongForm = () => {
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
     const [album, setAlbum] = useState('');
-    const [genre, setGenre] = useState('');
+    const [genre, setGenre] = useState('Rock');
     const [artist, setArtist] = useState('');
     const [source, setSource] = useState(undefined);
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+
+    // const genres = [
+    //     {value: 'Rock', label: 'Rock'},
+    //     {value: 'Pop', label: 'Pop'},
+    //     {value: 'Rap', label: 'Rap'},
+    //     {value: 'Electronic', label: 'Electronic'},
+    //     {value: 'Country', label: 'Country'},
+    //     {value: 'Classical', label: 'Classical'},
+    //     {value: 'Jazz', label: 'Jazz'},
+    //     {value: 'Blues', label: 'Blues'},
+    //     {value: 'Metal', label: 'Metal'},
+    //     {value: 'Other', label: 'Other'}
+
+    // ]
 
     useEffect(() => {
         const errors = [];
@@ -81,13 +95,22 @@ const SongForm = () => {
             </div>
             <div>
                 <label htmlFor='genre'>Genre</label>
-                <input
+                <select
                     name='genre'
-                    type='text'
-                    placeholder='Genre'
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
-                />
+                >
+                    <option value='Rock'>Rock</option>
+                    <option value='Pop'>Pop</option>
+                    <option value='Rap'>Rap</option>
+                    <option value='Electronic'>Electronic</option>
+                    <option value='Country'>Country</option>
+                    <option value='Classical'>Classical</option>
+                    <option value='Jazz'>Jazz</option>
+                    <option value='Blues'>Blues</option>
+                    <option value='Metal'>Metal</option>
+                    <option value='Other'>Other</option>
+                </select>
             </div>
             <div>
                 <label htmlFor='source'>Upload</label>

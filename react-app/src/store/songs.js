@@ -23,9 +23,7 @@ export const createSong = (song) => async (dispatch) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      song,
-    }),
+    body: JSON.stringify(song)
   });
   if (response.ok) {
     const data = await response.json();
@@ -42,8 +40,8 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SONGS:
           const allSongs = {}
-            action.payload.forEach((event) => {
-                if (event.id) allSongs[event.id] = event
+            action.payload.forEach((song) => {
+                if (song.id) allSongs[song.id] = song
             })
             return { ...allSongs }
 
