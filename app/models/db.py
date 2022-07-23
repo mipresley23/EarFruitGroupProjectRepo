@@ -54,8 +54,8 @@ class Song(db.Model):
   album = db.Column(db.String(50), nullable=False)
   genre = db.Column(db.String(25), nullable=False)
   artist = db.Column(db.String(50), nullable=False)
-  source = db.Column(JSON, nullable=False)
-  user_Id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  source = db.Column(db.String(250), nullable=False)
+  userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship("User", back_populates='songs')
   song_playlists = db.relationship("Playlist",
@@ -71,7 +71,7 @@ class Song(db.Model):
       "album": self.album,
       "genre": self.genre,
       "artist": self.artist,
-      "user": self.user.to_dict(),
+      "userId": self.user.to_dict(),
       "playlists": len(self.song_playlists)
     }
 
