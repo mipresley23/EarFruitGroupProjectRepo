@@ -4,7 +4,9 @@
     /* border: 2px black solid; */
     overflow-x: scroll;
 }
-
+::-webkit-scrollbar {
+    height: 12px;
+}
 .playlist-card{
     /* display:flex; */
     min-height: 242px;
@@ -19,7 +21,7 @@
     transition: all .15s ease-in;
 }
 .playlist-card:hover {
-    background-color: #2d272793;
+    background-color: hsla(0,0%,100%,.1);
 }
 .playlist-card-contents{
     display: flex;
