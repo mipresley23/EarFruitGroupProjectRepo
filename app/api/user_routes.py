@@ -22,13 +22,17 @@ def user(id):
 
 @user_routes.route('/<int:id>', methods=["PUT"])
 def editUser():
+    print('you made it to the put route')
     form = EditUserForm
     if form.validate_on_submit():
         data = form.data
         userUpdate = User(
-            name= data['name'],
+            username= data['username'],
+            email=data['email'],
+            password=data['password'],
             photo_url=data['photo_url']
             )
+        print('user route: ', userUpdate)
         db.session.add(userUpdate)
         db.session.commit()
-        return userUpdate
+        return userUpdate.to_dict()
