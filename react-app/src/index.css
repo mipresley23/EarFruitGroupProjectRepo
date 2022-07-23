@@ -13,7 +13,7 @@ body{
     height: 100vh;
     width: 100vw;
     display: grid;
-    grid-template-columns:minmax(7%,17%) minmax(83%,93%);
+    grid-template-columns:minmax(150px,17%) minmax(83%,93%);
     grid-template-rows: minmax(50px,100px) minmax(83%,93%);
     grid-template-areas:
     'sidebar navbar'
@@ -23,7 +23,6 @@ body{
 .nav-bar {
     grid-area: navbar;
     background-color: rgba(0,0,0,97%);
-    /* padding-right: 70px; */
 }
 
 .content {
