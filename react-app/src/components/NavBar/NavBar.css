@@ -12,10 +12,11 @@
 }
 .nav-container {
     border: 2px solid blue;
-    /* float: right; */
-    /* margin-right: auto; */
-    /* width: fit-content; */
+    display: flex;
+    margin-right: 0px;
+    min-width: 250px;
     padding: 0 16px;
+    align-items: center;
 }
 
 .nav-list li {
