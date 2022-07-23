@@ -1,7 +1,7 @@
 .playlists-container{
     display: flex;
-    gap: 3px;
-    border: 2px black solid;
+    gap: 16px;
+    /* border: 2px black solid; */
     overflow-x: scroll;
 }
 
@@ -11,12 +11,16 @@
     min-width: 164px;
     height: 25vh;
     width: 19vh;
-    background-color: #191414f4;
+    background-color: #181818;
     font-family: Helvetica, sans-serif;
     border-radius: 3%;
     padding: 10px 10px;
+    cursor: pointer; ;
+    transition: all .15s ease-in;
 }
-
+.playlist-card:hover {
+    background-color: #2d272793;
+}
 .playlist-card-contents{
     display: flex;
     flex-direction: column;
@@ -46,6 +50,9 @@
     margin-right: auto; */
 }
 
-.playlists-container{
-    /* border: 2px red solid; */
+/* .playlists-container{
+    border: 2px red solid;
+} */
+::-webkit-scrollbar-thumb {
+    background-color: black;
 }
