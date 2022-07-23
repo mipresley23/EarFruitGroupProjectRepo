@@ -3,11 +3,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
+import SongForm from './components/SongForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+
 import UserProfile from './components/userProfile';
+
+import HomePage from './components/HomePage/HomePage';
+
 import { authenticate } from './store/session';
 
 function App() {
@@ -42,7 +47,10 @@ function App() {
           <UserProfile />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/add-song' exact={true} >
+          <SongForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
