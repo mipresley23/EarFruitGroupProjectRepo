@@ -9,6 +9,7 @@ import SongForm from './components/SongForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import AllPlaylists from './components/AllPlaylists';
+import EachPlaylist from './components/EachPlaylist';
 import User from './components/User';
 
 import UserProfile from './components/userProfile';
@@ -66,6 +67,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/playlists' exact={true} >
             <AllPlaylists />
+          </ProtectedRoute>
+          <ProtectedRoute path='/playlists/:playlistId' exact={true} >
+            <EachPlaylist />
           </ProtectedRoute>
         </Switch>
       </div>

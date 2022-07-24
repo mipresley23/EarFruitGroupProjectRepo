@@ -23,3 +23,18 @@
 .sidebar-link i {
     margin-right: 15px;
 }
+
+#side-bar-circle-logo{
+    width: 25%;
+    top: 10px;
+    margin-bottom: 50px;
+}
+
+#side-bar-word-logo{
+    width: 60%;
+    margin-bottom: 50px;
+}
+
+#side-bar-logo-imgs{
+    display: flex;
+}

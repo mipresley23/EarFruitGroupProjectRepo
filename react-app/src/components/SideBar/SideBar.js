@@ -17,7 +17,6 @@ export default function SideBar() {
       usersPlaylists = playlists && playlists.filter(playlist => playlist.user.id === sessionUser.id)
     }
 
-    console.log('users playlists sidebar: ', usersPlaylists)
 
   useEffect(() => {
     dispatch(thunkGetPlaylists())
@@ -27,12 +26,15 @@ export default function SideBar() {
     setPlaylists(Object.values(playlistsSelector))
   }, [playlistsSelector])
 
-  console.log('sidebar playlists: ', playlists)
 
   if (!playlists) return null;
     return (
         <div className='side-bar-container'>
-            <h2>EarFruit</h2>
+            {/* <h2>EarFruit</h2> */}
+            <div id='side-bar-logo-imgs'>
+              <img id='side-bar-circle-logo' src={require('./circleLogo.jpeg').default} alt='circle logo'/>
+              <img id='side-bar-word-logo' src={require('./earfruit-logo.png').default} alt='word logo' />
+            </div>
             <NavLink className='sidebar-link' to='/' exact={true} >
                 <i class="fa fa-home"></i>
                 Home
@@ -44,7 +46,7 @@ export default function SideBar() {
             <div id='sidebar-playlists-container'>
                 {
                     usersPlaylists.map(playlist => (
-                        <p>{playlist.name}</p>
+                        <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
                     ))
                 }
             </div>
