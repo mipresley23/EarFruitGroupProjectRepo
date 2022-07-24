@@ -34,6 +34,7 @@
     font-weight: bold;
     border-radius: 500px;
     border: 0px;
+    cursor: pointer;
 }
 
 .nav-list li:hover {

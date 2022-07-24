@@ -22,12 +22,13 @@ body{
 
 .nav-bar {
     grid-area: navbar;
-    background-color: rgba(0,0,0,97%);
+    background-color: rgba(0,0,0,98%);
 }
 
 .content {
     grid-area: content;
-    background-color: #121212;
+    background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.949) 12%, #121212ee);
+
 }
 
 .side-bar {
