@@ -9,10 +9,12 @@ const AllPlaylists = ()  => {
 
   const playlistsSelector = useSelector(state => state.playlists)
   const sessionUser = useSelector(state => state.session.user)
+  let usersPlaylists;
+  if(sessionUser){
+      usersPlaylists = playlists && playlists.filter(playlist => playlist.user.id === sessionUser.id)
+    }
 
-  const usersPlaylists = playlists && playlists.filter(playlist => playlist.user.id === sessionUser.id)
-
-  console.log('users playlists: ', usersPlaylists)
+    console.log('users playlists sidebar: ', usersPlaylists)
 
   useEffect(() => {
     dispatch(thunkGetPlaylists())
@@ -22,6 +24,9 @@ const AllPlaylists = ()  => {
     setPlaylists(Object.values(playlistsSelector))
   }, [playlistsSelector])
 
+  console.log('sidebar playlists: ', playlists)
+
+  if (!playlists) return null;
   return(
     <div>
       <h1>Playlists</h1>
