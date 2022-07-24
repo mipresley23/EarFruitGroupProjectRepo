@@ -7,7 +7,7 @@ function UsersList() {
   const dispatch = useDispatch();
   const userSelector = useSelector((state) => state.users)
 
-  console.log('userSelector:', userSelector)
+  // console.log('userSelector:', userSelector)
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function UsersList() {
   useEffect(() => {
     setUsers(Object.values(userSelector))
   }, [userSelector])
-console.log('users: ', users)
+// console.log('users: ', users)
 
   // useEffect(() => {
   //   async function fetchData() {

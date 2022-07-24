@@ -1,15 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-
+import { NavLink, useParams } from 'react-router-dom';
+import './SideBar.css'
 export default function SideBar() {
-
-
     return (
-        <div>
-            <NavLink to='/' exact={true} >
+        <div className='side-bar-container'>
+            <h2>EarFruit</h2>
+            <NavLink className='sidebar-link' to='/' exact={true} >
+                <i class="fa fa-home"></i>
                 Home
             </NavLink>
-            <NavLink to='/search' exact={true} >
+            <NavLink className='sidebar-link' to='/search' exact={true} >
+                <i class="fa fa-search"></i>
                 Search
             </NavLink>
         </div>
