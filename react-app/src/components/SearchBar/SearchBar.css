@@ -63,7 +63,7 @@
 	background-color: black;
 }
 
-input {
+#search {
 	background-color: rgb(197, 196, 196);
 	height: 40px;
 	padding-left: 25px;
@@ -74,11 +74,11 @@ input {
     border-radius: 500px;
 }
 
-input:focus {
+#search:focus {
 	outline: none; /* Removes the border when the input is clicked */
 }
 
-.fa-search {
+form .fa-search {
 	margin-right: 10px;
 }
 form {
