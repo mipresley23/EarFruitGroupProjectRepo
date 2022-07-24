@@ -1,0 +1,8 @@
+.side-bar-container{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.side-bar-container h2 {
+    margin-bottom: 40px;
+}
