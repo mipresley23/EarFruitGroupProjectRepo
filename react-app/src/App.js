@@ -8,6 +8,7 @@ import SideBar from './components/SideBar/SideBar';
 import SongForm from './components/SongForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
+import AllPlaylists from './components/AllPlaylists';
 import User from './components/User';
 
 import UserProfile from './components/userProfile';
@@ -62,6 +63,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/add-song' exact={true} >
             <SongForm />
+          </ProtectedRoute>
+          <ProtectedRoute path='/playlists' exact={true} >
+            <AllPlaylists />
           </ProtectedRoute>
         </Switch>
       </div>
