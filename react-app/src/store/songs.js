@@ -48,17 +48,19 @@ const songReducer = (state = initialState, action) => {
         case EDIT_SONG:
             const newEditState = {
               ...state,
-              [action.payload.song.id]: action.payload.song
+              [action.payload.id]: action.payload
             }
             // const eventList = newState.map(id => newState[id]);
             // eventList.push(action.payload)
             return newEditState
 
         case ADD_SONG:
-            const newAddState = {
-              ...state,
-              [action.payload.song.id]: action.payload.song
-            }
+          console.log(action)
+          const newAddState = {
+            ...state,
+            [action.payload.id]: action.payload
+          }
+
             // newState[action.payload.event.id]= action.payload
             // const eventList = newState.map(id => newState[id]);
             // eventList.push(action.payload)

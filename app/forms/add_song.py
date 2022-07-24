@@ -8,5 +8,5 @@ class AddSong(FlaskForm):
     album = StringField('Album', validators=[DataRequired()])
     genre = StringField('Genre', validators=[DataRequired()])
     artist = StringField('Artist', validators=[DataRequired()])
-    source = StringField('Source', validators=[DataRequired()])
+    source = StringField('Source')
     submit = SubmitField('Add')

@@ -5,11 +5,11 @@ import playlistReducer from './playlists';
 import userReducer from './Users';
 
 
-import songs from './songs'
+import songReducer from './songs'
 
 const rootReducer = combineReducers({
   session,
-  songs,
+  songs: songReducer,
   users: userReducer,
   playlists: playlistReducer
 

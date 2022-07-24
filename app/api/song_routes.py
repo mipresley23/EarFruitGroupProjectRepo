@@ -36,3 +36,10 @@ def add_song():
     db.session.add(song)
     db.session.commit()
     return song.to_dict()
+
+@song_routes.route('/')
+def get_songs():
+    songs = Song.query.all()
+    return jsonify([song.to_dict() for song in songs])
+
+
