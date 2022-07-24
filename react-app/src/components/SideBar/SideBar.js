@@ -43,6 +43,10 @@ export default function SideBar() {
                 <i class="fa fa-search"></i>
                 Search
             </NavLink>
+            <NavLink className='sidebar-link' to='/add-song' exact={true} >
+                <i class="fa fa-music"></i>
+                Songs
+            </NavLink>
             <div id='sidebar-playlists-container'>
                 {
                     usersPlaylists.map(playlist => (
