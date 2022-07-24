@@ -49,7 +49,7 @@ export default function SideBar() {
             </NavLink>
             <div id='sidebar-playlists-container'>
                 {
-                    usersPlaylists.map(playlist => (
+                    sessionUser && usersPlaylists.map(playlist => (
                         <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
                     ))
                 }

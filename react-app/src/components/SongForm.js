@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { createSong } from '../store/songs';
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
@@ -14,6 +15,7 @@ const SongForm = () => {
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     // const genres = [
     //     {value: 'Rock', label: 'Rock'},
@@ -36,7 +38,6 @@ const SongForm = () => {
         if (!artist) errors.push('artist is required');
         if (!album) errors.push('album is required');
         if (!genre) errors.push('genre is required');
-        if (!source) errors.push('No file selected');
 
         setErrors(errors);
     }, [name, album, genre, artist, source]);
@@ -53,7 +54,8 @@ const SongForm = () => {
         };
 
         console.log(song)
-        // dispatch(createSong(song));
+        dispatch(createSong(song))
+        history.push('/');
     }
 
     return (
