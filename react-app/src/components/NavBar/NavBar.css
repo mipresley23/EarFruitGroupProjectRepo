@@ -17,6 +17,7 @@
 .nav-list li {
     display: inline-block;
     margin: 0 10px;
+    transition: all .07s ease-in;
 
 }
 
@@ -29,8 +30,16 @@
     text-decoration: none;
     color: black;
     font-size: 1.2rem;
-    padding: 18px 30px;
+    padding: 15px 18px;
     font-weight: bold;
     border-radius: 500px;
     border: 0px;
+}
+
+.nav-list li:hover {
+    color: white;
+    transform: scale(1.1);
+}
+.nav-list a:hover {
+    color: white;
 }
