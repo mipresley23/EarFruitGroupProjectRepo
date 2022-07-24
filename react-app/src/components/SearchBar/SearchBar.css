@@ -98,9 +98,11 @@ form button {
     font-weight: 500;
     cursor: pointer;
     color: rgb(0, 0, 0,0.8);
+    transition: all 0.1s ease-in;
 }
 form button:hover {
     transform: scale(1.1);
+    background-color: rgba(176, 176, 176, 0.798);
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgb(0, 0, 0,0.55);
