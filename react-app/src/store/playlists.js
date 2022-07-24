@@ -34,7 +34,7 @@ const actionDeletePlaylist = (playlist) => {
 
 
 export const thunkGetPlaylists = (playlists) => async (dispatch) => {
-  const res = await fetch('/api/playlists');
+  const res = await fetch('/api/playlists/');
   const playlists = await res.json();
   dispatch(actionGetPlaylists(playlists));
   return res;
