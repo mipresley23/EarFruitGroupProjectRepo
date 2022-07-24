@@ -19,7 +19,7 @@ export default function SearchBar() {
 	}
 
 	const playlistSearchResults = searchResults.map((playlist) => {
-		console.log(playlist);
+		// console.log(playlist);
 		return (
 			<div className="playlist-card" key={playlist.name}>
 				<div className="playlist-card-contents">
