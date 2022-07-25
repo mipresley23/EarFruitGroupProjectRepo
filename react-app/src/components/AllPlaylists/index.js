@@ -39,7 +39,7 @@ const AllPlaylists = ()  => {
       </ul>
       <ul>
         {
-          usersPlaylists.map(playlist => (
+          sessionUser && usersPlaylists.map(playlist => (
             <div>
               <li>{playlist.name}</li>
               <li>

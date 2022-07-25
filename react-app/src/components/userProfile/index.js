@@ -49,9 +49,6 @@ const UserProfile = () => {
     e.preventDefault();
     const editUser = {
       id: userId,
-      username: user.username,
-      email: user.email,
-      password: user.password,
       photo_url: photoUrl
     }
     console.log('editUser: ', editUser)
@@ -64,6 +61,11 @@ if(!user) return null;
       <div id='user-profile-header'>
         <h1>{user && user.username}</h1>
         <img id='user-profile-image' src={user && user.photo_url} alt='user image' />
+          <button type='button' onClick={() => setShowNewPicForm(true)} >New Photo</button>
+          {showNewPicForm && <form onSubmit={handleEdit}>
+              <input type='text' value={photoUrl} placeholder={user.photo_url} onChange={(e) => setPhotoUrl(e.target.value)}></input>
+              <button type='submit'>Submit</button>
+            </form>}
       </div>
       <div id='user-profile-playlists-container'>
         <h2>{user.username}'s Playlists</h2>
@@ -82,11 +84,6 @@ if(!user) return null;
         }
         </div>
       </div>
-      {/* <button type='button' onClick={() => setShowNewPicForm(true)} >New Photo</button>
-      {showNewPicForm && <form onSubmit={handleEdit}>
-          <input type='text' value={photoUrl} placeholder={user.photo_url} onChange={(e) => setPhotoUrl(e.target.value)}></input>
-          <button type='submit'>Submit</button>
-        </form>} */}
     </div>
   )
 }

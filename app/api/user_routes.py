@@ -21,23 +21,20 @@ def user(id):
 
 
 @user_routes.route('/<int:id>', methods=["PUT"])
-def editUser(id):
-    print('you made it to the put route')
-    userToEdit = User.query.get(id)
-    user = userToEdit.to_dict()
-    print(user)
+def editUser():
+    print('edit user backend route reached')
+
     form = EditUserForm
 
     if form.validate_on_submit():
         print('data: ', data)
         data = form.data
         user = User(
-            username= data['username'],
-            email=data['email'],
-            password=data['password'],
+            # username= data['username'],
+            # email=data['email'],
+            # password=data['password'],
             photo_url=data['photo_url']
             )
-        print('user route: ', userUpdate)
-        db.session.add(userUpdate)
+        db.session.add(user)
         db.session.commit()
         return user.to_dict()
