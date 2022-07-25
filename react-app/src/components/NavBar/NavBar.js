@@ -1,10 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
+import * as sessionActions from "../../store/session";
 import "./NavBar.css";
 const NavBar = () => {
+	const dispatch = useDispatch()
 	const isLoggedIn = useSelector((state) => state.session.user);
+	const handleDemo = () => {
+		return dispatch(sessionActions.loginDemo());
+	}
 	// console.log(isLoggedIn)
 	return (
 		<nav className="nav-container">
@@ -21,6 +26,7 @@ const NavBar = () => {
 								Sign Up
 							</NavLink>
 						</li>
+						<button type="button" onClick={handleDemo}>Demo</button>
 					</>
 				)}
 				{isLoggedIn && (
