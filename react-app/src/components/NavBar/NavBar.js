@@ -10,7 +10,9 @@ const NavBar = () => {
 	const handleDemo = () => {
 		return dispatch(sessionActions.loginDemo());
 	}
-	// console.log(isLoggedIn)
+	console.log('logged in: ', isLoggedIn)
+
+
 	return (
 		<nav className="nav-container">
 			<ul className="nav-list">
@@ -26,11 +28,17 @@ const NavBar = () => {
 								Sign Up
 							</NavLink>
 						</li>
-						<button type="button" onClick={handleDemo}>Demo</button>
+						<button id="demo-button" type="button" onClick={handleDemo}>Demo</button>
 					</>
 				)}
 				{isLoggedIn && (
 					<>
+						<div id="nav-bar-user-info">
+							<NavLink id="nav-bar-user-link" to={`/users/${isLoggedIn.id}`}>
+								<img id='nav-bar-user-img' src={isLoggedIn.photo_url} alt='navbar profile photo'/>
+								<li>{isLoggedIn.username}</li>
+							</NavLink>
+						</div>
 						<li>
 							<NavLink to="/users" exact={true} activeClassName="active">
 								Users

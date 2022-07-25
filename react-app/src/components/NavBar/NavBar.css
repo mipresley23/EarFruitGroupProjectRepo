@@ -44,3 +44,18 @@
 .nav-list a:hover {
     color: white;
 }
+
+#demo-button{
+  width: 80px;
+  height: 30px;
+  border-radius: 15px;
+  transition-duration: .2s;
+}
+
+#demo-button:hover{
+    background-color: green;
+}
+
+#nav-bar-user-info{
+ background-color: grey;
+}
