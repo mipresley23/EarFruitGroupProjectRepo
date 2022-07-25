@@ -52,7 +52,9 @@ def upload_mp3():
         return {"errors": "mp3 required"}, 400
 
     mp3 = request.files["mp3"]
-
+    
+    print(mp3)
+    
     if not is_mp3(mp3.filename):
         return {"errors": "file type not permitted"}, 400
 

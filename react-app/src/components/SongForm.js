@@ -11,8 +11,8 @@ const SongForm = () => {
     const [album, setAlbum] = useState('');
     const [genre, setGenre] = useState('Rock');
     const [artist, setArtist] = useState('');
-    const [source, setSource] = useState(undefined);
-    const [mp3, setMP3] = useState(undefined);
+    const [source, setSource] = useState('');
+    const [mp3, setMP3] = useState('');
     const [mp3Loading, setMP3Loading] = useState(false);
 
     const user = useSelector(state => state.session.user);
@@ -40,7 +40,7 @@ const SongForm = () => {
         if (!artist) errors.push('artist is required');
         if (!album) errors.push('album is required');
         if (!genre) errors.push('genre is required');
-        if (!mp3) errors.push('song is required');
+        if (mp3 === '') errors.push('song is required');
 
         setErrors(errors);
     }, [name, album, genre, artist, mp3]);
@@ -56,7 +56,8 @@ const SongForm = () => {
         if (res.ok) {
             await res.json();
             setMP3Loading(false);
-            setSource(res.source)
+            console.log('----------response----------', res)
+            // setSource(res.source)
         }
         else {
             setMP3Loading(false);
