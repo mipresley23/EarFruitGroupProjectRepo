@@ -60,15 +60,15 @@ function App() {
           <ProtectedRoute path='/users/:userId' exact={true} >
             <UserProfile />
           </ProtectedRoute>
-          <ProtectedRoute path='/' exact={true} >
+          <Route path='/' exact={true} >
             <HomePage/>
-          </ProtectedRoute>
+          </Route>
           <ProtectedRoute path='/add-song' exact={true} >
             <SongForm />
           </ProtectedRoute>
-          <ProtectedRoute path='/playlists' exact={true} >
+          <Route path='/playlists' exact={true} >
             <AllPlaylists />
-          </ProtectedRoute>
+          </Route>
           <ProtectedRoute path='/playlists/new-playlist' exact={true} >
             <PlaylistForm />
           </ProtectedRoute>

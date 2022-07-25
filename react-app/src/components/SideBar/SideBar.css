@@ -1,4 +1,5 @@
-.side-bar-container{
+.side-bar-container,
+.side-bar-playlist-list{
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -13,7 +14,7 @@
     color: rgb(168, 167, 167);
     font-weight: 700;
     font-size: 1.2rem;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .sidebar-link:hover {
@@ -37,4 +38,15 @@
 
 #side-bar-logo-imgs{
     display: flex;
+}
+
+.side-bar-playlist-list {
+    padding: 0;
+    width: 85%;
+    padding-top: 20px;
+    border-top: 2px solid rgba(128, 128, 128, 0.289);
+}
+
+.sidebar-playlist-link {
+    font-size: 1.05rem;
 }
