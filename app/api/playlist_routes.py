@@ -37,3 +37,13 @@ def add_playlist():
     db.session.commit()
     # print('PLAY LIST!!!!!!!!!!!!!!!!!!', playlist.to_dict())
     return playlist.to_dict()
+
+@playlist_routes.route('/<int:playlist_id>', methods=['DELETE'])
+@login_required
+def delete_playlist(playlist_id):
+    playlist = Playlist.query.get(playlist_id)
+    print(playlist)
+    if playlist.user_Id != current_user.id:
+        return jsonify({'error': 'You do not have permission to delete this playlist'})
+    db.session.delete(playlist)
+    db.session.commit()

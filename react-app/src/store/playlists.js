@@ -44,11 +44,19 @@ export const thunkAddPlaylist = (playlist) => async (dispatch) => {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(playlist),
-  });
+	});
 	const data = await response.json();
-  // console.log('ADD PLAYLIST RESPONSE!!!!!!!!!!!!!!!:', data)
+	// console.log('ADD PLAYLIST RESPONSE!!!!!!!!!!!!!!!:', data)
 	dispatch(actionAddPlaylist(data));
 	return data;
+};
+
+export const thunkDeletePlaylist = (playlistId) => async (dispatch) => {
+	const response = await fetch(`/api/playlists/${playlistId}`, {
+		method: "DELETE",
+	});
+	dispatch(actionDeletePlaylist(playlistId));
+	return response;
 };
 
 const playlistReducer = (state = {}, action) => {
@@ -62,6 +70,10 @@ const playlistReducer = (state = {}, action) => {
 
 		case ADD_PLAYLIST:
 			newState[action.playlist.id] = action.playlist;
+			return newState;
+
+		case DELETE_PLAYLIST:
+			delete newState[action.playlistId];
 			return newState;
 
 		default:
