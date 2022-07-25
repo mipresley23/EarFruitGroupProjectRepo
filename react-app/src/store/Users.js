@@ -16,7 +16,7 @@ export const getUsersThunk = (users) => async(dispatch) => {
   const res = await fetch('/api/users/');
   const users = await res.json();
   dispatch(getUsers(users));
-  return res;
+  return users;
 }
 
 export const editUserThunk = (user) => async(dispatch) => {

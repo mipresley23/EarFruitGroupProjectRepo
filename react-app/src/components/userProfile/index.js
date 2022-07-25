@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { editUserThunk } from '../../store/Users';
+import { getUsersThunk, editUserThunk } from '../../store/Users';
 
 const UserProfile = () => {
   const dispatch = useDispatch()
 
-  const [user, setUser] = useState({});
+  const [users, setUsers] = useState([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -14,21 +14,22 @@ const UserProfile = () => {
   const [showNewPicForm, setShowNewPicForm] = useState(false)
   const { userId }  = useParams();
 
+  const userSelector = useSelector((state) => state.users)
+
+  const user = users && users.find(user => user.id === +userId)
+  console.log('users: ', users)
+  console.log('user: ', user)
+
+
 
   useEffect(() => {
-    if (!userId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
+    dispatch(getUsersThunk())
+  }, [dispatch])
 
-  if (!user) {
-    return null;
-  }
+  useEffect(() => {
+    setUsers(Object.values(userSelector))
+  }, [userSelector])
+
 
   const handleEdit = async (e) => {
     e.preventDefault();
@@ -44,12 +45,10 @@ const UserProfile = () => {
     setShowNewPicForm(false)
   }
 
-
-
   return(
     <div>
-      <h1>{user.username}</h1>
-      <img src={user.photo_url} alt='user image' />
+      <h1>{user && user.username}</h1>
+      <img src={user && user.photo_url} alt='user image' />
       <button type='button' onClick={() => setShowNewPicForm(true)} >New Photo</button>
       {showNewPicForm && <form onSubmit={handleEdit}>
           <input type='text' value={photoUrl} placeholder={user.photo_url} onChange={(e) => setPhotoUrl(e.target.value)}></input>
