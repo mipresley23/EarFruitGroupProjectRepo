@@ -40,7 +40,7 @@ const SongForm = () => {
         if (!artist) errors.push('artist is required');
         if (!album) errors.push('album is required');
         if (!genre) errors.push('genre is required');
-        if (mp3 === '') errors.push('song is required');
+        if (!mp3) errors.push('song is required');
 
         setErrors(errors);
     }, [name, album, genre, artist, mp3]);
@@ -73,7 +73,7 @@ const SongForm = () => {
         };
 
         console.log(song)
-        dispatch(createSong(song))
+        // dispatch(createSong(song))
         history.push('/');
     }
 
@@ -138,8 +138,8 @@ const SongForm = () => {
                 <input
                     name='source'
                     type='file'
+                    accept=''
                     placeholder='Upload'
-                    value={mp3}
                     onChange={(e) => setMP3(e.target.files[0])}
                 />
             </div>
