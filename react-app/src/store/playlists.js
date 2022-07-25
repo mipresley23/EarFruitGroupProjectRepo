@@ -44,10 +44,11 @@ export const thunkAddPlaylist = (playlist) => async (dispatch) => {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(playlist),
-	});
+  });
 	const data = await response.json();
+  // console.log('ADD PLAYLIST RESPONSE!!!!!!!!!!!!!!!:', data)
 	dispatch(actionAddPlaylist(data));
-	return response;
+	return data;
 };
 
 const playlistReducer = (state = {}, action) => {

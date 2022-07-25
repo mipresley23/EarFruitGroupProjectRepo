@@ -16,7 +16,7 @@ const EditSong = ({songId}) => {
     // const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log(songId)
+    // console.log(songId)
     // const genres = [
     //     {value: 'Rock', label: 'Rock'},
     //     {value: 'Pop', label: 'Pop'},
@@ -53,7 +53,7 @@ const EditSong = ({songId}) => {
             source
         };
 
-        console.log(song)
+        // console.log(song)
         dispatch(editSong(song))
         history.push('/');
     }

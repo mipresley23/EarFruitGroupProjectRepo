@@ -7,13 +7,13 @@ import { useParams } from 'react-router-dom';
 const EachPlaylist = () => {
 
   const { playlistId } = useParams();
-  console.log('id:', playlistId)
+  // console.log('id:', playlistId)
   const dispatch = useDispatch()
 
   const [playlists, setPlaylists] = useState();
   const playlistsSelector = useSelector(state => state.playlists)
   const thisPlaylist = playlists && playlists.find(playlist => playlist.id === +playlistId)
-  console.log('thisPlaylist: ', thisPlaylist)
+  // console.log('thisPlaylist: ', thisPlaylist)
   useEffect(() => {
     dispatch(thunkGetPlaylists())
   }, [dispatch])

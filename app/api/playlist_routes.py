@@ -35,4 +35,5 @@ def add_playlist():
     )
     db.session.add(playlist)
     db.session.commit()
+    # print('PLAY LIST!!!!!!!!!!!!!!!!!!', playlist.to_dict())
     return playlist.to_dict()

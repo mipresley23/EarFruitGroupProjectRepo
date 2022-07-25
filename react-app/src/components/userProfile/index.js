@@ -17,8 +17,8 @@ const UserProfile = () => {
   const userSelector = useSelector((state) => state.users)
 
   const user = users && users.find(user => user.id === +userId)
-  console.log('users: ', users)
-  console.log('user: ', user)
+  // console.log('users: ', users)
+  // console.log('user: ', user)
 
 
 
@@ -40,7 +40,7 @@ const UserProfile = () => {
       password: user.password,
       photo_url: photoUrl
     }
-    console.log('editUser: ', editUser)
+    // console.log('editUser: ', editUser)
     await dispatch(editUserThunk(editUser))
     setShowNewPicForm(false)
   }

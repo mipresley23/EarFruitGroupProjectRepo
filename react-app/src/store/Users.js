@@ -20,7 +20,7 @@ export const getUsersThunk = (users) => async(dispatch) => {
 }
 
 export const editUserThunk = (user) => async(dispatch) => {
-  console.log('edit thunk user: ', user)
+  // console.log('edit thunk user: ', user)
   const  { username, email, password, photo_url } = user;
   const res = await fetch(`/api/users/${user.id}`, {
     method: "PUT",
@@ -56,7 +56,7 @@ export default function userReducer(state = {}, action) {
       return newState;
 
     case EDIT_USER:
-      console.log('edit action: ', action)
+      // console.log('edit action: ', action)
       newState[action.user.id] = action.user
       return newState
     default:
