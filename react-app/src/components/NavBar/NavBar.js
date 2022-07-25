@@ -7,11 +7,10 @@ import "./NavBar.css";
 const NavBar = () => {
 	const dispatch = useDispatch()
 	const isLoggedIn = useSelector((state) => state.session.user);
+
 	const handleDemo = () => {
 		return dispatch(sessionActions.loginDemo());
 	}
-	console.log('logged in: ', isLoggedIn)
-
 
 	return (
 		<nav className="nav-container">

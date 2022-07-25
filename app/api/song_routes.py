@@ -18,10 +18,6 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@song_routes.route('/')
-def songs():
-    return '<h1>Songs</h1>'
-
 @song_routes.route('/', methods=['POST'])
 @login_required
 def add_song():
@@ -43,6 +39,36 @@ def add_song():
 def get_songs():
     songs = Song.query.all()
     return jsonify([song.to_dict() for song in songs])
+
+@song_routes.route('/<int:song_id>')
+def get_song(song_id):
+    song = Song.query.get(song_id)
+    return jsonify(song.to_dict())
+
+@song_routes.route('/<int:song_id>', methods=['DELETE'])
+@login_required
+def delete_song(song_id):
+    song = Song.query.get(song_id)
+    if song.userId != current_user.id:
+        return jsonify({'error': 'You do not have permission to delete this song'})
+    db.session.delete(song)
+    db.session.commit()
+
+
+@song_routes.route('/<int:song_id>', methods=['PUT'])
+@login_required
+def update_song(song_id):
+    song = Song.query.get(song_id)
+    if song.userId != current_user.id:
+        return jsonify({'error': 'You do not have permission to update this song'})
+    form = AddSong()
+    song.name = form.data['name']
+    song.artist = form.data['artist']
+    song.album = form.data['album']
+    song.genre = form.data['genre']
+    song.source = form.data['source']
+    db.session.commit()
+    return song.to_dict()
 
 
 @song_routes.route("/mp3", methods=["POST"])

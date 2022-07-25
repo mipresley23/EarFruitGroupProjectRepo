@@ -40,4 +40,4 @@ def editUser(id):
         print('user route: ', userUpdate)
         db.session.add(userUpdate)
         db.session.commit()
-        return userUpdate.to_dict()
+        return user.to_dict()
