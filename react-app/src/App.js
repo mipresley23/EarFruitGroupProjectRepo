@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import HomePage from './components/HomePage/HomePage';
-import { authenticate } from './store/session';
+import { authenticate, awsWorking } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -21,9 +21,18 @@ function App() {
     })();
   }, [dispatch]);
 
+
+  useEffect(()=> {
+    (async() => {
+      await dispatch(awsWorking());
+    })();
+  }, [dispatch])
+
+
   if (!loaded) {
     return null;
   }
+
 
   return (
     <BrowserRouter>
