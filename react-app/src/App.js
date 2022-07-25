@@ -6,6 +6,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
 import SideBar from './components/SideBar/SideBar';
 import SongForm from './components/SongForm';
+import Songs from './components/Songs/Songs';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import AllPlaylists from './components/AllPlaylists';
@@ -62,6 +63,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/' exact={true} >
             <HomePage/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/songs' exact={true} >
+            <Songs/>
           </ProtectedRoute>
           <ProtectedRoute path='/add-song' exact={true} >
             <SongForm />
