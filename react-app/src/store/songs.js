@@ -26,13 +26,17 @@ export const createSong = (song) => async (dispatch) => {
     body: JSON.stringify(song)
   });
   if (response.ok) {
-    const data = await response.json();
-    dispatch(addSong(data))
-    return null;
-  } else {
-    return ['An error occurred. Please try again.']
-  }
-}
+    const song = await response.json();
+    dispatch(addSong(song))
+}}
+
+export const getSongs = () => async (dispatch) => {
+  const response = await fetch('/api/songs/');
+  if (response.ok) {
+    const song = await response.json();
+    dispatch(retrieveSongs(song))
+    return song;
+  }}
 
 const initialState = {};
 
