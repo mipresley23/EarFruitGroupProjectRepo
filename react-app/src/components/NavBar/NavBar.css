@@ -64,4 +64,15 @@
 
 #nav-bar-user-info{
  display: flex;
+ align-items: center;
+}
+
+#nav-bar-user-link{
+    display: flex;
+    align-items: center;
+}
+
+#nav-bar-user-img{
+    height: 30px;
+    border-radius: 50%;
 }

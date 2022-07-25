@@ -32,8 +32,20 @@ export const authenticate = () => async (dispatch) => {
   }
 }
 
-export const loginDemo = () => async(dispatch) => {
-  dispatch(setUser({id: 1, username: 'Demo', email: 'demo2@aa.io'}))
+export const loginDemo = (email = 'demo2@aa.io', password = 'password') => async(dispatch) => {
+  const res = await fetch('/api/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email,
+      password
+    })
+  })
+  const data = await res.json();
+  dispatch(setUser(data))
+  return null;
 }
 
 export const login = (email, password) => async (dispatch) => {
