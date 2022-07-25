@@ -45,6 +45,7 @@ export const getSongs = () => async (dispatch) => {
   }}
 
 export const editSong = (song) => async (dispatch) => {
+  console.log('INSIDE THUNK::', song.id)
   const response = await fetch(`/api/songs/${song.id}`, {
     method: 'PUT',
     headers: {

@@ -46,6 +46,7 @@ const EditSong = ({songId}) => {
         e.preventDefault();
 
         const song = {
+            id: songId,
             name,
             album,
             genre,
