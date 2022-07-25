@@ -30,14 +30,6 @@ function App() {
     })();
   }, [dispatch]);
 
-
-  useEffect(()=> {
-    (async() => {
-      await dispatch(awsWorking());
-    })();
-  }, [dispatch])
-
-
   if (!loaded) {
     return null;
   }
