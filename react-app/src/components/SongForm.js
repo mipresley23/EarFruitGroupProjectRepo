@@ -12,6 +12,8 @@ const SongForm = () => {
     const [genre, setGenre] = useState('Rock');
     const [artist, setArtist] = useState('');
     const [source, setSource] = useState(undefined);
+    const [mp3, setMP3] = useState(undefined);
+    const [mp3Loading, setMP3Loading] = useState(false);
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
@@ -38,12 +40,28 @@ const SongForm = () => {
         if (!artist) errors.push('artist is required');
         if (!album) errors.push('album is required');
         if (!genre) errors.push('genre is required');
+        if (!mp3) errors.push('song is required');
 
         setErrors(errors);
-    }, [name, album, genre, artist, source]);
+    }, [name, album, genre, artist, mp3]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setMP3Loading(true); 
+        const res = await fetch('/api/songs/mp3', {
+            method: "POST",
+            body: {'mp3': mp3},
+        });
+        if (res.ok) {
+            await res.json();
+            setMP3Loading(false);
+            setSource(res.source)
+        }
+        else {
+            setMP3Loading(false);
+            console.log("error uploading song")
+        }
 
         const song = {
             name,
@@ -120,11 +138,12 @@ const SongForm = () => {
                     name='source'
                     type='file'
                     placeholder='Upload'
-                    // value={source}
-                    onChange={(e) => setSource(e.target.files[0])}
+                    value={mp3}
+                    onChange={(e) => setMP3(e.target.files[0])}
                 />
             </div>
             <button type='submit' disabled={errors.length > 0}>Submit</button>
+            {(mp3Loading)&& <p>Loading...</p>}
         </form>
     );
 

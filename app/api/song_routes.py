@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 from app.models import db
 from app.models.db import User, Song
 from app.forms.add_song import AddSong
+from app.s3_funcs import (
+    upload_file_to_s3, is_mp3, get_unique_filename)
 
 song_routes = Blueprint('songs', __name__, url_prefix='/songs')
 
@@ -43,3 +45,27 @@ def get_songs():
     return jsonify([song.to_dict() for song in songs])
 
 
+@song_routes.route("/mp3", methods=["POST"])
+@login_required
+def upload_mp3():
+    if "mp3" not in request.files:
+        return {"errors": "mp3 required"}, 400
+
+    mp3 = request.files["mp3"]
+
+    if not is_mp3(mp3.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    mp3.filename = get_unique_filename(mp3.filename)
+
+    upload = upload_file_to_s3(mp3)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a filename key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+
+    return {"source": url}
