@@ -49,8 +49,7 @@ def get_song(song_id):
 @login_required
 def delete_song(song_id):
     song = Song.query.get(song_id)
-    if song.userId != current_user.id:
-        return jsonify({'error': 'You do not have permission to delete this song'})
+    
     db.session.delete(song)
     db.session.commit()
 
