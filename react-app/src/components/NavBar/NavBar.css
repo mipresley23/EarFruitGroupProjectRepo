@@ -37,8 +37,12 @@
     border-radius: 500px;
     border: 0px;
     cursor: pointer;
+    transition: all .06s ease-in;
 }
-
+.logout-btn:hover {
+    background-color: #1DB954;
+    color: white;
+}
 .nav-list li:hover {
     color: white;
     transform: scale(1.1);
