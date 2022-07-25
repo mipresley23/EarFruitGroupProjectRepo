@@ -25,6 +25,7 @@ export default function SideBar() {
 		setPlaylists(Object.values(playlistsSelector));
 	}, [playlistsSelector]);
 
+
 	if (!playlists) return null;
 	return (
 		<div className="side-bar-container">
@@ -65,4 +66,5 @@ export default function SideBar() {
 			</div>
 		</div>
 	);
+
 }
