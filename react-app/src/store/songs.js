@@ -13,8 +13,14 @@ const retrieveSongs = (songs) => ({
   payload: songs
 })
 
-const deleteSong = () => ({
+const updateSong = (song) => ({
+  type: EDIT_SONG,
+  payload: song
+})
+
+const removeSong = (id) => ({
   type: DELETE_SONG,
+  payload: id
 })
 
 export const createSong = (song) => async (dispatch) => {
@@ -26,11 +32,42 @@ export const createSong = (song) => async (dispatch) => {
     body: JSON.stringify(song)
   });
   if (response.ok) {
-    const data = await response.json();
-    dispatch(addSong(data))
-    return null;
-  } else {
-    return ['An error occurred. Please try again.']
+    const song = await response.json();
+    dispatch(addSong(song))
+}}
+
+export const getSongs = () => async (dispatch) => {
+  const response = await fetch('/api/songs/');
+  if (response.ok) {
+    const song = await response.json();
+    dispatch(retrieveSongs(song))
+    return song;
+  }}
+
+export const editSong = (song) => async (dispatch) => {
+  const response = await fetch(`/api/songs/${song.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(song)
+  });
+  if (response.ok) {
+    const updatedSong = await response.json();
+    dispatch(updateSong(updatedSong))
+  }
+}
+
+export const deleteSong = id => async (dispatch) => {
+  const response = await fetch(`/api/songs/${id}`, {
+    method: 'DELETE',
+    body: JSON.stringify({id}),
+    headers: {
+      'Content-Type':'application/json'
+    }
+  })
+  if (response.ok) {
+    dispatch(removeSong(id))
   }
 }
 
