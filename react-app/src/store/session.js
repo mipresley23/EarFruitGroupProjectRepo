@@ -2,6 +2,7 @@
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
+
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
@@ -10,6 +11,8 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+
 
 const initialState = { user: null };
 
@@ -24,9 +27,13 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
+}
+
+export const loginDemo = () => async(dispatch) => {
+  dispatch(setUser({id: 1, username: 'Demo', email: 'demo2@aa.io'}))
 }
 
 export const login = (email, password) => async (dispatch) => {
@@ -40,8 +47,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -56,6 +63,8 @@ export const login = (email, password) => async (dispatch) => {
   }
 
 }
+
+
 
 export const logout = () => async (dispatch) => {
   const response = await fetch('/api/auth/logout', {
@@ -70,7 +79,7 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (username, email, password, photo_url) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -80,9 +89,10 @@ export const signUp = (username, email, password) => async (dispatch) => {
       username,
       email,
       password,
+      photo_url
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -97,10 +107,11 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
-export default function reducer(state = initialState, action) {
+export default function sessionReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
+
     case REMOVE_USER:
       return { user: null }
     default:

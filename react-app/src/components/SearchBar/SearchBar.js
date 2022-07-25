@@ -19,7 +19,7 @@ export default function SearchBar() {
 	}
 
 	const playlistSearchResults = searchResults.map((playlist) => {
-		console.log(playlist);
+		// console.log(playlist);
 		return (
 			<div className="playlist-card" key={playlist.name}>
 				<div className="playlist-card-contents">
@@ -32,14 +32,10 @@ export default function SearchBar() {
 	});
 
 	return (
-		<div>
+		<div className="search-container">
 			<form onSubmit={onSubmit}>
-				<input
-					type="search"
-					id="search"
-					name="search"
-					onChange={(e) => setSearch(e.target.value)}
-				/>
+				<i class="fa fa-search"></i>
+				<input type="search" id="search" name="search" placeholder="Artists, songs, or playlists" onChange={(e) => setSearch(e.target.value)} />
 				<button>Search</button>
 			</form>
 			{searchResults.length>0 && (
