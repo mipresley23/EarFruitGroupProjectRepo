@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { editSong } from '../../store/songs';
+import { editSong, getSongs } from '../../store/songs';
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
 
-const EditSong = ({songId}) => {
+const EditSong = ({songId, setShowModal}) => {
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
     const [album, setAlbum] = useState('');
@@ -55,8 +55,10 @@ const EditSong = ({songId}) => {
         };
 
         console.log(song)
-        dispatch(editSong(song))
-        history.push('/');
+        dispatch(editSong(song)).then(() => {
+            dispatch(getSongs());
+            setShowModal(false);
+        })
     }
 
     return (
