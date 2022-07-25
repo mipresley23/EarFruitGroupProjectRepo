@@ -11,7 +11,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import AllPlaylists from './components/AllPlaylists';
 import EachPlaylist from './components/EachPlaylist';
-import User from './components/User';
+// import User from './components/User';
 
 import UserProfile from './components/userProfile';
 
