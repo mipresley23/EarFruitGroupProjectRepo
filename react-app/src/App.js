@@ -11,6 +11,7 @@ import UsersList from './components/UsersList';
 import AllPlaylists from './components/AllPlaylists';
 import EachPlaylist from './components/EachPlaylist';
 import User from './components/User';
+import PlaylistForm from './components/PlaylistForm/PlaylistForm';
 
 import UserProfile from './components/userProfile';
 
@@ -67,6 +68,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/playlists' exact={true} >
             <AllPlaylists />
+          </ProtectedRoute>
+          <ProtectedRoute path='/playlists/new-playlist' exact={true} >
+            <PlaylistForm />
           </ProtectedRoute>
           <ProtectedRoute path='/playlists/:playlistId' exact={true} >
             <EachPlaylist />
