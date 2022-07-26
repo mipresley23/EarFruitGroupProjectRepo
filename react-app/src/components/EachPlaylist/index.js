@@ -22,7 +22,7 @@ const EachPlaylist = () => {
 	const [name, setName] = useState(editPlaylist?.name);
 	const [description, setDescription] = useState(editPlaylist?.description);
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
-	const [imageError, setImageError] = useState(false)
+	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
 	useEffect(() => {
 		dispatch(thunkGetPlaylists());
@@ -33,7 +33,7 @@ const EachPlaylist = () => {
 		setEditName(false);
 		setEditImage(false);
 		setEditDescription(false);
-		setEditImage(false)
+		setEditImage(false);
 	}, [playlistId]);
 
 	useEffect(() => {
@@ -74,7 +74,7 @@ const EachPlaylist = () => {
 		setEditName(false);
 	}
 	async function cancelEditImageBtn(e) {
-		setImage(editPlaylist?.cover_img_url)
+		setImage(editPlaylist?.cover_img_url);
 		setEditImage(false);
 	}
 	async function cancelEditDescriptionBtn(e) {
@@ -87,23 +87,23 @@ const EachPlaylist = () => {
 	}
 	function checkImage(url) {
 		var image = new Image();
-		image.onload = function() {
+		image.onload = function () {
 			if (this.width > 0) {
-			  setImageError(false)
-			// console.log("image exists");
-		  }
-		}
+				setImageError(false);
+				// console.log("image exists");
+			}
+		};
 		image.onerror = function () {
-			setImageError(true)
-		//   console.log("image doesn't exist");
-		}
+			setImageError(true);
+			//   console.log("image doesn't exist");
+		};
 		image.src = url;
-	  }
+	}
 	useEffect(() => {
-		checkImage(image)
-	},[image])
+		checkImage(image);
+	}, [image]);
 	// console.log(imageError)
-	// if(!editPlaylist) return null;
+	if (!editPlaylist) return null;
 	return (
 		<div className="playlist-header">
 			<div className="playlist-name-cont">
@@ -124,7 +124,9 @@ const EachPlaylist = () => {
 					/>
 				)}
 				{isOwner && editName && (
-					<button className="update-name-btn" onClick={updatePlaylist}>Update Name</button>
+					<button className="update-name-btn" onClick={updatePlaylist}>
+						Update Name
+					</button>
 				)}
 				{isOwner && editName && (
 					<button onClick={cancelEditNameBtn}>Cancel</button>
@@ -150,30 +152,39 @@ const EachPlaylist = () => {
 						{isOwner && editDescription && (
 							<button onClick={cancelEditDescriptionBtn}>Cancel</button>
 						)}
-          </li>
-          <li className="playlist-username">
-            {<h3>{editPlaylist?.user.username}</h3>}
-          </li>
+					</li>
+					<li className="playlist-username">
+						{<h3>{editPlaylist?.user.username}</h3>}
+					</li>
 				</ul>
 			</div>
 			<div className="playlist-image">
 				{/* {console.log(imageError)} */}
-				{!imageError && <img src={editPlaylist?.cover_img_url}/>}
-				{imageError && <img src={require("../SideBar/my-playlist-img.png").default}/>}
+				{!imageError && <img src={editPlaylist?.cover_img_url} />}
+				{imageError && (
+					<img src={require("../SideBar/my-playlist-img.png").default} />
+				)}
 				{isOwner && !editImage && (
 					<button className="edit-image-btn" onClick={editImageBtn}>
 						<i class="fa fa-edit fa-lg"></i>
 					</button>
 				)}
-				{isOwner && editImage && (
-					<input value={image} onChange={(e) => setImage(e.target.value)} />
-				)}
-				{isOwner && editImage && (
-					<button onClick={updatePlaylist}>Update Image</button>
-				)}
-				{isOwner && editImage && (
-					<button onClick={cancelEditImageBtn}>Cancel</button>
-				)}
+				<div className="edit-image-div">
+					{isOwner && editImage && (
+						<input
+							className="edit-image-input"
+							placeholder="Image Url"
+							value={image}
+							onChange={(e) => setImage(e.target.value)}
+						/>
+					)}
+					{isOwner && editImage && (
+						<button className="edit-image-update-btn" onClick={updatePlaylist}>Update Image</button>
+					)}
+					{isOwner && editImage && (
+						<button className="edit-image-cancel-btn" onClick={cancelEditImageBtn}>Cancel</button>
+					)}
+				</div>
 			</div>
 			{isOwner && (
 				<button className="delete-playlist-btn" onClick={onDelete}>

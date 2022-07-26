@@ -73,14 +73,17 @@ margin: 0;
 .edit-image-btn {
 	position: absolute;
 	/* right:20px; */
+	padding: 10px;
+	margin: 0;
 	top: 10px;
 	left: 10px;
+	border-radius: 50%;
 	border: none;
-	background-color: transparent;
+	background-color: rgb(29, 185, 84);
 	cursor: pointer;
 }
 .edit-image-btn:hover {
-	color: rgb(29, 185, 84);
+	color: white;
 }
 .delete-playlist-btn {
 	position: absolute;
@@ -111,4 +114,35 @@ margin: 0;
 
 .editNameInput:focus {
 	outline: none; /* Removes the border when the input is clicked */
+}
+
+.edit-image-input {
+	border: 1px;
+	background-color: rgb(207, 207, 207);
+	margin: 0;
+	padding: 0;
+	flex-grow: 2;
+	border-top-left-radius: 150px;
+	border-bottom-left-radius: 150px;
+	padding-left: 10px;
+}
+
+.edit-image-div {
+	/* border: 2px white solid; */
+	display: flex;
+	flex-wrap: wrap;
+	border-radius: 150px;
+}
+
+.edit-image-cancel-btn {
+	border-top-right-radius: 150px;
+	border-bottom-right-radius: 150px;
+	background-color: rgb(167, 167, 167);
+	border: 0px;
+}
+
+.edit-image-update-btn {
+	background-color: rgb(167, 167, 167);
+	border: 0px;
+	border-right: 1px solid black;
 }
