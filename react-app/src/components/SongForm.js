@@ -55,7 +55,7 @@ const SongForm = () => {
 
         // console.log(song)
         dispatch(createSong(song))
-        history.push('/');
+        history.push('/songs');
     }
 
     return (

@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import EditSong from './EditSong';
+import ConfirmDelete from './ConfirmDelete';
 
-function EditSongModal({songId}) {
+function ConfirmDeleteModal({songId}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <button onClick={() => {
         setShowModal(true)
-        }}><i class="fa fa-edit"></i></button>
+        }}><i class="fa fa-trash"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditSong songId={songId} setShowModal={setShowModal}/>
+          <ConfirmDelete songId={songId} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>
   );
 }
 
-export default EditSongModal;
+export default ConfirmDeleteModal;

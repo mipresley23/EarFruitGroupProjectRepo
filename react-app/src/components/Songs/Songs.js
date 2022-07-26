@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getSongs } from '../../store/songs';
 import EditSongModal from '../EditSongModal';
+import ConfirmDeleteModal from '../ConfirmDeleteModal';
 
 function Songs() {
 
@@ -23,6 +24,7 @@ function Songs() {
                 {songsArr.map(song => (
                     <li key={song.id}>
                         <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
+                        <ConfirmDeleteModal songId={song?.id} onClick={console.log('click!')}/>
                         <p>{song?.name}</p>
                         <p>{song?.artist}</p>
                         <p>{song?.album}</p>
