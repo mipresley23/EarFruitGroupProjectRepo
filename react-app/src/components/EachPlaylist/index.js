@@ -22,6 +22,7 @@ const EachPlaylist = () => {
 	const [name, setName] = useState(editPlaylist?.name);
 	const [description, setDescription] = useState(editPlaylist?.description);
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
+	const [imageError, setImageError] = useState(false)
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
 	useEffect(() => {
 		dispatch(thunkGetPlaylists());
@@ -32,6 +33,7 @@ const EachPlaylist = () => {
 		setEditName(false);
 		setEditImage(false);
 		setEditDescription(false);
+		setEditImage(false)
 	}, [playlistId]);
 
 	useEffect(() => {
@@ -82,7 +84,22 @@ const EachPlaylist = () => {
 		history.push(`/`);
 		await dispatch(thunkDeletePlaylist(playlistId));
 	}
-
+	function checkImage(url) {
+		var image = new Image();
+		image.onload = function() {
+			if (this.width > 0) {
+			  setImageError(false)
+			console.log("image exists");
+		  }
+		}
+		image.onerror = function () {
+			setImageError(true)
+		  console.log("image doesn't exist");
+		}
+		image.src = url;
+	  }
+	checkImage(image)
+	console.log(imageError)
 	// if(!editPlaylist) return null;
 	return (
 		<div className="playlist-header">
@@ -137,7 +154,9 @@ const EachPlaylist = () => {
 				</ul>
 			</div>
 			<div className="playlist-image">
-				<img src={editPlaylist?.cover_img_url} />
+				{/* {console.log(imageError)} */}
+				{!imageError && <img src={editPlaylist?.cover_img_url}/>}
+				{imageError && <img src={require("../SideBar/my-playlist-img.png").default}/>}
 				{isOwner && !editImage && (
 					<button className="edit-image-btn" onClick={editImageBtn}>
 						<i class="fa fa-edit fa-lg"></i>

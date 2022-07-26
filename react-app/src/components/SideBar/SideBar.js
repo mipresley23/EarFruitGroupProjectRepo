@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import { thunkGetPlaylists } from "../../store/playlists";
+import { NavLink, useHistory, useParams } from "react-router-dom";
+import { thunkGetPlaylists, thunkAddPlaylist } from "../../store/playlists";
 import "./SideBar.css";
 
 export default function SideBar() {
 	const dispatch = useDispatch();
+	const history = useHistory()
 	const [playlists, setPlaylists] = useState([]);
 
 	const playlistsSelector = useSelector((state) => state.playlists);
@@ -25,7 +26,21 @@ export default function SideBar() {
 		setPlaylists(Object.values(playlistsSelector));
 	}, [playlistsSelector]);
 
+	const onSubmit = async(e) => {
+        e.preventDefault()
 
+        const playlist = {
+            name:'My Playlist',
+            description:`${sessionUser.username}'s Playlist`,
+            cover_img_url:''
+        }
+        // dispatch(thunkAddPlaylist(playlist))
+        const newPlaylist = await dispatch(thunkAddPlaylist(playlist))
+        // console.log('ADD PLAYLIST RESPONSE!!!!!!!!!!!!!!!:',newPlaylist)
+        if (newPlaylist) {
+            history.push(`/playlists/${newPlaylist.id}`)
+        }
+    }
 	if (!playlists) return null;
 	return (
 		<div className="side-bar-container">
@@ -54,10 +69,10 @@ export default function SideBar() {
 				<i class="fa fa-music"></i>
 				Songs
 			</NavLink>
-			<NavLink className="sidebar-link" to="/playlists/new-playlist" exact={true}>
+			<div onClick={onSubmit}>
 				<i class="fa fa-plus"></i>
 				Create Playlist
-			</NavLink>
+			</div>
 			<div className="side-bar-playlist-list">
 				{sessionUser &&
 					usersPlaylists.map((playlist) => (
