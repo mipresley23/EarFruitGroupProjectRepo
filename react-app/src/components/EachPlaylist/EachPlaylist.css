@@ -63,3 +63,16 @@
 	top: 20px;
 	right: 20px;
 }
+
+.editNameInput{
+    font-size: 5rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+    border: none;
+    width: 70%;
+}
+
+.editNameInput:focus {
+	outline: none; /* Removes the border when the input is clicked */
+}

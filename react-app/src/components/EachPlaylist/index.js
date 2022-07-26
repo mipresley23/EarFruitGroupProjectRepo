@@ -90,7 +90,7 @@ const EachPlaylist = () => {
         {isOwner && !editName && (<h1 className="playlist-name" onClick={editNameBtn}>{editPlaylist?.name}</h1>)}
         {!isOwner && (<h1>{editPlaylist?.name}</h1>)}
 				{isOwner && editName && (
-					<input value={name} onChange={(e) => setName(e.target.value)} />
+					<input className="editNameInput" value={name} autoFocus onChange={(e) => setName(e.target.value)} />
 				)}
 				{isOwner && editName && (
 					<button onClick={updatePlaylist}>Update Name</button>
