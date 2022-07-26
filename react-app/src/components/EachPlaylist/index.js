@@ -6,6 +6,7 @@ import {
 	thunkEditPlaylist,
 } from "../../store/playlists";
 import { useHistory, useParams } from "react-router-dom";
+import './EachPlaylist.css'
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -84,7 +85,7 @@ const EachPlaylist = () => {
 
 	// if(!editPlaylist) return null;
 	return (
-		<div>
+		<div className="playlist-header">
 			<div className="playlist-name">
 				{<h1>{editPlaylist?.name}</h1>}
 				{isOwner && !editName && (
@@ -118,7 +119,7 @@ const EachPlaylist = () => {
 			<div className="playlist-image">
 				<img src={editPlaylist?.cover_img_url} />
 				{isOwner && !editImage && (
-					<button onClick={editImageBtn}>Edit Image</button>
+					<button className="edit-image-btn" onClick={editImageBtn}>Edit Image</button>
 				)}
 				{isOwner && editImage && (
 					<input value={image} onChange={(e) => setImage(e.target.value)} />
@@ -130,7 +131,7 @@ const EachPlaylist = () => {
 					<button onClick={cancelEditImageBtn}>Cancel</button>
 				)}
 			</div>
-			{isOwner && <button onClick={onDelete}>Delete Playlist</button>}
+			{isOwner && <button className="delete-playlist-btn" onClick={onDelete}>Delete Playlist</button>}
 		</div>
 	);
 };
