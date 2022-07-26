@@ -12,7 +12,7 @@ const SongForm = () => {
     const [genre, setGenre] = useState('Rock');
     const [artist, setArtist] = useState('');
     const [source, setSource] = useState('');
-    const [mp3, setMP3] = useState('');
+    const [mp3, setMP3] = useState(null);
     const [mp3Loading, setMP3Loading] = useState(false);
 
     const user = useSelector(state => state.session.user);
@@ -48,10 +48,13 @@ const SongForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const formData = new FormData();
+        formData.append("mp3", mp3);
+
         setMP3Loading(true); 
         const res = await fetch('/api/songs/mp3', {
             method: "POST",
-            body: {'mp3': mp3},
+            body: formData
         });
         if (res.ok) {
             await res.json();
@@ -61,7 +64,7 @@ const SongForm = () => {
         }
         else {
             setMP3Loading(false);
-            console.log("error uploading song")
+            console.log("---error uploading song----", res)
         }
 
         const song = {

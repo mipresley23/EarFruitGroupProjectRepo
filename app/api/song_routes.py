@@ -74,12 +74,12 @@ def update_song(song_id):
 @login_required
 def upload_mp3():
     if "mp3" not in request.files:
-        print('----------error #1-----------', request.files.mp3)
+        print('----------error #1-----------')
         return {"errors": "mp3 required"}, 400
 
     mp3 = request.files["mp3"]
     
-    print(mp3)
+    print('--------mp3--------', mp3)
     
     if not is_mp3(mp3.filename):
         print('----------error #2-----------')
@@ -90,10 +90,7 @@ def upload_mp3():
     upload = upload_file_to_s3(mp3)
 
     if "url" not in upload:
-        # if the dictionary doesn't have a filename key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        print('----------error #3-----------')
+        print('----------error #3-----------', upload, '--------')
         return upload, 400
 
     url = upload["url"]
