@@ -5,14 +5,12 @@
 .playlists-container {
 	display: flex;
 	gap: 16px;
-	/* border: 2px black solid; */
 	overflow-x: scroll;
 }
 ::-webkit-scrollbar {
 	height: 12px;
 }
 .playlist-card {
-	/* display:flex; */
 	min-height: 242px;
 	min-width: 164px;
 	height: 25vh;
@@ -30,7 +28,6 @@
 .playlist-card-contents {
 	display: flex;
 	flex-direction: column;
-	/* align-items: center; */
 	place-items: center;
 }
 #playlist-name {
@@ -52,13 +49,9 @@
 	width: 90%;
 	height: 60%;
 	border-radius: 3%;
-	/* margin-left: auto;
-    margin-right: auto; */
 }
 
-/* .playlists-container{
-    border: 2px red solid;
-} */
+
 ::-webkit-scrollbar-thumb {
 	background-color: black;
 }
@@ -75,14 +68,13 @@
 }
 
 #search:focus {
-	outline: none; /* Removes the border when the input is clicked */
+	outline: none;
 }
 
 search-icon {
 	margin-right: 10px;
 }
 .search-bar {
-	/* border: 2px rgb(72, 71, 71) solid; */
 	background-color: rgb(197, 196, 196);
 	padding: 10px 20px;
 	border-radius: 500px;
@@ -105,7 +97,11 @@ search-icon {
     transform: scale(1.1);
     background-color: rgba(176, 176, 176, 0.798);
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
     color: rgb(0, 0, 0,0.55);
-    opacity: 1; /* Firefox */
+    opacity: 1;
+  }
+
+  .search-icon {
+	  color: black;
   }
