@@ -81,7 +81,7 @@ export default function SideBar() {
 				<i class="fa fa-music"></i>
 				Songs
 			</NavLink>
-			<div onClick={onSubmit}>
+			<div className="sidebar-link" onClick={onSubmit}>
 				<i class="fa fa-plus"></i>
 				Create Playlist
 			</div>
