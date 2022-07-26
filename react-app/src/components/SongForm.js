@@ -11,7 +11,6 @@ const SongForm = () => {
     const [album, setAlbum] = useState('');
     const [genre, setGenre] = useState('Rock');
     const [artist, setArtist] = useState('');
-    const [source, setSource] = useState('');
     const [mp3, setMP3] = useState(null);
     const [mp3Loading, setMP3Loading] = useState(false);
 
@@ -57,27 +56,26 @@ const SongForm = () => {
             body: formData
         });
         if (res.ok) {
-            await res.json();
+            const jsonRes = await res.json();
             setMP3Loading(false);
-            console.log('----------response----------', res)
-            // setSource(res.source)
+            console.log('------jsonRes----', jsonRes.source)
+
+            const song = {
+                name,
+                album,
+                genre,
+                artist,
+                source: jsonRes.source
+            };
+    
+            console.log('------song------', song)
+            dispatch(createSong(song))
+            history.push('/');
         }
         else {
             setMP3Loading(false);
             console.log("---error uploading song----", res)
         }
-
-        const song = {
-            name,
-            album,
-            genre,
-            artist,
-            source
-        };
-
-        console.log(song)
-        // dispatch(createSong(song))
-        history.push('/');
     }
 
     return (

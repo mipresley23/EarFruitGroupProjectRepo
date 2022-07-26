@@ -73,14 +73,15 @@ def update_song(song_id):
 @song_routes.route("/mp3", methods=["POST"])
 @login_required
 def upload_mp3():
+    
     if "mp3" not in request.files:
         print('----------error #1-----------')
         return {"errors": "mp3 required"}, 400
 
     mp3 = request.files["mp3"]
-    
+
     print('--------mp3--------', mp3)
-    
+
     if not is_mp3(mp3.filename):
         print('----------error #2-----------')
         return {"errors": "file type not permitted"}, 400
@@ -94,5 +95,7 @@ def upload_mp3():
         return upload, 400
 
     url = upload["url"]
+
+    print('-------upload-Working-------', url, '-----------------')
 
     return {"source": url}
