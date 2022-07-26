@@ -10,7 +10,8 @@ export default function PlaylistForm() {
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted,setHasSubmitted] = useState(false)
 
-	const sessionUser = useSelector((state) => state.session.user);
+    const sessionUser = useSelector((state) => state.session.user);
+    const p = useSelector((state) => state.playlists)
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -24,7 +25,7 @@ export default function PlaylistForm() {
 		setValidationErrors(errors);
 	}, [name, description, coverUrl]);
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault()
         setHasSubmitted(true)
         if (validationErrors.length) return alert('Cannot Submit')
@@ -34,8 +35,12 @@ export default function PlaylistForm() {
             description,
             cover_img_url: coverUrl
         }
-        dispatch(thunkAddPlaylist(playlist))
-        history.push('/playlists')
+        // dispatch(thunkAddPlaylist(playlist))
+        const newPlaylist = await dispatch(thunkAddPlaylist(playlist))
+        // console.log('ADD PLAYLIST RESPONSE!!!!!!!!!!!!!!!:',newPlaylist)
+        if (newPlaylist) {
+            history.push(`/playlists/${newPlaylist.id}`)
+        }
     }
 
 	return (

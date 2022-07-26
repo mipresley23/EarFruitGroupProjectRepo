@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import "./SearchBar.css";
 
 export default function SearchBar() {
@@ -21,13 +22,15 @@ export default function SearchBar() {
 	const playlistSearchResults = searchResults.map((playlist) => {
 		// console.log(playlist);
 		return (
+			<NavLink className='search-playlist-link' to={`/playlists/${playlist.id}`}>
 			<div className="playlist-card" key={playlist.name}>
 				<div className="playlist-card-contents">
 					<img src={playlist.cover_img_url} />
 					<p id="playlist-name">{playlist.name}</p>
 					<p>By {playlist.user.username}</p>
 				</div>
-			</div>
+				</div>
+				</NavLink>
 		);
 	});
 
