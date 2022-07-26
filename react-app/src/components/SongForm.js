@@ -58,7 +58,7 @@ const SongForm = () => {
         if (res.ok) {
             const jsonRes = await res.json();
             setMP3Loading(false);
-            console.log('------jsonRes----', jsonRes.source)
+            // console.log('------jsonRes----', jsonRes.source)
 
             const song = {
                 name,
@@ -68,13 +68,13 @@ const SongForm = () => {
                 source: jsonRes.source
             };
     
-            console.log('------song------', song)
+            // console.log('------song------', song)
             dispatch(createSong(song))
             history.push('/');
         }
         else {
             setMP3Loading(false);
-            console.log("---error uploading song----", res)
+            // console.log("---error uploading song----", res)
         }
     }
 

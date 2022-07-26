@@ -33,25 +33,18 @@ def get_unique_filename(filename):
 
 def upload_file_to_s3(file, acl="public-read"):
     try:
+        # print('----------response----------', response, '---------------------')
 
-        response = s3.list_objects_v2(
-            Bucket=f'{BUCKET_NAME}'
-            # ExpectedBucketOwner='489097972856'
-        )
-
-
-        print('----------response----------', response, '---------------------')
-
-        print(
-            '--s3--', s3,
-            '--bucket location--', f"http://{BUCKET_NAME}.s3.amazonaws.com/",
-            '--access key id--', os.environ.get("S3_ACCESS_KEY_ID"),
-            '--secret key--', os.environ.get("S3_SECRET_ACCESS_KEY"),
-            '--region--', os.environ.get('S3_AWS_REGION'),
-            '--file:--', file,
-            '--file.filename--',file.filename,
-            '--file.content_type--', file.content_type
-        )
+        # print(
+        #     '--s3--', s3,
+        #     '--bucket location--', f"http://{BUCKET_NAME}.s3.amazonaws.com/",
+        #     '--access key id--', os.environ.get("S3_ACCESS_KEY_ID"),
+        #     '--secret key--', os.environ.get("S3_SECRET_ACCESS_KEY"),
+        #     '--region--', os.environ.get('S3_AWS_REGION'),
+        #     '--file:--', file,
+        #     '--file.filename--',file.filename,
+        #     '--file.content_type--', file.content_type
+        # )
 
         s3.upload_fileobj(
             file,
