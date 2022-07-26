@@ -35,4 +35,5 @@ body{
     grid-area: sidebar;
     min-width: 150px;
     background-color: #050203;
+    overflow-y: scroll;
 }

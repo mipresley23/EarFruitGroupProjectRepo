@@ -55,6 +55,8 @@ export default function userReducer(state = {}, action) {
       return newState;
 
     case EDIT_USER:
+      // console.log('edit action: ', action)
+      newState[action.user.id] = action.user
       console.log('edit action: ', action)
       newState[action.user.photo_url] = action.user
       return newState

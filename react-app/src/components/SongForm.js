@@ -53,7 +53,7 @@ const SongForm = () => {
             source
         };
 
-        console.log(song)
+        // console.log(song)
         dispatch(createSong(song))
         history.push('/songs');
     }

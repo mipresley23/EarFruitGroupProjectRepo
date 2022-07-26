@@ -51,7 +51,7 @@ const UserProfile = () => {
       id: userId,
       photo_url: photoUrl
     }
-    console.log('editUser: ', editUser)
+    // console.log('editUser: ', editUser)
     await dispatch(editUserThunk(editUser))
     setShowNewPicForm(false)
   }
