@@ -35,6 +35,7 @@ function App() {
     return null;
   }
 
+
   return (
     <BrowserRouter>
       <div className='nav-bar'>
