@@ -6,7 +6,7 @@ import {
 	thunkEditPlaylist,
 } from "../../store/playlists";
 import { useHistory, useParams } from "react-router-dom";
-import './EachPlaylist.css'
+import "./EachPlaylist.css";
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -58,8 +58,8 @@ const EachPlaylist = () => {
 			name,
 			description,
 			cover_img_url: image,
-    };
-    console.log(playlist)
+		};
+		console.log(playlist);
 
 		await dispatch(thunkEditPlaylist(playlist));
 		setEditName(false);
@@ -87,10 +87,21 @@ const EachPlaylist = () => {
 	return (
 		<div className="playlist-header">
 			<div className="playlist-name-cont">
-        {isOwner && !editName && (<h1 className="playlist-name" onClick={editNameBtn}>{editPlaylist?.name}</h1>)}
-        {!isOwner && (<h1>{editPlaylist?.name}</h1>)}
+				{isOwner && !editName && (
+					<h1 className="playlist-name-owner" onClick={editNameBtn}>
+						{editPlaylist?.name}
+					</h1>
+				)}
+				{!isOwner && (
+					<h1 className="playlist-name-not-owner">{editPlaylist?.name}</h1>
+				)}
 				{isOwner && editName && (
-					<input className="editNameInput" value={name} autoFocus onChange={(e) => setName(e.target.value)} />
+					<input
+						className="editNameInput"
+						value={name}
+						autoFocus
+						onChange={(e) => setName(e.target.value)}
+					/>
 				)}
 				{isOwner && editName && (
 					<button onClick={updatePlaylist}>Update Name</button>
@@ -99,25 +110,38 @@ const EachPlaylist = () => {
 					<button onClick={cancelEditNameBtn}>Cancel</button>
 				)}
 			</div>
-			<div className="playlist-description">
-				{<h3>{editPlaylist?.description}</h3>}
-				{isOwner && !editDescription && (
-					<button onClick={editDescriptionBtn}>Edit Description</button>
-				)}
-				{isOwner && editDescription && (
-					<input value={description} onChange={(e) => setDescription(e.target.value)} />
-				)}
-				{isOwner && editDescription && (
-					<button onClick={updatePlaylist}>Update Description</button>
-				)}
-				{isOwner && editDescription && (
-					<button onClick={cancelEditDescriptionBtn}>Cancel</button>
-				)}
+			<div className="playlist-description-cont">
+				<ul>
+					<li className="playlist-description">
+						{<h3>{editPlaylist?.description}</h3>}
+
+						{isOwner && !editDescription && (
+							<button onClick={editDescriptionBtn}>Edit Description</button>
+						)}
+						{isOwner && editDescription && (
+							<input
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+							/>
+						)}
+						{isOwner && editDescription && (
+							<button onClick={updatePlaylist}>Update Description</button>
+						)}
+						{isOwner && editDescription && (
+							<button onClick={cancelEditDescriptionBtn}>Cancel</button>
+						)}
+          </li>
+          <li className="playlist-username">
+            {<h3>{editPlaylist?.user.username}</h3>}
+          </li>
+				</ul>
 			</div>
 			<div className="playlist-image">
 				<img src={editPlaylist?.cover_img_url} />
 				{isOwner && !editImage && (
-					<button className="edit-image-btn" onClick={editImageBtn}><i class="fa fa-edit fa-lg"></i></button>
+					<button className="edit-image-btn" onClick={editImageBtn}>
+						<i class="fa fa-edit fa-lg"></i>
+					</button>
 				)}
 				{isOwner && editImage && (
 					<input value={image} onChange={(e) => setImage(e.target.value)} />
@@ -129,7 +153,11 @@ const EachPlaylist = () => {
 					<button onClick={cancelEditImageBtn}>Cancel</button>
 				)}
 			</div>
-			{isOwner && <button className="delete-playlist-btn" onClick={onDelete}>Delete Playlist</button>}
+			{isOwner && (
+				<button className="delete-playlist-btn" onClick={onDelete}>
+					Delete Playlist
+				</button>
+			)}
 		</div>
 	);
 };

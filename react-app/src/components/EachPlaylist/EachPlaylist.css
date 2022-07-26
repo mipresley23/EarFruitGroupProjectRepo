@@ -15,13 +15,18 @@
 		"image description";
 }
 
-.playlist-name {
+.playlist-name-owner {
 	padding: 0;
 	margin: 0;
 	font-size: 5rem;
 	cursor: pointer;
 }
-.playlist-name:hover {
+.playlist-name-not-owner {
+    padding: 0;
+	margin: 0;
+	font-size: 5rem;
+}
+.playlist-name-owner:hover {
 	color: rgb(29, 185, 84);
 }
 
@@ -29,15 +34,33 @@
     display: flex;
     align-items: center;
 	grid-area: name;
-    padding: 10px 20px;
+    padding: 10px 30px;
 	/* border: 1px solid white; */
 }
 
-.playlist-description {
+.playlist-description-cont {
+    display: flex;
+    align-items: center;
 	grid-area: description;
-	/* border: 1px solid white; */
+    padding: 10px 30px;
 }
+.playlist-description-cont ul {
+    margin: 0;
+    padding: 0;
+}
+.playlist-description {
+    display: flex;
+    align-items: center;
 
+}
+.playlist-username {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.playlist-username h3 {
+    margin: 0;
+}
 .playlist-image {
 	grid-area: image;
 	position: relative;
