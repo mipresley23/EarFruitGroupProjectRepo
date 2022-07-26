@@ -93,7 +93,11 @@ const songReducer = (state = initialState, action) => {
             return newEditState
 
         case ADD_SONG:
+<<<<<<< HEAD
           console.log('-----action: ADD_SONG------', action)
+=======
+          // console.log(action)
+>>>>>>> main
           const newAddState = {
             ...state,
             [action.payload.id]: action.payload

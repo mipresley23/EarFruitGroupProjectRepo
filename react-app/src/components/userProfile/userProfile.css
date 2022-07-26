@@ -1,0 +1,43 @@
+#user-profile-image{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+#user-profile-header{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.profile-playlist-cover-art{
+  height: 120px;
+  width: 120px;
+  border-radius: 12px;
+}
+
+.profile-playlists-container{
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 200px;
+  width: 150px;
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  transition-duration: .2s;
+}
+
+.profile-playlists-container:hover{
+  background-color: gray;
+}
+
+#all-users-playlist-container{
+  display: flex;
+}

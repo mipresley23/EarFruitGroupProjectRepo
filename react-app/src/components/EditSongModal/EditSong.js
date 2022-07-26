@@ -16,7 +16,7 @@ const EditSong = ({songId, setShowModal}) => {
     // const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log(songId)
+    // console.log(songId)
     // const genres = [
     //     {value: 'Rock', label: 'Rock'},
     //     {value: 'Pop', label: 'Pop'},
@@ -54,7 +54,7 @@ const EditSong = ({songId, setShowModal}) => {
             source
         };
 
-        console.log(song)
+        // console.log(song)
         dispatch(editSong(song)).then(() => {
             dispatch(getSongs());
             setShowModal(false);

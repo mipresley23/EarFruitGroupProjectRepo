@@ -13,7 +13,6 @@ import AllPlaylists from './components/AllPlaylists';
 import EachPlaylist from './components/EachPlaylist';
 import User from './components/User';
 import PlaylistForm from './components/PlaylistForm/PlaylistForm';
-
 import UserProfile from './components/userProfile';
 
 import HomePage from './components/HomePage/HomePage';
