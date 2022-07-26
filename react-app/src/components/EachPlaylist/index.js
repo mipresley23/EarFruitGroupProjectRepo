@@ -22,7 +22,6 @@ const EachPlaylist = () => {
 	const [name, setName] = useState(editPlaylist?.name);
 	const [description, setDescription] = useState(editPlaylist?.description);
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
-	const [newImage,setNewImage] = useState('')
 	const [imageError, setImageError] = useState(false)
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
 	useEffect(() => {
@@ -90,8 +89,7 @@ const EachPlaylist = () => {
 		var image = new Image();
 		image.onload = function() {
 			if (this.width > 0) {
-				setImageError(false)
-				setImage(newImage)
+			  setImageError(false)
 			// console.log("image exists");
 		  }
 		}
@@ -102,8 +100,8 @@ const EachPlaylist = () => {
 		image.src = url;
 	  }
 	useEffect(() => {
-		checkImage(newImage)
-	},[newImage])
+		checkImage(image)
+	},[image])
 	// console.log(imageError)
 	// if(!editPlaylist) return null;
 	return (
@@ -160,7 +158,7 @@ const EachPlaylist = () => {
 			</div>
 			<div className="playlist-image">
 				{console.log(imageError)}
-				{!imageError && <img src={image} alt='NEW IMAGE ACCEPTED'/>}
+				{!imageError && <img src={editPlaylist?.cover_img_url}/>}
 				{imageError && <img src={require("../SideBar/my-playlist-img.png").default}/>}
 				{isOwner && !editImage && (
 					<button className="edit-image-btn" onClick={editImageBtn}>
@@ -168,7 +166,7 @@ const EachPlaylist = () => {
 					</button>
 				)}
 				{isOwner && editImage && (
-					<input value={newImage} onChange={(e) => setNewImage(e.target.value)} />
+					<input value={image} onChange={(e) => setImage(e.target.value)} />
 				)}
 				{isOwner && editImage && (
 					<button onClick={updatePlaylist}>Update Image</button>
