@@ -8,16 +8,11 @@ export default function SideBar() {
 	const dispatch = useDispatch();
 	const history = useHistory()
 	const [playlists, setPlaylists] = useState([]);
+	const [myPlaylistNumber, setMyPlaylistNumber] = useState(1)
 
 	const playlistsSelector = useSelector((state) => state.playlists);
 	const sessionUser = useSelector((state) => state.session.user);
 	let usersPlaylists;
-	if (sessionUser) {
-		usersPlaylists =
-			playlists &&
-			playlists.filter((playlist) => playlist.user.id === sessionUser.id);
-	}
-
 	useEffect(() => {
 		dispatch(thunkGetPlaylists());
 	}, [dispatch]);
@@ -26,17 +21,34 @@ export default function SideBar() {
 		setPlaylists(Object.values(playlistsSelector));
 	}, [playlistsSelector]);
 
-	const onSubmit = async(e) => {
-        e.preventDefault()
+	if (sessionUser) {
+		usersPlaylists =
+			playlists &&
+			playlists.filter((playlist) => playlist.user.id === sessionUser.id);
+	}
 
+	const userPlaylistNameArray = []
+	usersPlaylists.map(playlists=>userPlaylistNameArray.push(playlists.name))
+	// console.log(userPlaylistNameArray)
+	let i = 1
+	// console.log(userPlaylistNameArray.includes(`My Playlist #${i}`))
+	while (userPlaylistNameArray.includes(`My Playlist #${i}`)) {
+
+		i++
+	}
+	useEffect(() => {
+		setMyPlaylistNumber(i)
+	},[i])
+	const onSubmit = async(e) => {
+		e.preventDefault()
+		setMyPlaylistNumber(i)
+		// console.log(myPlaylistNumber)
         const playlist = {
-            name:'My Playlist',
+            name:`My Playlist #${myPlaylistNumber}`,
             description:`${sessionUser.username}'s Playlist`,
             cover_img_url:''
         }
-        // dispatch(thunkAddPlaylist(playlist))
         const newPlaylist = await dispatch(thunkAddPlaylist(playlist))
-        // console.log('ADD PLAYLIST RESPONSE!!!!!!!!!!!!!!!:',newPlaylist)
         if (newPlaylist) {
             history.push(`/playlists/${newPlaylist.id}`)
         }

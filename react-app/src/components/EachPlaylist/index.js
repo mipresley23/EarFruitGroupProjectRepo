@@ -61,7 +61,7 @@ const EachPlaylist = () => {
 			description,
 			cover_img_url: image,
 		};
-		console.log(playlist);
+		// console.log(playlist);
 
 		await dispatch(thunkEditPlaylist(playlist));
 		await dispatch(thunkGetPlaylists());
@@ -157,7 +157,7 @@ const EachPlaylist = () => {
 				</ul>
 			</div>
 			<div className="playlist-image">
-				{console.log(imageError)}
+				{/* {console.log(imageError)} */}
 				{!imageError && <img src={editPlaylist?.cover_img_url}/>}
 				{imageError && <img src={require("../SideBar/my-playlist-img.png").default}/>}
 				{isOwner && !editImage && (
