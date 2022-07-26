@@ -28,7 +28,7 @@ export default function SideBar() {
 	}
 
 	const userPlaylistNameArray = []
-	usersPlaylists.map(playlists=>userPlaylistNameArray.push(playlists.name))
+	usersPlaylists?.map(playlists=>userPlaylistNameArray.push(playlists.name))
 	// console.log(userPlaylistNameArray)
 	let i = 1
 	// console.log(userPlaylistNameArray.includes(`My Playlist #${i}`))
@@ -39,19 +39,21 @@ export default function SideBar() {
 	useEffect(() => {
 		setMyPlaylistNumber(i)
 	},[i])
-	const onSubmit = async(e) => {
-		e.preventDefault()
-		setMyPlaylistNumber(i)
-		// console.log(myPlaylistNumber)
-        const playlist = {
-            name:`My Playlist #${myPlaylistNumber}`,
-            description:`${sessionUser.username}'s Playlist`,
-            cover_img_url:''
-        }
-        const newPlaylist = await dispatch(thunkAddPlaylist(playlist))
-        if (newPlaylist) {
-            history.push(`/playlists/${newPlaylist.id}`)
-        }
+	const onSubmit = async (e) => {
+		if (sessionUser) {
+			e.preventDefault()
+			setMyPlaylistNumber(i)
+			// console.log(myPlaylistNumber)
+			const playlist = {
+				name:`My Playlist #${myPlaylistNumber}`,
+				description:`${sessionUser.username}'s Playlist`,
+				cover_img_url:''
+			}
+			const newPlaylist = await dispatch(thunkAddPlaylist(playlist))
+			if (newPlaylist) {
+				history.push(`/playlists/${newPlaylist.id}`)
+			}
+		}
     }
 	if (!playlists) return null;
 	return (
