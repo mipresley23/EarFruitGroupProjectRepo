@@ -62,10 +62,10 @@ const EachPlaylist = () => {
 		console.log(playlist);
 
 		await dispatch(thunkEditPlaylist(playlist));
-		setEditName(false);
+		await dispatch(thunkGetPlaylists());
+		await setEditName(false);
 		setEditImage(false);
 		setEditDescription(false);
-		dispatch(thunkGetPlaylists());
 	}
 
 	async function cancelEditNameBtn(e) {
