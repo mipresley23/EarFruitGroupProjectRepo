@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import { thunkGetPlaylists } from "../../store/playlists";
+import { NavLink, useHistory, useParams } from "react-router-dom";
+import { thunkGetPlaylists, thunkAddPlaylist } from "../../store/playlists";
 import "./SideBar.css";
 
 export default function SideBar() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [playlists, setPlaylists] = useState([]);
+	const [myPlaylistNumber, setMyPlaylistNumber] = useState(1);
 
 	const playlistsSelector = useSelector((state) => state.playlists);
 	const sessionUser = useSelector((state) => state.session.user);
 	let usersPlaylists;
-	if (sessionUser) {
-		usersPlaylists =
-			playlists &&
-			playlists.filter((playlist) => playlist.user.id === sessionUser.id);
-	}
-
 	useEffect(() => {
 		dispatch(thunkGetPlaylists());
 	}, [dispatch]);
@@ -25,8 +21,44 @@ export default function SideBar() {
 		setPlaylists(Object.values(playlistsSelector));
 	}, [playlistsSelector]);
 
+	if (sessionUser) {
+		usersPlaylists =
+			playlists &&
+			playlists.filter((playlist) => playlist.user.id === sessionUser.id);
+	}
 
-	if (!playlists) return null;
+	const userPlaylistNameArray = [];
+	usersPlaylists?.map((playlists) =>
+		userPlaylistNameArray.push(playlists.name)
+	);
+	// console.log(userPlaylistNameArray)
+	let i = 1;
+	// console.log(userPlaylistNameArray.includes(`My Playlist #${i}`))
+	while (userPlaylistNameArray.includes(`My Playlist #${i}`)) {
+		i++;
+	}
+	useEffect(() => {
+		setMyPlaylistNumber(i);
+	}, [i]);
+	const onSubmit = async (e) => {
+		if (!sessionUser) {
+			history.push("/login");
+		}
+		if (sessionUser) {
+			e.preventDefault();
+			setMyPlaylistNumber(i);
+			// console.log(myPlaylistNumber)
+			const playlist = {
+				name: `My Playlist #${myPlaylistNumber}`,
+				description: `${sessionUser.username}'s Playlist`,
+				cover_img_url: "",
+			};
+			const newPlaylist = await dispatch(thunkAddPlaylist(playlist));
+			if (newPlaylist) {
+				history.push(`/playlists/${newPlaylist.id}`);
+			}
+		}
+	};
 	return (
 		<div className="side-bar-container">
 			{/* <h2>EarFruit</h2> */}
@@ -54,17 +86,21 @@ export default function SideBar() {
 				<i class="fa fa-music"></i>
 				Songs
 			</NavLink>
-			<NavLink className="sidebar-link" to="/playlists/new-playlist" exact={true}>
+			<div className="sidebar-link" onClick={onSubmit}>
 				<i class="fa fa-plus"></i>
 				Create Playlist
-			</NavLink>
+			</div>
 			<div className="side-bar-playlist-list">
 				{sessionUser &&
 					usersPlaylists.map((playlist) => (
-						<NavLink className="sidebar-link sidebar-playlist-link" to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
+						<NavLink
+							className="sidebar-link sidebar-playlist-link"
+							to={`/playlists/${playlist.id}`}
+						>
+							{playlist.name}
+						</NavLink>
 					))}
 			</div>
 		</div>
 	);
-
 }

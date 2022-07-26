@@ -19,6 +19,16 @@ export default function SearchBar() {
 		fetchData();
 	}
 
+	useEffect(() => {
+		// console.log(search);
+		async function fetchData() {
+			const response = await fetch(`/api/playlists/${search}`);
+			const responseData = await response.json();
+			// console.log(responseData.playlists)
+			setSearchResults(responseData.playlists);
+		}
+		fetchData();
+	},[search])
 	const playlistSearchResults = searchResults.map((playlist) => {
 		// console.log(playlist);
 		return (
@@ -36,10 +46,10 @@ export default function SearchBar() {
 
 	return (
 		<div className="search-container">
-			<form onSubmit={onSubmit}>
-				<i class="fa fa-search"></i>
-				<input type="search" id="search" name="search" placeholder="Artists, songs, or playlists" onChange={(e) => setSearch(e.target.value)} />
-				<button>Search</button>
+			<form className="search-bar" onSubmit={onSubmit}>
+				<i class="search-icon fa fa-search"></i>
+				<input type="text" id="search" name="search" placeholder="Artists, songs, or playlists" onChange={(e) => setSearch(e.target.value)} />
+				{/* <button>Search</button> */}
 			</form>
 			{searchResults.length>0 && (
 				<>

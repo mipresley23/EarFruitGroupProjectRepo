@@ -15,7 +15,9 @@ const MusicPlayer = () => {
     <div className="playbar w-100">
       <ReactJkMusicPlayer
         theme="dark"
-        drag={false}
+        mode="full"
+        drag={true}
+        showDownload={false}
         showThemeSwitch={false}
         audioLists={audioList}/>
     </div>

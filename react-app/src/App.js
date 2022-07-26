@@ -77,9 +77,6 @@ function App() {
           <Route path='/playlists' exact={true} >
             <AllPlaylists />
           </Route>
-          <ProtectedRoute path='/playlists/new-playlist' exact={true} >
-            <PlaylistForm />
-          </ProtectedRoute>
           <ProtectedRoute path='/playlists/:playlistId' exact={true} >
             <EachPlaylist />
           </ProtectedRoute>
