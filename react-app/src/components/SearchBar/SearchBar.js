@@ -36,8 +36,8 @@ export default function SearchBar() {
 
 	return (
 		<div className="search-container">
-			<form onSubmit={onSubmit}>
-				<i class="fa fa-search"></i>
+			<form className="search-bar" onSubmit={onSubmit}>
+				<i class="search-icon fa fa-search"></i>
 				<input type="search" id="search" name="search" placeholder="Artists, songs, or playlists" onChange={(e) => setSearch(e.target.value)} />
 				<button>Search</button>
 			</form>

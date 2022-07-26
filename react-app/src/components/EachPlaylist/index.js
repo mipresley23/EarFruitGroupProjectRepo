@@ -104,7 +104,7 @@ const EachPlaylist = () => {
 					/>
 				)}
 				{isOwner && editName && (
-					<button onClick={updatePlaylist}>Update Name</button>
+					<button className="update-name-btn" onClick={updatePlaylist}>Update Name</button>
 				)}
 				{isOwner && editName && (
 					<button onClick={cancelEditNameBtn}>Cancel</button>

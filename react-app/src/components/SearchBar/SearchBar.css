@@ -78,17 +78,18 @@
 	outline: none; /* Removes the border when the input is clicked */
 }
 
-form .fa-search {
+search-icon {
 	margin-right: 10px;
 }
-form {
+.search-bar {
 	/* border: 2px rgb(72, 71, 71) solid; */
+	background-color: rgb(197, 196, 196);
 	padding: 10px 20px;
 	border-radius: 500px;
 	width: fit-content;
 }
 
-form button {
+.search-bar button {
     background-color: rgb(202, 201, 201);
     border-radius: 500px;
     border: none;
@@ -100,7 +101,7 @@ form button {
     color: rgb(0, 0, 0,0.8);
     transition: all 0.1s ease-in;
 }
-form button:hover {
+.search-bar button:hover {
     transform: scale(1.1);
     background-color: rgba(176, 176, 176, 0.798);
 }

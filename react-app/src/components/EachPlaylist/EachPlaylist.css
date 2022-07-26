@@ -32,6 +32,7 @@
 
 .playlist-name-cont {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 	grid-area: name;
     padding: 10px 30px;
@@ -85,8 +86,19 @@ margin: 0;
 	position: absolute;
 	top: 20px;
 	right: 20px;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1rem;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
 }
 
+.delete-playlist-btn:hover {
+    color: red;
+    background-color: black;
+    transform: scale(1.04);
+}
 .editNameInput{
     font-size: 5rem;
     font-weight: bold;
@@ -94,6 +106,7 @@ margin: 0;
     color: white;
     border: none;
     width: 70%;
+
 }
 
 .editNameInput:focus {
