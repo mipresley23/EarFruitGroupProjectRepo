@@ -1,19 +1,19 @@
 import { deleteSong, getSongs } from "../../store/songs";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 function ConfirmDelete({ songId, setShowModal }) {
-  const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
-    dispatch(deleteSong(songId))
-    .then(() => {
+
+
+    const res = dispatch(deleteSong(songId))
+    if (res.ok) {
       dispatch(getSongs());
       setShowModal(false);
-    })
+    }
   };
 
   return (
