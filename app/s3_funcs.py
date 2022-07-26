@@ -61,3 +61,11 @@ def upload_file_to_s3(file, acl="public-read"):
         return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
+
+
+def delete_object_from_bucket(source):
+    bucket_name = "testbucket-frompython-2"
+    source = "test9.txt"
+    s3_client = boto3.client("s3")
+    response = s3_client.delete_object(Bucket=bucket_name, Key=source)
+    print(response)
