@@ -1,1 +1,5 @@
-{}
+{
+  "dependencies": {
+    "react-jinke-music-player": "^4.24.2"
+  }
+}
