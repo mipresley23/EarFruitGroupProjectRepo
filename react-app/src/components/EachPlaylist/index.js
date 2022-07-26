@@ -86,11 +86,9 @@ const EachPlaylist = () => {
 	// if(!editPlaylist) return null;
 	return (
 		<div className="playlist-header">
-			<div className="playlist-name">
-				{<h1>{editPlaylist?.name}</h1>}
-				{isOwner && !editName && (
-					<button onClick={editNameBtn}>Edit Name</button>
-				)}
+			<div className="playlist-name-cont">
+        {isOwner && !editName && (<h1 className="playlist-name" onClick={editNameBtn}>{editPlaylist?.name}</h1>)}
+        {!isOwner && (<h1>{editPlaylist?.name}</h1>)}
 				{isOwner && editName && (
 					<input value={name} onChange={(e) => setName(e.target.value)} />
 				)}
@@ -119,7 +117,7 @@ const EachPlaylist = () => {
 			<div className="playlist-image">
 				<img src={editPlaylist?.cover_img_url} />
 				{isOwner && !editImage && (
-					<button className="edit-image-btn" onClick={editImageBtn}>Edit Image</button>
+					<button className="edit-image-btn" onClick={editImageBtn}><i class="fa fa-edit fa-lg"></i></button>
 				)}
 				{isOwner && editImage && (
 					<input value={image} onChange={(e) => setImage(e.target.value)} />

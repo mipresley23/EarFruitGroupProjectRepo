@@ -1,50 +1,65 @@
 .playlist-header {
-    position: relative;
-    background-image: linear-gradient(to bottom left,rgb(29, 185, 84,0.1) 1%, #121212ee);
-    margin:0;
-    padding: 0;
-    display: grid;
-    grid-template-columns:20% 80%;
-    grid-template-rows: 60% 40%;
-    grid-template-areas:
-    'image name'
-    'image description';
-}
+	position: relative;
+	background-image: linear-gradient(
 
-.playlist-name h1 {
-    padding: 0;
-    margin: 0;
+		rgb(29, 185, 84, 0.1) 65%,
+		#12121200
+	);
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: 20% 80%;
+	grid-template-rows: 60% 40%;
+	grid-template-areas:
+		"image name"
+		"image description";
 }
 
 .playlist-name {
-    grid-area: name;
-    border: 1px solid white;
+	padding: 0;
+	margin: 0;
+	font-size: 5rem;
+	cursor: pointer;
+}
+.playlist-name:hover {
+	color: rgb(29, 185, 84);
+}
+
+.playlist-name-cont {
+    display: flex;
+    align-items: center;
+	grid-area: name;
+    padding: 10px 20px;
+	/* border: 1px solid white; */
 }
 
 .playlist-description {
-    grid-area: description;
-    border: 1px solid white;
-
+	grid-area: description;
+	/* border: 1px solid white; */
 }
 
 .playlist-image {
-    grid-area: image;
-    position: relative;
+	grid-area: image;
+	position: relative;
 }
 
 .playlist-image img {
-    width: 100%;
+	width: 100%;
 }
 .edit-image-btn {
-    position: absolute;
-    /* right:20px; */
-    top:10px;
-    left: 10px;
-    border:3px solid blue
+	position: absolute;
+	/* right:20px; */
+	top: 10px;
+	left: 10px;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
 }
-
-.delete-playlist-btn{
-    position: absolute;
-    top: 20px;
-    right:20px
+.edit-image-btn:hover {
+	color: rgb(29, 185, 84);
+}
+.delete-playlist-btn {
+	position: absolute;
+	top: 20px;
+	right: 20px;
 }
