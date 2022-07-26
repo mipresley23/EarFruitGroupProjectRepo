@@ -1,45 +1,83 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetPlaylists, thunkDeletePlaylist } from "../../store/playlists";
-import { useHistory, useParams } from 'react-router-dom';
-
+import { thunkGetPlaylists, thunkDeletePlaylist, thunkEditPlaylist } from "../../store/playlists";
+import { useHistory, useParams } from "react-router-dom";
 
 const EachPlaylist = () => {
-
   const { playlistId } = useParams();
-  const dispatch = useDispatch()
-  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const [playlists, setPlaylists] = useState();
-  const sessionUser = useSelector(state=>state.session.user)
-  const playlistsSelector = useSelector(state => state.playlists)
-  const thisPlaylist = playlists && playlists.find(playlist => playlist.id === +playlistId)
-  console.log('sessionUser: ', sessionUser.id)
-  const isOwner = sessionUser.id == thisPlaylist?.user.id
-  console.log('isOWner',isOwner)
+	const history = useHistory();
+
+  const sessionUser = useSelector((state) => state.session.user);
+  const editPlaylist = useSelector((state)=>state.playlists[playlistId])
+  const [editName, SetEditName] = useState(false);
+  const [name, setName] = useState(editPlaylist?.name)
+  // console.log(name)
+  const [description, setDescription] = useState(editPlaylist?.description);
+  const [coverUrl, setCoverUrl] = useState(editPlaylist?.cover_img_url);
+  const isOwner = sessionUser.id == editPlaylist?.user.id;
+
   useEffect(() => {
-    dispatch(thunkGetPlaylists())
-  }, [dispatch])
+		dispatch(thunkGetPlaylists());
+  }, [dispatch]);
+
+
+  //If you click on another playlist while editing will close edit input
+  useEffect(() => {
+    SetEditName(false)
+  },[playlistId])
+
 
   useEffect(() => {
-    setPlaylists(Object.values(playlistsSelector))
-  }, [playlistsSelector])
+    // setIsOwner(sessionUser?.id == editSpot?.userId)
+    setName(editPlaylist?.name)
+    setCoverUrl(editPlaylist?.cover_img_url)
+    setDescription(editPlaylist?.description)
+  }, [editPlaylist, sessionUser])
 
-  async function onDelete(e) {
-    e.preventDefault();
-    history.push(`/`)
-    await dispatch(thunkDeletePlaylist(playlistId))
+
+  async function editNameBtn(e) {
+		SetEditName(true)
   }
 
+  async function updateName(e) {
+    e.preventDefault();
+    const playlist = {
+      id: playlistId,
+      name,
+      description,
+      cover_img_url: coverUrl
+  }
+    await dispatch(thunkEditPlaylist(playlist))
+    SetEditName(false)
+		dispatch(thunkGetPlaylists());
+  }
 
-  // if(!thisPlaylist) return null;
-  return(
-    <div>
-      <h1>{thisPlaylist?.name}</h1>
-      <img src={thisPlaylist?.cover_img_url} alt=''></img>
-      {isOwner && <button onClick={onDelete}>Delete Playlist</button>}
-    </div>
-  )
-}
+  async function cancelEditNameBtn(e) {
+		SetEditName(false)
+  }
+	async function onDelete(e) {
+		e.preventDefault();
+		history.push(`/`);
+		await dispatch(thunkDeletePlaylist(playlistId));
+	}
 
-export default EachPlaylist
+	// if(!editPlaylist) return null;
+	return (
+		<div>
+			<div className="playlist-name">
+        {<h1>{editPlaylist?.name}</h1>}
+        {isOwner && !editName && <button onClick={editNameBtn}>Edit Name</button>}
+        {isOwner && editName && <input value={name} onChange={e => setName(e.target.value)} />}
+        {isOwner && editName && <button onClick={updateName}>Update Name</button>}
+        {isOwner && editName && <button onClick={cancelEditNameBtn}>Cancel</button>}
+			</div>
+
+			<img src={editPlaylist?.cover_img_url} alt="" />
+			{isOwner && <button onClick={onDelete}>Delete Playlist</button>}
+		</div>
+	);
+};
+
+export default EachPlaylist;

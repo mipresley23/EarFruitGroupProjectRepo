@@ -51,6 +51,23 @@ export const thunkAddPlaylist = (playlist) => async (dispatch) => {
 	return data;
 };
 
+export const thunkEditPlaylist = (playlist) => async (dispatch) => {
+	console.log(playlist)
+	const response = await fetch(`/api/playlists/${playlist.id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(playlist),
+	});
+
+	const data = await response.json();
+	// console.log(data)
+	// console.log([data[1]])
+	dispatch(actionEditPlaylist(data));
+	return data;
+};
+
 export const thunkDeletePlaylist = (playlistId) => async (dispatch) => {
 	const response = await fetch(`/api/playlists/${playlistId}`, {
 		method: "DELETE",

@@ -37,18 +37,7 @@ const AllPlaylists = ()  => {
           ))
         }
       </ul>
-      <ul>
-        {
-          usersPlaylists.map(playlist => (
-            <div>
-              <li>{playlist.name}</li>
-              <li>
-                <img src={playlist.cover_img_url}></img>
-              </li>
-            </div>
-          ))
-        }
-      </ul>
+
     </div>
   )
 }

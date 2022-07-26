@@ -42,8 +42,22 @@ def add_playlist():
 @login_required
 def delete_playlist(playlist_id):
     playlist = Playlist.query.get(playlist_id)
-    print(playlist)
-    if playlist.user_Id != current_user.id:
-        return jsonify({'error': 'You do not have permission to delete this playlist'})
+    # print(playlist)
+    # if playlist.user_Id != current_user.id:
+    #     return jsonify({'error': 'You do not have permission to delete this playlist'})
     db.session.delete(playlist)
     db.session.commit()
+
+@playlist_routes.route('/<int:playlist_id>', methods=['PUT'])
+@login_required
+def update_playlist(playlist_id):
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', playlist_id)
+    playlist = Playlist.query.get(playlist_id)
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', playlist.to_dict())
+    form = AddPlaylist()
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', form.data)
+    playlist.name = form.data['name']
+    playlist.description = form.data['description']
+    playlist.cover_img_url = form.data['cover_img_url']
+    db.session.commit()
+    return playlist.to_dict()
