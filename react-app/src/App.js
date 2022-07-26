@@ -14,6 +14,7 @@ import EachPlaylist from './components/EachPlaylist';
 import User from './components/User';
 import PlaylistForm from './components/PlaylistForm/PlaylistForm';
 import UserProfile from './components/userProfile';
+import MusicPlayer from './components/musicPlayer';
 
 import HomePage from './components/HomePage/HomePage';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -35,8 +36,10 @@ function App() {
     return null;
   }
 
+
   return (
     <BrowserRouter>
+      <MusicPlayer />
       <div className='nav-bar'>
         <NavBar />
       </div>
@@ -44,9 +47,11 @@ function App() {
         <SideBar />
       </div>
       <div className='content'>
+
         <Switch>
           <Route path='/login' exact={true}>
             <LoginForm />
+
           </Route>
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
@@ -62,14 +67,10 @@ function App() {
           </ProtectedRoute>
           <Route path='/' exact={true} >
             <HomePage/>
-
           </Route>
-
-
           <ProtectedRoute path='/songs' exact={true} >
             <Songs/>
           </ProtectedRoute>
-
           <ProtectedRoute path='/add-song' exact={true} >
             <SongForm />
           </ProtectedRoute>

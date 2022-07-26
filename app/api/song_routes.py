@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 from app.models import db
 from app.models.db import User, Song
 from app.forms.add_song import AddSong
+from app.s3_funcs import (
+    upload_file_to_s3, is_mp3, get_unique_filename)
 
 song_routes = Blueprint('songs', __name__, url_prefix='/songs')
 
@@ -51,6 +53,7 @@ def delete_song(song_id):
     db.session.delete(song)
     db.session.commit()
 
+
 @song_routes.route('/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
@@ -65,3 +68,34 @@ def update_song(song_id):
     song.source = form.data['source']
     db.session.commit()
     return song.to_dict()
+
+
+@song_routes.route("/mp3", methods=["POST"])
+@login_required
+def upload_mp3():
+    
+    if "mp3" not in request.files:
+        # print('----------error #1-----------')
+        return {"errors": "mp3 required"}, 400
+
+    mp3 = request.files["mp3"]
+
+    # print('--------mp3--------', mp3)
+
+    if not is_mp3(mp3.filename):
+        # print('----------error #2-----------')
+        return {"errors": "file type not permitted"}, 400
+
+    mp3.filename = get_unique_filename(mp3.filename)
+
+    upload = upload_file_to_s3(mp3)
+
+    if "url" not in upload:
+        # print('----------error #3-----------', upload, '--------')
+        return upload, 400
+
+    # print('-------upload-Working-------', upload, '-----------------')
+
+    url = upload["url"]
+
+    return {"source": url}
