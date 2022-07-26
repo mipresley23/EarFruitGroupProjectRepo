@@ -62,7 +62,7 @@ export const thunkEditPlaylist = (playlist) => async (dispatch) => {
 	});
 
 	const data = await response.json();
-	// console.log(data)
+	console.log(data)
 	// console.log([data[1]])
 	dispatch(actionEditPlaylist(data));
 	return data;
