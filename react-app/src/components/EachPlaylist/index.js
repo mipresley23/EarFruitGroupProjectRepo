@@ -22,6 +22,7 @@ const EachPlaylist = () => {
 	const [name, setName] = useState(editPlaylist?.name);
 	const [description, setDescription] = useState(editPlaylist?.description);
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
+	const [newImage,setNewImage] = useState('')
 	const [imageError, setImageError] = useState(false)
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
 	useEffect(() => {
@@ -74,6 +75,7 @@ const EachPlaylist = () => {
 		setEditName(false);
 	}
 	async function cancelEditImageBtn(e) {
+		setImage(editPlaylist?.cover_img_url)
 		setEditImage(false);
 	}
 	async function cancelEditDescriptionBtn(e) {
@@ -88,18 +90,21 @@ const EachPlaylist = () => {
 		var image = new Image();
 		image.onload = function() {
 			if (this.width > 0) {
-			  setImageError(false)
-			console.log("image exists");
+				setImageError(false)
+				setImage(newImage)
+			// console.log("image exists");
 		  }
 		}
 		image.onerror = function () {
 			setImageError(true)
-		  console.log("image doesn't exist");
+		//   console.log("image doesn't exist");
 		}
 		image.src = url;
 	  }
-	checkImage(image)
-	console.log(imageError)
+	useEffect(() => {
+		checkImage(newImage)
+	},[newImage])
+	// console.log(imageError)
 	// if(!editPlaylist) return null;
 	return (
 		<div className="playlist-header">
@@ -154,8 +159,8 @@ const EachPlaylist = () => {
 				</ul>
 			</div>
 			<div className="playlist-image">
-				{/* {console.log(imageError)} */}
-				{!imageError && <img src={editPlaylist?.cover_img_url}/>}
+				{console.log(imageError)}
+				{!imageError && <img src={image} alt='NEW IMAGE ACCEPTED'/>}
 				{imageError && <img src={require("../SideBar/my-playlist-img.png").default}/>}
 				{isOwner && !editImage && (
 					<button className="edit-image-btn" onClick={editImageBtn}>
@@ -163,7 +168,7 @@ const EachPlaylist = () => {
 					</button>
 				)}
 				{isOwner && editImage && (
-					<input value={image} onChange={(e) => setImage(e.target.value)} />
+					<input value={newImage} onChange={(e) => setNewImage(e.target.value)} />
 				)}
 				{isOwner && editImage && (
 					<button onClick={updatePlaylist}>Update Image</button>
