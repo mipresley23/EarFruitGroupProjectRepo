@@ -28,6 +28,7 @@ body{
 .content {
     grid-area: content;
     background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.949) 12%, #121212ee);
+    overflow-y: scroll;
 
 }
 
@@ -36,4 +37,8 @@ body{
     min-width: 150px;
     background-color: #050203;
     overflow-y: scroll;
+}
+
+.search-playlist-link {
+    text-decoration: none;
 }
