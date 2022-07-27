@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createSong } from '../store/songs';
+import './songForm.css'
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
 
@@ -84,10 +85,10 @@ const SongForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className='song_form'>
+            <div className='song_form_errors'>
                 {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
+                    <div key={ind} className='song_form_error'>{error}</div>
                 ))}
             </div>
             <div>
