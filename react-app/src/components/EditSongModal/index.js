@@ -3,13 +3,16 @@ import { Modal } from '../../context/Modal';
 import EditSong from './EditSong';
 
 function EditSongModal({song}) {
+  console.log(EditSong)
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <button onClick={() => {
         setShowModal(true)
-        }}><i class="fa fa-edit"></i></button>
+        }}>
+          <i className='fas fa-edit'/>
+        </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSong song={song} setShowModal={setShowModal}/>
