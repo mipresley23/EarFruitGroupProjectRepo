@@ -5,6 +5,9 @@ import AudioListProvider, {AudioListContext} from '../../context/audioList';
 import { getUsersThunk, editUserThunk } from '../../store/Users';
 import { thunkGetPlaylists } from '../../store/playlists';
 import { getSongs } from '../../store/songs';
+import playButton from '../assets/play_button.png';
+import addToPlaylistButton from '../assets/addtoPlaylist.png';
+import circleLogo from '../assets/circleLogo.jpeg';
 import './userProfile.css'
 
 const UserProfile = () => {
@@ -80,20 +83,19 @@ const UserProfile = () => {
   const handlePlaySong = async(e) => {
     e.preventDefault();
     setClearAudioList(true)
+    console.log('play song target:', e.target.value)
     const audioArr = e.target.value.split(',')
-    console.log('audioArr: ', audioArr)
+    console.log('play song audioArr: ', audioArr)
     setAudioList([])
-    await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: require('../Songs/circleLogo.jpeg'), musicSrc: audioArr[2]}])
+    await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
 }
  const handleAddToQueue = async(e) => {
     e.preventDefault();
     setClearAudioList(false)
     const audioArr = e.target.value.split(',')
-    console.log('audioArr: ', audioArr)
-    console.log(audioList !== null)
-    console.log('audioListinQueueFunc: ', audioList)
+    console.log('queue audioArr: ', audioArr)
     if(audioList){
-        setAudioList([{name: audioArr[0], singer: audioArr[1], cover: require('../Songs/circleLogo.jpeg'), musicSrc: audioArr[2]}])
+        setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
     }
 }
 
@@ -106,11 +108,6 @@ const UserProfile = () => {
       <div id='user-profile-header'>
         <h1>{user && user.username}</h1>
         <img id='user-profile-image' src={user && user.photo_url} alt='user image' />
-        <button type='button' onClick={() => setShowNewPicForm(true)} >New Photo</button>
-        {showNewPicForm && <form onSubmit={handleEdit}>
-          <input type='text' value={photoUrl} placeholder={user.photo_url} onChange={(e) => setPhotoUrl(e.target.value)}></input>
-          <button type='submit'>Submit</button>
-        </form>}
       </div>
       <div id='user-profile-playlists-container'>
         <h2>{user.username}'s Playlists</h2>
@@ -121,7 +118,7 @@ const UserProfile = () => {
                 <NavLink to={`/playlists/${playlist.id}`}>
                   <div className='profile-playlists-container'>
                     <img className='profile-playlist-cover-art' src={playlist.cover_img_url} alt='album cover' />
-                    <p>{playlist.name}</p>
+                    <p id='playlist-nav-link-text'>{playlist.name}</p>
                   </div>
                 </NavLink>
               </div>
@@ -130,15 +127,25 @@ const UserProfile = () => {
         </div>
         <div id='users-songs-container'>
           <h2 id='users-songs-header'>{user.username}'s Songs</h2>
+          <ol>
+
           {
             thisUsersSongs && thisUsersSongs.map(song => (
               <div id='users-songs-list'>
-                <p>{song.name}</p>
-                <button value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>play</button>
-                <button value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>Add to Queue</button>
+                <div id='song-info'>
+                  <li>
+                    <p id='song-title'>{song.name}</p>
+                    <p id='song-artist'>{song.artist}</p>
+                  </li>
+                </div>
+                <div id='song-buttons-container'>
+                  <input className='song-buttons' id='user-profile-play-button' type='image' src={playButton} value={[song.name, song.artist, song.source]} onClick={handlePlaySong}/>
+                  <input className='song-buttons' id='user-profile-queue-button' value={[song.name, song.artist, song.source]} type='image' src={addToPlaylistButton} onClick={handleAddToQueue}/>
+                </div>
               </div>
             ))
           }
+          </ol>
         </div>
       </div>
     </div>

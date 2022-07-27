@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditSong from './EditSong';
+import editButton from '../assets/edit_button.png';
+import './editModal.css';
 
 function EditSongModal({song}) {
+  console.log(EditSong)
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button onClick={() => {
+      <button id='edit-modal-button' onClick={() => {
         setShowModal(true)
-        }}><i class="fa fa-edit"></i></button>
+
+        }}><img id='edit-song-modal-button-img' src={editButton}></img></button>
+
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSong song={song} setShowModal={setShowModal}/>

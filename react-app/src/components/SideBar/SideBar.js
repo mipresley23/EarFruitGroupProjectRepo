@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { thunkGetPlaylists, thunkAddPlaylist } from "../../store/playlists";
-import circleLogo from '../Songs/circleLogo.jpeg';
-import wordLogo from './earfruit-logo.png';
+import circleLogo from '../assets/circleLogo.jpeg';
+import wordLogo from '../assets/earfruit-logo.png';
+import playListImage from '../assets/my-playlist-img.png';
 import "./SideBar.css";
 
 export default function SideBar() {
@@ -77,19 +78,19 @@ export default function SideBar() {
 				/>
 			</div>
 			<NavLink className="sidebar-link" to="/" exact={true}>
-				<i class="fa fa-home"></i>
+				<i className="fa fa-home"></i>
 				Home
 			</NavLink>
 			<NavLink className="sidebar-link" to="/search" exact={true}>
-				<i class="fa fa-search"></i>
+				<i className="fa fa-search"></i>
 				Search
 			</NavLink>
 			<NavLink className="sidebar-link" to="/songs" exact={true}>
-				<i class="fa fa-music"></i>
+				<i className="fa fa-music"></i>
 				Songs
 			</NavLink>
 			<div className="sidebar-link" onClick={onSubmit}>
-				<i class="fa fa-plus"></i>
+				<i className="fa fa-plus"></i>
 				Create Playlist
 			</div>
 			<div className="side-bar-playlist-list">
@@ -98,6 +99,7 @@ export default function SideBar() {
 						<NavLink
 							className="sidebar-link sidebar-playlist-link"
 							to={`/playlists/${playlist.id}`}
+							key={playlist.id}
 						>
 							{playlist.name}
 						</NavLink>

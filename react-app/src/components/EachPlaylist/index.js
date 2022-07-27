@@ -7,7 +7,11 @@ import {
 } from "../../store/playlists";
 import { useHistory, useParams } from "react-router-dom";
 import "./EachPlaylist.css";
+
+import defaultPlaylistImage from '../assets/my-playlist-img.png';
+
 import { thunkGetPlaylistSongs } from "../../store/songs";
+
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -202,11 +206,29 @@ const EachPlaylist = () => {
 								Cancel
 							</button>
 						)}
+
+					</li>
+					<li className="playlist-username">
+						{<h3>{editPlaylist?.user.username}</h3>}
+					</li>
+				</ul>
+			</div>
+			<div className="playlist-image">
+				{/* {console.log(imageError)} */}
+				{!imageError && <img src={editPlaylist?.cover_img_url} />}
+				{imageError && (
+					<img src={defaultPlaylistImage} />
+				)}
+				{isOwner && !editImage && (
+					<button className="edit-image-btn" onClick={editImageBtn}>
+						<i class="fa fa-edit fa-lg"></i>
+
 					</div>
 				</div>
 				{isOwner && (
 					<button className="delete-playlist-btn" onClick={onDelete}>
 						Delete Playlist
+
 					</button>
 				)}
 			</div>

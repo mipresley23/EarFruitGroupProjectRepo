@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    photo_url = db.Column(db.String(255), nullable=True, default="https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg")
+    photo_url = db.Column(db.String(2000), nullable=True, default="https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg")
 
     songs = db.relationship("Song", back_populates='user')
     playlists = db.relationship('Playlist', back_populates='user')
@@ -53,7 +53,7 @@ class Song(db.Model):
   album = db.Column(db.String(50), nullable=False)
   genre = db.Column(db.String(25), nullable=False)
   artist = db.Column(db.String(50), nullable=False)
-  source = db.Column(db.String(250))
+  source = db.Column(db.String(2000))
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship("User", back_populates='songs')
@@ -82,7 +82,7 @@ class Playlist(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(255), nullable=False)
   description = db.Column(db.String(255), nullable=True)
-  cover_img_url = db.Column(db.String(255), nullable=True)
+  cover_img_url = db.Column(db.String(2000), nullable=True)
   user_Id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship('User', back_populates='playlists')
