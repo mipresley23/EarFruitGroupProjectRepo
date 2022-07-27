@@ -150,7 +150,7 @@ const SongForm = () => {
                 />
             </div>
             <button type='submit' disabled={errors.length > 0}>Submit</button>
-            {(mp3Loading)&& <p>Loading...</p>}
+            {(mp3Loading)&& <p>Uploading<img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading'></img></p>}
         </form>
     );
 
