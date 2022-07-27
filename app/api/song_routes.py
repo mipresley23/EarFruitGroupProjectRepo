@@ -4,7 +4,7 @@ from app.models import db
 from app.models.db import User, Song
 from app.forms.add_song import AddSong
 from app.s3_funcs import (
-    upload_file_to_s3, is_mp3, get_unique_filename)
+    upload_file_to_s3, is_mp3, get_unique_filename, delete_object_from_bucket)
 
 song_routes = Blueprint('songs', __name__, url_prefix='/songs')
 
@@ -52,6 +52,7 @@ def delete_song(song_id):
     
     db.session.delete(song)
     db.session.commit()
+    return 'Song Deleted'
 
 
 @song_routes.route('/<int:song_id>', methods=['PUT'])
@@ -99,3 +100,12 @@ def upload_mp3():
     url = upload["url"]
 
     return {"source": url}
+
+
+@song_routes.route("/mp3", methods=["DELETE"])
+@login_required
+def delete_mp3():
+    source = request.form["source"]
+    response = delete_object_from_bucket(source)
+    # print('------response-------', response)
+    return response

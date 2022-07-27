@@ -46,6 +46,7 @@ const SongForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const errors = [];
 
         const formData = new FormData();
         formData.append("mp3", mp3);
@@ -67,6 +68,8 @@ const SongForm = () => {
                 artist,
                 source: jsonRes.source
             };
+
+            
     
             // console.log('------song------', song)
             dispatch(createSong(song))
@@ -74,6 +77,8 @@ const SongForm = () => {
         }
         else {
             setMP3Loading(false);
+            errors.push('Must be an mp3 file');
+            setErrors(errors);
             // console.log("---error uploading song----", res)
         }
     }
