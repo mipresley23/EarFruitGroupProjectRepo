@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactJkMusicPlayer from 'react-jinke-music-player'
 import 'react-jinke-music-player/assets/index.css';
 import { Provider } from 'react-redux';
 import './index.css';
@@ -19,7 +18,6 @@ ReactDOM.render(
     <Provider store={store}>
       <ModalProvider>
         <App />
-        {/* <ReactJkMusicPlayer {...options} />, */}
       </ModalProvider>
     </Provider>
     </AudioListProvider>

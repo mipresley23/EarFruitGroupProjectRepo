@@ -77,18 +77,21 @@ export const editSong = (song) => async (dispatch) => {
 	}
 };
 
-export const deleteSong = (id) => async (dispatch) => {
-	const response = await fetch(`/api/songs/${id}`, {
-		method: "DELETE",
-		body: JSON.stringify({ id }),
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-	if (response.ok) {
-		dispatch(removeSong(id));
-	}
-};
+export const deleteSong = id => async (dispatch) => {
+  const response = await fetch(`/api/songs/${id}`, {
+    method: 'DELETE',
+    body: JSON.stringify({id}),
+    headers: {
+      'Content-Type':'application/json'
+    }
+  })
+
+  // console.log('-----------songs.deleteSong api fetch:---------', response)
+  if (response.ok) {
+    dispatch(removeSong(id))
+    return 'Song Deleted'
+  }
+}
 
 const initialState = {};
 
