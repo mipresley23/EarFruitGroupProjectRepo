@@ -17,6 +17,7 @@ function Songs({songPage}) {
     const history = useHistory();
     const songsArr = Object.values(songs);
     console.log('songs: ', songs)
+    const sessionUser = useSelector((state) => state.session.user);
     const {audioList, setAudioList} = useContext(AudioListContext)
     const [playButton, setPlayButton] = useState(false);
 
@@ -53,13 +54,17 @@ function Songs({songPage}) {
     return (
         <>
             <NavLink to='/add-song' >Add Song</NavLink>
-            {songPage === 'artists' && <Artists />}
-            {songPage === 'albums' && <Albums />}
-            <ul id='songs'>
+            {songPage === 'artists' && <Artists songsArr={songsArr}/>}
+            {songPage === 'albums' && <Albums songsArr={songsArr}/>}
+            {songPage === '' && <ul id='songs'>
                 {songsArr.map(song => (
                         <li id='song' key={song.id}>
-                            <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
-                            <ConfirmDeleteModal songId={song?.id} onClick={console.log('click!')}/>
+                            { sessionUser && sessionUser.id === song.userId.id &&
+                            <>
+                                <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
+                                <ConfirmDeleteModal songId={song?.id} onClick={console.log('click!')}/>
+                            </>
+                            }
                             <p>{song?.name}</p>
                             <p>{song?.artist}</p>
                             <p>{song?.album}</p>
@@ -68,7 +73,7 @@ function Songs({songPage}) {
                             <button value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>Add to Queue</button>
                         </li>
                 ))}
-            </ul>
+            </ul>}
 
         </>
     )

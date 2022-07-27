@@ -24,6 +24,7 @@ const NavBar = ({setSongPage}) => {
 		<nav className="nav-container">
 			{isLoggedIn && isSongs && (
 				<div id='song-menu-buttons'>
+					<button onClick={e => setSongPage('')}>Songs</button>
 					<button onClick={e => setSongPage('artists')}>Artists</button>
 					<button onClick={e => setSongPage('albums')}>Albums</button>
 				</div>
