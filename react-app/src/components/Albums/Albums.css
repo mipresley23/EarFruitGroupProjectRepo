@@ -4,6 +4,7 @@
     grid-auto-flow: column;
     grid-auto-columns: 14em;
     height: 100%;
+    padding: 0px 0px 
 }
 
 #albums li {
