@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
 from app.models import db
 from app.models import Playlist
+from app.models import Song
+from app.models import Playlist_Songs
 from app.forms.playlistForm import AddPlaylist
 
 playlist_routes = Blueprint('playlists', __name__)
@@ -13,6 +15,20 @@ def playlists():
     playlists = Playlist.query.all()
     # print(playlists,'---------------------------------')
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
+@playlist_routes.route('/songs')
+# @login_required
+def playlists_songs():
+    songs = Song.query.join(Playlist_Songs).join(Playlist).filter(Playlist.id == 16).all()
+    print('-')
+    print('-')
+    print('-')
+    for song in songs:
+        print(song.to_dict())
+    print('-')
+    print('-')
+    print('-')
+    # print(playlists,'---------------------------------')
+    return {'songs': [song.to_dict() for song in songs]}
 
 @playlist_routes.route('/<string:search_value>')
 # @login_required
