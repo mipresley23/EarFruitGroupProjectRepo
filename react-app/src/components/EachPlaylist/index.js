@@ -174,7 +174,7 @@ const EachPlaylist = () => {
 					{/* {console.log(imageError)} */}
 					{!imageError && <img src={editPlaylist?.cover_img_url} />}
 					{imageError && (
-						<img src={require("../SideBar/my-playlist-img.png").default} />
+						<img src={defaultPlaylistImage} />
 					)}
 					{isOwner && !editImage && (
 						<button className="edit-image-btn" onClick={editImageBtn}>
@@ -206,22 +206,6 @@ const EachPlaylist = () => {
 								Cancel
 							</button>
 						)}
-
-					</li>
-					<li className="playlist-username">
-						{<h3>{editPlaylist?.user.username}</h3>}
-					</li>
-				</ul>
-			</div>
-			<div className="playlist-image">
-				{/* {console.log(imageError)} */}
-				{!imageError && <img src={editPlaylist?.cover_img_url} />}
-				{imageError && (
-					<img src={defaultPlaylistImage} />
-				)}
-				{isOwner && !editImage && (
-					<button className="edit-image-btn" onClick={editImageBtn}>
-						<i class="fa fa-edit fa-lg"></i>
 
 					</div>
 				</div>
