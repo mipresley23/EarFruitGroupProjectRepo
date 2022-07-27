@@ -21,15 +21,15 @@ function Songs() {
         <div>
             <NavLink to='/add-song' >Add Song</NavLink>
             <ul>
-                {songsArr.map(song => (
+                {songsArr && songsArr.map(song => (
                     <li key={song.id}>
-                        <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
-                        <ConfirmDeleteModal songId={song?.id} onClick={console.log('click!')}/>
-                        <p>{song?.name}</p>
-                        <p>{song?.artist}</p>
-                        <p>{song?.album}</p>
-                        <p>{song?.genre}</p>
-                        <p>{song?.source}</p>
+                        <EditSongModal songId={song.id} onClick={console.log('click!')}/>
+                        <ConfirmDeleteModal song={song} onClick={console.log('click!')}/>
+                        <p>{song.name}</p>
+                        <p>{song.artist}</p>
+                        <p>{song.album}</p>
+                        <p>{song.genre}</p>
+                        <p>{song.source}</p>
                     </li>
                 ))}
             </ul>

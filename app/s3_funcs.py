@@ -64,6 +64,5 @@ def upload_file_to_s3(file, acl="public-read"):
 
 
 def delete_object_from_bucket(source):
-    bucket_name = BUCKET_NAME
-    response = s3.delete_object(Bucket=bucket_name, Key=source)
+    response = s3.delete_object(Bucket=BUCKET_NAME, Key=source)
     return(response)
