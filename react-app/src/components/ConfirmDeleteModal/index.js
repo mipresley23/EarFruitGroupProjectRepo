@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import ConfirmDelete from './ConfirmDelete';
 
-function ConfirmDeleteModal({songId}) {
+function ConfirmDeleteModal({song}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ function ConfirmDeleteModal({songId}) {
         }}><i class="fa fa-trash"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <ConfirmDelete songId={songId} setShowModal={setShowModal}/>
+          <ConfirmDelete song={song} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>

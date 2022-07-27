@@ -63,18 +63,18 @@ function Songs({songPage}) {
             {songPage === 'artists' && <Artists songsArr={songsArr}/>}
             {songPage === 'albums' && <Albums songsArr={songsArr}/>}
             {songPage === '' && <ul id='songs'>
-                {songsArr.map(song => (
+                {songsArr && songsArr.map(song => (
                         <li id='song' key={song.id}>
                             { sessionUser && sessionUser.id === song.userId.id &&
                             <>
                                 <EditSongModal song={song}/>
-                                <ConfirmDeleteModal songId={song?.id}/>
+                                <ConfirmDeleteModal song={song} />
                             </>
                             }
-                            <p>{song?.name}</p>
-                            <p>{song?.artist}</p>
-                            <p>{song?.album}</p>
-                            <p>{song?.genre}</p>
+                            <p>{song.name}</p>
+                            <p>{song.artist}</p>
+                            <p>{song.album}</p>
+                            <p>{song.genre}</p>
                             <button value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>play</button>
                             <button value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>Add to Queue</button>
                         </li>

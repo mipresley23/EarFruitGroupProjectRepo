@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { thunkGetPlaylists, thunkAddPlaylist } from "../../store/playlists";
+import circleLogo from '../Songs/circleLogo.jpeg';
+import wordLogo from './earfruit-logo.png';
 import "./SideBar.css";
 
 export default function SideBar() {
@@ -65,12 +67,12 @@ export default function SideBar() {
 			<div id="side-bar-logo-imgs">
 				<img
 					id="side-bar-circle-logo"
-					src={require("./circleLogo.jpeg")}
+					src={circleLogo}
 					alt="circle logo"
 				/>
 				<img
 					id="side-bar-word-logo"
-					src={require("./earfruit-logo.png")}
+					src={wordLogo}
 					alt="word logo"
 				/>
 			</div>
