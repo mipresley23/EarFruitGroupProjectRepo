@@ -59,7 +59,7 @@ function Songs() {
 
                     <li key={song.id}>
                         <EditSongModal songId={song.id} onClick={console.log('click!')}/>
-                        <ConfirmDeleteModal song={song} onClick={console.log('click!')}/>
+                        <ConfirmDeleteModal song={song} />
                         <p>{song.name}</p>
                         <p>{song.artist}</p>
                         <p>{song.album}</p>

@@ -107,5 +107,5 @@ def upload_mp3():
 def delete_mp3():
     source = request.form["source"]
     response = delete_object_from_bucket(source)
-    print('------response-------', response)
+    # print('------response-------', response)
     return response
