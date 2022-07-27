@@ -78,19 +78,19 @@ export default function SideBar() {
 				/>
 			</div>
 			<NavLink className="sidebar-link" to="/" exact={true}>
-				<i class="fa fa-home"></i>
+				<i className="fa fa-home"></i>
 				Home
 			</NavLink>
 			<NavLink className="sidebar-link" to="/search" exact={true}>
-				<i class="fa fa-search"></i>
+				<i className="fa fa-search"></i>
 				Search
 			</NavLink>
 			<NavLink className="sidebar-link" to="/songs" exact={true}>
-				<i class="fa fa-music"></i>
+				<i className="fa fa-music"></i>
 				Songs
 			</NavLink>
 			<div className="sidebar-link" onClick={onSubmit}>
-				<i class="fa fa-plus"></i>
+				<i className="fa fa-plus"></i>
 				Create Playlist
 			</div>
 			<div className="side-bar-playlist-list">
@@ -99,6 +99,7 @@ export default function SideBar() {
 						<NavLink
 							className="sidebar-link sidebar-playlist-link"
 							to={`/playlists/${playlist.id}`}
+							key={playlist.id}
 						>
 							{playlist.name}
 						</NavLink>

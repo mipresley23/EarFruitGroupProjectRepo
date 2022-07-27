@@ -39,6 +39,7 @@ const UserProfile = () => {
   const thisUsersPlaylists = playlists && playlists.filter(playlist => playlist.user.id === +userId)
   const thisUsersSongs = songs && songs.filter(song => song.userId.id == +userId)
 
+  // console.log('thisUsersPlaylists: ',thisUsersPlaylists)
   console.log('profile songs: ', songs)
   console.log('thisUsersSongs: ', thisUsersSongs)
   console.log('thisUsersPlaylists: ', thisUsersPlaylists)

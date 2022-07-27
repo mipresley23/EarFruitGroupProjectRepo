@@ -71,6 +71,7 @@ function Songs({songPage}) {
             {songPage === 'albums' && <Albums songsArr={songsArr}/>}
             {songPage === '' && <ul id='songs'>
                 {songsArr && songsArr.map(song => (
+
                             <div id='song-page-song-info-container'>
                                 <li id='song' key={song.id}>
                                     { sessionUser && sessionUser.id === song.userId.id &&
@@ -88,6 +89,7 @@ function Songs({songPage}) {
                                     <input className='song-buttons' id='user-profile-queue-button' value={[song.name, song.artist, song.source]} type='image' src={addToPlaylistButton} onClick={handleAddToQueue}/>
                                 </li>
                             </div>
+
                 ))}
             </ul>}
 
