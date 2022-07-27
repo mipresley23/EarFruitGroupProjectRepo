@@ -21,7 +21,7 @@ function Songs({songPage}) {
     const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
 
     const sessionUser = useSelector((state) => state.session.user);
-    
+
 
     const [playButton, setPlayButton] = useState(false);
 
@@ -67,7 +67,7 @@ function Songs({songPage}) {
                         <li id='song' key={song.id}>
                             { sessionUser && sessionUser.id === song.userId.id &&
                             <>
-                                <EditSongModal songId={song.id} />
+                                <EditSongModal song={song}/>
                                 <ConfirmDeleteModal song={song} />
                             </>
                             }

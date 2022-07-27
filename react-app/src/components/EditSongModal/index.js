@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditSong from './EditSong';
 
-function EditSongModal({songId}) {
+function EditSongModal({song}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ function EditSongModal({songId}) {
         }}><i class="fa fa-edit"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditSong songId={songId} setShowModal={setShowModal}/>
+          <EditSong song={song} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>
