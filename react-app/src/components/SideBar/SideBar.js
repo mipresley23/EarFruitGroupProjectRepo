@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { thunkGetPlaylists, thunkAddPlaylist } from "../../store/playlists";
-import circleLogo from '../Songs/circleLogo.jpeg';
-import wordLogo from './earfruit-logo.png';
+import circleLogo from '../assets/circleLogo.jpeg';
+import wordLogo from '../assets/earfruit-logo.png';
+import playListImage from '../assets/my-playlist-img.png';
 import "./SideBar.css";
 
 export default function SideBar() {

@@ -7,6 +7,7 @@ import {
 } from "../../store/playlists";
 import { useHistory, useParams } from "react-router-dom";
 import "./EachPlaylist.css";
+import defaultPlaylistImage from '../assets/my-playlist-img.png';
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -162,7 +163,7 @@ const EachPlaylist = () => {
 				{/* {console.log(imageError)} */}
 				{!imageError && <img src={editPlaylist?.cover_img_url} />}
 				{imageError && (
-					<img src={require("../SideBar/my-playlist-img.png").default} />
+					<img src={defaultPlaylistImage} />
 				)}
 				{isOwner && !editImage && (
 					<button className="edit-image-btn" onClick={editImageBtn}>

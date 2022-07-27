@@ -5,8 +5,9 @@ import AudioListProvider, {AudioListContext} from '../../context/audioList';
 import { getUsersThunk, editUserThunk } from '../../store/Users';
 import { thunkGetPlaylists } from '../../store/playlists';
 import { getSongs } from '../../store/songs';
-import playButton from './play_button.jpg';
-import addToPlaylistButton from './addtoplaylist.jpg';
+import playButton from '../assets/play_button.png';
+import addToPlaylistButton from '../assets/addtoPlaylist.png';
+import circleLogo from '../assets/circleLogo.jpeg';
 import './userProfile.css'
 
 const UserProfile = () => {
@@ -81,16 +82,19 @@ const UserProfile = () => {
   const handlePlaySong = async(e) => {
     e.preventDefault();
     setClearAudioList(true)
+    console.log('play song target:', e.target.value)
     const audioArr = e.target.value.split(',')
+    console.log('play song audioArr: ', audioArr)
     setAudioList([])
-    await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: require('../Songs/circleLogo.jpeg'), musicSrc: audioArr[2]}])
+    await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
 }
  const handleAddToQueue = async(e) => {
     e.preventDefault();
     setClearAudioList(false)
     const audioArr = e.target.value.split(',')
+    console.log('queue audioArr: ', audioArr)
     if(audioList){
-        setAudioList([{name: audioArr[0], singer: audioArr[1], cover: require('../Songs/circleLogo.jpeg'), musicSrc: audioArr[2]}])
+        setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
     }
 }
 
@@ -113,7 +117,7 @@ const UserProfile = () => {
                 <NavLink to={`/playlists/${playlist.id}`}>
                   <div className='profile-playlists-container'>
                     <img className='profile-playlist-cover-art' src={playlist.cover_img_url} alt='album cover' />
-                    <p>{playlist.name}</p>
+                    <p id='playlist-nav-link-text'>{playlist.name}</p>
                   </div>
                 </NavLink>
               </div>
@@ -133,13 +137,9 @@ const UserProfile = () => {
                     <p id='song-artist'>{song.artist}</p>
                   </li>
                 </div>
-                <div id='song-buttons'>
-                  <button id='user-profile-play-button' value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>
-                    <img id='playbutton-image' src={playButton}/>
-                  </button>
-                  <button id='user-profile-queue-button' value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>
-                    <img id='add-to-playlist-button-image' src={addToPlaylistButton} />
-                  </button>
+                <div id='song-buttons-container'>
+                  <input className='song-buttons' id='user-profile-play-button' type='image' src={playButton} value={[song.name, song.artist, song.source]} onClick={handlePlaySong}/>
+                  <input className='song-buttons' id='user-profile-queue-button' value={[song.name, song.artist, song.source]} type='image' src={addToPlaylistButton} onClick={handleAddToQueue}/>
                 </div>
               </div>
             ))
