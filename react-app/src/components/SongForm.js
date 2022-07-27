@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createSong } from '../store/songs';
@@ -7,6 +7,7 @@ import './songForm.css'
 // import { login } from '../store/session';
 
 const SongForm = () => {
+    const hiddenFileInput = useRef(null);
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
     const [album, setAlbum] = useState('');
@@ -44,6 +45,11 @@ const SongForm = () => {
 
         setErrors(errors);
     }, [name, album, genre, artist, mp3]);
+
+    const handleClick = e => {
+        e.preventDefault();
+        hiddenFileInput.current.click();
+      };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -93,7 +99,7 @@ const SongForm = () => {
                     ))}
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='name'>Name</label>
+                    <label htmlFor='name'>Name: </label>
                     <input
                         name='name'
                         type='text'
@@ -103,7 +109,7 @@ const SongForm = () => {
                     />
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='artist'>Artist</label>
+                    <label htmlFor='artist'>Artist: </label>
                     <input
                         name='artist'
                         type='text'
@@ -113,7 +119,7 @@ const SongForm = () => {
                     />
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='album'>Album</label>
+                    <label htmlFor='album'>Album: </label>
                     <input
                         name='album'
                         type='text'
@@ -123,7 +129,7 @@ const SongForm = () => {
                     />
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='genre'>Genre</label>
+                    <label htmlFor='genre'>Genre: </label>
                     <select
                         name='genre'
                         value={genre}
@@ -142,16 +148,21 @@ const SongForm = () => {
                     </select>
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='source'>Upload</label>
-                    <input
-                        name='source'
-                        type='file'
-                        accept=''
-                        placeholder='Upload'
-                        onChange={(e) => setMP3(e.target.files[0])}
-                    />
+                    <label htmlFor='source'>Upload: </label>
+                        <button onClick={(e)=> handleClick(e)}>
+                            Upload MP3
+                        </button>
+                        {mp3 && <p className='song_form_p'>{mp3.name}</p>}
+                            <input
+                                name='source'
+                                type='file'
+                                accept=''
+                                ref={hiddenFileInput}
+                                style={{ display: 'none' }}
+                                onChange={(e) => setMP3(e.target.files[0])}
+                            />
                 </div>
-                <button type='submit' disabled={errors.length > 0} className='song_form_divs'>Submit</button>
+                <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
                 {(mp3Loading)&& <p className='song_form_divs'>Uploading<img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading'></img></p>}
             </form>
         </div>
