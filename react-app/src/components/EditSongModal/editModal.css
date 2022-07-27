@@ -1,0 +1,45 @@
+#edit-modal-button{
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: #4a4a4a;
+  transition-duration: .1s;
+  margin-right: 5px;
+}
+
+#delete-modal-button{
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: #4a4a4a;
+  transition-duration: .1s;
+  margin-right: 5px;
+}
+
+#edit-modal-button:hover{
+  background-color: darkcyan;
+  height: 51px;
+  width: 51px;
+}
+
+#delete-modal-button:hover{
+  background-color: firebrick;
+  height: 51px;
+  width: 51px;
+}
+
+#edit-song-modal-button-img{
+  height: 30px;
+  width: 30px;
+}
+
+#delete-song-modal-img{
+  height: 30px;
+  width: 30px;
+}
+
+.song-buttons{
+  margin-left: 5px;
+}

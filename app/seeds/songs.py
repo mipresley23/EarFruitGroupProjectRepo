@@ -4,7 +4,7 @@ from app.models import db, Song
 
 def seedSongs():
   crabrave= Song(
-    name='Crab Rave', album='Crab Rave', genre='Electronic', artist='Noisestorm', source='http://ear-fruit-bucket.s3.amazonaws.com/9cd0d6154871453ca25dfdf97bfb87c0.mp3', userId=6
+    name='Crab Rave', album='Crab Rave', genre='Electronic', artist='Noisestorm', source='Last', userId=6
   )
   lastmanstanding= Song(
     name='Last One Standing', album='Venom 2 Soundtrack', genre='Rap', artist='Skylar Grey', source='http://ear-fruit-bucket.s3.amazonaws.com/6e1f1241a578436fafba679031d26c4c.mp3', userId=6
