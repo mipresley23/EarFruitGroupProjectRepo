@@ -150,18 +150,18 @@ const SongForm = () => {
                 <div className='song_form_divs'>
                     <label htmlFor='source'>Upload: </label>
                         <button onClick={(e)=> handleClick(e)}>
-                            Upload MP3
+                            Upload mp3
                         </button>
-                        {mp3 && <p className='song_form_p'>{mp3.name}</p>}
-                            <input
-                                name='source'
-                                type='file'
-                                accept=''
-                                ref={hiddenFileInput}
-                                style={{ display: 'none' }}
-                                onChange={(e) => setMP3(e.target.files[0])}
-                            />
+                        <input
+                            name='source'
+                            type='file'
+                            accept=''
+                            ref={hiddenFileInput}
+                            style={{ display: 'none' }}
+                            onChange={(e) => setMP3(e.target.files[0])}
+                        />
                 </div>
+                {mp3 && <p className='song_form_p'>{mp3.name}</p>}
                 <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
                 {(mp3Loading)&& <p className='song_form_divs'>Uploading<img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading'></img></p>}
             </form>

@@ -14,26 +14,23 @@
 
 
 .song_form_errors {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
 .song_form_error {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 2vh;
 }
 
 
 .song_form_divs {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-
-.song_form_upload {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 
@@ -42,12 +39,17 @@
 }
 
 
-.song_form_upload > input,
+.song_form_p {
+    font-size: 20px;
+    color: #1DB954
+}
+
+
 .song_form_divs > input,
 .song_form_divs > select,
 .song_form_divs > button {
     position: relative;
-    bottom: 4px;
+    bottom: .5vh;
 }
 
 
@@ -58,11 +60,25 @@
     border: 2px solid #1DB954
 }
 
-
-.sf_submit {
+.song_form_divs > button {
     text-decoration: none;
     background-color: whitesmoke;
-    margin-left: 100px;
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    border: 0px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all .06s ease-in;
+    height: 35px;
+    width: 150px;
+}
+
+
+.sf_submit {
+    margin-top: 4vh;
+    text-decoration: none;
+    background-color: whitesmoke;
     font-weight: bold;
     color: black;
     font-size: 25px;
@@ -75,7 +91,8 @@
 }
 
 
-.sf_submit:hover {
+.sf_submit:hover,
+.song_form_divs > button:hover {
     background-color: #1DB954;
     color: white;
 }
