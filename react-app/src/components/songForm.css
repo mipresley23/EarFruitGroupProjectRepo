@@ -96,3 +96,8 @@
     background-color: #1DB954;
     color: white;
 }
+
+.uploading_img {
+    max-height: 25px;
+    max-width: 25px;
+}
