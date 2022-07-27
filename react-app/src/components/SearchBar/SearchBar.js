@@ -10,7 +10,6 @@ export default function SearchBar() {
 	const songsArray = Object.values(songs)
 	const [search, setSearch] = useState("");
 	const [searchResultsArray, setSearchResultsArray] = useState([]);
-	const [songsResultsArray, setSongsResultsArray] = useState([]);
 	const searchSongs = songsArray.filter((song) => song.name.toUpperCase().includes(search.toUpperCase()) || song.artist.toUpperCase().includes(search.toUpperCase()))
 	console.log(searchSongs)
 
@@ -24,9 +23,13 @@ export default function SearchBar() {
 		}
 		fetchData();
 	}
+
+	
     useEffect(() => {
         dispatch(getSongs());
-    }, [dispatch]);
+	}, [dispatch]);
+
+
 	useEffect(() => {
 		// console.log(search);
 		async function fetchData() {
@@ -38,16 +41,6 @@ export default function SearchBar() {
 		fetchData();
 	}, [search])
 
-	// useEffect(() => {
-	// 	async function fetchSongsData() {
-	// 		const response = await fetch(`/api/songs/${search}`);
-	// 		const responseData = await response.json();
-	// 		console.log(responseData)
-	// 		setSongsResultsArray(responseData.songs);
-	// 	}
-	// 	fetchSongsData();
-	// }, [search]);
-	// console.log(songsResultsArray)
 
 	const playlistSearchResults = searchResultsArray.map((playlist) => {
 		// console.log(playlist);
@@ -81,7 +74,7 @@ export default function SearchBar() {
 		);
 	});
 
-	
+
 
 	return (
 		<div className="search-container">

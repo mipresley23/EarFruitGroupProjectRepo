@@ -119,6 +119,9 @@ const EachPlaylist = () => {
 	const openSearchBar = () => {
 		setAddSong(true)
 	}
+	const closeSearchBar = () => {
+        setAddSong(false)
+    }
 	if (!editPlaylist) return null;
 	return (
 		<div>
@@ -222,7 +225,9 @@ const EachPlaylist = () => {
 				)}
 			</div>
 			{!addSong && <button onClick={openSearchBar}>Add Song</button>}
-			{addSong && <PlaylistSearchBar/>}
+			{addSong && <PlaylistSearchBar />}
+			{addSong && <button onClick={closeSearchBar}>Cancel</button>}
+
 			<ul>
 				{playlistSongs &&
 					playlistSongs.map((song) => (
