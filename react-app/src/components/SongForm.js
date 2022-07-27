@@ -36,11 +36,11 @@ const SongForm = () => {
     useEffect(() => {
         const errors = [];
 
-        if (!name) errors.push('Name is required');
-        if (!artist) errors.push('artist is required');
-        if (!album) errors.push('album is required');
-        if (!genre) errors.push('genre is required');
-        if (!mp3) errors.push('song is required');
+        if (!name) errors.push('The song name is required');
+        if (!artist) errors.push('The artist is required');
+        if (!album) errors.push('The album is required');
+        if (!genre) errors.push('The genre is required');
+        if (!mp3) errors.push('The song mp3 is required');
 
         setErrors(errors);
     }, [name, album, genre, artist, mp3]);
@@ -78,81 +78,83 @@ const SongForm = () => {
         }
         else {
             setMP3Loading(false);
-            errors.push('Must be an mp3 file');
+            errors.push('The file must be an mp3');
             setErrors(errors);
             // console.log("---error uploading song----", res)
         }
     }
 
     return (
-        <form onSubmit={handleSubmit} className='song_form'>
-            <div className='song_form_errors'>
-                {errors.map((error, ind) => (
-                    <div key={ind} className='song_form_error'>{error}</div>
-                ))}
-            </div>
-            <div>
-                <label htmlFor='name'>Name</label>
-                <input
-                    name='name'
-                    type='text'
-                    placeholder='Name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor='artist'>Artist</label>
-                <input
-                    name='artist'
-                    type='text'
-                    placeholder='Artist'
-                    value={artist}
-                    onChange={(e) => setArtist(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor='album'>Album</label>
-                <input
-                    name='album'
-                    type='text'
-                    placeholder='Album'
-                    value={album}
-                    onChange={(e) => setAlbum(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor='genre'>Genre</label>
-                <select
-                    name='genre'
-                    value={genre}
-                    onChange={(e) => setGenre(e.target.value)}
-                >
-                    <option value='Rock'>Rock</option>
-                    <option value='Pop'>Pop</option>
-                    <option value='Rap'>Rap</option>
-                    <option value='Electronic'>Electronic</option>
-                    <option value='Country'>Country</option>
-                    <option value='Classical'>Classical</option>
-                    <option value='Jazz'>Jazz</option>
-                    <option value='Blues'>Blues</option>
-                    <option value='Metal'>Metal</option>
-                    <option value='Other'>Other</option>
-                </select>
-            </div>
-            <div>
-                <label htmlFor='source'>Upload</label>
-                <input
-                    name='source'
-                    type='file'
-                    accept=''
-                    placeholder='Upload'
-                    onChange={(e) => setMP3(e.target.files[0])}
-                />
-            </div>
-            <button type='submit' disabled={errors.length > 0}>Submit</button>
-            {(mp3Loading)&& <p>Uploading<img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading'></img></p>}
-        </form>
+        <div className='song_form_div'>
+            <form onSubmit={handleSubmit} className='song_form'>
+                <div className='song_form_errors'>
+                    {errors.map((error, ind) => (
+                        <div key={ind} className='song_form_error'>{error}</div>
+                    ))}
+                </div>
+                <div className='song_form_divs'>
+                    <label htmlFor='name'>Name</label>
+                    <input
+                        name='name'
+                        type='text'
+                        placeholder='Name'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <div className='song_form_divs'>
+                    <label htmlFor='artist'>Artist</label>
+                    <input
+                        name='artist'
+                        type='text'
+                        placeholder='Artist'
+                        value={artist}
+                        onChange={(e) => setArtist(e.target.value)}
+                    />
+                </div>
+                <div className='song_form_divs'>
+                    <label htmlFor='album'>Album</label>
+                    <input
+                        name='album'
+                        type='text'
+                        placeholder='Album'
+                        value={album}
+                        onChange={(e) => setAlbum(e.target.value)}
+                    />
+                </div>
+                <div className='song_form_divs'>
+                    <label htmlFor='genre'>Genre</label>
+                    <select
+                        name='genre'
+                        value={genre}
+                        onChange={(e) => setGenre(e.target.value)}
+                    >
+                        <option value='Rock'>Rock</option>
+                        <option value='Pop'>Pop</option>
+                        <option value='Rap'>Rap</option>
+                        <option value='Electronic'>Electronic</option>
+                        <option value='Country'>Country</option>
+                        <option value='Classical'>Classical</option>
+                        <option value='Jazz'>Jazz</option>
+                        <option value='Blues'>Blues</option>
+                        <option value='Metal'>Metal</option>
+                        <option value='Other'>Other</option>
+                    </select>
+                </div>
+                <div className='song_form_divs'>
+                    <label htmlFor='source'>Upload</label>
+                    <input
+                        name='source'
+                        type='file'
+                        accept=''
+                        placeholder='Upload'
+                        onChange={(e) => setMP3(e.target.files[0])}
+                    />
+                </div>
+                <button type='submit' disabled={errors.length > 0} className='song_form_divs'>Submit</button>
+                {(mp3Loading)&& <p className='song_form_divs'>Uploading<img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading'></img></p>}
+            </form>
+        </div>
     );
 
 }
