@@ -35,9 +35,11 @@ const actionDeletePlaylist = (playlistId) => {
 export const thunkGetPlaylists = (playlists) => async (dispatch) => {
 	const res = await fetch("/api/playlists/");
 	const playlists = await res.json();
+	// console.log(playlists)
 	dispatch(actionGetPlaylists(playlists));
 	return res;
 };
+
 
 export const thunkAddPlaylist = (playlist) => async (dispatch) => {
 	const response = await fetch("/api/playlists/", {
@@ -52,7 +54,7 @@ export const thunkAddPlaylist = (playlist) => async (dispatch) => {
 };
 
 export const thunkEditPlaylist = (playlist) => async (dispatch) => {
-	console.log(playlist)
+	// console.log(playlist)
 	const response = await fetch(`/api/playlists/${playlist.id}`, {
 		method: "PUT",
 		headers: {
@@ -62,7 +64,7 @@ export const thunkEditPlaylist = (playlist) => async (dispatch) => {
 	});
 
 	const data = await response.json();
-	console.log(data)
+	// console.log(data)
 	// console.log([data[1]])
 	dispatch(actionEditPlaylist(data));
 	return data;
