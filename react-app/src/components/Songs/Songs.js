@@ -4,15 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import AudioListProvider, {AudioListContext} from '../../context/audioList';
 import { getSongs } from '../../store/songs';
+import Artists from '../Artists/Artists';
+import Albums from '../Albums/Albums';
 import EditSongModal from '../EditSongModal';
 import ConfirmDeleteModal from '../ConfirmDeleteModal';
 import ReactJkMusicPlayer from 'react-jinke-music-player'
 import './Songs.css'
 
-function Songs() {
-
-
-
+function Songs({songPage}) {
     const songs = useSelector(state => state?.songs);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -54,6 +53,8 @@ function Songs() {
     return (
         <>
             <NavLink to='/add-song' >Add Song</NavLink>
+            {songPage === 'artists' && <Artists />}
+            {songPage === 'albums' && <Albums />}
             <ul id='songs'>
                 {songsArr.map(song => (
                         <li id='song' key={song.id}>
@@ -68,6 +69,7 @@ function Songs() {
                         </li>
                 ))}
             </ul>
+
         </>
     )
 }
