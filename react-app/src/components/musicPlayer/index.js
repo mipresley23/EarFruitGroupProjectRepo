@@ -22,8 +22,9 @@ const MusicPlayer = () => {
         showDownload={false}
         showThemeSwitch={false}
         audioLists={audioList}
-        defaultVolume={0.2} />
-
+        defaultVolume={0.2}
+        toggleMode={false}
+        />
     </div>
 
   )

@@ -23,6 +23,7 @@ import './index.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [songPage, setSongPage] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,7 +42,7 @@ function App() {
     <BrowserRouter>
       <MusicPlayer />
       <div className='nav-bar'>
-        <NavBar />
+        <NavBar setSongPage={setSongPage}/>
       </div>
       <div className='side-bar'>
         <SideBar />
@@ -69,7 +70,7 @@ function App() {
             <HomePage/>
           </Route>
           <ProtectedRoute path='/songs' exact={true} >
-            <Songs/>
+            <Songs songPage={songPage} />
           </ProtectedRoute>
           <ProtectedRoute path='/add-song' exact={true} >
             <SongForm />

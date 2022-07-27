@@ -4,20 +4,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import AudioListProvider, {AudioListContext} from '../../context/audioList';
 import { getSongs } from '../../store/songs';
+import Artists from '../Artists/Artists';
+import Albums from '../Albums/Albums';
 import EditSongModal from '../EditSongModal';
 import ConfirmDeleteModal from '../ConfirmDeleteModal';
 import ReactJkMusicPlayer from 'react-jinke-music-player'
+import './Songs.css'
 
-function Songs() {
-
-
-
+function Songs({songPage}) {
     const songs = useSelector(state => state?.songs);
     const dispatch = useDispatch();
     const history = useHistory();
     const songsArr = Object.values(songs);
     console.log('songs: ', songs)
+
     const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
+
+    const sessionUser = useSelector((state) => state.session.user);
+    
+
     const [playButton, setPlayButton] = useState(false);
 
     const [audios, setAudios] = useState([])
@@ -53,27 +58,30 @@ function Songs() {
 
     console.log('audioList:', audioList)
     return (
-        <div>
+        <>
             <NavLink to='/add-song' >Add Song</NavLink>
-            <ul>
+            {songPage === 'artists' && <Artists songsArr={songsArr}/>}
+            {songPage === 'albums' && <Albums songsArr={songsArr}/>}
+            {songPage === '' && <ul id='songs'>
                 {songsArr.map(song => (
-                    <div>
-
-                    <li key={song.id}>
-                        <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
-                        <ConfirmDeleteModal songId={song?.id} onClick={console.log('click!')}/>
-                        <p>{song?.name}</p>
-                        <p>{song?.artist}</p>
-                        <p>{song?.album}</p>
-                        <p>{song?.genre}</p>
-                        <p>{song?.source}</p>
-                        <button value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>play</button>
-                        <button value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>Add to Queue</button>
-                    </li>
-                    </div>
+                        <li id='song' key={song.id}>
+                            { sessionUser && sessionUser.id === song.userId.id &&
+                            <>
+                                <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
+                                <ConfirmDeleteModal songId={song?.id} onClick={console.log('click!')}/>
+                            </>
+                            }
+                            <p>{song?.name}</p>
+                            <p>{song?.artist}</p>
+                            <p>{song?.album}</p>
+                            <p>{song?.genre}</p>
+                            <button value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>play</button>
+                            <button value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>Add to Queue</button>
+                        </li>
                 ))}
-            </ul>
-        </div>
+            </ul>}
+
+        </>
     )
 }
 
