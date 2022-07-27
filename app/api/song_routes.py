@@ -49,10 +49,17 @@ def get_song(song_id):
 @login_required
 def delete_song(song_id):
     song = Song.query.get(song_id)
-    
+
     db.session.delete(song)
     db.session.commit()
 
+@song_routes.route('/<string:search_value>')
+# @login_required
+def search_song(search_value):
+    # print(search_value)
+    song_search_results = Song.query.filter(Song.name.ilike(f'%{search_value}%')).all()
+    # print('---------------------------------',playlist_search_results,'---------------------------------')
+    return {'songs': [song.to_dict() for song in song_search_results]}
 
 @song_routes.route('/<int:song_id>', methods=['PUT'])
 @login_required
@@ -73,7 +80,7 @@ def update_song(song_id):
 @song_routes.route("/mp3", methods=["POST"])
 @login_required
 def upload_mp3():
-    
+
     if "mp3" not in request.files:
         # print('----------error #1-----------')
         return {"errors": "mp3 required"}, 400

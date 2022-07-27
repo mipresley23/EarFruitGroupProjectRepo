@@ -19,14 +19,14 @@ def playlists():
 # @login_required
 def playlists_songs(playlist_id):
     songs = Song.query.join(Playlist_Songs).join(Playlist).filter(Playlist.id == playlist_id).all()
-    print('-')
-    print('-')
-    print('-')
-    for song in songs:
-        print(song.to_dict())
-    print('-')
-    print('-')
-    print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # for song in songs:
+    #     print(song.to_dict())
+    # print('-')
+    # print('-')
+    # print('-')
     # print(playlists,'---------------------------------')
     return {'songs': [song.to_dict() for song in songs]}
 

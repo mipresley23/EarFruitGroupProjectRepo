@@ -18,7 +18,7 @@ const EachPlaylist = () => {
 	const sessionUser = useSelector((state) => state.session.user);
 	const editPlaylist = useSelector((state) => state.playlists[playlistId]);
 	const playlistSongs = Object.values(useSelector((state) => state.songs));
-	console.log(playlistSongs);
+	// console.log(playlistSongs);
 	const [editName, setEditName] = useState(false);
 	const [editImage, setEditImage] = useState(false);
 	const [editDescription, setEditDescription] = useState(false);
