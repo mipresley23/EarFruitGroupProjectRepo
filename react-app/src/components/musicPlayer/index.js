@@ -5,16 +5,20 @@ import 'react-jinke-music-player/assets/index.css'
 
 
 const MusicPlayer = () => {
-  const {audioList} = useAudioList();
+  const {audioList, clearAudioList} = useAudioList();
 
   console.log('musicPlayer audioList: ', audioList)
 
   return (
     <div className="playbar w-100">
       <ReactJkMusicPlayer
+        autoHiddenCover
+        glassBg={true}
         theme="dark"
         mode="full"
         drag={true}
+        quietUpdate={true}
+        clearPriorAudioLists={clearAudioList}
         showDownload={false}
         showThemeSwitch={false}
         audioLists={audioList}

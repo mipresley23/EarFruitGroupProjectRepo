@@ -65,12 +65,12 @@ export default function SideBar() {
 			<div id="side-bar-logo-imgs">
 				<img
 					id="side-bar-circle-logo"
-					src={require("./circleLogo.jpeg").default}
+					src={require("./circleLogo.jpeg")}
 					alt="circle logo"
 				/>
 				<img
 					id="side-bar-word-logo"
-					src={require("./earfruit-logo.png").default}
+					src={require("./earfruit-logo.png")}
 					alt="word logo"
 				/>
 			</div>

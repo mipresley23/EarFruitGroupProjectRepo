@@ -17,8 +17,12 @@ function Songs({songPage}) {
     const history = useHistory();
     const songsArr = Object.values(songs);
     console.log('songs: ', songs)
+
+    const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
+
     const sessionUser = useSelector((state) => state.session.user);
-    const {audioList, setAudioList} = useContext(AudioListContext)
+    
+
     const [playButton, setPlayButton] = useState(false);
 
     const [audios, setAudios] = useState([])
@@ -34,20 +38,22 @@ function Songs({songPage}) {
 
     const handlePlaySong = async(e) => {
         e.preventDefault();
+        setClearAudioList(true)
         const audioArr = e.target.value.split(',')
         console.log('audioArr: ', audioArr)
         setAudioList([])
-        await setAudioList([{name: audioArr[0], artist: audioArr[1], musicSrc: audioArr[2]}])
+        await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: require('./circleLogo.jpeg'), musicSrc: audioArr[2]}])
     }
-    const handleAddToQueue = async(e) => {
+     const handleAddToQueue = async(e) => {
         e.preventDefault();
+        setClearAudioList(false)
         const audioArr = e.target.value.split(',')
         console.log('audioArr: ', audioArr)
         console.log(audioList !== null)
-        if(audioList !== null){
-            setAudioList([...audioList], [{name: audioArr[0], artist: audioArr[1], musicSrc: audioArr[2]}])
+        console.log('audioListinQueueFunc: ', audioList)
+        if(audioList){
+            setAudioList([{name: audioArr[0], singer: audioArr[1], cover: require('./circleLogo.jpeg'), musicSrc: audioArr[2]}])
         }
-        setAudioList([{name: audioArr[0], artist: audioArr[1], musicSrc: audioArr[2]}])
     }
 
     console.log('audioList:', audioList)
