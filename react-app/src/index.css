@@ -29,6 +29,7 @@ body{
     grid-area: content;
     background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.949) 12%, #121212ee);
     overflow-y: scroll;
+    padding-bottom: 100px;
 
 }
 
@@ -42,4 +43,3 @@ body{
 .search-playlist-link {
     text-decoration: none;
 }
-
