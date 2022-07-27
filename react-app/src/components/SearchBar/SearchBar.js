@@ -62,6 +62,9 @@ export default function SearchBar() {
 				</div>
 				</NavLink>
 		);
+
+
+
 	});
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);
@@ -71,11 +74,14 @@ export default function SearchBar() {
 					<p id="song-name">{song.name}</p>
 					<p id="song-name">{song.artist}</p>
 					<p>By {song.userId.username}</p>
+					<button><i class="fa fa-plus"></i></button>
 				</div>
 				</div>
 
 		);
 	});
+
+	
 
 	return (
 		<div className="search-container">
