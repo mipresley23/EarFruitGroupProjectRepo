@@ -12,6 +12,7 @@ const MusicPlayer = () => {
   return (
     <div className="playbar w-100">
       <ReactJkMusicPlayer
+        autoHiddenCover
         glassBg={true}
         theme="dark"
         mode="full"
