@@ -1,12 +1,20 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import * as sessionActions from "../../store/session";
 import "./NavBar.css";
-const NavBar = () => {
+const NavBar = ({setSongPage}) => {
 	const dispatch = useDispatch()
+	const location = useLocation()
 	const isLoggedIn = useSelector((state) => state.session.user);
+
+	const [isSongs, setIsSongs] = useState(location.pathname.includes('songs'));
+
+	useEffect(() => {
+		if (location.pathname.includes('songs')) setIsSongs(true);
+		else setIsSongs(false);
+	}, [location]);
 
 	const handleDemo = () => {
 		return dispatch(sessionActions.loginDemo());
@@ -14,6 +22,13 @@ const NavBar = () => {
 
 	return (
 		<nav className="nav-container">
+			{isLoggedIn && isSongs && (
+				<div id='song-menu-buttons'>
+					<button onClick={e => setSongPage('')}>Songs</button>
+					<button onClick={e => setSongPage('artists')}>Artists</button>
+					<button onClick={e => setSongPage('albums')}>Albums</button>
+				</div>
+			)}
 			<ul className="nav-list">
 				{!isLoggedIn && (
 					<>

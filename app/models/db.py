@@ -70,6 +70,7 @@ class Song(db.Model):
       "album": self.album,
       "genre": self.genre,
       "artist": self.artist,
+      "source": self.source,
       "userId": self.user.to_dict(),
       "playlists": len(self.song_playlists)
     }
