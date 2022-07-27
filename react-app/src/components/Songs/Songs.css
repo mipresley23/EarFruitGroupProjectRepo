@@ -6,6 +6,7 @@
     width: 100%;
     height: 100%;
     margin: 0;
+    margin-top: 10px;
     padding: 0;
     overflow: scroll;
     /* scrollbar-color: none; */
@@ -14,4 +15,33 @@
 #song {
     display: grid;
     grid-template-columns: 1fr 1fr 20fr 15fr 15fr 10fr 1fr 1fr;
+}
+
+#song-page-song-info-container{
+    height: 60px;
+    transition-duration: .1s;
+}
+
+#song-page-song-info-container:hover{
+    background-color: #262626;
+}
+
+#add-song-button{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#add-song-button:hover{
+    background-color: darkgreen;
+}
+
+#add-song-label{
+    color: azure;
+}
+
+a:link{
+text-decoration: none;
 }
