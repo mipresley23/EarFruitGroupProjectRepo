@@ -16,6 +16,7 @@
     font-size: 1.2rem;
     margin-left: 10px;
     transition: all 0.07s ease-in;
+    cursor: pointer;
 }
 
 .sidebar-link:hover {

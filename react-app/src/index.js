@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
+import AudioListProvider from './context/audioList';
 
 const store = configureStore();
 
@@ -13,11 +14,13 @@ const options = {theme: 'dark'}
 
 ReactDOM.render(
   <React.StrictMode>
+    <AudioListProvider>
     <Provider store={store}>
       <ModalProvider>
         <App />
       </ModalProvider>
     </Provider>
+    </AudioListProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

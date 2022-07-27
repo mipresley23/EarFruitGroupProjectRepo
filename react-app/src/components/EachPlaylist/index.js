@@ -6,7 +6,7 @@ import {
 	thunkEditPlaylist,
 } from "../../store/playlists";
 import { useHistory, useParams } from "react-router-dom";
-import './EachPlaylist.css'
+import "./EachPlaylist.css";
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -22,6 +22,7 @@ const EachPlaylist = () => {
 	const [name, setName] = useState(editPlaylist?.name);
 	const [description, setDescription] = useState(editPlaylist?.description);
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
+	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
 	useEffect(() => {
 		dispatch(thunkGetPlaylists());
@@ -32,6 +33,7 @@ const EachPlaylist = () => {
 		setEditName(false);
 		setEditImage(false);
 		setEditDescription(false);
+		setEditImage(false);
 	}, [playlistId]);
 
 	useEffect(() => {
@@ -58,20 +60,21 @@ const EachPlaylist = () => {
 			name,
 			description,
 			cover_img_url: image,
-    };
-    console.log(playlist)
+		};
+		// console.log(playlist);
 
 		await dispatch(thunkEditPlaylist(playlist));
-		setEditName(false);
+		await dispatch(thunkGetPlaylists());
+		await setEditName(false);
 		setEditImage(false);
 		setEditDescription(false);
-		dispatch(thunkGetPlaylists());
 	}
 
 	async function cancelEditNameBtn(e) {
 		setEditName(false);
 	}
 	async function cancelEditImageBtn(e) {
+		setImage(editPlaylist?.cover_img_url);
 		setEditImage(false);
 	}
 	async function cancelEditDescriptionBtn(e) {
@@ -82,54 +85,112 @@ const EachPlaylist = () => {
 		history.push(`/`);
 		await dispatch(thunkDeletePlaylist(playlistId));
 	}
-
-	// if(!editPlaylist) return null;
+	function checkImage(url) {
+		var image = new Image();
+		image.onload = function () {
+			if (this.width > 0) {
+				setImageError(false);
+				// console.log("image exists");
+			}
+		};
+		image.onerror = function () {
+			setImageError(true);
+			//   console.log("image doesn't exist");
+		};
+		image.src = url;
+	}
+	useEffect(() => {
+		checkImage(image);
+	}, [image]);
+	// console.log(imageError)
+	if (!editPlaylist) return null;
 	return (
 		<div className="playlist-header">
 			<div className="playlist-name-cont">
-        {isOwner && !editName && (<h1 className="playlist-name" onClick={editNameBtn}>{editPlaylist?.name}</h1>)}
-        {!isOwner && (<h1>{editPlaylist?.name}</h1>)}
-				{isOwner && editName && (
-					<input className="editNameInput" value={name} autoFocus onChange={(e) => setName(e.target.value)} />
+				{isOwner && !editName && (
+					<h1 className="playlist-name-owner" onClick={editNameBtn}>
+						{editPlaylist?.name}
+					</h1>
+				)}
+				{!isOwner && (
+					<h1 className="playlist-name-not-owner">{editPlaylist?.name}</h1>
 				)}
 				{isOwner && editName && (
-					<button onClick={updatePlaylist}>Update Name</button>
+					<input
+						className="editNameInput"
+						value={name}
+						autoFocus
+						onChange={(e) => setName(e.target.value)}
+					/>
+				)}
+				{isOwner && editName && (
+					<button className="update-name-btn" onClick={updatePlaylist}>
+						Update Name
+					</button>
 				)}
 				{isOwner && editName && (
 					<button onClick={cancelEditNameBtn}>Cancel</button>
 				)}
 			</div>
-			<div className="playlist-description">
-				{<h3>{editPlaylist?.description}</h3>}
-				{isOwner && !editDescription && (
-					<button onClick={editDescriptionBtn}>Edit Description</button>
-				)}
-				{isOwner && editDescription && (
-					<input value={description} onChange={(e) => setDescription(e.target.value)} />
-				)}
-				{isOwner && editDescription && (
-					<button onClick={updatePlaylist}>Update Description</button>
-				)}
-				{isOwner && editDescription && (
-					<button onClick={cancelEditDescriptionBtn}>Cancel</button>
-				)}
+			<div className="playlist-description-cont">
+				<ul>
+					<li className="playlist-description">
+						{<h3>{editPlaylist?.description}</h3>}
+
+						{isOwner && !editDescription && (
+							<button onClick={editDescriptionBtn}>Edit Description</button>
+						)}
+						{isOwner && editDescription && (
+							<input
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+							/>
+						)}
+						{isOwner && editDescription && (
+							<button onClick={updatePlaylist}>Update Description</button>
+						)}
+						{isOwner && editDescription && (
+							<button onClick={cancelEditDescriptionBtn}>Cancel</button>
+						)}
+					</li>
+					<li className="playlist-username">
+						{<h3>{editPlaylist?.user.username}</h3>}
+					</li>
+				</ul>
 			</div>
 			<div className="playlist-image">
-				<img src={editPlaylist?.cover_img_url} />
+				{/* {console.log(imageError)} */}
+				{!imageError && <img src={editPlaylist?.cover_img_url} />}
+				{imageError && (
+					<img src={require("../SideBar/my-playlist-img.png").default} />
+				)}
 				{isOwner && !editImage && (
-					<button className="edit-image-btn" onClick={editImageBtn}><i class="fa fa-edit fa-lg"></i></button>
+					<button className="edit-image-btn" onClick={editImageBtn}>
+						<i class="fa fa-edit fa-lg"></i>
+					</button>
 				)}
-				{isOwner && editImage && (
-					<input value={image} onChange={(e) => setImage(e.target.value)} />
-				)}
-				{isOwner && editImage && (
-					<button onClick={updatePlaylist}>Update Image</button>
-				)}
-				{isOwner && editImage && (
-					<button onClick={cancelEditImageBtn}>Cancel</button>
-				)}
+				<div className="edit-image-div">
+					{isOwner && editImage && (
+						<input
+							className="edit-image-input"
+							placeholder="Image Url"
+							value={image}
+							onChange={(e) => setImage(e.target.value)}
+						/>
+					)}
+					{isOwner && editImage && (
+						<button className="edit-image-update-btn" onClick={updatePlaylist}>Update Image</button>
+					)}
+					{isOwner && editImage && (
+						<button className="edit-image-cancel-btn" onClick={cancelEditImageBtn}>Cancel</button>
+					)}
+				</div>
 			</div>
-			{isOwner && <button className="delete-playlist-btn" onClick={onDelete}>Delete Playlist</button>}
+			{isOwner && (
+				<button className="delete-playlist-btn" onClick={onDelete}>
+					Delete Playlist
+				</button>
+			)}
 		</div>
 	);
 };

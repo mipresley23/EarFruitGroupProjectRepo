@@ -15,29 +15,53 @@
 		"image description";
 }
 
-.playlist-name {
+.playlist-name-owner {
 	padding: 0;
 	margin: 0;
 	font-size: 5rem;
 	cursor: pointer;
 }
-.playlist-name:hover {
+.playlist-name-not-owner {
+    padding: 0;
+	margin: 0;
+	font-size: 5rem;
+}
+.playlist-name-owner:hover {
 	color: rgb(29, 185, 84);
 }
 
 .playlist-name-cont {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 	grid-area: name;
-    padding: 10px 20px;
+    padding: 10px 30px;
 	/* border: 1px solid white; */
 }
 
-.playlist-description {
+.playlist-description-cont {
+    display: flex;
+    align-items: center;
 	grid-area: description;
-	/* border: 1px solid white; */
+    padding: 10px 30px;
 }
+.playlist-description-cont ul {
+    margin: 0;
+    padding: 0;
+}
+.playlist-description {
+    display: flex;
+    align-items: center;
 
+}
+.playlist-username {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.playlist-username h3 {
+    margin: 0;
+}
 .playlist-image {
 	grid-area: image;
 	position: relative;
@@ -49,21 +73,35 @@
 .edit-image-btn {
 	position: absolute;
 	/* right:20px; */
+	padding: 10px;
+	margin: 0;
 	top: 10px;
 	left: 10px;
+	border-radius: 50%;
 	border: none;
-	background-color: transparent;
+	background-color: rgb(29, 185, 84);
 	cursor: pointer;
 }
 .edit-image-btn:hover {
-	color: rgb(29, 185, 84);
+	color: white;
 }
 .delete-playlist-btn {
 	position: absolute;
 	top: 20px;
 	right: 20px;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1rem;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
 }
 
+.delete-playlist-btn:hover {
+    color: red;
+    background-color: black;
+    transform: scale(1.04);
+}
 .editNameInput{
     font-size: 5rem;
     font-weight: bold;
@@ -71,8 +109,40 @@
     color: white;
     border: none;
     width: 70%;
+
 }
 
 .editNameInput:focus {
 	outline: none; /* Removes the border when the input is clicked */
+}
+
+.edit-image-input {
+	border: 1px;
+	background-color: rgb(207, 207, 207);
+	margin: 0;
+	padding: 0;
+	flex-grow: 2;
+	border-top-left-radius: 150px;
+	border-bottom-left-radius: 150px;
+	padding-left: 10px;
+}
+
+.edit-image-div {
+	/* border: 2px white solid; */
+	display: flex;
+	flex-wrap: wrap;
+	border-radius: 150px;
+}
+
+.edit-image-cancel-btn {
+	border-top-right-radius: 150px;
+	border-bottom-right-radius: 150px;
+	background-color: rgb(167, 167, 167);
+	border: 0px;
+}
+
+.edit-image-update-btn {
+	background-color: rgb(167, 167, 167);
+	border: 0px;
+	border-right: 1px solid black;
 }
