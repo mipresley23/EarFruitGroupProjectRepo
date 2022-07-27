@@ -51,7 +51,7 @@ const SongForm = () => {
         const formData = new FormData();
         formData.append("mp3", mp3);
 
-        setMP3Loading(true); 
+        setMP3Loading(true);
         const res = await fetch('/api/songs/mp3', {
             method: "POST",
             body: formData
@@ -69,8 +69,8 @@ const SongForm = () => {
                 source: jsonRes.source
             };
 
-            
-    
+
+
             // console.log('------song------', song)
             dispatch(createSong(song))
             history.push('/');
