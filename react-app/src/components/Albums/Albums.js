@@ -1,5 +1,6 @@
 import React from 'react';
 import AlbumModal from '../AlbumModal';
+import './Albums.css';
 
 function Albums ({songsArr}) {
 
@@ -14,13 +15,13 @@ function Albums ({songsArr}) {
     console.log(albums)
 
     return (
-        <ul id='albums'>
-            {Object.keys(albums).map(album => (
-                <li key={album}>
-                    <AlbumModal album={album} albums={albums}/>
-                </li>
-            ))}
-        </ul>
+            <ul id='albums'>
+                {Object.keys(albums).map(album => (
+                    <li key={album} >
+                        <AlbumModal album={album} albums={albums}/>
+                    </li>
+                ))}
+            </ul>
     )
 }
 
