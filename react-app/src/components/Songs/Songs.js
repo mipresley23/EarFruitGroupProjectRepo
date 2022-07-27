@@ -7,6 +7,7 @@ import { getSongs } from '../../store/songs';
 import EditSongModal from '../EditSongModal';
 import ConfirmDeleteModal from '../ConfirmDeleteModal';
 import ReactJkMusicPlayer from 'react-jinke-music-player'
+import './Songs.css'
 
 function Songs() {
 
@@ -51,27 +52,23 @@ function Songs() {
 
     console.log('audioList:', audioList)
     return (
-        <div>
+        <>
             <NavLink to='/add-song' >Add Song</NavLink>
-            <ul>
+            <ul id='songs'>
                 {songsArr.map(song => (
-                    <div>
-
-                    <li key={song.id}>
-                        <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
-                        <ConfirmDeleteModal songId={song?.id} onClick={console.log('click!')}/>
-                        <p>{song?.name}</p>
-                        <p>{song?.artist}</p>
-                        <p>{song?.album}</p>
-                        <p>{song?.genre}</p>
-                        <p>{song?.source}</p>
-                        <button value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>play</button>
-                        <button value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>Add to Queue</button>
-                    </li>
-                    </div>
+                        <li id='song' key={song.id}>
+                            <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
+                            <ConfirmDeleteModal songId={song?.id} onClick={console.log('click!')}/>
+                            <p>{song?.name}</p>
+                            <p>{song?.artist}</p>
+                            <p>{song?.album}</p>
+                            <p>{song?.genre}</p>
+                            <button value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>play</button>
+                            <button value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>Add to Queue</button>
+                        </li>
                 ))}
             </ul>
-        </div>
+        </>
     )
 }
 
