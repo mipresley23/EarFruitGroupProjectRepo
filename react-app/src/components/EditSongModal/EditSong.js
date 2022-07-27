@@ -5,31 +5,27 @@ import { editSong, getSongs } from '../../store/songs';
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
 
-const EditSong = ({songId, setShowModal}) => {
+const EditSong = ({song, setShowModal}) => {
+    console.log(song)
     const [errors, setErrors] = useState([]);
-    const [name, setName] = useState('');
-    const [album, setAlbum] = useState('');
-    const [genre, setGenre] = useState('Rock');
-    const [artist, setArtist] = useState('');
-    const [source, setSource] = useState(undefined);
+    const [name, setName] = useState(song?.name);
+    const [album, setAlbum] = useState(song?.album);
+    const [genre, setGenre] = useState(song?.genre);
+    const [artist, setArtist] = useState(song?.artist);
+    const [source, setSource] = useState(song?.source);
 
     // const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
-    // console.log(songId)
-    // const genres = [
-    //     {value: 'Rock', label: 'Rock'},
-    //     {value: 'Pop', label: 'Pop'},
-    //     {value: 'Rap', label: 'Rap'},
-    //     {value: 'Electronic', label: 'Electronic'},
-    //     {value: 'Country', label: 'Country'},
-    //     {value: 'Classical', label: 'Classical'},
-    //     {value: 'Jazz', label: 'Jazz'},
-    //     {value: 'Blues', label: 'Blues'},
-    //     {value: 'Metal', label: 'Metal'},
-    //     {value: 'Other', label: 'Other'}
 
-    // ]
+    useEffect(() => {
+        setName(song?.name);
+        setAlbum(song?.album);
+        setGenre(song?.genre);
+        setArtist(song?.artist);
+        setSource(song?.source);
+        console.log({name, album, genre, artist, source})
+    });
 
     useEffect(() => {
         const errors = [];
@@ -46,7 +42,7 @@ const EditSong = ({songId, setShowModal}) => {
         e.preventDefault();
 
         const song = {
-            id: songId,
+            id: song?.id,
             name,
             album,
             genre,
@@ -73,7 +69,7 @@ const EditSong = ({songId, setShowModal}) => {
                 <input
                     name='name'
                     type='text'
-                    placeholder='Name'
+                    placeholder={song?.name}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
@@ -83,7 +79,7 @@ const EditSong = ({songId, setShowModal}) => {
                 <input
                     name='artist'
                     type='text'
-                    placeholder='Artist'
+                    placeholder={song?.artist}
                     value={artist}
                     onChange={(e) => setArtist(e.target.value)}
                 />
@@ -93,7 +89,7 @@ const EditSong = ({songId, setShowModal}) => {
                 <input
                     name='album'
                     type='text'
-                    placeholder='Album'
+                    placeholder={song?.album}
                     value={album}
                     onChange={(e) => setAlbum(e.target.value)}
                 />
@@ -121,9 +117,10 @@ const EditSong = ({songId, setShowModal}) => {
                 <label htmlFor='source'>Upload</label>
                 <input
                     name='source'
+                    hidden='hidden'
                     type='file'
                     placeholder='Upload'
-                    // value={source}
+                    value={source}
                     onChange={(e) => setSource(e.target.files[0])}
                 />
             </div>
