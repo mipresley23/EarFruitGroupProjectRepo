@@ -6,26 +6,17 @@ import { editSong, getSongs } from '../../store/songs';
 // import { login } from '../store/session';
 
 const EditSong = ({song, setShowModal}) => {
-    console.log(song)
+    // console.log(song)
     const [errors, setErrors] = useState([]);
-    const [name, setName] = useState(song?.name);
-    const [album, setAlbum] = useState(song?.album);
-    const [genre, setGenre] = useState(song?.genre);
-    const [artist, setArtist] = useState(song?.artist);
-    const [source, setSource] = useState(song?.source);
+    const [name, setName] = useState(song.name);
+    const [album, setAlbum] = useState(song.album);
+    const [genre, setGenre] = useState(song.genre);
+    const [artist, setArtist] = useState(song.artist);
+    const [source, setSource] = useState(song.source);
 
     // const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
-
-    useEffect(() => {
-        setName(song?.name);
-        setAlbum(song?.album);
-        setGenre(song?.genre);
-        setArtist(song?.artist);
-        setSource(song?.source);
-        console.log({name, album, genre, artist, source})
-    });
 
     useEffect(() => {
         const errors = [];
@@ -41,8 +32,8 @@ const EditSong = ({song, setShowModal}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const song = {
-            id: song?.id,
+        const Editedsong = {
+            id: song.id,
             name,
             album,
             genre,
@@ -51,7 +42,7 @@ const EditSong = ({song, setShowModal}) => {
         };
 
         // console.log(song)
-        dispatch(editSong(song)).then(() => {
+        dispatch(editSong(Editedsong)).then(() => {
             dispatch(getSongs());
             setShowModal(false);
         })
@@ -69,7 +60,7 @@ const EditSong = ({song, setShowModal}) => {
                 <input
                     name='name'
                     type='text'
-                    placeholder={song?.name}
+                    placeholder='name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
@@ -79,7 +70,7 @@ const EditSong = ({song, setShowModal}) => {
                 <input
                     name='artist'
                     type='text'
-                    placeholder={song?.artist}
+                    placeholder='artist'
                     value={artist}
                     onChange={(e) => setArtist(e.target.value)}
                 />
@@ -89,7 +80,7 @@ const EditSong = ({song, setShowModal}) => {
                 <input
                     name='album'
                     type='text'
-                    placeholder={song?.album}
+                    placeholder={album}
                     value={album}
                     onChange={(e) => setAlbum(e.target.value)}
                 />
@@ -118,8 +109,8 @@ const EditSong = ({song, setShowModal}) => {
                 <input
                     name='source'
                     hidden='hidden'
-                    type='file'
-                    placeholder='Upload'
+                    type='text'
+                    // placeholder='Upload'
                     value={source}
                     onChange={(e) => setSource(e.target.files[0])}
                 />
