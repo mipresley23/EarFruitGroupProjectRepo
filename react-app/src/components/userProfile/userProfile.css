@@ -41,3 +41,45 @@
 #all-users-playlist-container{
   display: flex;
 }
+
+#users-songs-list{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#song-title{
+  font-size: 16px;
+}
+
+#song-artist{
+  font-size: 12px;
+}
+
+#users-songs-list:hover{
+  background-color: #4a4a4a;
+}
+
+#user-profile-play-button{
+  height:50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+#user-profile-queue-button{
+  height: 50px;
+  width: 50px;
+  background-color: #4a4a4a;
+  border-radius: 50%;
+}
+
+#add-to-playlist-button-image{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+#playbutton-image{
+  height:30px;
+  width: 30px;
+}

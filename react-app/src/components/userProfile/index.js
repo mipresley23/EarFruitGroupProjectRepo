@@ -5,6 +5,8 @@ import AudioListProvider, {AudioListContext} from '../../context/audioList';
 import { getUsersThunk, editUserThunk } from '../../store/Users';
 import { thunkGetPlaylists } from '../../store/playlists';
 import { getSongs } from '../../store/songs';
+import playButton from './play_button.jpg';
+import addToPlaylistButton from './addtoplaylist.jpg';
 import './userProfile.css'
 
 const UserProfile = () => {
@@ -80,7 +82,6 @@ const UserProfile = () => {
     e.preventDefault();
     setClearAudioList(true)
     const audioArr = e.target.value.split(',')
-    console.log('audioArr: ', audioArr)
     setAudioList([])
     await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: require('../Songs/circleLogo.jpeg'), musicSrc: audioArr[2]}])
 }
@@ -88,9 +89,6 @@ const UserProfile = () => {
     e.preventDefault();
     setClearAudioList(false)
     const audioArr = e.target.value.split(',')
-    console.log('audioArr: ', audioArr)
-    console.log(audioList !== null)
-    console.log('audioListinQueueFunc: ', audioList)
     if(audioList){
         setAudioList([{name: audioArr[0], singer: audioArr[1], cover: require('../Songs/circleLogo.jpeg'), musicSrc: audioArr[2]}])
     }
@@ -105,11 +103,6 @@ const UserProfile = () => {
       <div id='user-profile-header'>
         <h1>{user && user.username}</h1>
         <img id='user-profile-image' src={user && user.photo_url} alt='user image' />
-        <button type='button' onClick={() => setShowNewPicForm(true)} >New Photo</button>
-        {showNewPicForm && <form onSubmit={handleEdit}>
-          <input type='text' value={photoUrl} placeholder={user.photo_url} onChange={(e) => setPhotoUrl(e.target.value)}></input>
-          <button type='submit'>Submit</button>
-        </form>}
       </div>
       <div id='user-profile-playlists-container'>
         <h2>{user.username}'s Playlists</h2>
@@ -129,15 +122,29 @@ const UserProfile = () => {
         </div>
         <div id='users-songs-container'>
           <h2 id='users-songs-header'>{user.username}'s Songs</h2>
+          <ol>
+
           {
             thisUsersSongs && thisUsersSongs.map(song => (
               <div id='users-songs-list'>
-                <p>{song.name}</p>
-                <button value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>play</button>
-                <button value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>Add to Queue</button>
+                <div id='song-info'>
+                  <li>
+                    <p id='song-title'>{song.name}</p>
+                    <p id='song-artist'>{song.artist}</p>
+                  </li>
+                </div>
+                <div id='song-buttons'>
+                  <button id='user-profile-play-button' value={[song.name, song.artist, song.source]} type='button' onClick={handlePlaySong}>
+                    <img id='playbutton-image' src={playButton}/>
+                  </button>
+                  <button id='user-profile-queue-button' value={[song.name, song.artist, song.source]} type='button' onClick={handleAddToQueue}>
+                    <img id='add-to-playlist-button-image' src={addToPlaylistButton} />
+                  </button>
+                </div>
               </div>
             ))
           }
+          </ol>
         </div>
       </div>
     </div>
