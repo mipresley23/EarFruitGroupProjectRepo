@@ -8,6 +8,7 @@ import {
 import { useHistory, useParams } from "react-router-dom";
 import "./EachPlaylist.css";
 import { thunkGetPlaylistSongs } from "../../store/songs";
+import PlaylistSearchBar from "./PlaylistSearchBar";
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -27,6 +28,7 @@ const EachPlaylist = () => {
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
 	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
+	const [addSong, setAddSong] = useState(false)
 	useEffect(() => {
 		dispatch(thunkGetPlaylists());
 	}, [dispatch]);
@@ -110,6 +112,9 @@ const EachPlaylist = () => {
 		checkImage(image);
 	}, [image]);
 	// console.log(imageError)
+	const openSearchBar = () => {
+		setAddSong(true)
+	}
 	if (!editPlaylist) return null;
 	return (
 		<div>
@@ -210,6 +215,8 @@ const EachPlaylist = () => {
 					</button>
 				)}
 			</div>
+			{!addSong && <button onClick={openSearchBar}>Add Song</button>}
+			{addSong && <PlaylistSearchBar/>}
 			<ul>
 				{playlistSongs &&
 					playlistSongs.map((song) => (
