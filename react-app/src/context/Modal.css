@@ -16,11 +16,12 @@
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.021);
+    border: 5px solid black;
   }
 
   #modal-content {
     position: absolute;
-    background-color:white;
+    background-color:rgba(0,0, 0, 0.85);
     padding: 20px;
     border-radius: 10px;
   }

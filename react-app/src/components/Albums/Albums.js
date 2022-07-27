@@ -1,4 +1,5 @@
 import React from 'react';
+import AlbumModal from '../AlbumModal';
 
 function Albums ({songsArr}) {
 
@@ -16,15 +17,7 @@ function Albums ({songsArr}) {
         <ul id='albums'>
             {Object.keys(albums).map(album => (
                 <li key={album}>
-                    <h3>{album}</h3>
-                    <ul id='songs'>
-                        {albums[album].map(song => (
-                            <li key={song?.id}>
-                                <p>{song?.name}</p>
-                                <p>{song?.album}</p>
-                            </li>
-                        ))}
-                    </ul>
+                    <AlbumModal album={album} albums={albums}/>
                 </li>
             ))}
         </ul>
