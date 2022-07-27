@@ -7,6 +7,8 @@ const AllPlaylists = () => {
 	const [playlists, setPlaylists] = useState([]);
 
 	const playlistsSelector = useSelector((state) => state.playlists);
+	console.log(playlistsSelector)
+	console.log(playlists)
 	const sessionUser = useSelector((state) => state.session.user);
 	let usersPlaylists;
 	if (sessionUser) {

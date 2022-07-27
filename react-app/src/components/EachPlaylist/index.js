@@ -17,6 +17,8 @@ const EachPlaylist = () => {
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const editPlaylist = useSelector((state) => state.playlists[playlistId]);
+	const playlistSongs = Object.values(useSelector((state) => state.songs));
+	console.log(playlistSongs);
 	const [editName, setEditName] = useState(false);
 	const [editImage, setEditImage] = useState(false);
 	const [editDescription, setEditDescription] = useState(false);
@@ -30,8 +32,8 @@ const EachPlaylist = () => {
 	}, [dispatch]);
 	// dispatch(thunkGetPlaylistSongs())
 	useEffect(() => {
-		dispatch(thunkGetPlaylistSongs(playlistId))
-	},[playlistId])
+		dispatch(thunkGetPlaylistSongs(playlistId));
+	}, [playlistId]);
 
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
@@ -110,92 +112,110 @@ const EachPlaylist = () => {
 	// console.log(imageError)
 	if (!editPlaylist) return null;
 	return (
-		<div className="playlist-header">
-			<div className="playlist-name-cont">
-				{isOwner && !editName && (
-					<h1 className="playlist-name-owner" onClick={editNameBtn}>
-						{editPlaylist?.name}
-					</h1>
-				)}
-				{!isOwner && (
-					<h1 className="playlist-name-not-owner">{editPlaylist?.name}</h1>
-				)}
-				{isOwner && editName && (
-					<input
-						className="editNameInput"
-						value={name}
-						autoFocus
-						onChange={(e) => setName(e.target.value)}
-					/>
-				)}
-				{isOwner && editName && (
-					<button className="update-name-btn" onClick={updatePlaylist}>
-						Update Name
-					</button>
-				)}
-				{isOwner && editName && (
-					<button onClick={cancelEditNameBtn}>Cancel</button>
-				)}
-			</div>
-			<div className="playlist-description-cont">
-				<ul>
-					<li className="playlist-description">
-						{<h3>{editPlaylist?.description}</h3>}
-
-						{isOwner && !editDescription && (
-							<button onClick={editDescriptionBtn}>Edit Description</button>
-						)}
-						{isOwner && editDescription && (
-							<input
-								value={description}
-								onChange={(e) => setDescription(e.target.value)}
-							/>
-						)}
-						{isOwner && editDescription && (
-							<button onClick={updatePlaylist}>Update Description</button>
-						)}
-						{isOwner && editDescription && (
-							<button onClick={cancelEditDescriptionBtn}>Cancel</button>
-						)}
-					</li>
-					<li className="playlist-username">
-						{<h3>{editPlaylist?.user.username}</h3>}
-					</li>
-				</ul>
-			</div>
-			<div className="playlist-image">
-				{/* {console.log(imageError)} */}
-				{!imageError && <img src={editPlaylist?.cover_img_url} />}
-				{imageError && (
-					<img src={require("../SideBar/my-playlist-img.png").default} />
-				)}
-				{isOwner && !editImage && (
-					<button className="edit-image-btn" onClick={editImageBtn}>
-						<i class="fa fa-edit fa-lg"></i>
-					</button>
-				)}
-				<div className="edit-image-div">
-					{isOwner && editImage && (
+		<div>
+			<div className="playlist-header">
+				<div className="playlist-name-cont">
+					{isOwner && !editName && (
+						<h1 className="playlist-name-owner" onClick={editNameBtn}>
+							{editPlaylist?.name}
+						</h1>
+					)}
+					{!isOwner && (
+						<h1 className="playlist-name-not-owner">{editPlaylist?.name}</h1>
+					)}
+					{isOwner && editName && (
 						<input
-							className="edit-image-input"
-							placeholder="Image Url"
-							value={image}
-							onChange={(e) => setImage(e.target.value)}
+							className="editNameInput"
+							value={name}
+							autoFocus
+							onChange={(e) => setName(e.target.value)}
 						/>
 					)}
-					{isOwner && editImage && (
-						<button className="edit-image-update-btn" onClick={updatePlaylist}>Update Image</button>
+					{isOwner && editName && (
+						<button className="update-name-btn" onClick={updatePlaylist}>
+							Update Name
+						</button>
 					)}
-					{isOwner && editImage && (
-						<button className="edit-image-cancel-btn" onClick={cancelEditImageBtn}>Cancel</button>
+					{isOwner && editName && (
+						<button onClick={cancelEditNameBtn}>Cancel</button>
 					)}
 				</div>
+				<div className="playlist-description-cont">
+					<ul>
+						<li className="playlist-description">
+							{<h3>{editPlaylist?.description}</h3>}
+
+							{isOwner && !editDescription && (
+								<button onClick={editDescriptionBtn}>Edit Description</button>
+							)}
+							{isOwner && editDescription && (
+								<input
+									value={description}
+									onChange={(e) => setDescription(e.target.value)}
+								/>
+							)}
+							{isOwner && editDescription && (
+								<button onClick={updatePlaylist}>Update Description</button>
+							)}
+							{isOwner && editDescription && (
+								<button onClick={cancelEditDescriptionBtn}>Cancel</button>
+							)}
+						</li>
+						<li className="playlist-username">
+							{<h3>{editPlaylist?.user.username}</h3>}
+						</li>
+					</ul>
+				</div>
+				<div className="playlist-image">
+					{/* {console.log(imageError)} */}
+					{!imageError && <img src={editPlaylist?.cover_img_url} />}
+					{imageError && (
+						<img src={require("../SideBar/my-playlist-img.png").default} />
+					)}
+					{isOwner && !editImage && (
+						<button className="edit-image-btn" onClick={editImageBtn}>
+							<i class="fa fa-edit fa-lg"></i>
+						</button>
+					)}
+					<div className="edit-image-div">
+						{isOwner && editImage && (
+							<input
+								className="edit-image-input"
+								placeholder="Image Url"
+								value={image}
+								onChange={(e) => setImage(e.target.value)}
+							/>
+						)}
+						{isOwner && editImage && (
+							<button
+								className="edit-image-update-btn"
+								onClick={updatePlaylist}
+							>
+								Update Image
+							</button>
+						)}
+						{isOwner && editImage && (
+							<button
+								className="edit-image-cancel-btn"
+								onClick={cancelEditImageBtn}
+							>
+								Cancel
+							</button>
+						)}
+					</div>
+				</div>
+				{isOwner && (
+					<button className="delete-playlist-btn" onClick={onDelete}>
+						Delete Playlist
+					</button>
+				)}
 			</div>
-			{isOwner && (
-				<button className="delete-playlist-btn" onClick={onDelete}>
-					Delete Playlist
-				</button>
-			)}
+			<ul>
+				{playlistSongs &&
+					playlistSongs.map((song) => (
+						<li key={song.id}>{song.name}</li>
+					))}
+			</ul>
 		</div>
 	);
 };

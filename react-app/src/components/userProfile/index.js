@@ -26,7 +26,7 @@ const UserProfile = () => {
 
   const thisUsersPlaylists = playlists && playlists.filter(playlist => playlist.user.id === +userId)
 
-  console.log('thisUsersPlaylists: ',thisUsersPlaylists)
+  // console.log('thisUsersPlaylists: ',thisUsersPlaylists)
 
   useEffect(() => {
     dispatch(getUsersThunk())

@@ -57,13 +57,13 @@ export const getSongs = () => async (dispatch) => {
 export const thunkGetPlaylistSongs = (playlistId) => async (dispatch) => {
 	const res = await fetch(`/api/playlists/songs/${playlistId}`);
 	const songs = await res.json();
-	console.log(songs);
+	// console.log(songs);
 	dispatch(actionGetPlaylistSongs(songs));
 	return res;
 };
 
 export const editSong = (song) => async (dispatch) => {
-	console.log("INSIDE THUNK::", song.id);
+	// console.log("INSIDE THUNK::", song.id);
 	const response = await fetch(`/api/songs/${song.id}`, {
 		method: "PUT",
 		headers: {
@@ -107,7 +107,7 @@ const songReducer = (state = initialState, action) => {
 			action.songs.songs.forEach((song) => {
 				newState[song.id] = song;
 			});
-			console.log(newState);
+			// console.log(newState);
 			return newState;
 
 		case EDIT_SONG:
@@ -120,7 +120,7 @@ const songReducer = (state = initialState, action) => {
 			return newEditState;
 
 		case ADD_SONG:
-			console.log("-----action: ADD_SONG------", action);
+			// console.log("-----action: ADD_SONG------", action);
 			const newAddState = {
 				...state,
 				[action.payload.id]: action.payload,
