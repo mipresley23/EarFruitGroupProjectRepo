@@ -61,7 +61,7 @@ function Songs({songPage}) {
                         <li id='song' key={song.id}>
                             { sessionUser && sessionUser.id === song.userId.id &&
                             <>
-                                <EditSongModal songId={song?.id} onClick={console.log('click!')}/>
+                                <EditSongModal songId={song.id} />
                                 <ConfirmDeleteModal song={song} />
                             </>
                             }
