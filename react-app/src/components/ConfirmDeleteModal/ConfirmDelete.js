@@ -19,13 +19,13 @@ function ConfirmDelete({ song, setShowModal }) {
       },
       body: formData
     });
-    console.log('--------awsRes------', awsRes)
+    // console.log('--------awsRes------', awsRes)
     
     if(awsRes.ok) {
 
       const res = await dispatch(deleteSong(song.id))
 
-      if (res.ok) {
+      if (res === 'Song Deleted') {
         dispatch(getSongs());
         setShowModal(false);
       }

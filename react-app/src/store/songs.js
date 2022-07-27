@@ -67,8 +67,11 @@ export const deleteSong = id => async (dispatch) => {
       'Content-Type':'application/json'
     }
   })
+
+  // console.log('-----------songs.deleteSong api fetch:---------', response)
   if (response.ok) {
     dispatch(removeSong(id))
+    return 'Song Deleted'
   }
 }
 

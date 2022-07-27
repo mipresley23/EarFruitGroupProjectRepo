@@ -52,6 +52,7 @@ def delete_song(song_id):
     
     db.session.delete(song)
     db.session.commit()
+    return 'Song Deleted'
 
 
 @song_routes.route('/<int:song_id>', methods=['PUT'])
@@ -104,7 +105,7 @@ def upload_mp3():
 @song_routes.route("/mp3", methods=["DELETE"])
 @login_required
 def delete_mp3():
-    vals = request.form["source"]
-    print('------------vals-----------', vals, '----------------------------')
-    # response = delete_object_from_bucket(request)
-    # print('------response-------', response)
+    source = request.form["source"]
+    response = delete_object_from_bucket(source)
+    print('------response-------', response)
+    return response
