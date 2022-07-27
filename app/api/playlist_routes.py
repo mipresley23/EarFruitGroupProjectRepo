@@ -15,10 +15,10 @@ def playlists():
     playlists = Playlist.query.all()
     # print(playlists,'---------------------------------')
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
-@playlist_routes.route('/songs')
+@playlist_routes.route('/songs/<int:playlist_id>')
 # @login_required
-def playlists_songs():
-    songs = Song.query.join(Playlist_Songs).join(Playlist).filter(Playlist.id == 16).all()
+def playlists_songs(playlist_id):
+    songs = Song.query.join(Playlist_Songs).join(Playlist).filter(Playlist.id == playlist_id).all()
     print('-')
     print('-')
     print('-')

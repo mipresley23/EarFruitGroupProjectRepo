@@ -1,6 +1,5 @@
 // import { csrfFetch } from "./csrf";
 const GET_PLAYLISTS = "playlists/GET_PLAYLISTS";
-const GET_PLAYLIST_SONGS = "playlists/GET_PLAYLIST_SONGS";
 const ADD_PLAYLIST = "playlists/ADD_PLAYLIST";
 const EDIT_PLAYLIST = "playlists/EDIT_PLAYLIST";
 const DELETE_PLAYLIST = "playlists/DELETE_PLAYLIST";
@@ -9,12 +8,6 @@ const actionGetPlaylists = (playlists) => {
 	return {
 		type: GET_PLAYLISTS,
 		playlists,
-	};
-};
-const actionGetPlaylistSongs = (songs) => {
-	return {
-		type: GET_PLAYLIST_SONGS,
-		songs,
 	};
 };
 
@@ -46,13 +39,7 @@ export const thunkGetPlaylists = (playlists) => async (dispatch) => {
 	dispatch(actionGetPlaylists(playlists));
 	return res;
 };
-export const thunkGetPlaylistSongs = (songs) => async (dispatch) => {
-	const res = await fetch("/api/playlists/songs");
-	const songs = await res.json();
-	// console.log(songs)
-	dispatch(actionGetPlaylistSongs(songs));
-	return res;
-};
+
 
 export const thunkAddPlaylist = (playlist) => async (dispatch) => {
 	const response = await fetch("/api/playlists/", {
@@ -98,14 +85,6 @@ const playlistReducer = (state = {}, action) => {
 			action.playlists.playlists.forEach((playlist) => {
 				newState[playlist.id] = playlist;
 			});
-			return newState;
-
-		case GET_PLAYLIST_SONGS:
-			// console.log(action.songs.songs)
-			action.songs.songs.forEach((song) => {
-				newState[song.id] = song;
-			});
-			console.log(newState)
 			return newState;
 
 		case ADD_PLAYLIST:

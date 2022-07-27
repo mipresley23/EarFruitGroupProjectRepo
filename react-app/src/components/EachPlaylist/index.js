@@ -4,10 +4,10 @@ import {
 	thunkGetPlaylists,
 	thunkDeletePlaylist,
 	thunkEditPlaylist,
-	thunkGetPlaylistSongs,
 } from "../../store/playlists";
 import { useHistory, useParams } from "react-router-dom";
 import "./EachPlaylist.css";
+import { thunkGetPlaylistSongs } from "../../store/songs";
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -30,7 +30,7 @@ const EachPlaylist = () => {
 	}, [dispatch]);
 	// dispatch(thunkGetPlaylistSongs())
 	useEffect(() => {
-		// dispatch(thunkGetPlaylistSongs())
+		dispatch(thunkGetPlaylistSongs(playlistId))
 	},[playlistId])
 
 	//If you click on another playlist while editing will close edit input
