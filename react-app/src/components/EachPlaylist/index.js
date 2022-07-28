@@ -46,7 +46,6 @@ const EachPlaylist = () => {
 	useEffect(() => {
 		dispatch(thunkGetPlaylists());
 	}, [dispatch]);
-	// dispatch(thunkGetPlaylistSongs())
 	useEffect(() => {
 		dispatch(thunkGetPlaylistSongs(playlistId));
 	}, [playlistId]);
@@ -122,7 +121,8 @@ const EachPlaylist = () => {
 		setAddSong(true)
 	}
 	const closeSearchBar = () => {
-        setAddSong(false)
+		setAddSong(false)
+		dispatch(thunkGetPlaylistSongs(playlistId))
     }
 	if (!editPlaylist) return null;
 	return (
@@ -230,12 +230,12 @@ const EachPlaylist = () => {
 			{addSong && <PlaylistSearchBar />}
 			{addSong && <button onClick={closeSearchBar}>Cancel</button>}
 
-			<ul>
+			{!addSong && <ul>
 				{playlistSongs &&
 					playlistSongs.map((song) => (
 						<li key={song.id}>{song.name}</li>
 					))}
-			</ul>
+			</ul>}
 		</div>
 	);
 };

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongs } from "../../store/songs";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { thunkAddPlaylistSongs } from "../../store/songs";
 
 export default function PlaylistSearchBar() {
-	const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const { playlistId } = useParams()
 	const songs = useSelector((state) => state?.songs);
 	const songsArray = Object.values(songs);
 	const [search, setSearch] = useState("");
@@ -13,15 +15,15 @@ export default function PlaylistSearchBar() {
 			song.name.toUpperCase().includes(search.toUpperCase()) ||
 			song.artist.toUpperCase().includes(search.toUpperCase())
 	);
-	console.log(searchSongs);
+	// console.log(searchSongs);
 
 	useEffect(() => {
 		dispatch(getSongs());
 	}, [dispatch]);
 
-    const addSongToPlaylist = () => {
-        
-    }
+    // const addSongToPlaylist = async(playlistId, songId) => {
+    //     await dispatch(thunkAddPlaylistSongs(playlistId, songId))
+    // }
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);
 		return (
@@ -29,6 +31,7 @@ export default function PlaylistSearchBar() {
 				<div className="song-card-contents">
 					<p id="song-name">{song.name}</p>
 					<p id="song-name">{song.artist}</p>
+					<p id="song-name">{song.id}</p>
 					<p>By {song.userId.username}</p>
 					<button>
 						<i class="fa fa-plus"></i>
