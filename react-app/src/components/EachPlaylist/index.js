@@ -235,7 +235,7 @@ const EachPlaylist = () => {
 				)}
 			</div>
 			{!addSong && <button onClick={openSearchBar}>Add Song</button>}
-			{addSong && <PlaylistSearchBar />}
+			{addSong && <PlaylistSearchBar/>}
 			{addSong && <button onClick={closeSearchBar}>Cancel</button>}
 
 			{!addSong && <ul>
