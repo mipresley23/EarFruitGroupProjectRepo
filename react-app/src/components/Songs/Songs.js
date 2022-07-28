@@ -20,7 +20,7 @@ function Songs({songPage}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const songsArr = Object.values(songs);
-    console.log('songs: ', songs)
+    console.log('songsArr: ', songsArr)
 
     const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
 
@@ -74,7 +74,7 @@ function Songs({songPage}) {
 
                             <div id='song-page-song-info-container'>
                                 <li id='song' key={song.id}>
-                                    { sessionUser && sessionUser.id === song.userId.id &&
+                                    { sessionUser && sessionUser.id === song.user_Id.id &&
                                     <>
                                         <EditSongModal songId={song.id} />
                                         <ConfirmDeleteModal song={song} />
