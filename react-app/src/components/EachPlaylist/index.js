@@ -8,11 +8,10 @@ import {
 import { useHistory, useParams } from "react-router-dom";
 import "./EachPlaylist.css";
 
-import defaultPlaylistImage from '../assets/my-playlist-img.png';
+import defaultPlaylistImage from "../assets/my-playlist-img.png";
 
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
-
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -32,7 +31,7 @@ const EachPlaylist = () => {
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
 	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
-	const [addSong, setAddSong] = useState(false)
+	const [addSong, setAddSong] = useState(false);
 
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
@@ -40,7 +39,7 @@ const EachPlaylist = () => {
 		setEditImage(false);
 		setEditDescription(false);
 		setEditImage(false);
-		setAddSong(false)
+		setAddSong(false);
 	}, [playlistId]);
 
 	useEffect(() => {
@@ -76,12 +75,15 @@ const EachPlaylist = () => {
 			cover_img_url: image,
 		};
 		// console.log(playlist);
-
-		await dispatch(thunkEditPlaylist(playlist));
-		await dispatch(thunkGetPlaylists());
-		await setEditName(false);
-		setEditImage(false);
-		setEditDescription(false);
+		if (name.length == 0) {
+			alert("Playlist must have a name");
+		} else {
+			await dispatch(thunkEditPlaylist(playlist));
+			await dispatch(thunkGetPlaylists());
+			await setEditName(false);
+			setEditImage(false);
+			setEditDescription(false);
+		}
 	}
 
 	async function cancelEditNameBtn(e) {
@@ -118,19 +120,18 @@ const EachPlaylist = () => {
 	}, [image]);
 	// console.log(imageError)
 	const openSearchBar = () => {
-		setAddSong(true)
-	}
+		setAddSong(true);
+	};
 	const closeSearchBar = () => {
-		setAddSong(false)
-		dispatch(thunkGetPlaylistSongs(playlistId))
-	}
+		setAddSong(false);
+		dispatch(thunkGetPlaylistSongs(playlistId));
+	};
 
-	const removeSongFromPlaylist = async(playlistId, songId) => {
-        // await dispatch(thunkAddPlaylistSongs(playlistId, songId))
-		await fetch(`/api/playlists/delete-song/${playlistId}/${songId}`)
-		dispatch(thunkGetPlaylistSongs(playlistId))
-	}
-
+	const removeSongFromPlaylist = async (playlistId, songId) => {
+		// await dispatch(thunkAddPlaylistSongs(playlistId, songId))
+		await fetch(`/api/playlists/delete-song/${playlistId}/${songId}`);
+		dispatch(thunkGetPlaylistSongs(playlistId));
+	};
 
 	if (!editPlaylist) return null;
 	return (
@@ -165,10 +166,12 @@ const EachPlaylist = () => {
 				<div className="playlist-description-cont">
 					<ul>
 						<li className="playlist-description">
-							{<h3>{editPlaylist?.description}</h3>}
+							{!editDescription && <h3>{editPlaylist?.description}</h3>}
 
 							{isOwner && !editDescription && (
-								<button onClick={editDescriptionBtn}>Edit Description</button>
+								<button onClick={editDescriptionBtn}>
+									<i class="fa fa-edit fa-lg"> Description</i>
+								</button>
 							)}
 							{isOwner && editDescription && (
 								<input
@@ -191,9 +194,7 @@ const EachPlaylist = () => {
 				<div className="playlist-image">
 					{/* {console.log(imageError)} */}
 					{!imageError && <img src={editPlaylist?.cover_img_url} />}
-					{imageError && (
-						<img src={defaultPlaylistImage} />
-					)}
+					{imageError && <img src={defaultPlaylistImage} />}
 					{isOwner && !editImage && (
 						<button className="edit-image-btn" onClick={editImageBtn}>
 							<i class="fa fa-edit fa-lg"></i>
@@ -224,27 +225,35 @@ const EachPlaylist = () => {
 								Cancel
 							</button>
 						)}
-
 					</div>
 				</div>
 				{isOwner && (
 					<button className="delete-playlist-btn" onClick={onDelete}>
 						Delete Playlist
-
 					</button>
 				)}
 			</div>
 			{!addSong && <button onClick={openSearchBar}>Add Song</button>}
-			{addSong && <PlaylistSearchBar func={ closeSearchBar}/>}
+			{addSong && <PlaylistSearchBar func={closeSearchBar} />}
 			{addSong && <button onClick={closeSearchBar}>Cancel</button>}
 
-			{!addSong && <ul>
-				{playlistSongs &&
-					playlistSongs.map((song) => (
-						<li key={song.id}>{song.name}<button onClick={()=>{removeSongFromPlaylist(playlistId,song.id)}}>Remove</button></li>
-
-					))}
-			</ul>}
+			{!addSong && (
+				<ul>
+					{playlistSongs &&
+						playlistSongs.map((song) => (
+							<li key={song.id}>
+								{song.name}
+								<button
+									onClick={() => {
+										removeSongFromPlaylist(playlistId, song.id);
+									}}
+								>
+									Remove
+								</button>
+							</li>
+						))}
+				</ul>
+			)}
 		</div>
 	);
 };
