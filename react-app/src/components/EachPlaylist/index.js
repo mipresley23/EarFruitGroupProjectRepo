@@ -11,6 +11,7 @@ import "./EachPlaylist.css";
 import defaultPlaylistImage from '../assets/my-playlist-img.png';
 
 import { thunkGetPlaylistSongs } from "../../store/songs";
+import PlaylistSearchBar from "./PlaylistSearchBar";
 
 
 const EachPlaylist = () => {
@@ -31,13 +32,7 @@ const EachPlaylist = () => {
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
 	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
-	useEffect(() => {
-		dispatch(thunkGetPlaylists());
-	}, [dispatch]);
-	// dispatch(thunkGetPlaylistSongs())
-	useEffect(() => {
-		dispatch(thunkGetPlaylistSongs(playlistId));
-	}, [playlistId]);
+	const [addSong, setAddSong] = useState(false)
 
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
@@ -45,6 +40,14 @@ const EachPlaylist = () => {
 		setEditImage(false);
 		setEditDescription(false);
 		setEditImage(false);
+		setAddSong(false)
+	}, [playlistId]);
+
+	useEffect(() => {
+		dispatch(thunkGetPlaylists());
+	}, [dispatch]);
+	useEffect(() => {
+		dispatch(thunkGetPlaylistSongs(playlistId));
 	}, [playlistId]);
 
 	useEffect(() => {
@@ -114,6 +117,21 @@ const EachPlaylist = () => {
 		checkImage(image);
 	}, [image]);
 	// console.log(imageError)
+	const openSearchBar = () => {
+		setAddSong(true)
+	}
+	const closeSearchBar = () => {
+		setAddSong(false)
+		dispatch(thunkGetPlaylistSongs(playlistId))
+	}
+
+	const removeSongFromPlaylist = async(playlistId, songId) => {
+        // await dispatch(thunkAddPlaylistSongs(playlistId, songId))
+		await fetch(`/api/playlists/delete-song/${playlistId}/${songId}`)
+		dispatch(thunkGetPlaylistSongs(playlistId))
+	}
+
+
 	if (!editPlaylist) return null;
 	return (
 		<div>
@@ -216,12 +234,17 @@ const EachPlaylist = () => {
 					</button>
 				)}
 			</div>
-			<ul>
+			{!addSong && <button onClick={openSearchBar}>Add Song</button>}
+			{addSong && <PlaylistSearchBar func={ closeSearchBar}/>}
+			{addSong && <button onClick={closeSearchBar}>Cancel</button>}
+
+			{!addSong && <ul>
 				{playlistSongs &&
 					playlistSongs.map((song) => (
-						<li key={song.id}>{song.name}</li>
+						<li key={song.id}>{song.name}<button onClick={()=>{removeSongFromPlaylist(playlistId,song.id)}}>Remove</button></li>
+
 					))}
-			</ul>
+			</ul>}
 		</div>
 	);
 };

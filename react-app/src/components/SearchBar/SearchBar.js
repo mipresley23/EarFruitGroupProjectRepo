@@ -10,8 +10,7 @@ export default function SearchBar() {
 	const songsArray = Object.values(songs)
 	const [search, setSearch] = useState("");
 	const [searchResultsArray, setSearchResultsArray] = useState([]);
-	const [songsResultsArray, setSongsResultsArray] = useState([]);
-	const searchSongs = songsArray.filter((song) => song.name.includes(search) || song.artist.includes(search))
+	const searchSongs = songsArray.filter((song) => song.name.toUpperCase().includes(search.toUpperCase()) || song.artist.toUpperCase().includes(search.toUpperCase()))
 	console.log(searchSongs)
 
 	async function onSubmit(e) {
@@ -24,9 +23,13 @@ export default function SearchBar() {
 		}
 		fetchData();
 	}
+
+
     useEffect(() => {
         dispatch(getSongs());
-    }, [dispatch]);
+	}, [dispatch]);
+
+
 	useEffect(() => {
 		// console.log(search);
 		async function fetchData() {
@@ -38,16 +41,6 @@ export default function SearchBar() {
 		fetchData();
 	}, [search])
 
-	// useEffect(() => {
-	// 	async function fetchSongsData() {
-	// 		const response = await fetch(`/api/songs/${search}`);
-	// 		const responseData = await response.json();
-	// 		console.log(responseData)
-	// 		setSongsResultsArray(responseData.songs);
-	// 	}
-	// 	fetchSongsData();
-	// }, [search]);
-	// console.log(songsResultsArray)
 
 	const playlistSearchResults = searchResultsArray.map((playlist) => {
 		// console.log(playlist);
@@ -62,6 +55,9 @@ export default function SearchBar() {
 				</div>
 				</NavLink>
 		);
+
+
+
 	});
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);
@@ -69,12 +65,17 @@ export default function SearchBar() {
 			<div className="song-card" key={song.name}>
 				<div className="song-card-contents">
 					<p id="song-name">{song.name}</p>
+
+					<p id="song-name">{song.artist}</p>
 					<p>By {song.user_Id.username}</p>
+					<button><i class="fa fa-plus"></i></button>
 				</div>
 				</div>
 
 		);
 	});
+
+
 
 	return (
 		<div className="search-container">
