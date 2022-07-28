@@ -75,8 +75,14 @@ function Songs({songPage}) {
                                 <li id='song' key={song.id}>
                                     { sessionUser && sessionUser.id === song.user_Id.id &&
                                     <>
-                                        <EditSongModal songId={song.id} />
+                                        <EditSongModal song={song} />
                                         <ConfirmDeleteModal song={song} />
+                                    </>
+                                    }
+                                    { sessionUser && sessionUser.id !== song.user_Id.id &&
+                                    <>
+                                        <div />
+                                        <div />
                                     </>
                                     }
 
