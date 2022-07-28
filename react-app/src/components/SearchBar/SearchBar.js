@@ -24,7 +24,7 @@ export default function SearchBar() {
 		fetchData();
 	}
 
-	
+
     useEffect(() => {
         dispatch(getSongs());
 	}, [dispatch]);
@@ -67,7 +67,6 @@ export default function SearchBar() {
 					<p id="song-name">{song.name}</p>
 					<p id="song-name">{song.artist}</p>
 					<p>By {song.userId.username}</p>
-					<button><i class="fa fa-plus"></i></button>
 				</div>
 				</div>
 
