@@ -11,16 +11,6 @@ const EditSong = ({song, setShowModal}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    useEffect(() => {
-        dispatch(getSongs());
-    }, [dispatch]);
-
-    // useEffect(() => {
-    //     setAudios(Object.values(songs))
-    // }, [songs])
-
-    const songs = useSelector(state => state?.songs);
-
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState(song?.name);
     const [album, setAlbum] = useState(song?.album);
@@ -28,9 +18,6 @@ const EditSong = ({song, setShowModal}) => {
     const [genre, setGenre] = useState(song?.genre);
     const [artist, setArtist] = useState(song?.artist);
     const [source, setSource] = useState(song?.source);
-
-    // const user = useSelector(state => state.session.user);
-
 
     useEffect(() => {
         const errors = [];
