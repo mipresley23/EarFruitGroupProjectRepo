@@ -66,13 +66,21 @@ export default function SearchBar() {
 	});
 
 	const handlePlaySong = async(value) => {
-		// e.preventDefault();
 		console.log(value)
 		setClearAudioList(true)
-		// const audioArr = value.split(',')
-		// console.log('play song audioArr: ', audioArr)
 		setAudioList([])
 		await setAudioList([{name: value[0], singer: value[1], cover: circleLogo, musicSrc: value[2]}])
+	}
+
+	const handleAddToQueue = async(value) => {
+        setClearAudioList(false)
+        // const audioArr = e.target.value.split(',')
+        // console.log('audioArr: ', audioArr)
+        // console.log(audioList !== null)
+        // console.log('audioListinQueueFunc: ', audioList)
+        if(audioList){
+            setAudioList([{name: value[0], singer: value[1], cover: circleLogo, musicSrc: value[2]}])
+        }
 	}
 
 	let songNum = 0;
@@ -93,7 +101,7 @@ export default function SearchBar() {
 				<td className="search-song-album">{song.album}</td>
 				<td className="search-song-button-cont">
 					<i onClick={()=>handlePlaySong([song.name,song.artist,song.source])} class="search-song-button fa-solid fa-play fa-lg"/>
-					<i class="search-song-button fa-solid fa-list fa-lg"></i>
+					<i onClick={()=>handleAddToQueue([song.name,song.artist,song.source])} class="search-song-button fa-solid fa-list fa-lg"></i>
 				</td>
 			</tr>
 
