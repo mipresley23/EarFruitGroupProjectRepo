@@ -1,7 +1,6 @@
 .song_form_div {
     display: flex;
     justify-content: center;
-
 }
 
 
@@ -9,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 25px
+    font-size: 25px;
 }
 
 
@@ -20,8 +19,9 @@
     flex-direction: column;
     align-items: center;
     background-color: #e91429;
-    width: 280px;
+    width: 450px;
     padding-top: 15px;
+    border-radius: 10px;
 }
 
 
@@ -37,30 +37,51 @@
 }
 
 
-.song_form_upload > input {
+.song_form_p {
+    max-width: 500px;
+    min-height: fit-content;
     font-size: 20px;
+    color: #1DB954
 }
 
 
-.song_form_p {
-    font-size: 20px;
-    color: #1DB954
+
+.sf_label {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+
+.sf_option {
+    color: #444444;
+}
+
+
+.song_form_divs > input,
+.song_form_divs > select {
+    padding-left: 12.5px;
 }
 
 
 .song_form_divs > input,
 .song_form_divs > select,
 .song_form_divs > button {
-    position: relative;
-    bottom: .5vh;
+    width: 450px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
 
 .song_form_divs > input:hover,
-.song_form_divs > select:hover,
-.song_form_divs > input:active,
-.song_form_divs > select:active {
-    border: 2px solid #1DB954
+.song_form_divs > select:hover {
+    box-shadow: inset 0 0 0 1px #1DB954;
+}
+
+
+.song_form_divs > input:focus,
+.song_form_divs > select:focus {
+    box-shadow: inset 0 0 0 1px black;
 }
 
 
@@ -74,8 +95,8 @@
     cursor: pointer;
     border-radius: 20px;
     transition: all .06s ease-in;
-    height: 35px;
-    width: 150px;
+    height: 50px;
+    width: 450px;
 }
 
 
@@ -99,21 +120,6 @@
 .song_form_divs > button:hover {
     background-color: #1DB954;
     color: white;
-
+    transform: scale(1.1);
 }
 
-
-.sf_submit:hover {
-
-}
-
-
-.song_form_divs > button:hover {
-
-}
-
-
-.uploading_img {
-    max-height: 25px;
-    max-width: 25px;
-}
