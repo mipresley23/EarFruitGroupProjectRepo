@@ -4,7 +4,7 @@ import { getSongs } from "../../store/songs";
 import { useParams } from "react-router-dom";
 import { thunkAddPlaylistSongs } from "../../store/songs";
 
-export default function PlaylistSearchBar() {
+export default function PlaylistSearchBar({func}) {
     const dispatch = useDispatch();
     const { playlistId } = useParams()
 	const songs = useSelector((state) => state?.songs);
@@ -24,6 +24,7 @@ export default function PlaylistSearchBar() {
     const addSongToPlaylist = async(playlistId, songId) => {
         // await dispatch(thunkAddPlaylistSongs(playlistId, songId))
         await fetch(`/api/playlists/add-song/${playlistId}/${songId}`)
+        func()
     }
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);
