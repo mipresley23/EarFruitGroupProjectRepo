@@ -66,7 +66,7 @@ export default function SearchBar() {
 		// console.log(playlist);
 		songNum++;
 		return (
-			<tr className="">
+			<tr className="search-song-row">
 				<td className="search-song-number">{songNum}</td>
 				<td className="">
 					<div className="search-song-name">
@@ -78,13 +78,8 @@ export default function SearchBar() {
 				</td>
 				<td className="search-song-album">{song.album}</td>
 				<td className="search-song-button-cont">
-					<i class="search-song-play-button fa fa-play fa-lg"></i>
-					<img
-						className="song-buttons song-card-queue-button"
-						// value={[song.name, song.artist, song.source]}
-						type="image"
-						src={addToPlaylistButton}
-					/>
+					<i class="search-song-button fa fa-play fa-lg"></i>
+					<i class="search-song-button fa-solid fa-list fa-lg"></i>
 				</td>
 			</tr>
 
@@ -127,7 +122,7 @@ export default function SearchBar() {
 					<table className="search-song-table">
 						<thead>
 							<tr className="border-white">
-								<th className="">#</th>
+								<th className="search-song-number">#</th>
 								<th className="">Title</th>
 								<th className="">Album</th>
 								<th className=""></th>
