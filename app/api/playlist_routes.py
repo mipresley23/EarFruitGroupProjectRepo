@@ -49,27 +49,27 @@ def add_playlist():
     # print('PLAY LIST!!!!!!!!!!!!!!!!!!', playlist.to_dict())
     return playlist.to_dict()
 
-# @playlist_routes.route('/add-song/<int:playlist_id>/<int:song_id>')
-# @login_required
-# def add_song(playlist_id,song_id):
-#     playlist = Playlist.query.get(playlist_id)
-#     song = Song.query.get(song_id)
-#     print('-')
-#     print('-')
-#     print('-')
-#     print('-')
-#     print('-')
-#     # print('-')
-#     if song in playlist.songs:
-#         print('already has song')
-#     else:
-#         playlist.songs.append(song)
-#     print('-')
-#     print('-')
-#     print('-')
-#     print('-')
-#     print('-')
-#     db.session.commit()
+@playlist_routes.route('/add-song/<int:playlist_id>/<int:song_id>')
+@login_required
+def add_song(playlist_id,song_id):
+    playlist = Playlist.query.get(playlist_id)
+    song = Song.query.get(song_id)
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    # print('-')
+    if song in playlist.songs:
+        print('already has song')
+    else:
+        playlist.songs.append(song)
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    db.session.commit()
 #     # return playlist.to_dict()
 
 @playlist_routes.route('/<int:playlist_id>', methods=['DELETE'])

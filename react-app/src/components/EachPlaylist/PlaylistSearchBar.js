@@ -21,9 +21,9 @@ export default function PlaylistSearchBar() {
 		dispatch(getSongs());
 	}, [dispatch]);
 
-    // const addSongToPlaylist = async(playlistId, songId) => {
-    //     await dispatch(thunkAddPlaylistSongs(playlistId, songId))
-    // }
+    const addSongToPlaylist = async(playlistId, songId) => {
+        await dispatch(thunkAddPlaylistSongs(playlistId, songId))
+    }
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);
 		return (
@@ -33,7 +33,7 @@ export default function PlaylistSearchBar() {
 					<p id="song-name">{song.artist}</p>
 					<p id="song-name">{song.id}</p>
 					<p>By {song.userId.username}</p>
-					<button>
+					<button onClick={()=>addSongToPlaylist(playlistId,song.id)}>
 						<i class="fa fa-plus"></i>
 					</button>
 				</div>

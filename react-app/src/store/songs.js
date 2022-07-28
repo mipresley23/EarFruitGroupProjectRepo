@@ -68,13 +68,13 @@ export const thunkGetPlaylistSongs = (playlistId) => async (dispatch) => {
 	dispatch(actionGetPlaylistSongs(songs));
 	return res;
 };
-// export const thunkAddPlaylistSongs = (playlistId,songId) => async (dispatch) => {
-// 	const res = await fetch(`/api/playlists/add-song/${playlistId}/${songId}`);
-// 	const song = await res.json();
-// 	// console.log(songs);
-// 	dispatch(actionAddPlaylistSongs(song));
-// 	return res;
-// };
+export const thunkAddPlaylistSongs = (playlistId,songId) => async (dispatch) => {
+	const res = await fetch(`/api/playlists/add-song/${playlistId}/${songId}`);
+	const song = await res.json();
+	// console.log(songs);
+	dispatch(actionAddPlaylistSongs(song));
+	return res;
+};
 
 export const editSong = (song) => async (dispatch) => {
 	// console.log("INSIDE THUNK::", song.id);
