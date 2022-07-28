@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongs } from "../../store/songs";
 import { NavLink } from "react-router-dom";
-import addToPlaylistButton from "../assets/addtoPlaylist.png";
+import AudioListProvider, { AudioListContext } from '../../context/audioList';
+import circleLogo from '../assets/circleLogo.jpeg';
 import "./SearchBar.css";
 
 export default function SearchBar() {
@@ -16,7 +17,9 @@ export default function SearchBar() {
 			song.name.toUpperCase().includes(search.toUpperCase()) ||
 			song.artist.toUpperCase().includes(search.toUpperCase())
 	);
-	console.log(searchSongs);
+	// console.log(searchSongs);
+	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
+
 
 	async function onSubmit(e) {
 		e.preventDefault();
@@ -61,6 +64,17 @@ export default function SearchBar() {
 			</NavLink>
 		);
 	});
+
+	const handlePlaySong = async(value) => {
+		// e.preventDefault();
+		console.log(value)
+		setClearAudioList(true)
+		// const audioArr = value.split(',')
+		// console.log('play song audioArr: ', audioArr)
+		setAudioList([])
+		await setAudioList([{name: value[0], singer: value[1], cover: circleLogo, musicSrc: value[2]}])
+	}
+
 	let songNum = 0;
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);
@@ -78,7 +92,7 @@ export default function SearchBar() {
 				</td>
 				<td className="search-song-album">{song.album}</td>
 				<td className="search-song-button-cont">
-					<i class="search-song-button fa fa-play fa-lg"></i>
+					<i onClick={()=>handlePlaySong([song.name,song.artist,song.source])} class="search-song-button fa-solid fa-play fa-lg"/>
 					<i class="search-song-button fa-solid fa-list fa-lg"></i>
 				</td>
 			</tr>
