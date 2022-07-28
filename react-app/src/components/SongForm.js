@@ -11,6 +11,7 @@ const SongForm = () => {
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
     const [album, setAlbum] = useState('');
+    const [albumImgUrl, setAlbumImgUrl] = useState('');
     const [genre, setGenre] = useState('Rock');
     const [artist, setArtist] = useState('');
     const [mp3, setMP3] = useState(null);
@@ -19,20 +20,6 @@ const SongForm = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
-
-    // const genres = [
-    //     {value: 'Rock', label: 'Rock'},
-    //     {value: 'Pop', label: 'Pop'},
-    //     {value: 'Rap', label: 'Rap'},
-    //     {value: 'Electronic', label: 'Electronic'},
-    //     {value: 'Country', label: 'Country'},
-    //     {value: 'Classical', label: 'Classical'},
-    //     {value: 'Jazz', label: 'Jazz'},
-    //     {value: 'Blues', label: 'Blues'},
-    //     {value: 'Metal', label: 'Metal'},
-    //     {value: 'Other', label: 'Other'}
-
-    // ]
 
     useEffect(() => {
         const errors = [];
@@ -71,18 +58,19 @@ const SongForm = () => {
             const song = {
                 name,
                 album,
+                albumImgUrl,
                 genre,
                 artist,
                 source: jsonRes.source
             };
 
-            // console.log('------song------', song)
+            console.log('------song------', song)
             const response = await dispatch(createSong(song));
 
             if (response === 'Song Uploaded') {
                 history.push('/');
             }
-            
+
         }
         else {
             setMP3Loading(false);
@@ -128,6 +116,16 @@ const SongForm = () => {
                         placeholder='Album'
                         value={album}
                         onChange={(e) => setAlbum(e.target.value)}
+                    />
+                </div>
+                <div className='song_form_divs'>
+                    <label htmlFor='albumImgUrl'>Album Art URL: </label>
+                    <input
+                        name='albumImgUrl'
+                        type='text'
+                        placeholder='Album Art URL'
+                        value={albumImgUrl}
+                        onChange={(e) => setAlbumImgUrl(e.target.value)}
                     />
                 </div>
                 <div className='song_form_divs'>
