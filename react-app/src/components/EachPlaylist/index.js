@@ -33,13 +33,6 @@ const EachPlaylist = () => {
 	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
 	const [addSong, setAddSong] = useState(false)
-	useEffect(() => {
-		dispatch(thunkGetPlaylists());
-	}, [dispatch]);
-	// dispatch(thunkGetPlaylistSongs())
-	useEffect(() => {
-		dispatch(thunkGetPlaylistSongs(playlistId));
-	}, [playlistId]);
 
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
@@ -47,6 +40,15 @@ const EachPlaylist = () => {
 		setEditImage(false);
 		setEditDescription(false);
 		setEditImage(false);
+		setAddSong(false)
+	}, [playlistId]);
+
+	useEffect(() => {
+		dispatch(thunkGetPlaylists());
+	}, [dispatch]);
+	// dispatch(thunkGetPlaylistSongs())
+	useEffect(() => {
+		dispatch(thunkGetPlaylistSongs(playlistId));
 	}, [playlistId]);
 
 	useEffect(() => {

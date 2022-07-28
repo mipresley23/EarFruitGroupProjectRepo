@@ -1,3 +1,4 @@
+from copyreg import constructor
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
 from app.models import db
@@ -5,6 +6,7 @@ from app.models import Playlist
 from app.models import Song
 from app.models import Playlist_Songs
 from app.forms.playlistForm import AddPlaylist
+from app.forms.add_song_to_playlist import AddSongToPlaylist
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -19,14 +21,53 @@ def playlists():
 # @login_required
 def playlists_songs(playlist_id):
     songs = Song.query.join(Playlist_Songs).join(Playlist).filter(Playlist.id == playlist_id).all()
+    # s = Song.query.join(Playlist_Songs).all()
+    # playlist = Playlist.query.get(playlist_id)
+    # song = Song.query.get(3)
+    # # playlist.songs.append(song)
+    # # .filter((Playlist_Songs.c.playlists == playlist_id))
+    # print(song)
     # print('-')
     # print('-')
     # print('-')
-    # for song in songs:
-    #     print(song.to_dict())
     # print('-')
     # print('-')
     # print('-')
+    # print('-')
+    # query_playlist_songs = Playlist.query.join(Playlist_Songs).join(Song).all()
+    # for playlist in query_playlist_songs:
+    #     print(len(playlist.songs))
+    #     playlist.songs.append(song)
+    #     print(len(playlist.songs))
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # # join = Playlist_Songs.query.all()
+    # print(query_playlist_songs)
+    # # print(song)
+    # # print(playlist)
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # # for song in songs:
+    # #     s=song.to_dict()
+    # #     print(s)
+    # # print(join)
+    # # for song in s:
+    # #     print(song.to_dict())
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # print('-')
+    # db.session.commit()
     # print(playlists,'---------------------------------')
     return {'songs': [song.to_dict() for song in songs]}
 
@@ -53,6 +94,22 @@ def add_playlist():
     db.session.commit()
     # print('PLAY LIST!!!!!!!!!!!!!!!!!!', playlist.to_dict())
     return playlist.to_dict()
+
+# @playlist_routes.route('/add-song', methods=['POST'])
+# @login_required
+# def add_playlist():
+#     form = AddSongToPlaylist()
+
+#     song = Playlist(
+#         name=form.data['name'],
+#         description=form.data['description'],
+#         cover_img_url=form.data['cover_img_url'],
+#         user_Id=current_user.id
+#     )
+#     db.session.add(playlist)
+#     db.session.commit()
+#     # print('PLAY LIST!!!!!!!!!!!!!!!!!!', playlist.to_dict())
+#     return playlist.to_dict()
 
 @playlist_routes.route('/<int:playlist_id>', methods=['DELETE'])
 @login_required
