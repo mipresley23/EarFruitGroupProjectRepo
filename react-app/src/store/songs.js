@@ -2,6 +2,7 @@ const ADD_SONG = "session/ADD_SONG";
 const EDIT_SONG = "session/EDIT_SONG";
 const GET_SONGS = "session/GET_SONGS";
 const GET_PLAYLIST_SONGS = "session/GET_PLAYLIST_SONGS";
+const ADD_PLAYLIST_SONGS = "session/ADD_PLAYLIST_SONGS";
 const DELETE_SONG = "session/DELETE_SONG";
 
 const addSong = (song) => ({
@@ -18,6 +19,12 @@ const actionGetPlaylistSongs = (songs) => {
 	return {
 		type: GET_PLAYLIST_SONGS,
 		songs,
+	};
+};
+const actionAddPlaylistSongs = (song) => {
+	return {
+		type: ADD_PLAYLIST_SONGS,
+		song,
 	};
 };
 
@@ -60,6 +67,13 @@ export const thunkGetPlaylistSongs = (playlistId) => async (dispatch) => {
 	const songs = await res.json();
 	// console.log(songs);
 	dispatch(actionGetPlaylistSongs(songs));
+	return res;
+};
+export const thunkAddPlaylistSongs = (playlistId,songId) => async (dispatch) => {
+	const res = await fetch(`/api/playlists/add-song/${playlistId}/${songId}`);
+	const song = await res.json();
+	// console.log(songs);
+	dispatch(actionAddPlaylistSongs(song));
 	return res;
 };
 
@@ -111,6 +125,12 @@ const songReducer = (state = initialState, action) => {
 			action.songs.songs.forEach((song) => {
 				newState[song.id] = song;
 			});
+			// console.log(newState);
+			return newState;
+
+		case ADD_PLAYLIST_SONGS:
+			// console.log(action.songs.songs)
+			newState[action.song.id] = action.song;
 			// console.log(newState);
 			return newState;
 

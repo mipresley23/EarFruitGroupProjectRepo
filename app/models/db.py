@@ -1,3 +1,4 @@
+from typing import List
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSON
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -57,11 +58,13 @@ class Song(db.Model):
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship("User", back_populates='songs')
-  song_playlists = db.relationship("Playlist",
-      secondary=Playlist_Songs,
-      back_populates="playlist_songs",
-      cascade="all, delete"
-    )
+  playlists = db.relationship('Playlist', secondary=Playlist_Songs,  back_populates='songs')
+
+  # song_playlists = db.relationship("Playlist",
+  #     secondary=Playlist_Songs,
+  #     back_populates="playlist_songs",
+  #     cascade="all, delete"
+  #   )
 
   def to_dict(self):
     return {
@@ -72,7 +75,7 @@ class Song(db.Model):
       "artist": self.artist,
       "source": self.source,
       "userId": self.user.to_dict(),
-      "playlists": len(self.song_playlists)
+      "playlists": len(self.playlists)
     }
 
 
@@ -86,11 +89,12 @@ class Playlist(db.Model):
   user_Id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship('User', back_populates='playlists')
-  playlist_songs = db.relationship("Song",
-    secondary=Playlist_Songs,
-    back_populates="song_playlists",
-    cascade="all, delete"
-  )
+  songs = db.relationship('Song', secondary=Playlist_Songs, back_populates='playlists')
+  # playlist_songs = db.relationship("Song",
+  #   secondary=Playlist_Songs,
+  #   back_populates="song_playlists",
+  #   cascade="all, delete"
+  # )
 
 
   def to_dict(self):
@@ -100,5 +104,5 @@ class Playlist(db.Model):
       "description": self.description,
       "cover_img_url": self.cover_img_url,
       "user": self.user.to_dict(),
-      "songs": len(self.playlist_songs)
+      "songs":len(self.songs)
     }

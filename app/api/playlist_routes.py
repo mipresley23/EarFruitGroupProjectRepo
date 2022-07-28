@@ -1,3 +1,4 @@
+from copyreg import constructor
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
 from app.models import db
@@ -5,6 +6,7 @@ from app.models import Playlist
 from app.models import Song
 from app.models import Playlist_Songs
 from app.forms.playlistForm import AddPlaylist
+from app.forms.add_song_to_playlist import AddSongToPlaylist
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -19,14 +21,7 @@ def playlists():
 # @login_required
 def playlists_songs(playlist_id):
     songs = Song.query.join(Playlist_Songs).join(Playlist).filter(Playlist.id == playlist_id).all()
-    # print('-')
-    # print('-')
-    # print('-')
-    # for song in songs:
-    #     print(song.to_dict())
-    # print('-')
-    # print('-')
-    # print('-')
+    db.session.commit()
     # print(playlists,'---------------------------------')
     return {'songs': [song.to_dict() for song in songs]}
 
@@ -53,6 +48,54 @@ def add_playlist():
     db.session.commit()
     # print('PLAY LIST!!!!!!!!!!!!!!!!!!', playlist.to_dict())
     return playlist.to_dict()
+
+@playlist_routes.route('/add-song/<int:playlist_id>/<int:song_id>')
+@login_required
+def add_song(playlist_id,song_id):
+    playlist = Playlist.query.get(playlist_id)
+    song = Song.query.get(song_id)
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    # print('-')
+    if song in playlist.songs:
+        print('already has song')
+    else:
+        playlist.songs.append(song)
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    db.session.commit()
+    return('Song Added')
+
+
+@playlist_routes.route('/delete-song/<int:playlist_id>/<int:song_id>')
+@login_required
+def delete_song(playlist_id,song_id):
+    playlist = Playlist.query.get(playlist_id)
+    song = Song.query.get(song_id)
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    # print('-')
+    if song in playlist.songs:
+        playlist.songs.remove(song)
+    else:
+        print('already removed song')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    db.session.commit()
+    return('Song Removed')
+
 
 @playlist_routes.route('/<int:playlist_id>', methods=['DELETE'])
 @login_required
