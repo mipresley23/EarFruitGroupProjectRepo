@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: 34379ec0ec6d
-Revises: 
+Revises:
 Create Date: 2022-07-28 09:28:58.703829
 
 """
@@ -41,6 +41,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('album', sa.String(length=50), nullable=False),
+    sa.Column('albumImgUrl', sa.String(length=2000), nullable=True),
     sa.Column('genre', sa.String(length=25), nullable=False),
     sa.Column('artist', sa.String(length=50), nullable=False),
     sa.Column('source', sa.String(length=2000), nullable=True),
