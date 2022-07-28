@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: dcc195a9341f
-Revises: 
+Revises:
 Create Date: 2022-07-28 11:56:05.536112
 
 """
@@ -45,8 +45,8 @@ def upgrade():
     sa.Column('genre', sa.String(length=25), nullable=False),
     sa.Column('artist', sa.String(length=50), nullable=False),
     sa.Column('source', sa.String(length=2000), nullable=True),
-    sa.Column('userId', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.Column('user_Id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['user_Id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('playlist_songs',

@@ -6,11 +6,13 @@ import './HomePage.css'
 
 function HomePage() {
 
+
+
 	const sessionUser = useSelector((state) => state.session.user);
 	if(sessionUser){
 		return (
 			<div className="home-container">
-				<h1>Welcome Back!</h1>
+				<h1>Welcome Back {sessionUser.username}!</h1>
 			</div>
 		);
 	}else{

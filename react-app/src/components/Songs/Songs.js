@@ -44,8 +44,13 @@ function Songs({songPage}) {
         setClearAudioList(true)
         const audioArr = e.target.value.split(',')
         console.log('audioArr: ', audioArr)
+        console.log('new audio aws source: ', audioArr[2])
         setAudioList([])
-        await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
+        if (audioArr[3]){
+            await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
+        }else{
+            await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
+        }
     }
     const handleAddToQueue = async(e) => {
         e.preventDefault();
