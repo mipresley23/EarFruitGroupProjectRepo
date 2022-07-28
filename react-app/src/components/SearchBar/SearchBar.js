@@ -65,8 +65,9 @@ export default function SearchBar() {
 			<div className="song-card" key={song.name}>
 				<div className="song-card-contents">
 					<p id="song-name">{song.name}</p>
+
 					<p id="song-name">{song.artist}</p>
-					<p>By {song.userId.username}</p>
+					<p>By {song.user_Id.username}</p>
 				</div>
 				</div>
 
