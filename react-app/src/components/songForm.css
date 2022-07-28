@@ -1,0 +1,103 @@
+.song_form_div {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.song_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px
+}
+
+
+.song_form_errors {
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.song_form_error {
+    font-size: 20px;
+    margin-bottom: 2vh;
+}
+
+
+.song_form_divs {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+
+.song_form_upload > input {
+    font-size: 20px;
+}
+
+
+.song_form_p {
+    font-size: 20px;
+    color: #1DB954
+}
+
+
+.song_form_divs > input,
+.song_form_divs > select,
+.song_form_divs > button {
+    position: relative;
+    bottom: .5vh;
+}
+
+
+.song_form_divs > input:hover,
+.song_form_divs > select:hover,
+.song_form_divs > input:active,
+.song_form_divs > select:active {
+    border: 2px solid #1DB954
+}
+
+.song_form_divs > button {
+    text-decoration: none;
+    background-color: whitesmoke;
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    border: 0px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all .06s ease-in;
+    height: 35px;
+    width: 150px;
+}
+
+
+.sf_submit {
+    margin-top: 4vh;
+    text-decoration: none;
+    background-color: whitesmoke;
+    font-weight: bold;
+    color: black;
+    font-size: 25px;
+    border: 0px;
+    cursor: pointer;
+    border-radius: 40px;
+    transition: all .06s ease-in;
+    height: 50px;
+    width: 120px;
+}
+
+
+.sf_submit:hover,
+.song_form_divs > button:hover {
+    background-color: #1DB954;
+    color: white;
+}
+
+.uploading_img {
+    max-height: 25px;
+    max-width: 25px;
+}

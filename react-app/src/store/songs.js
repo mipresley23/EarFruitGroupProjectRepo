@@ -49,6 +49,7 @@ export const createSong = (song) => async (dispatch) => {
 	if (response.ok) {
 		const song = await response.json();
 		dispatch(addSong(song));
+		return 'Song Uploaded'
 	}
 };
 
