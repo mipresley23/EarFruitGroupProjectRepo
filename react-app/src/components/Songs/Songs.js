@@ -26,7 +26,6 @@ function Songs({songPage}) {
 
     const sessionUser = useSelector((state) => state.session.user);
 
-
     const [playButton, setPlayButton] = useState(false);
 
     const [audios, setAudios] = useState([])
@@ -46,9 +45,9 @@ function Songs({songPage}) {
         const audioArr = e.target.value.split(',')
         console.log('audioArr: ', audioArr)
         setAudioList([])
-        await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
+        await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
     }
-     const handleAddToQueue = async(e) => {
+    const handleAddToQueue = async(e) => {
         e.preventDefault();
         setClearAudioList(false)
         const audioArr = e.target.value.split(',')
@@ -56,7 +55,7 @@ function Songs({songPage}) {
         console.log(audioList !== null)
         console.log('audioListinQueueFunc: ', audioList)
         if(audioList){
-            setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
+            setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
         }
     }
 
@@ -85,8 +84,8 @@ function Songs({songPage}) {
                                     <p>{song.artist}</p>
                                     <p>{song.album}</p>
                                     <p>{song.genre}</p>
-                                    <input className='song-buttons' id='user-profile-play-button' type='image' src={playSongButton} value={[song.name, song.artist, song.source]} onClick={handlePlaySong}/>
-                                    <input className='song-buttons' id='user-profile-queue-button' value={[song.name, song.artist, song.source]} type='image' src={addToPlaylistButton} onClick={handleAddToQueue}/>
+                                    <input className='song-buttons' id='user-profile-play-button' type='image' src={playSongButton} value={[song.name, song.artist, song.source, song.albumImgUrl]} onClick={handlePlaySong}/>
+                                    <input className='song-buttons' id='user-profile-queue-button' value={[song.name, song.artist, song.source, song.albumImgUrl]} type='image' src={addToPlaylistButton} onClick={handleAddToQueue}/>
                                 </li>
                             </div>
 
