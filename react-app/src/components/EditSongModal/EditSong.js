@@ -6,17 +6,31 @@ import { editSong, getSongs } from '../../store/songs';
 // import { login } from '../store/session';
 
 const EditSong = ({song, setShowModal}) => {
-    // console.log(song)
-    const [errors, setErrors] = useState([]);
-    const [name, setName] = useState(song.name);
-    const [album, setAlbum] = useState(song.album);
-    const [genre, setGenre] = useState(song.genre);
-    const [artist, setArtist] = useState(song.artist);
-    const [source, setSource] = useState(song.source);
+    console.log(song)
 
-    // const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        dispatch(getSongs());
+    }, [dispatch]);
+
+    // useEffect(() => {
+    //     setAudios(Object.values(songs))
+    // }, [songs])
+
+    const songs = useSelector(state => state?.songs);
+
+    const [errors, setErrors] = useState([]);
+    const [name, setName] = useState(song?.name);
+    const [album, setAlbum] = useState(song?.album);
+    const [albumImgUrl, setAlbumImgUrl] = useState(song?.albumImgUrl);
+    const [genre, setGenre] = useState(song?.genre);
+    const [artist, setArtist] = useState(song?.artist);
+    const [source, setSource] = useState(song?.source);
+
+    // const user = useSelector(state => state.session.user);
+
 
     useEffect(() => {
         const errors = [];
@@ -36,6 +50,7 @@ const EditSong = ({song, setShowModal}) => {
             id: song.id,
             name,
             album,
+            albumImgUrl,
             genre,
             artist,
             source
@@ -83,6 +98,16 @@ const EditSong = ({song, setShowModal}) => {
                     placeholder={album}
                     value={album}
                     onChange={(e) => setAlbum(e.target.value)}
+                />
+            </div>
+            <div >
+                <label htmlFor='albumImgUrl'>Album Art URL</label>
+                <input
+                    name='albumImgUrl'
+                    type='text'
+                    placeholder={albumImgUrl}
+                    value={albumImgUrl}
+                    onChange={e => setAlbumImgUrl(e.target.value)}
                 />
             </div>
             <div>

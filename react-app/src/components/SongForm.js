@@ -11,6 +11,7 @@ const SongForm = () => {
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
     const [album, setAlbum] = useState('');
+    const [albumImgUrl, setAlbumImgUrl] = useState('');
     const [genre, setGenre] = useState('Rock');
     const [artist, setArtist] = useState('');
     const [mp3, setMP3] = useState(null);
@@ -19,7 +20,6 @@ const SongForm = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
-
 
     useEffect(() => {
         const errors = [];
@@ -58,6 +58,7 @@ const SongForm = () => {
             const song = {
                 name,
                 album,
+                albumImgUrl,
                 genre,
                 artist,
                 source: jsonRes.source
@@ -115,6 +116,16 @@ const SongForm = () => {
                         placeholder='Album'
                         value={album}
                         onChange={(e) => setAlbum(e.target.value)}
+                    />
+                </div>
+                <div className='song_form_divs'>
+                    <label htmlFor='albumImgUrl'>Album Art URL: </label>
+                    <input
+                        name='albumImgUrl'
+                        type='text'
+                        placeholder='Album Art URL'
+                        value={albumImgUrl}
+                        onChange={(e) => setAlbumImgUrl(e.target.value)}
                     />
                 </div>
                 <div className='song_form_divs'>

@@ -52,6 +52,7 @@ class Song(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), nullable=False)
   album = db.Column(db.String(50), nullable=False)
+  albumImgUrl = db.Column(db.String(2000))
   genre = db.Column(db.String(25), nullable=False)
   artist = db.Column(db.String(50), nullable=False)
   source = db.Column(db.String(2000))
@@ -71,6 +72,7 @@ class Song(db.Model):
       "id": self.id,
       "name": self.name,
       "album": self.album,
+      "albumImgUrl": self.albumImgUrl,
       "genre": self.genre,
       "artist": self.artist,
       "source": self.source,

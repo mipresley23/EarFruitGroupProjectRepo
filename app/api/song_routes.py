@@ -22,15 +22,17 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def add_song():
     form = AddSong()
-
+    print("FORM DATA ::", form.data)
     song = Song(
         name=form.data['name'],
         artist=form.data['artist'],
         album=form.data['album'],
+        albumImgUrl=form.data['albumImgUrl'],
         genre=form.data['genre'],
         source=form.data['source'],
         user_Id=current_user.id
     )
+
     db.session.add(song)
     db.session.commit()
     return song.to_dict()
@@ -72,6 +74,7 @@ def update_song(song_id):
     song.name = form.data['name']
     song.artist = form.data['artist']
     song.album = form.data['album']
+    song.albumImgUrl = form.data['albumImgUrl']
     song.genre = form.data['genre']
     song.source = form.data['source']
     db.session.commit()
