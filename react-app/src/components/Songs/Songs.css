@@ -17,6 +17,11 @@
     grid-template-columns: 1fr 1fr 20fr 15fr 15fr 10fr 1fr 1fr;
 }
 
+#artist-song {
+    display: grid;
+    grid-template-columns: 20fr 15fr 15fr 10fr 1fr 1fr;
+}
+
 #song-page-song-info-container{
     height: 60px;
     transition-duration: .1s;

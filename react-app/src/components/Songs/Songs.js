@@ -26,7 +26,6 @@ function Songs({songPage}) {
 
     const sessionUser = useSelector((state) => state.session.user);
 
-
     const [playButton, setPlayButton] = useState(false);
 
     const [audios, setAudios] = useState([])
@@ -48,7 +47,7 @@ function Songs({songPage}) {
         setAudioList([])
         await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
     }
-     const handleAddToQueue = async(e) => {
+    const handleAddToQueue = async(e) => {
         e.preventDefault();
         setClearAudioList(false)
         const audioArr = e.target.value.split(',')
