@@ -17,7 +17,7 @@ def seed_users():
     anthony = User(
         username='Anthony', email='anthony@aa.io', password='password', photo_url='https://www.dccomics.com/sites/default/files/imce/2018/08-AUG/Cyborg_v01_r01_5b6c7d7bef1616.90753062.jpg')
     michael = User(
-        username='Aichael', email='michael@aa.io', password='password', photo_url='https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Michelangelo_%28Teenage_Mutant_Ninja_Turtles%29.jpg/250px-Michelangelo_%28Teenage_Mutant_Ninja_Turtles%29.jpg')
+        username='Michael', email='michael@aa.io', password='password', photo_url='https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Michelangelo_%28Teenage_Mutant_Ninja_Turtles%29.jpg/250px-Michelangelo_%28Teenage_Mutant_Ninja_Turtles%29.jpg')
     krishna = User(
         username='Krishna', email='krishna@aa.io', password='password', photo_url='https://www.clipartmax.com/png/small/246-2461790_musical-movies-cliparts-cartoon-characters-playing-guitar.png')
 
