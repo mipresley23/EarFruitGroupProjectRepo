@@ -53,7 +53,7 @@ const SongForm = () => {
         if (res.ok) {
             const jsonRes = await res.json();
             setMP3Loading(false);
-            // console.log('------jsonRes----', jsonRes.source)
+            console.log('------jsonRes----', jsonRes.source)
 
             const song = {
                 name,
@@ -76,7 +76,7 @@ const SongForm = () => {
             setMP3Loading(false);
             errors.push('The file must be an mp3');
             setErrors(errors);
-            // console.log("---error uploading song----", res)
+            console.log("---error uploading song----", res)
         }
     }
 
