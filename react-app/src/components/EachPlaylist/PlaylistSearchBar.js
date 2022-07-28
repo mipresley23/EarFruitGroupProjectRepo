@@ -34,7 +34,7 @@ export default function PlaylistSearchBar({func}) {
 					<p id="song-name">{song.name}</p>
 					<p id="song-name">{song.artist}</p>
 					<p id="song-name">{song.id}</p>
-					<p>By {song.userId.username}</p>
+					<p>By {song.user_Id.username}</p>
 					<button onClick={()=>addSongToPlaylist(playlistId,song.id)}>
 						<i class="fa fa-plus"></i>
 					</button>

@@ -75,7 +75,7 @@ class Song(db.Model):
       "artist": self.artist,
       "source": self.source,
       "user_Id": self.user.to_dict(),
-      "playlists": self.song_playlists
+      "playlists": len(self.playlists)
     }
 
 
@@ -104,5 +104,5 @@ class Playlist(db.Model):
       "description": self.description,
       "cover_img_url": self.cover_img_url,
       "user": self.user.to_dict(),
-      "songs": self.playlist_songs
+      "songs": len(self.songs)
     }
