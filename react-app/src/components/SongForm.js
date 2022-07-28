@@ -18,19 +18,6 @@ const SongForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // const genres = [
-    //     {value: 'Rock', label: 'Rock'},
-    //     {value: 'Pop', label: 'Pop'},
-    //     {value: 'Rap', label: 'Rap'},
-    //     {value: 'Electronic', label: 'Electronic'},
-    //     {value: 'Country', label: 'Country'},
-    //     {value: 'Classical', label: 'Classical'},
-    //     {value: 'Jazz', label: 'Jazz'},
-    //     {value: 'Blues', label: 'Blues'},
-    //     {value: 'Metal', label: 'Metal'},
-    //     {value: 'Other', label: 'Other'}
-
-    // ]
 
     useEffect(() => {
         const errors = [];

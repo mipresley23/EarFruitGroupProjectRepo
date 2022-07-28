@@ -54,7 +54,7 @@ class Song(db.Model):
   genre = db.Column(db.String(25), nullable=False)
   artist = db.Column(db.String(50), nullable=False)
   source = db.Column(db.String(2000))
-  userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  user_Id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship("User", back_populates='songs')
   song_playlists = db.relationship("Playlist",
@@ -71,8 +71,8 @@ class Song(db.Model):
       "genre": self.genre,
       "artist": self.artist,
       "source": self.source,
-      "userId": self.user.to_dict(),
-      "playlists": len(self.song_playlists)
+      "user_Id": self.user.to_dict(),
+      "playlists": self.song_playlists
     }
 
 
@@ -100,5 +100,5 @@ class Playlist(db.Model):
       "description": self.description,
       "cover_img_url": self.cover_img_url,
       "user": self.user.to_dict(),
-      "songs": len(self.playlist_songs)
+      "songs": self.playlist_songs
     }

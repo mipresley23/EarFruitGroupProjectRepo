@@ -1,0 +1,33 @@
+# Query: userId
+
+17 results - 7 files
+
+migrations/versions/20220726_214319_.py:
+  48:     sa.Column('user_Id', sa.Integer(), nullable=False),
+  49:     sa.ForeignKeyConstraint(['user_Id'], ['users.id'], ),
+
+react-app/src/App.js:
+  66:           <ProtectedRoute path='/users/:user_Id' exact={true} >
+
+react-app/src/components/User.js:
+   6:   const { userId }  = useParams();
+   9:     if (!userId) {
+  13:       const response = await fetch(`/api/users/${userId}`);
+  17:   }, [userId]);
+  26:         <strong>User Id</strong> {userId}
+
+react-app/src/components/EachPlaylist/index.js:
+  51: 		// setIsOwner(sessionUser?.id == editSpot?.userId)
+
+react-app/src/components/SearchBar/SearchBar.js:
+  72: 					<p>By {song.user_Id.username}</p>
+
+react-app/src/components/Songs/Songs.js:
+  77:                                     { sessionUser && sessionUser.id === song.user_Id.id &&
+
+react-app/src/components/userProfile/index.js:
+  25:   const { userId } = useParams();
+  37:   const user = users && users.find(user => user.id === +userId)
+  39:   const thisUsersPlaylists = playlists && playlists.filter(playlist => playlist.user.id === +userId)
+  40:   const thisUsersSongs = songs && songs.filter(song => song.user_Id.id == +userId)
+  75:       id: userId,

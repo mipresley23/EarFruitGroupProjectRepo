@@ -29,7 +29,7 @@ def add_song():
         album=form.data['album'],
         genre=form.data['genre'],
         source=form.data['source'],
-        userId=current_user.id
+        user_Id=current_user.id
     )
     db.session.add(song)
     db.session.commit()
@@ -66,7 +66,7 @@ def search_song(search_value):
 @login_required
 def update_song(song_id):
     song = Song.query.get(song_id)
-    if song.userId != current_user.id:
+    if song.user_Id != current_user.id:
         return jsonify({'error': 'You do not have permission to update this song'})
     form = AddSong()
     song.name = form.data['name']
