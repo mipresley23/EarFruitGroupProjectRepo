@@ -123,3 +123,8 @@
     transform: scale(1.1);
 }
 
+
+.uploading_img {
+    max-height: 25px;
+    max-width: 25px;
+}
