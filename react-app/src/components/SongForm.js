@@ -68,7 +68,7 @@ const SongForm = () => {
             const response = await dispatch(createSong(song));
 
             if (response === 'Song Uploaded') {
-                history.push('/');
+                history.push('/songs');
             }
 
         }
