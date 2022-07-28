@@ -123,7 +123,15 @@ const EachPlaylist = () => {
 	const closeSearchBar = () => {
 		setAddSong(false)
 		dispatch(thunkGetPlaylistSongs(playlistId))
-    }
+	}
+
+	const removeSongFromPlaylist = async(playlistId, songId) => {
+        // await dispatch(thunkAddPlaylistSongs(playlistId, songId))
+		await fetch(`/api/playlists/delete-song/${playlistId}/${songId}`)
+		dispatch(thunkGetPlaylistSongs(playlistId))
+	}
+
+
 	if (!editPlaylist) return null;
 	return (
 		<div>
@@ -233,7 +241,8 @@ const EachPlaylist = () => {
 			{!addSong && <ul>
 				{playlistSongs &&
 					playlistSongs.map((song) => (
-						<li key={song.id}>{song.name}</li>
+						<li key={song.id}>{song.name}<button onClick={()=>{removeSongFromPlaylist(playlistId,song.id)}}>Remove</button></li>
+
 					))}
 			</ul>}
 		</div>

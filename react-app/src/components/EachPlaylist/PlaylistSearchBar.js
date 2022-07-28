@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongs } from "../../store/songs";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { thunkAddPlaylistSongs } from "../../store/songs";
 
 export default function PlaylistSearchBar() {
@@ -22,7 +22,8 @@ export default function PlaylistSearchBar() {
 	}, [dispatch]);
 
     const addSongToPlaylist = async(playlistId, songId) => {
-        await dispatch(thunkAddPlaylistSongs(playlistId, songId))
+        // await dispatch(thunkAddPlaylistSongs(playlistId, songId))
+        await fetch(`/api/playlists/add-song/${playlistId}/${songId}`)
     }
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);

@@ -70,7 +70,32 @@ def add_song(playlist_id,song_id):
     print('-')
     print('-')
     db.session.commit()
-#     # return playlist.to_dict()
+    return('Song Added')
+
+
+@playlist_routes.route('/delete-song/<int:playlist_id>/<int:song_id>')
+@login_required
+def delete_song(playlist_id,song_id):
+    playlist = Playlist.query.get(playlist_id)
+    song = Song.query.get(song_id)
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    # print('-')
+    if song in playlist.songs:
+        playlist.songs.remove(song)
+    else:
+        print('already removed song')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    print('-')
+    db.session.commit()
+    return('Song Removed')
+
 
 @playlist_routes.route('/<int:playlist_id>', methods=['DELETE'])
 @login_required
