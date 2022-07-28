@@ -105,3 +105,87 @@ search-icon {
   .search-icon {
 	  color: black;
   }
+
+  .song-card {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid white;
+  }
+
+  .song-card-contents {
+	display: flex;
+	gap: 10px;
+  }
+
+  .song-card-buttons {
+	  display: flex;
+	  align-items: center;
+  }
+
+  .song-card-queue-button {
+	height: 30px;
+	width: 30px;
+	background-color: #4a4a4a;
+	border-radius: 50%;
+	transition-duration: .1s;
+  }
+
+  .search-song-table {
+	  width: 100%;
+	  border-collapse: collapse;
+  }
+
+  .search-song-number{
+	  width:100px;
+	  /* border: 2px white solid; */
+  }
+
+  tbody > tr {
+	  /* color:blue; */
+	  margin:2px;
+	  /* border: 2px white solid; */
+  }
+  .search-song-play-button {
+	cursor: pointer;
+  }
+  .search-song-play-button:hover {
+	color: #1DB954;
+  }
+  tbody > tr:hover {
+	background-color: hsla(0,0%,100%,.13);
+
+}
+
+.search-song-album,
+.search-song-artist{
+	color: #b3b3b3;
+	font-size: 0.9rem;
+	font-weight: 400;
+}
+
+.search-song-name {
+	font-size: 1.1rem;
+}
+
+.search-song-button-cont {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 2px;
+	width: 35px;
+}
+
+thead th{
+	border-bottom: #b3b3b3 solid 2px;
+	padding-bottom: 5px;
+	text-align: left;
+	color: #b3b3b3;
+	height: 16px;
+}
+
+tbody {
+
+	border-top: transparent 20px solid;
+}
