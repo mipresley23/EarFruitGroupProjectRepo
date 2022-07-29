@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createSong } from '../../store/songs';
-import './songForm.css'
+import '../songForm.css'
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
 
