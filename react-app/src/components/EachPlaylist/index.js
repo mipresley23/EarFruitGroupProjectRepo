@@ -11,7 +11,6 @@ import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
 import circleLogo from '../assets/circleLogo.jpeg';
-import HomePage from "../HomePage/HomePage";
 import AudioListProvider, { AudioListContext } from '../../context/audioList';
 
 const EachPlaylist = () => {
