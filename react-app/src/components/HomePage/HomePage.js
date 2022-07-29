@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { thunkGetPlaylists } from "../../store/playlists";
 import { getSongs } from "../../store/songs";
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 import AudioListProvider, {AudioListContext} from '../../context/audioList';
 import SearchBar from "../SearchBar/SearchBar";
 
