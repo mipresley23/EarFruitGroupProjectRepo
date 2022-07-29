@@ -10,6 +10,7 @@ const NavBar = ({setSongPage}) => {
 	const isLoggedIn = useSelector((state) => state.session.user);
 
 	const [isSongs, setIsSongs] = useState(location.pathname.includes('songs'));
+	const [showMenu, setShowMenu] = useState(false)
 
 	useEffect(() => {
 		if (location.pathname.includes('songs')) setIsSongs(true);
@@ -52,20 +53,24 @@ const NavBar = ({setSongPage}) => {
 				)}
 				{isLoggedIn && (
 					<>
-						<div id="nav-bar-user-info">
-							<NavLink id="nav-bar-user-link" to={`/users/${isLoggedIn.id}`}>
-								<img id='nav-bar-user-img' src={isLoggedIn.photo_url} alt='navbar profile photo'/>
-								<li>{isLoggedIn.username}</li>
-							</NavLink>
-						</div>
 						<li>
 							<NavLink to="/developers" exact={true} activeClassName="active">
 								Developers
 							</NavLink>
 						</li>
-						<li>
-							<LogoutButton />
-						</li>
+						<div id="nav-bar-user-info" onClick={e => setShowMenu(!showMenu)}>
+								<img id='nav-bar-user-img' src={isLoggedIn.photo_url} alt='navbar profile photo'/>
+								<li>{isLoggedIn.username}</li>
+							{showMenu && (
+								<ul id='profile-menu'>
+									<li>
+										<NavLink id="nav-bar-user-link" to={`/users/${isLoggedIn.id}`}>Account</NavLink>
+									</li>
+									<LogoutButton />
+								</ul>
+							)}
+						</div>
+
 					</>)
 				}
 			</ul>
