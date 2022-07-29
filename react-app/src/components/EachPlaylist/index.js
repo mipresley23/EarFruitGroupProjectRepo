@@ -180,10 +180,10 @@ const EachPlaylist = () => {
 								song.albumImgUrl,
 							])
 						} class="search-song-button fa fa-play fa-xl"></i>
-					<i
+					{isOwner && <i
 						onClick={() => removeSongFromPlaylist(playlistId, song.id)}
 						class="search-song-button fa-solid fa-trash fa-xl"
-					></i>
+					></i>}
 				</td>
 			</tr>
 		);
