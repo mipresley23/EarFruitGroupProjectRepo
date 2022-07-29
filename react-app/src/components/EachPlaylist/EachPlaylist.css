@@ -166,7 +166,9 @@ margin: 0;
 	border-radius: 150px;
 }
 
-.playlist-description-cont button {
+.playlist-description-cont button,
+.update-name-btn,
+.cancel-name-btn {
 	border-radius: 15px;
 	padding: 5px;
 	border: 0;
@@ -176,7 +178,9 @@ margin: 0;
 	transition: all .1s ease-in;
 }
 
-.playlist-description-cont button:hover {
+.playlist-description-cont button:hover,
+.update-name-btn:hover,
+.cancel-name-btn:hover {
 	background-color: rgb(29, 185, 84);
 	color: white;
 }
@@ -212,7 +216,8 @@ margin: 0;
 	color: rgb(29, 185, 84)
 }
 
-.playlist-description-edit-btn {
+.playlist-description-edit-btn,
+.update-name-btn {
 	margin-right: 10px;
 }
 

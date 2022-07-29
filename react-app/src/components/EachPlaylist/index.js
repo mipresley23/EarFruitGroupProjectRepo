@@ -215,7 +215,7 @@ const EachPlaylist = () => {
 						</button>
 					)}
 					{isOwner && editName && (
-						<button onClick={cancelEditNameBtn}>Cancel</button>
+						<button className="cancel-name-btn" onClick={cancelEditNameBtn}>Cancel</button>
 					)}
 				</div>
 				<div className="playlist-description-cont">
