@@ -108,8 +108,8 @@ const EachPlaylist = () => {
 	}
 	async function onDelete(e) {
 		e.preventDefault();
-		history.push(`/`);
 		await dispatch(thunkDeletePlaylist(playlistId));
+		history.push(`/`);
 	}
 	function checkImage(url) {
 		var image = new Image();

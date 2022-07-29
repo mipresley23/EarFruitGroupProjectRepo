@@ -107,6 +107,9 @@ export default function SideBar() {
 						</NavLink>
 					))}
 			</div>
+			<div className="about-cont">
+				
+			</div>
 		</div>
 	);
 }
