@@ -6,6 +6,7 @@
 }
 .side-bar-container h2 {
     margin-bottom: 40px;
+    position: relative;
 }
 
 .sidebar-link {
@@ -47,9 +48,16 @@
     width: 85%;
     padding-top: 20px;
     border-top: 2px solid rgba(128, 128, 128, 0.289);
+    /* border: 2px white solid; */
 }
 
 .sidebar-playlist-link {
     font-size: 1rem;
     font-weight: 100;
+}
+
+.about-cont {
+    border-top: 2px solid rgba(128, 128, 128, 0.289);
+    padding-top: 20px;
+
 }

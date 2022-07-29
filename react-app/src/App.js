@@ -8,7 +8,7 @@ import SideBar from './components/SideBar/SideBar';
 // import SongForm from './components/SongForm';
 import Songs from './components/Songs/Songs';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import Developers from './components/Developers';
+import Developers from './components/Developers/Developers';
 import AllPlaylists from './components/AllPlaylists';
 import EachPlaylist from './components/EachPlaylist';
 import User from './components/User';

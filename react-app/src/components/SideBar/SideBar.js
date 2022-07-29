@@ -78,6 +78,7 @@ export default function SideBar() {
 					alt="word logo"
 				/>
 			</div>
+			<div className="side-bar-links"></div>
 			<NavLink className="sidebar-link" to="/" exact={true}>
 				<i className="fa fa-home"></i>
 				Home
@@ -106,6 +107,9 @@ export default function SideBar() {
 							{playlist.name}
 						</NavLink>
 					))}
+			</div>
+			<div className="about-cont">
+
 			</div>
 		</div>
 	);

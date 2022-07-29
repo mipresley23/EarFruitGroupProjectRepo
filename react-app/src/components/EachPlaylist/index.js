@@ -11,7 +11,6 @@ import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
 import circleLogo from '../assets/circleLogo.jpeg';
-import HomePage from "../HomePage/HomePage";
 import AudioListProvider, { AudioListContext } from '../../context/audioList';
 
 const EachPlaylist = () => {
@@ -63,8 +62,8 @@ const EachPlaylist = () => {
 	}, [image]);
 
 	if (!sessionUser) {
-		history.push('/')
-		return null
+		history.push('/login')
+		// return null
 	}
 	async function editNameBtn(e) {
 		setEditName(true);
@@ -108,8 +107,8 @@ const EachPlaylist = () => {
 	}
 	async function onDelete(e) {
 		e.preventDefault();
-		history.push(`/`);
 		await dispatch(thunkDeletePlaylist(playlistId));
+		history.push(`/`);
 	}
 	function checkImage(url) {
 		var image = new Image();
