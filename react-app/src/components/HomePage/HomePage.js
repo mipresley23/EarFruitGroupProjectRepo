@@ -5,6 +5,7 @@ import { thunkGetPlaylists } from "../../store/playlists";
 import { getSongs } from "../../store/songs";
 import AudioListProvider, {AudioListContext} from '../../context/audioList';
 import SearchBar from "../SearchBar/SearchBar";
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 
 import './HomePage.css'
 
