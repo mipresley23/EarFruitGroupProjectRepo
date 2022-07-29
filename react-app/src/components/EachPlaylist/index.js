@@ -313,7 +313,7 @@ const EachPlaylist = () => {
 					<i
 					// className="delete-playlist-btn fa-solid fa-trash fa-xl"
 					onClick={onDelete}
-					class="delete-playlist-btn fa-solid fa-trash-can fa-3x"/>
+					class="delete-playlist-btn fa-solid fa-trash-can fa-2x"/>
 				)}
 			</div>
 			<div className="playlist-search-song">
