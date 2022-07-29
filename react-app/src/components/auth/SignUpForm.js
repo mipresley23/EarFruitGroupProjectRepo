@@ -17,10 +17,11 @@ const SignUpForm = () => {
     const errors = [];
     if (!username) errors.push('A username is required.');
     if (!email) errors.push('An email is required.');
+    if (!(email.includes('@' ) && email.includes('.'))) errors.push('Must be a valid email address.')
     if (!password) errors.push('A password is required.');
+    if (password.length < 6) errors.push('Password length must be at least 6 characters.')
     if (!repeatPassword) errors.push('Please repeat the password.');
     if (password !== repeatPassword) errors.push('Password and repeated password must match.');
-    if (!(email.includes('@' ) && email.includes('.'))) errors.push('Must be a valid email address.')
 
     setErrors(errors);
   }, [username, email, password, repeatPassword]);
