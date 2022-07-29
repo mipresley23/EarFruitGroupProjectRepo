@@ -93,8 +93,8 @@ margin: 0;
 	/* right:20px; */
 	padding: 10px;
 	margin: 0;
-	top: 10px;
-	left: 10px;
+	bottom: 15px;
+	right: 15px;
 	border-radius: 50%;
 	border: none;
 	background-color: rgb(29, 185, 84);
@@ -191,6 +191,12 @@ margin: 0;
 	background-color: rgb(167, 167, 167);
 	border: 0px;
 	border-right: 1px solid black;
+	cursor: pointer;
+}
+.edit-image-update-btn:hover,
+.edit-image-cancel-btn:hover{
+	background-color: rgb(29, 185, 84);
+	color: white;
 }
 
 .playlist-cont {
