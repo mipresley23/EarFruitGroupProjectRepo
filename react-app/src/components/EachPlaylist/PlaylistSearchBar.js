@@ -80,6 +80,9 @@ export default function PlaylistSearchBar({ func }) {
 		dispatch(getSongs());
 	}
 
+	const closeSearchBar = () => {
+		func()
+	}
 	return (
 		<div className="search-container">
 			<form className="search-bar" onSubmit={onSubmit}>
@@ -91,7 +94,7 @@ export default function PlaylistSearchBar({ func }) {
 					placeholder="Artists, songs, or playlists"
 					onChange={(e) => setSearch(e.target.value)}
 				/>
-				{/* <button>Search</button> */}
+				<i className="close-playlist-search-btn fa fa-close fa-xl" onClick={()=>closeSearchBar()}></i>
 			</form>
 			{searchSongs.length > 0 && (
 				<>

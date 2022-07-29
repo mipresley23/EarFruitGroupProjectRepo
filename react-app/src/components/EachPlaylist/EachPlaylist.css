@@ -146,3 +146,16 @@ margin: 0;
 	border: 0px;
 	border-right: 1px solid black;
 }
+
+.playlist-cont {
+	position: relative;
+}
+
+.close-playlist-search-btn {
+	color: black;
+	cursor: pointer;
+}
+
+.close-playlist-search-btn:hover {
+	color: rgb(29, 185, 84)
+}

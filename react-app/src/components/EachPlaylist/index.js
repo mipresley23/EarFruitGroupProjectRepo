@@ -135,7 +135,7 @@ const EachPlaylist = () => {
 
 	if (!editPlaylist) return null;
 	return (
-		<div>
+		<div className="playlist-cont">
 			<div className="playlist-header">
 				<div className="playlist-name-cont">
 					{isOwner && !editName && (
@@ -235,8 +235,7 @@ const EachPlaylist = () => {
 			</div>
 			{!addSong && <button onClick={openSearchBar}>Add Song</button>}
 			{addSong && <PlaylistSearchBar func={closeSearchBar} />}
-			{addSong && <button onClick={closeSearchBar}>Cancel</button>}
-
+			{/* {addSong && <button className="close-playlist-search-btn" onClick={closeSearchBar}>X</button>} */}
 			{!addSong && (
 				<ul>
 					{playlistSongs &&
