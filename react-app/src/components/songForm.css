@@ -8,47 +8,49 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 
 .song_form_errors {
     margin-top: 4vh;
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #e91429;
-    width: 450px;
+    width: 350px;
     padding-top: 15px;
+    padding-bottom: 10px;
     border-radius: 10px;
 }
 
 
 .song_form_error {
-    font-size: 20px;
-    margin-bottom: 2vh;
+    font-size: 18px;
+    margin-bottom: 1vh;
 }
 
 
 .song_form_divs {
-    margin-top: 2vh;
-    margin-bottom: 1vh;
+    margin-top: 1vh;
+    margin-bottom: .5vh;
 }
 
 
 .song_form_p {
     max-width: 500px;
     min-height: fit-content;
-    font-size: 20px;
+    font-size: 18px;
     color: #1DB954
 }
 
 
 
 .sf_label {
-    font-size: 19px;
-    margin-bottom: 5px;
+    font-size: 17px;
+    margin-bottom: 2px;
+    margin-left: 5px;
 }
 
 
@@ -59,17 +61,17 @@
 
 .song_form_divs > input,
 .song_form_divs > select {
-    padding-left: 12.5px;
+    padding-left: 10px;
 }
 
 
 .song_form_divs > input,
 .song_form_divs > select,
 .song_form_divs > button {
-    width: 450px;
-    height: 50px;
-    font-size: 20px;
-    border-radius: 10px;
+    width: 350px;
+    height: 36px;
+    font-size: 18px;
+    border-radius: 9px;
 }
 
 
@@ -90,29 +92,30 @@
     background-color: whitesmoke;
     font-weight: bold;
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     border: 0px;
     cursor: pointer;
     border-radius: 20px;
     transition: all .06s ease-in;
-    height: 50px;
-    width: 450px;
+    height: 36px;
+    width: 350px;
 }
 
 
 .sf_submit {
-    margin-top: 4vh;
+    margin-top: 2vh;
     text-decoration: none;
     background-color: whitesmoke;
     font-weight: bold;
     color: black;
-    font-size: 25px;
+    font-size: 23px;
     border: 0px;
     cursor: pointer;
     border-radius: 40px;
     transition: all .06s ease-in;
     height: 50px;
     width: 120px;
+    margin-bottom: 4vh;
 }
 
 
@@ -125,6 +128,6 @@
 
 
 .uploading_img {
-    max-height: 25px;
-    max-width: 25px;
+    max-height: 23px;
+    max-width: 23px;
 }
