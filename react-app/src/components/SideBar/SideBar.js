@@ -45,9 +45,6 @@ export default function SideBar() {
 		setMyPlaylistNumber(i);
 	}, [i]);
 	const onSubmit = async (e) => {
-		if (!sessionUser) {
-			history.push("/login");
-		}
 		if (sessionUser) {
 			e.preventDefault();
 			setMyPlaylistNumber(i);
@@ -90,11 +87,11 @@ export default function SideBar() {
 				<i className="fa fa-music"></i>
 				Songs
 			</NavLink>
-			<SongFormModal />
-			<div className="sidebar-link" onClick={onSubmit}>
+			{ sessionUser && <SongFormModal /> }
+			{ sessionUser && <div className="sidebar-link" onClick={onSubmit}>
 				<i className="fa fa-plus"></i>
 				Create Playlist
-			</div>
+			</div> }
 			<div className="side-bar-playlist-list">
 				{sessionUser &&
 					usersPlaylists.map((playlist) => (

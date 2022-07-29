@@ -5,7 +5,7 @@ import editButton from '../assets/edit_button.png';
 import './editModal.css';
 
 function EditSongModal({song}) {
-  console.log(EditSong)
+  // console.log(EditSong)
   const [showModal, setShowModal] = useState(false);
 
   return (

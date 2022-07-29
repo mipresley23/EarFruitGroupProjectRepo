@@ -47,7 +47,6 @@
     display: inline-block;
     margin: 0 10px;
     transition: all .07s ease-in;
-
 }
 
 .nav-bar {
@@ -68,10 +67,14 @@
 }
 .logout-btn:hover,
 #demo-button:hover {
-    background-color: #1DB954;
+    background-color: rgb(125,237,98);
 }
-.nav-list li:hover,
+
 #demo-button:hover {
+    transform: scale(1.1);
+}
+
+.nav-list li:hover {
     color: white;
     transform: scale(1.1);
 }
