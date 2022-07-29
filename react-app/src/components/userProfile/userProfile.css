@@ -25,7 +25,7 @@
   margin-right: 20px;
   height: 200px;
   width: 150px;
-  background-color: #4a4a4a;
+  background-color: rgb(35,35,35);
   display: flex;
   flex-direction: column;
   justify-content: center;
