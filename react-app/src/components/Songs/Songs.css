@@ -11,9 +11,21 @@
     height: 100%;
     margin: 0;
     margin-top: 10px;
-    padding: 0;
-    overflow: scroll;
+    overflow: scroll hidden;
     /* scrollbar-color: none; */
+}
+
+.album-header{
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    gap: 20px;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid grey;
+}
+.album-art{
+    height: 10rem;
+    width: 10rem;
 }
 
 #song {
@@ -25,6 +37,14 @@
 #artist-song {
     display: grid;
     grid-template-columns: 20fr 15fr 15fr 10fr 1fr 1fr;
+    align-items: center;
+}
+
+.album-song {
+    display: grid;
+    grid-template-columns: 1fr 20fr 1fr 1fr;
+    align-items: center;
+    padding-right: 10px;
 }
 
 #song-page-song-info-container{

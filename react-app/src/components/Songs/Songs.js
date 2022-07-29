@@ -110,8 +110,8 @@ function Songs({songPage}) {
     console.log('audioList:', audioList)
     return (
         <>
-            {songPage === 'artists' && <Artists songsArr={songsArr}/>}
-            {songPage === 'albums' && <Albums songsArr={songsArr}/>}
+            {songPage === 'artists' && <Artists songsArr={songsArr} handlePlaySong={handlePlaySong} handleAddToQueue={handleAddToQueue}/>}
+            {songPage === 'albums' && <Albums songsArr={songsArr} handlePlaySong={handlePlaySong} handleAddToQueue={handleAddToQueue}/>}
             {songPage === '' && <ul id='songs'>
                 {songsArr && songsArr.map(song => (
 

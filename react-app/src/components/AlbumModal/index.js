@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import Album from './Album';
 
-function AlbumModal({album, albums}) {
+function AlbumModal({album, albums, handlePlaySong, handleAddToQueue}) {
 
   const [showModal, setShowModal] = useState(false);
   const [albumArt, setAlbumArt] = useState('https://protkd.com/wp-content/uploads/2017/04/default-image.jpg');
@@ -32,7 +32,7 @@ function AlbumModal({album, albums}) {
         </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <Album album={album} albums={albums} setShowModal={setShowModal}/>
+          <Album album={album} albums={albums} setShowModal={setShowModal} handlePlaySong={handlePlaySong} handleAddToQueue={handleAddToQueue} albumArt={albumArt}/>
         </Modal>
       )}
     </>
