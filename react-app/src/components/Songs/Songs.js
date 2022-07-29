@@ -11,7 +11,7 @@ import ConfirmDeleteModal from '../ConfirmDeleteModal';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
 import playSongButton from '../assets/play_button.png';
 import addToPlaylistButton from '../assets/addtoPlaylist.png';
-import circleLogo from '../assets/circleLogo.jpeg';
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 
 import './Songs.css'
 

@@ -20,6 +20,10 @@ def seed_playlist_songs():
   ninetiesSong9= Playlist_Songs.insert().values(songs=13, playlists=2)
   ninetiesSong10= Playlist_Songs.insert().values(songs=14, playlists=2)
   ninetiesSong11= Playlist_Songs.insert().values(songs=15, playlists=2)
+  classicRockHits1= Playlist_Songs.insert().values(songs=7, playlists=3)
+  classicRockHits2= Playlist_Songs.insert().values(songs=10, playlists=3)
+  classicRockHits3= Playlist_Songs.insert().values(songs=13, playlists=3)
+  hiphopHits1=Playlist_Songs.insert().values(songs=17, playlists=1)
 
 
   db.session.execute(ninetiesSong1)
@@ -33,6 +37,10 @@ def seed_playlist_songs():
   db.session.execute(ninetiesSong9)
   db.session.execute(ninetiesSong10)
   db.session.execute(ninetiesSong11)
+  db.session.execute(classicRockHits1)
+  db.session.execute(classicRockHits2)
+  db.session.execute(classicRockHits3)
+  db.session.execute(hiphopHits1)
 
   db.session.commit()
 

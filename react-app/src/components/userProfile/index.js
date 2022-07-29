@@ -7,7 +7,7 @@ import { thunkGetPlaylists } from '../../store/playlists';
 import { getSongs } from '../../store/songs';
 import playButton from '../assets/play_button.png';
 import addToPlaylistButton from '../assets/addtoPlaylist.png';
-import circleLogo from '../assets/circleLogo.jpeg';
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 import './userProfile.css'
 
 const UserProfile = () => {
