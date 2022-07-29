@@ -5,7 +5,8 @@ import 'react-jinke-music-player/assets/index.css'
 
 
 const MusicPlayer = () => {
-  const {audioList, clearAudioList} = useAudioList();
+  const {audioList, clearAudioList, } = useAudioList();
+
 
   console.log('musicPlayer audioList: ', audioList)
 
