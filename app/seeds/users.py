@@ -15,7 +15,7 @@ def seed_users():
     jesse = User(
         username='Jesse', email='jesse@aa.io', password='password', photo_url='https://assets.teenvogue.com/photos/5b328c92c7c8447477853577/16:9/w_2560%2Cc_limit/lede.jpg')
     anthony = User(
-        username='Anthony', email='anthony@aa.io', password='password', photo_url='https://www.dccomics.com/sites/default/files/imce/2018/08-AUG/Cyborg_v01_r01_5b6c7d7bef1616.90753062.jpg')
+        username='Anthony', email='anthony@aa.io', password='password', photo_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYXPxZjWFzQixKxnTQydAnfq2c4zQKlg-gQ&usqp=CAU')
     michael = User(
         username='Michael', email='michael@aa.io', password='password', photo_url='https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Michelangelo_%28Teenage_Mutant_Ninja_Turtles%29.jpg/250px-Michelangelo_%28Teenage_Mutant_Ninja_Turtles%29.jpg')
     krishna = User(
