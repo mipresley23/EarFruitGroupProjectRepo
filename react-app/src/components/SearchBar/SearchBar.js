@@ -56,7 +56,7 @@ export default function SearchBar() {
 			>
 				<div className="playlist-card" key={playlist.name}>
 					<div className="playlist-card-contents">
-						<img src={playlist.cover_img_url} />
+						<img src={playlist.cover_img_url} alt=''/>
 						<p id="playlist-name">{playlist.name}</p>
 						<p>By {playlist.user.username}</p>
 					</div>
