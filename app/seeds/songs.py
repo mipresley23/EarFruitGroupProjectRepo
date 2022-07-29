@@ -33,13 +33,21 @@ def seedSongs():
   basketcase= Song(
     name='Basket Case', album='Dookie', albumImgUrl='https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Green_Day_-_Dookie_cover.jpg/220px-Green_Day_-_Dookie_cover.jpg', genre='Rock', artist='Green Day', source='http://ear-fruit-bucket.s3.amazonaws.com/143dca199d6d462388f69cb4151d76c9.mp3', user_Id=6)
   creep= Song(
-    name='Creep', album='Pablo Honey', albumImgUrl='https://m.media-amazon.com/images/I/71uKIfy4T2L._SL1200_.jpg', genre='Rock', artist='Radiohead', source='http://ear-fruit-bucket.s3.amazonaws.com/9924e679360548b3b393f952a82146ad.mp3', user_Id=5)
+    name='Creep', album='Pablo Honey', albumImgUrl='https://m.media-amazon.com/images/I/71uKIfy4T2L._SL1200_.jpg', genre='Rock', artist='Radiohead', source='http://ear-fruit-bucket.s3.amazonaws.com/9924e679360548b3b393f952a82146ad.mp3', user_Id=4)
   blackhole= Song(
-    name='Black Hole Sun', album='Superunknown', albumImgUrl='https://m.media-amazon.com/images/I/716lqTpwbmL._SS500_.jpg', genre='Rock', artist='Soundgarden', source='http://ear-fruit-bucket.s3.amazonaws.com/dd421aab04bf4a08a5da51f59d7a9ddb.mp3', user_Id=5)
+    name='Black Hole Sun', album='Superunknown', albumImgUrl='https://m.media-amazon.com/images/I/716lqTpwbmL._SS500_.jpg', genre='Rock', artist='Soundgarden', source='http://ear-fruit-bucket.s3.amazonaws.com/dd421aab04bf4a08a5da51f59d7a9ddb.mp3', user_Id=4)
   buddyholly= Song(
-    name='Buddy Holly', album='Weezer (Blue Album)', albumImgUrl='https://upload.wikimedia.org/wikipedia/en/7/70/Weezer_-_Blue_Album.png', genre='Rock', artist='Weezer', source='http://ear-fruit-bucket.s3.amazonaws.com/c68fe5330e2c4c18a717df0d2b59b3ad.mp3', user_Id=5)
+    name='Buddy Holly', album='Weezer (Blue Album)', albumImgUrl='https://upload.wikimedia.org/wikipedia/en/7/70/Weezer_-_Blue_Album.png', genre='Rock', artist='Weezer', source='http://ear-fruit-bucket.s3.amazonaws.com/c68fe5330e2c4c18a717df0d2b59b3ad.mp3', user_Id=4)
   smallthings= Song(
-    name='All The Small Things', album='Enema Of The State', albumImgUrl='https://albumart.publicradio.org/mb/cd/cd367c59-eb86-384b-bbc7-62f6d2d677b9_7add.jpg', genre='Rock', artist='Blink-182', source='http://ear-fruit-bucket.s3.amazonaws.com/84bb729b27ff457880836d2944954cf9.mp3', user_Id=5)
+    name='All The Small Things', album='Enema Of The State', albumImgUrl='https://albumart.publicradio.org/mb/cd/cd367c59-eb86-384b-bbc7-62f6d2d677b9_7add.jpg', genre='Rock', artist='Blink-182', source='http://ear-fruit-bucket.s3.amazonaws.com/84bb729b27ff457880836d2944954cf9.mp3', user_Id=4)
+  backToTheBasics= Song(
+    name='BACK TO THE BASICS', album='I NEVER LIKED YOU', albumImgUrl='https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/I_Never_Liked_You_%28Future%29.png/220px-I_Never_Liked_You_%28Future%29.png', genre='Rap', artist='Future', source='http://ear-fruit-bucket.s3.amazonaws.com/507d905607944501a2c0827b7669c7f0.mp3', user_Id=5)
+  justTheTwoOfUs= Song(
+    name='Just the Two of Us', album='Bill Withers', albumImgUrl='', genre='Rap', artist='Bill Withers', source='http://ear-fruit-bucket.s3.amazonaws.com/12b97ef655cf471f8df955d6a4eb59d3.mp3', user_Id=5)
+  lastLast= Song(
+    name='Last Last', album='Love, Damini', albumImgUrl='https://i0.wp.com/sololoaded.com/wp-content/uploads/2022/07/Burnaboy-%E2%80%93-Love-Damini-Ep.webp?fit=526%2C526&ssl=1', genre='Rap', artist='Burna Boy', source='http://ear-fruit-bucket.s3.amazonaws.com/a3cdd0ba542a4b8da31938e3aa24997c.mp3', user_Id=5)
+  looseChange= Song(
+    name='LOOSE CHANGE', album='LOOSE CHANGE', albumImgUrl='https://media.pitchfork.com/photos/62c715e86284eb9164c12cd5/master/pass/Brent-Faiyaz-Wasteland.jpg', genre='Rap', artist='Brent Faiyaz', source='http://ear-fruit-bucket.s3.amazonaws.com/f271f9ef75714c0cbbc168912a97b2d8.mp3', user_Id=5)
 
   db.session.add(grace)
   db.session.add(lastgoodbye)
@@ -60,6 +68,10 @@ def seedSongs():
   db.session.add(lastonestanding)
   db.session.add(anervoustick)
   db.session.add(blink182)
+  db.session.add(backToTheBasics)
+  db.session.add(justTheTwoOfUs)
+  db.session.add(lastLast)
+  db.session.add(looseChange)
 
   db.session.commit()
 

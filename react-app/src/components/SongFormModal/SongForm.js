@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createSong } from '../store/songs';
+import { createSong } from '../../store/songs';
 import './songForm.css'
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
 
-const SongForm = () => {
+const SongForm = ({setShowModal}) => {
     const hiddenFileInput = useRef(null);
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
@@ -68,6 +68,7 @@ const SongForm = () => {
             const response = await dispatch(createSong(song));
 
             if (response === 'Song Uploaded') {
+                setShowModal(false)
                 history.push('/songs');
             }
 
@@ -163,8 +164,8 @@ const SongForm = () => {
                         />
                 </div>
                 {mp3 && <p className='song_form_p'>{mp3.name}</p>}
+                {(mp3Loading) && <p className='song_form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
                 <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
-                {(mp3Loading)&& <p className='song_form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
             </form>
         </div>
     );

@@ -42,3 +42,18 @@ body{
 .search-playlist-link {
     text-decoration: none;
 }
+
+/* button {
+	border-radius: 15px;
+	padding: 5px;
+	border: 0;
+	font-size: 1rem;
+	font-family: Helvetica, sans-serif;
+	cursor: pointer;
+    transition: all .06s ease-in;
+}
+
+button:hover {
+	background-color: rgb(29, 185, 84);
+	color: white;
+} */
