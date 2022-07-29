@@ -23,6 +23,7 @@ body{
 #profile-menu * {
     padding: 0.2rem 0.5rem;
     margin: 0.5rem;
+    z-index: 1;
 }
 
 #root {

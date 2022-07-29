@@ -113,7 +113,6 @@ margin: 0;
     /* background-color: transparent; */
     color: #b3b3b3;
     cursor: pointer;
-	border: 2px white solid;
 }
 
 .delete-playlist-btn:hover {
