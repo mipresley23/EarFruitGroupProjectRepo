@@ -12,3 +12,25 @@
     background-color: hsla(0,0%,100%,.1);
     border-radius: 16px;
 }
+
+.each-playlist-container{
+    height: 300px;
+    width: 200px;
+    background-color: #4a4a4a;
+    border-radius: 12px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#each-playlist-image{
+    height: 150px;
+    width: 150px;
+    border-radius: 12px;
+}
+
+#generic-playlist-container{
+    display: flex;
+}

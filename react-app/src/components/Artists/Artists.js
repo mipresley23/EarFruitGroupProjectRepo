@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import { AudioListContext } from '../../context/audioList';
 import playSongButton from '../assets/play_button.png';
 import addToPlaylistButton from '../assets/addtoPlaylist.png';
-import circleLogo from '../assets/circleLogo.jpeg';
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 import './Artists.css'
 
 function Artists ({songsArr}) {
