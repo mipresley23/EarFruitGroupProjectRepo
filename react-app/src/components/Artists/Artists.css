@@ -3,4 +3,12 @@
     flex-direction: column;
     align-items: flex-start;
     list-style: none;
+    padding-right: 10%;
+}
+
+.artist-song{
+    display: grid;
+    grid-template-columns: 20fr 15fr 20fr 10fr 1fr 1fr;
+    align-items: center;
+    padding: 0
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import AlbumModal from '../AlbumModal';
 import './Albums.css';
 
-function Albums ({songsArr}) {
+function Albums ({songsArr, handlePlaySong, handleAddToQueue}) {
 
     let albums = {}
     songsArr.forEach(song => {
@@ -18,7 +18,7 @@ function Albums ({songsArr}) {
             <ul id='albums'>
                 {Object.keys(albums).map(album => (
                     <li key={album} >
-                        <AlbumModal album={album} albums={albums}/>
+                        <AlbumModal album={album} albums={albums} handlePlaySong={handlePlaySong} handleAddToQueue={handleAddToQueue}/>
                     </li>
                 ))}
             </ul>

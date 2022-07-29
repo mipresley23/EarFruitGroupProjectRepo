@@ -105,19 +105,19 @@ margin: 0;
 }
 .delete-playlist-btn {
 	position: absolute;
-	top: 20px;
-	right: 20px;
-    border-radius: 1rem;
+	top: 30px;
+	right: 150px;
+    /* border-radius: 1rem;
     border: none;
-    font-size: 1rem;
-    background-color: transparent;
-    color: white;
+    font-size: 1rem; */
+    /* background-color: transparent; */
+    color: #b3b3b3;
     cursor: pointer;
 }
 
 .delete-playlist-btn:hover {
     color: red;
-    background-color: black;
+    /* background-color: black; */
     transform: scale(1.04);
 }
 .editNameInput{

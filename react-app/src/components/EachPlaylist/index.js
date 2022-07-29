@@ -30,7 +30,7 @@ const EachPlaylist = () => {
 	const [description, setDescription] = useState(editPlaylist?.description);
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
 	const [imageError, setImageError] = useState(false);
-	const isOwner = sessionUser.id == editPlaylist?.user.id;
+	const isOwner = sessionUser?.id == editPlaylist?.user?.id;
 	const [addSong, setAddSong] = useState(false);
 	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
 
@@ -57,6 +57,14 @@ const EachPlaylist = () => {
 		setDescription(editPlaylist?.description);
 	}, [editPlaylist, sessionUser]);
 
+	useEffect(() => {
+		checkImage(image);
+	}, [image]);
+
+	if (!sessionUser) {
+		history.push('/login')
+		// return null
+	}
 	async function editNameBtn(e) {
 		setEditName(true);
 	}
@@ -99,8 +107,8 @@ const EachPlaylist = () => {
 	}
 	async function onDelete(e) {
 		e.preventDefault();
-		history.push(`/`);
 		await dispatch(thunkDeletePlaylist(playlistId));
+		history.push(`/`);
 	}
 	function checkImage(url) {
 		var image = new Image();
@@ -116,9 +124,7 @@ const EachPlaylist = () => {
 		};
 		image.src = url;
 	}
-	useEffect(() => {
-		checkImage(image);
-	}, [image]);
+
 	// console.log(imageError)
 
 	const handlePlaySong = async (value) => {
@@ -301,9 +307,13 @@ const EachPlaylist = () => {
 					</div>
 				</div>
 				{isOwner && (
-					<button className="delete-playlist-btn" onClick={onDelete}>
-						Delete Playlist
-					</button>
+					// <button className="delete-playlist-btn" onClick={onDelete}>
+					// 	Delete Playlist
+					// </button>
+					<i
+					// className="delete-playlist-btn fa-solid fa-trash fa-xl"
+					onClick={onDelete}
+					class="delete-playlist-btn fa-solid fa-trash-can fa-2x"/>
 				)}
 			</div>
 			<div className="playlist-search-song">

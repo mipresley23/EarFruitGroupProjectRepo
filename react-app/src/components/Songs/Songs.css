@@ -1,25 +1,52 @@
-#songs {
+.fa-play, .fa-list{
+    margin: 0px 5px;
+}
+
+/* #songs {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
+
+    width: 100%;/
+
     height: 100%;
     margin: 0;
-    margin-top: 10px;
-    padding: 0;
-    overflow: scroll;
-    /* scrollbar-color: none; */
+    margin-top: 10pxx;
+    overflow: scroll hidden;
+    scrollbar-color: none;
+} */
+
+.album-header{
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    gap: 20px;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid grey;
+}
+.album-art{
+    height: 10rem;
+    width: 10rem;
 }
 
 #song {
     display: grid;
     grid-template-columns: 1fr 1fr 20fr 15fr 15fr 10fr 1fr 1fr;
+    align-items: center;
 }
 
 #artist-song {
     display: grid;
     grid-template-columns: 20fr 15fr 15fr 10fr 1fr 1fr;
+    align-items: center;
+}
+
+.album-song {
+    display: grid;
+    grid-template-columns: 1fr 20fr 1fr 1fr;
+    align-items: center;
+    padding-right: 10px;
 }
 
 #song-page-song-info-container{
@@ -49,4 +76,8 @@
 
 a:link{
 text-decoration: none;
+}
+
+.song-list-cont {
+    padding: 32px;
 }

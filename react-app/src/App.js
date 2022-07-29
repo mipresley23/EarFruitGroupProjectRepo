@@ -8,14 +8,14 @@ import SideBar from './components/SideBar/SideBar';
 // import SongForm from './components/SongForm';
 import Songs from './components/Songs/Songs';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
+import Developers from './components/Developers/Developers';
 import AllPlaylists from './components/AllPlaylists';
 import EachPlaylist from './components/EachPlaylist';
 import User from './components/User';
 import PlaylistForm from './components/PlaylistForm/PlaylistForm';
 import UserProfile from './components/userProfile';
 import MusicPlayer from './components/musicPlayer';
-
+import PageNotFound from './components/PageNotFound';
 import HomePage from './components/HomePage/HomePage';
 import SearchBar from './components/SearchBar/SearchBar';
 import { authenticate } from './store/session';
@@ -60,9 +60,9 @@ function App() {
           <Route path='/search' exact={true}>
             <SearchBar />
           </Route>
-          <ProtectedRoute path='/users' exact={true} >
-            <UsersList/>
-          </ProtectedRoute>
+          <Route path='/developers' exact={true} >
+            <Developers/>
+          </Route>
           <ProtectedRoute path='/users/:userId' exact={true} >
             <UserProfile />
           </ProtectedRoute>
@@ -77,6 +77,9 @@ function App() {
           </Route>
           <Route path='/playlists/:playlistId' exact={true} >
             <EachPlaylist />
+          </Route>
+          <Route>
+            <PageNotFound/>
           </Route>
         </Switch>
       </div>

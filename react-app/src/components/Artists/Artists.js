@@ -5,7 +5,7 @@ import addToPlaylistButton from '../assets/addtoPlaylist.png';
 import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 import './Artists.css'
 
-function Artists ({songsArr}) {
+function Artists ({songsArr, handlePlaySong, handleAddToQueue}) {
 
 
     const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
@@ -20,26 +20,26 @@ function Artists ({songsArr}) {
     })
     // console.log('ARTISTS', artists['Jimi Hendrix'])
 
-    const handlePlaySong = async(e) => {
-        e.preventDefault();
-        setClearAudioList(true)
-        const audioArr = e.target.value.split(',')
-        // console.log('audioArr: ', audioArr)
-        setAudioList([])
-        await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
-    }
+    // const handlePlaySong = async(e) => {
+    //     e.preventDefault();
+    //     setClearAudioList(true)
+    //     const audioArr = e.target.value.split(',')
+    //     // console.log('audioArr: ', audioArr)
+    //     setAudioList([])
+    //     await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
+    // }
 
-    const handleAddToQueue = async(e) => {
-        e.preventDefault();
-        setClearAudioList(false)
-        const audioArr = e.target.value.split(',')
-        // console.log('audioArr: ', audioArr)
-        // console.log(audioList !== null)
-        // console.log('audioListinQueueFunc: ', audioList)
-        if(audioList){
-            setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
-        }
-    }
+    // const handleAddToQueue = async(e) => {
+    //     e.preventDefault();
+    //     setClearAudioList(false)
+    //     const audioArr = e.target.value.split(',')
+    //     // console.log('audioArr: ', audioArr)
+    //     // console.log(audioList !== null)
+    //     // console.log('audioListinQueueFunc: ', audioList)
+    //     if(audioList){
+    //         setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
+    //     }
+    // }
 
     const handleAddListtoQueue = async(e) => {
         e.preventDefault();
@@ -65,13 +65,27 @@ function Artists ({songsArr}) {
                     {/* <input className='song-buttons' type='image' src={addToPlaylistButton} value={artist} onClick={handleAddListtoQueue}/> */}
                     <ul id='songs'>
                         {artists[artist].map(song => (
-                        <li id='artist-song' key={song.id}>
+                        <li className='artist-song' key={song.id}>
                             <p>{song.name}</p>
                             <p>{song.artist}</p>
                             <p>{song.album}</p>
                             <p>{song.genre}</p>
-                            <input className='song-buttons' id='user-profile-play-button' type='image' src={playSongButton} value={[song.name, song.artist, song.source]} onClick={handlePlaySong}/>
-                            <input className='song-buttons' id='user-profile-queue-button' value={[song.name, song.artist, song.source]} type='image' src={addToPlaylistButton} onClick={handleAddToQueue}/>
+                            <i onClick={() => handlePlaySong([
+                                song.name,
+                                song.artist,
+                                song.source,
+                                song.albumImgUrl,
+                            ])}
+                            class="search-song-button fa-solid fa-play fa-xl"
+                            />
+                            {/* <i onClick={() => handleAddToQueue([
+					        	song.name,
+					        	song.artist,
+					        	song.source,
+					        	song.albumImgUrl,
+					        ])}
+					        class="search-song-button fa-solid fa-list fa-xl"
+					        /> */}
                         </li>
                         ))}
                     </ul>

@@ -8,12 +8,30 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#profile-menu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 8%;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.949);
+    border: 3px solid black;
+    border-radius: 10%;
+    padding: 0;
+}
+
+#profile-menu * {
+    padding: 0.2rem 0.5rem;
+    margin: 0.5rem;
+    z-index: 1;
+}
+
 #root {
     height: 100vh;
     width: 100vw;
     display: grid;
     grid-template-columns:minmax(150px,17%) minmax(83%,93%);
-    grid-template-rows: minmax(50px,100px) minmax(83%,93%);
+    grid-template-rows: 9% 91%;
     grid-template-areas:
     'sidebar navbar'
     'sidebar content';
