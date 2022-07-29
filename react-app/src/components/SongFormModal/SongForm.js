@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createSong } from '../store/songs';
-import './songForm.css'
+import { createSong } from '../../store/songs';
+import '../songForm.css'
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
 
-const SongForm = () => {
+const SongForm = ({setShowModal}) => {
     const hiddenFileInput = useRef(null);
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
@@ -68,6 +68,7 @@ const SongForm = () => {
             const response = await dispatch(createSong(song));
 
             if (response === 'Song Uploaded') {
+                setShowModal(false)
                 history.push('/songs');
             }
 

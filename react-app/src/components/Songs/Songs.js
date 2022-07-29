@@ -11,7 +11,7 @@ import ConfirmDeleteModal from '../ConfirmDeleteModal';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
 import playSongButton from '../assets/play_button.png';
 import addToPlaylistButton from '../assets/addtoPlaylist.png';
-import circleLogo from '../assets/circleLogo.jpeg';
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 
 import './Songs.css'
 
@@ -67,10 +67,6 @@ function Songs({songPage}) {
     console.log('audioList:', audioList)
     return (
         <>
-            <NavLink id='add-song-navlink' to='/add-song' >
-                <button id='add-song-button' type='button'>+</button>
-                <label id='add-song-label'>Add Song</label>
-            </NavLink>
             {songPage === 'artists' && <Artists songsArr={songsArr}/>}
             {songPage === 'albums' && <Albums songsArr={songsArr}/>}
             {songPage === '' && <ul id='songs'>

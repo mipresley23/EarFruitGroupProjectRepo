@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongs } from "../../store/songs";
 import { NavLink } from "react-router-dom";
-import AudioListProvider, { AudioListContext } from "../../context/audioList";
-import circleLogo from "../assets/circleLogo.jpeg";
+import AudioListProvider, { AudioListContext } from '../../context/audioList';
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 import "./SearchBar.css";
 
 export default function SearchBar() {
