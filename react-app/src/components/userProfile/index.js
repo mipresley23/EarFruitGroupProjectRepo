@@ -68,38 +68,30 @@ const UserProfile = () => {
     setPlaylists(Object.values(playlistSelector))
   }, [playlistSelector])
 
-
-  const handleEdit = async (e) => {
-    e.preventDefault();
-    const editUser = {
-      id: userId,
-      photo_url: photoUrl
-    }
-    // console.log('editUser: ', editUser)
-    await dispatch(editUserThunk(editUser))
-    setShowNewPicForm(false)
-  }
-
-  const handlePlaySong = async(e) => {
-    e.preventDefault();
-    setClearAudioList(true)
-    console.log('play song target:', e.target.value)
-    const audioArr = e.target.value.split(',')
-    console.log('play song audioArr: ', audioArr)
-    setAudioList([])
-    await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
-}
- const handleAddToQueue = async(e) => {
-    e.preventDefault();
-    setClearAudioList(false)
-    const audioArr = e.target.value.split(',')
-    console.log('queue audioArr: ', audioArr)
-    if(audioList){
-        setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
-    }
-}
-
-
+	const handlePlaySong = async (value) => {
+		console.log(value);
+		setClearAudioList(true);
+		setAudioList([]);
+		if (value[3]) {
+			await setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: value[3],
+					musicSrc: value[2],
+				},
+			]);
+		} else {
+			await setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: circleLogo,
+					musicSrc: value[2],
+				},
+			]);
+		}
+	};
 
 
   if (!user) return null;
@@ -139,8 +131,17 @@ const UserProfile = () => {
                   </li>
                 </div>
                 <div id='song-buttons-container'>
-                  <input className='song-buttons' id='user-profile-play-button' type='image' src={playButton} value={[song.name, song.artist, song.source]} onClick={handlePlaySong}/>
-                  <input className='song-buttons' id='user-profile-queue-button' value={[song.name, song.artist, song.source]} type='image' src={addToPlaylistButton} onClick={handleAddToQueue}/>
+                <i id="profile-play-button"
+						onClick={() =>
+							handlePlaySong([
+								song.name,
+								song.artist,
+								song.source,
+								song.albumImgUrl,
+							])
+						}
+						class="splash-song-button fa-solid fa-play fa-lg"
+					/>
                 </div>
               </div>
             ))
