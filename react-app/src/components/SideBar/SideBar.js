@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { thunkGetPlaylists, thunkAddPlaylist } from "../../store/playlists";
+import SongFormModal from "../SongFormModal";
 import circleLogo from '../assets/circleLogo.jpeg';
 import wordLogo from '../assets/earfruit-logo.png';
 import playListImage from '../assets/my-playlist-img.png';
@@ -89,6 +90,7 @@ export default function SideBar() {
 				<i className="fa fa-music"></i>
 				Songs
 			</NavLink>
+			<SongFormModal />
 			<div className="sidebar-link" onClick={onSubmit}>
 				<i className="fa fa-plus"></i>
 				Create Playlist
