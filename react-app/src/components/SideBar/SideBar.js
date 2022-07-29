@@ -72,11 +72,7 @@ export default function SideBar() {
 					src={circleLogo}
 					alt="circle logo"
 				/>
-				<img
-					id="side-bar-word-logo"
-					src={wordLogo}
-					alt="word logo"
-				/>
+				<p id="side-bar-word-logo">EarFruit</p>
 			</div>
 			<div className="side-bar-links"></div>
 			<NavLink className="sidebar-link" to="/" exact={true}>

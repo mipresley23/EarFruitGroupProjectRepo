@@ -13,24 +13,56 @@
     border-radius: 16px;
 }
 
-.each-playlist-container{
-    height: 300px;
-    width: 200px;
-    background-color: #4a4a4a;
-    border-radius: 12px;
-    margin: 10px;
-    display: flex;
+.song-container{
+    display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    min-height: 242px;
+	min-width: 164px;
+	height: 30vh;
+	width: 19vh;
+	background-color: #181818;
+	font-family: Helvetica, sans-serif;
+	border-radius: 3%;
+	padding: 10px 10px;
+	cursor: pointer;
+	transition: all 0.15s ease-in;
 }
 
-#each-playlist-image{
+.card-image{
     height: 150px;
     width: 150px;
     border-radius: 12px;
 }
 
-#generic-playlist-container{
+.card-containers{
     display: flex;
+	gap: 16px;
+	overflow-x: scroll;
+    height:320px;
+    margin-top: 20px;
+
+}
+
+.genre-container{
+    border-top: 10px solid rgba(0,0,0,98%);
+}
+
+.song-container:hover{
+    background-color: hsla(0, 0%, 100%, 0.1);
+    cursor:default;
+}
+
+.song-card-buttons{
+    background-color: #181818;
+    border: none;
+    border-radius: 12px;
+}
+
+.song-card-buttons:hover{
+    background-color: hsla(0, 0%, 100%, 0.1);
+}
+
+#splash-play-button:hover{
+    cursor: pointer;
 }

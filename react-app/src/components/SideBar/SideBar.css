@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
 .side-bar-container,
 .side-bar-playlist-list{
     padding: 10px;
@@ -29,18 +31,28 @@
 }
 
 #side-bar-circle-logo{
-    width: 25%;
+    width: 40px;
     top: 10px;
     margin-bottom: 50px;
 }
 
 #side-bar-word-logo{
-    width: 60%;
+    margin-top: 0;
     margin-bottom: 50px;
+    margin-left: 5px;
+    color: rgb(125,237,98);
+    font-family: (Open+Sans);
+    font-size:x-large;
+    font-weight: bolder;
+    font-family: 'Mulish', sans-serif;
+
 }
 
 #side-bar-logo-imgs{
+    margin-top: 15px;
+    margin-left: 15px;
     display: flex;
+    align-items: center
 }
 
 .side-bar-playlist-list {
