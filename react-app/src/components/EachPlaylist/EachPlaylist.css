@@ -54,6 +54,16 @@
     align-items: center;
 
 }
+.playlist-description-owner {
+	color: #b3b3b3;
+	font-weight: 200;
+	font-size: 1.1rem;
+	cursor: pointer;
+}
+.playlist-description-owner:hover {
+	color: #1eb553;
+	font-weight: bolder;
+}
 .playlist-username {
 list-style: none;
 padding: 0;
