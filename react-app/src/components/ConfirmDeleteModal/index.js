@@ -9,9 +9,9 @@ function ConfirmDeleteModal({song}) {
 
   return (
     <>
-      <button id='delete-modal-button' onClick={() => {
+      <i className="fas fa-trash fa-lg" onClick={() => {
         setShowModal(true)
-        }}><img id='delete-song-modal-img' src={deleteButton}></img></button>
+        }}></i>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ConfirmDelete song={song} setShowModal={setShowModal}/>
