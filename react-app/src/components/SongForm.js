@@ -163,8 +163,8 @@ const SongForm = () => {
                         />
                 </div>
                 {mp3 && <p className='song_form_p'>{mp3.name}</p>}
+                {(mp3Loading) && <p className='song_form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
                 <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
-                {(mp3Loading)&& <p className='song_form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
             </form>
         </div>
     );
