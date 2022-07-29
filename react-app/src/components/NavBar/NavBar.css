@@ -66,11 +66,12 @@
     cursor: pointer;
     transition: all .06s ease-in;
 }
-.logout-btn:hover {
+.logout-btn:hover,
+#demo-button:hover {
     background-color: #1DB954;
-    color: white;
 }
-.nav-list li:hover {
+.nav-list li:hover,
+#demo-button:hover {
     color: white;
     transform: scale(1.1);
 }
@@ -78,15 +79,17 @@
     color: white;
 }
 
-#demo-button{
-  width: 80px;
-  height: 30px;
-  border-radius: 15px;
-  transition-duration: .2s;
-}
-
-#demo-button:hover{
-    background-color: #1DB954;
+#demo-button {
+    margin-left: 13px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    padding: 15px 18px;
+    font-weight: bold;
+    border-radius: 500px;
+    border: 0px;
+    cursor: pointer;
+    transition: all .06s ease-in;
 }
 
 #nav-bar-user-info{

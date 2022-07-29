@@ -24,11 +24,11 @@ const SongForm = ({setShowModal}) => {
     useEffect(() => {
         const errors = [];
 
-        if (!name) errors.push('The song name is required');
-        if (!artist) errors.push('The artist is required');
-        if (!album) errors.push('The album is required');
-        if (!genre) errors.push('The genre is required');
-        if (!mp3) errors.push('The song mp3 is required');
+        if (!name) errors.push('The song name is required.');
+        if (!artist) errors.push('The artist is required.');
+        if (!album) errors.push('The album is required.');
+        if (!genre) errors.push('The genre is required.');
+        if (!mp3) errors.push('The song mp3 is required.');
 
         setErrors(errors);
     }, [name, album, genre, artist, mp3]);
@@ -53,7 +53,7 @@ const SongForm = ({setShowModal}) => {
         if (res.ok) {
             const jsonRes = await res.json();
             setMP3Loading(false);
-            console.log('------jsonRes----', jsonRes.source)
+            // console.log('------jsonRes----', jsonRes.source)
 
             const song = {
                 name,
@@ -64,7 +64,7 @@ const SongForm = ({setShowModal}) => {
                 source: jsonRes.source
             };
 
-            console.log('------song------', song)
+            // console.log('------song------', song)
             const response = await dispatch(createSong(song));
 
             if (response === 'Song Uploaded') {
@@ -75,22 +75,23 @@ const SongForm = ({setShowModal}) => {
         }
         else {
             setMP3Loading(false);
-            errors.push('The file must be an mp3');
+            errors.push('The file must be an mp3.');
             setErrors(errors);
-            console.log("---error uploading song----", res)
+            // console.log("---error uploading song----", res)
         }
     }
 
     return (
         <div className='song_form_div'>
             <form onSubmit={handleSubmit} className='song_form'>
-                <div className='song_form_errors'>
+                { errors.length > 0 && <div className='song_form_errors'>
                     {errors.map((error, ind) => (
                         <div key={ind} className='song_form_error'>{error}</div>
                     ))}
-                </div>
+                </div> }
+
                 <div className='song_form_divs'>
-                    <label htmlFor='name'>Name: </label>
+                    <div className='sf_label'><label htmlFor='name'>Name</label></div>
                     <input
                         name='name'
                         type='text'
@@ -100,7 +101,7 @@ const SongForm = ({setShowModal}) => {
                     />
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='artist'>Artist: </label>
+                <div className='sf_label'><label htmlFor='artist'>Artist</label></div>
                     <input
                         name='artist'
                         type='text'
@@ -110,7 +111,7 @@ const SongForm = ({setShowModal}) => {
                     />
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='album'>Album: </label>
+                    <div className='sf_label'><label htmlFor='album'>Album</label></div>
                     <input
                         name='album'
                         type='text'
@@ -120,36 +121,36 @@ const SongForm = ({setShowModal}) => {
                     />
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='albumImgUrl'>Album Art URL: </label>
+                    <div className='sf_label'><label htmlFor='albumImgUrl'>Album Art URL</label></div>
                     <input
                         name='albumImgUrl'
                         type='text'
-                        placeholder='Album Art URL'
+                        placeholder='(Optional) Album Art URL'
                         value={albumImgUrl}
                         onChange={(e) => setAlbumImgUrl(e.target.value)}
                     />
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='genre'>Genre: </label>
+                    <div className='sf_label'><label htmlFor='genre'>Genre</label></div>
                     <select
                         name='genre'
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
                     >
-                        <option value='Rock'>Rock</option>
-                        <option value='Pop'>Pop</option>
-                        <option value='Rap'>Rap</option>
-                        <option value='Electronic'>Electronic</option>
-                        <option value='Country'>Country</option>
-                        <option value='Classical'>Classical</option>
-                        <option value='Jazz'>Jazz</option>
-                        <option value='Blues'>Blues</option>
-                        <option value='Metal'>Metal</option>
-                        <option value='Other'>Other</option>
+                        <option className='sf_option' value='Rock'>Rock</option>
+                        <option className='sf_option' value='Pop'>Pop</option>
+                        <option className='sf_option' value='Rap'>Rap</option>
+                        <option className='sf_option' value='Electronic'>Electronic</option>
+                        <option className='sf_option' value='Country'>Country</option>
+                        <option className='sf_option' value='Classical'>Classical</option>
+                        <option className='sf_option' value='Jazz'>Jazz</option>
+                        <option className='sf_option' value='Blues'>Blues</option>
+                        <option className='sf_option' value='Metal'>Metal</option>
+                        <option className='sf_option' value='Other'>Other</option>
                     </select>
                 </div>
                 <div className='song_form_divs'>
-                    <label htmlFor='source'>Upload: </label>
+                    <div className='sf_label'><label htmlFor='source'>Upload</label></div>
                         <button onClick={(e)=> handleClick(e)}>
                             Upload mp3
                         </button>
@@ -163,8 +164,8 @@ const SongForm = ({setShowModal}) => {
                         />
                 </div>
                 {mp3 && <p className='song_form_p'>{mp3.name}</p>}
+                {(mp3Loading) && <p className='song_form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
                 <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
-                {(mp3Loading)&& <p className='song_form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
             </form>
         </div>
     );

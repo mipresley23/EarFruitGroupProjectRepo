@@ -13,7 +13,7 @@
     text-decoration: none;
     color: rgb(168, 167, 167);
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.01rem;
     margin-left: 10px;
     transition: all 0.07s ease-in;
     cursor: pointer;
@@ -50,5 +50,6 @@
 }
 
 .sidebar-playlist-link {
-    font-size: 1.05rem;
+    font-size: 1rem;
+    font-weight: 100;
 }
