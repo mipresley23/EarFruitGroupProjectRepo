@@ -63,8 +63,8 @@ const EachPlaylist = () => {
 	}, [image]);
 
 	if (!sessionUser) {
-		history.push('/')
-		return null
+		history.push('/login')
+		// return null
 	}
 	async function editNameBtn(e) {
 		setEditName(true);
