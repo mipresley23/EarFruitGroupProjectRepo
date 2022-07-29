@@ -59,18 +59,6 @@ export default function PlaylistSearchBar({ func }) {
 					<i onClick={() => addSongToPlaylist(playlistId, song.id)} class="search-song-button fa fa-plus fa-xl"></i>
 				</td>
 			</tr>
-
-			/* <div className="song-card-contents">
-					<p>{songNum}</p>
-					<p id="song-name">{song.name}</p>
-
-					<p id="song-name">{song.artist}</p>
-					<p>By {song.user_Id.username}</p>
-				</div>
-				<div className="song-card-buttons">
-					<i class="fa fa-play fa-lg"></i>
-					<img className='song-buttons song-card-queue-button' value={[song.name, song.artist, song.source]} type='image' src={addToPlaylistButton}/>
-				</div> */
 		);
 	});
 

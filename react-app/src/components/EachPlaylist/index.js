@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	thunkGetPlaylists,
@@ -7,11 +7,11 @@ import {
 } from "../../store/playlists";
 import { useHistory, useParams } from "react-router-dom";
 import "./EachPlaylist.css";
-
 import defaultPlaylistImage from "../assets/my-playlist-img.png";
-
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
+import circleLogo from '../assets/circleLogo.jpeg';
+import AudioListProvider, { AudioListContext } from '../../context/audioList';
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -32,6 +32,7 @@ const EachPlaylist = () => {
 	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser.id == editPlaylist?.user.id;
 	const [addSong, setAddSong] = useState(false);
+	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
 
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
@@ -119,9 +120,36 @@ const EachPlaylist = () => {
 		checkImage(image);
 	}, [image]);
 	// console.log(imageError)
+
+	const handlePlaySong = async (value) => {
+		console.log(value);
+		setClearAudioList(true);
+		setAudioList([]);
+		if (value[3]) {
+			await setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: value[3],
+					musicSrc: value[2],
+				},
+			]);
+		} else {
+			await setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: circleLogo,
+					musicSrc: value[2],
+				},
+			]);
+		}
+	};
+
 	const openSearchBar = () => {
 		setAddSong(true);
 	};
+
 	const closeSearchBar = () => {
 		setAddSong(false);
 		dispatch(thunkGetPlaylistSongs(playlistId));
@@ -132,7 +160,34 @@ const EachPlaylist = () => {
 		await fetch(`/api/playlists/delete-song/${playlistId}/${songId}`);
 		dispatch(thunkGetPlaylistSongs(playlistId));
 	};
-
+	let songNum = 0;
+	const playlistSongList = playlistSongs.map((song) => {
+		songNum++;
+		return (
+			<tr className="search-song-row">
+				<td className="search-song-number">{songNum}</td>
+				<td className="">
+					<div className="search-song-name">{song.name}</div>
+					<div className="search-song-artist">{song.artist}</div>
+				</td>
+				<td className="search-song-album">{song.album}</td>
+				<td className="search-song-button-cont">
+					<i onClick={() =>
+							handlePlaySong([
+								song.name,
+								song.artist,
+								song.source,
+								song.albumImgUrl,
+							])
+						} class="search-song-button fa fa-play fa-xl"></i>
+					<i
+						onClick={() => removeSongFromPlaylist(playlistId, song.id)}
+						class="search-song-button fa-solid fa-trash fa-xl"
+					></i>
+				</td>
+			</tr>
+		);
+	});
 	if (!editPlaylist) return null;
 	return (
 		<div className="playlist-cont">
@@ -166,12 +221,26 @@ const EachPlaylist = () => {
 				<div className="playlist-description-cont">
 					<ul>
 						<li className="playlist-description">
-							{isOwner && !editDescription && <h3 className="playlist-description-owner" onClick={editDescriptionBtn}>{editPlaylist?.description}</h3>}
-							{!isOwner && <h3 className="playlist-description-not-owner">{editPlaylist?.description}</h3>}
+							{isOwner && !editDescription && (
+								<h3
+									className="playlist-description-owner"
+									onClick={editDescriptionBtn}
+								>
+									{editPlaylist?.description}
+								</h3>
+							)}
+							{!isOwner && (
+								<h3 className="playlist-description-not-owner">
+									{editPlaylist?.description}
+								</h3>
+							)}
 
-							{isOwner && !editDescription && description?.length==0 && (<button onClick={editDescriptionBtn}>Add a Description</button>)}
+							{isOwner && !editDescription && description?.length == 0 && (
+								<button onClick={editDescriptionBtn}>Add a Description</button>
+							)}
 							{isOwner && editDescription && (
-								<input className="playlist-description-input"
+								<input
+									className="playlist-description-input"
 									autoFocus
 									placeholder="Playlist Description"
 									value={description}
@@ -179,7 +248,12 @@ const EachPlaylist = () => {
 								/>
 							)}
 							{isOwner && editDescription && (
-								<button className="playlist-description-edit-btn" onClick={updatePlaylist}>Update Description</button>
+								<button
+									className="playlist-description-edit-btn"
+									onClick={updatePlaylist}
+								>
+									Update Description
+								</button>
 							)}
 							{isOwner && editDescription && (
 								<button onClick={cancelEditDescriptionBtn}>Cancel</button>
@@ -232,26 +306,31 @@ const EachPlaylist = () => {
 					</button>
 				)}
 			</div>
-			{!addSong && <button onClick={openSearchBar}>Add Song</button>}
-			{addSong && <PlaylistSearchBar func={closeSearchBar} />}
-			{/* {addSong && <button className="close-playlist-search-btn" onClick={closeSearchBar}>X</button>} */}
-			{!addSong && (
-				<ul>
-					{playlistSongs &&
-						playlistSongs.map((song) => (
-							<li key={song.id}>
-								{song.name}
-								<button
-									onClick={() => {
-										removeSongFromPlaylist(playlistId, song.id);
-									}}
-								>
-									Remove
-								</button>
-							</li>
-						))}
-				</ul>
-			)}
+			<div className="playlist-search-song">
+				{/* {!addSong && <button className="playlist-add-song-btn" onClick={openSearchBar}>Add Song</button>} */}
+				{isOwner && !addSong && (
+					<i
+						onClick={openSearchBar}
+						className="playlist-add-song-btn fa fa-plus fa-3x"
+					></i>
+				)}
+				{addSong && <PlaylistSearchBar func={closeSearchBar} />}
+			</div>
+			<div className="playlist-song-list">
+				{!addSong && (
+					<table className="search-song-table">
+						<thead>
+							<tr className="border-white">
+								<th className="search-song-number">#</th>
+								<th className="">Title</th>
+								<th className="">Album</th>
+								<th className=""></th>
+							</tr>
+						</thead>
+						<tbody>{playlistSongList}</tbody>
+					</table>
+				)}
+			</div>
 		</div>
 	);
 };

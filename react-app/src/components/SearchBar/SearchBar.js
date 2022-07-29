@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongs } from "../../store/songs";
 import { NavLink } from "react-router-dom";
-import AudioListProvider, { AudioListContext } from '../../context/audioList';
-import circleLogo from '../assets/circleLogo.jpeg';
+import AudioListProvider, { AudioListContext } from "../../context/audioList";
+import circleLogo from "../assets/circleLogo.jpeg";
 import "./SearchBar.css";
 
 export default function SearchBar() {
@@ -18,8 +18,8 @@ export default function SearchBar() {
 			song.artist.toUpperCase().includes(search.toUpperCase())
 	);
 	// console.log(searchSongs);
-	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
-
+	const { audioList, setAudioList, clearAudioList, setClearAudioList } =
+		useContext(AudioListContext);
 
 	async function onSubmit(e) {
 		e.preventDefault();
@@ -65,43 +65,85 @@ export default function SearchBar() {
 		);
 	});
 
-	const handlePlaySong = async(value) => {
-		console.log(value)
-		setClearAudioList(true)
-		setAudioList([])
-		await setAudioList([{name: value[0], singer: value[1], cover: circleLogo, musicSrc: value[2]}])
-	}
+	const handlePlaySong = async (value) => {
+		console.log(value);
+		setClearAudioList(true);
+		setAudioList([]);
+		if (value[3]) {
+			await setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: value[3],
+					musicSrc: value[2],
+				},
+			]);
+		} else {
+			await setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: circleLogo,
+					musicSrc: value[2],
+				},
+			]);
+		}
+	};
 
-	const handleAddToQueue = async(value) => {
-        setClearAudioList(false)
-        // const audioArr = e.target.value.split(',')
-        // console.log('audioArr: ', audioArr)
-        // console.log(audioList !== null)
-        // console.log('audioListinQueueFunc: ', audioList)
-        if(audioList){
-            setAudioList([{name: value[0], singer: value[1], cover: circleLogo, musicSrc: value[2]}])
-        }
-	}
+	const handleAddToQueue = async (value) => {
+		setClearAudioList(false);
+		// const audioArr = e.target.value.split(',')
+		// console.log('audioArr: ', audioArr)
+		// console.log(audioList !== null)
+		// console.log('audioListinQueueFunc: ', audioList)
+		if (audioList) {
+			setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: value[3],
+					musicSrc: value[2],
+				},
+			]);
+		}
+	};
 
 	let songNum = 0;
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);
+		console.log(song);
 		songNum++;
 		return (
 			<tr className="search-song-row">
 				<td className="search-song-number">{songNum}</td>
 				<td className="">
-					<div className="search-song-name">
-						{song.name}
-					</div>
-					<div className="search-song-artist">
-						{song.artist}
-					</div>
+					<div className="search-song-name">{song.name}</div>
+					<div className="search-song-artist">{song.artist}</div>
 				</td>
 				<td className="search-song-album">{song.album}</td>
 				<td className="search-song-button-cont">
-					<i onClick={()=>handlePlaySong([song.name,song.artist,song.source])} class="search-song-button fa-solid fa-play fa-lg"/>
-					<i onClick={()=>handleAddToQueue([song.name,song.artist,song.source])} class="search-song-button fa-solid fa-list fa-lg"></i>
+					<i
+						onClick={() =>
+							handlePlaySong([
+								song.name,
+								song.artist,
+								song.source,
+								song.albumImgUrl,
+							])
+						}
+						class="search-song-button fa-solid fa-play fa-lg"
+					/>
+					<i
+						onClick={() =>
+							handleAddToQueue([
+								song.name,
+								song.artist,
+								song.source,
+								song.albumImgUrl,
+							])
+						}
+						class="search-song-button fa-solid fa-list fa-lg"
+					></i>
 				</td>
 			</tr>
 

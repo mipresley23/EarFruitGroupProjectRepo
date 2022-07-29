@@ -209,3 +209,28 @@ margin: 0;
 .playlist-description-edit-btn {
 	margin-right: 10px;
 }
+
+.playlist-search-song {
+	position: relative;
+}
+.playlist-add-song-btn {
+	position:fixed;
+	right: 20px;
+	bottom: 100px;
+	cursor: pointer;
+	opacity: 0.6;
+	border-radius: 50%;
+	padding: 5px;
+	color: #1eb553;
+	background-color: white;
+}
+.playlist-add-song-btn:hover {
+	color: white;
+	background-color: rgb(29, 185, 84);
+	opacity: 1;
+}
+
+.playlist-song-list {
+	padding: 32px 32px;
+	padding-right: 64px;
+}
