@@ -307,9 +307,13 @@ const EachPlaylist = () => {
 					</div>
 				</div>
 				{isOwner && (
-					<button className="delete-playlist-btn" onClick={onDelete}>
-						Delete Playlist
-					</button>
+					// <button className="delete-playlist-btn" onClick={onDelete}>
+					// 	Delete Playlist
+					// </button>
+					<i
+					// className="delete-playlist-btn fa-solid fa-trash fa-xl"
+					onClick={onDelete}
+					class="delete-playlist-btn fa-solid fa-trash-can fa-3x"/>
 				)}
 			</div>
 			<div className="playlist-search-song">
