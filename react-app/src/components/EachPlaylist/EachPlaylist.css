@@ -20,6 +20,7 @@
 	margin: 0;
 	font-size: 5rem;
 	cursor: pointer;
+	transition: all .2s ease-in;
 }
 .playlist-name-not-owner {
     padding: 0;
@@ -59,10 +60,17 @@
 	font-weight: 200;
 	font-size: 1.1rem;
 	cursor: pointer;
+	transition: all 0.06s ease-in;
 }
 .playlist-description-owner:hover {
 	color: #1eb553;
-	font-weight: bolder;
+    transform: scale(1.1);
+}
+
+.playlist-description-not-owner{
+	color: #b3b3b3;
+	font-weight: 200;
+	font-size: 1.1rem;
 }
 .playlist-username {
 list-style: none;
@@ -125,7 +133,21 @@ margin: 0;
 .editNameInput:focus {
 	outline: none; /* Removes the border when the input is clicked */
 }
+.playlist-description-input{
+	font-size: 1.1rem;
+	font-weight: 200;
+	background-color: transparent;
+	color: white;
+	border: none;
+	width: 70%;
+}
 
+.playlist-description-input:focus {
+	outline: none;
+}
+.playlist-description-input::placeholder {
+	color: #b3b3b3a3;
+}
 .edit-image-input {
 	border: 1px;
 	background-color: rgb(207, 207, 207);
@@ -144,6 +166,20 @@ margin: 0;
 	border-radius: 150px;
 }
 
+.playlist-description-cont button {
+	border-radius: 15px;
+	padding: 5px;
+	border: 0;
+	font-size: 1rem;
+	font-family: Helvetica, sans-serif;
+	cursor: pointer;
+	transition: all .1s ease-in;
+}
+
+.playlist-description-cont button:hover {
+	background-color: rgb(29, 185, 84);
+	color: white;
+}
 .edit-image-cancel-btn {
 	border-top-right-radius: 150px;
 	border-bottom-right-radius: 150px;
@@ -168,4 +204,8 @@ margin: 0;
 
 .close-playlist-search-btn:hover {
 	color: rgb(29, 185, 84)
+}
+
+.playlist-description-edit-btn {
+	margin-right: 10px;
 }

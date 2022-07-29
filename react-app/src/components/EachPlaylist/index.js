@@ -167,17 +167,19 @@ const EachPlaylist = () => {
 					<ul>
 						<li className="playlist-description">
 							{isOwner && !editDescription && <h3 className="playlist-description-owner" onClick={editDescriptionBtn}>{editPlaylist?.description}</h3>}
-							{!isOwner && <h3>{editPlaylist?.description}</h3>}
+							{!isOwner && <h3 className="playlist-description-not-owner">{editPlaylist?.description}</h3>}
 
 							{isOwner && !editDescription && description?.length==0 && (<button onClick={editDescriptionBtn}>Add a Description</button>)}
 							{isOwner && editDescription && (
-								<input
+								<input className="playlist-description-input"
+									autoFocus
+									placeholder="Playlist Description"
 									value={description}
 									onChange={(e) => setDescription(e.target.value)}
 								/>
 							)}
 							{isOwner && editDescription && (
-								<button onClick={updatePlaylist}>Update Description</button>
+								<button className="playlist-description-edit-btn" onClick={updatePlaylist}>Update Description</button>
 							)}
 							{isOwner && editDescription && (
 								<button onClick={cancelEditDescriptionBtn}>Cancel</button>
