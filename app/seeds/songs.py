@@ -1,5 +1,4 @@
 from app.models import db, Song
-
 # emtpy seed file template: name= Song(
 #   name='', album='', albumImgUrl='', genre='', artist='', source='', user_Id=)
 def seedSongs():
