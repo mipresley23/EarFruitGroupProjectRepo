@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import Album from './Album';
 
 function AlbumModal({album, albums}) {
-  console.log('SONG : ', albums[album])
+
   const [showModal, setShowModal] = useState(false);
+  const [albumArt, setAlbumArt] = useState('https://protkd.com/wp-content/uploads/2017/04/default-image.jpg');
+
+  useEffect(() => {
+    albums[album].forEach(song => {
+      // console.log(song.albumImgUrl)
+      if (song.albumImgUrl) setAlbumArt(song.albumImgUrl)
+    })
+  }, [albums, album])
 
   return (
     <>
@@ -12,7 +20,7 @@ function AlbumModal({album, albums}) {
         setShowModal(true)
         }}>
           <div className='album-card'>
-            <img src='https://protkd.com/wp-content/uploads/2017/04/default-image.jpg' alt='album cover'/>
+            <img src={albumArt} alt='album cover'/>
             <div className='album-card-info'>
               <div className='album-card-info-title'>
                 <h3>{album}</h3>
