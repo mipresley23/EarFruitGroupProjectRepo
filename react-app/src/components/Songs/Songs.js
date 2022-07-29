@@ -156,7 +156,7 @@ function Songs({ songPage }) {
 			)}
 			{songPage === "" && (
 				// <ul id="songs">
-					<div className="playlist-song-list">
+					<div className="song-list-cont">
 						<table className="search-song-table">
 							<thead>
 								<tr className="border-white">

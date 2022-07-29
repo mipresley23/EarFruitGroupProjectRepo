@@ -75,3 +75,7 @@
 a:link{
 text-decoration: none;
 }
+
+.song-list-cont {
+    padding: 32px;
+}
