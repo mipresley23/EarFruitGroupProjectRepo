@@ -13,7 +13,7 @@ const LoginForm = () => {
 
   const errorConverter = (err) => {
     if (err === 'Email is not found.') {
-      return 'User is not found.';
+      return 'Email is incorrect.';
     } else if (err === 'Email is required.') {
       return 'Email/Username is required.'
     } else {
