@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import SongForm from './SongForm';
 import editButton from '../assets/edit_button.png';
-import './songForm.css';
+import '../songForm.css';
 import '../SideBar/SideBar.css'
 
 function SongFormModal() {
