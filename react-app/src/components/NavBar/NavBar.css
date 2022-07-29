@@ -68,12 +68,10 @@
     cursor: pointer;
     transition: all .06s ease-in;
 }
+
 .logout-btn:hover,
 #demo-button:hover {
     background-color: rgb(125,237,98);
-}
-
-#demo-button:hover {
     transform: scale(1.1);
 }
 
