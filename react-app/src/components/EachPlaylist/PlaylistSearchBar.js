@@ -79,7 +79,7 @@ export default function PlaylistSearchBar({ func }) {
 					type="text"
 					id="search"
 					name="search"
-					placeholder="Artists, songs, or playlists"
+					placeholder="Artists or songs"
 					onChange={(e) => setSearch(e.target.value)}
 				/>
 				<i className="close-playlist-search-btn fa fa-close fa-xl" onClick={()=>closeSearchBar()}></i>

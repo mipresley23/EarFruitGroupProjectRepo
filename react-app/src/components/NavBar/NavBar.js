@@ -42,6 +42,11 @@ const NavBar = ({setSongPage}) => {
 								Sign Up
 							</NavLink>
 						</li>
+						<li>
+							<NavLink to="/developers" exact={true} activeClassName="active">
+								Developers
+							</NavLink>
+						</li>
 						<button id="demo-button" type="button" onClick={handleDemo}>Demo</button>
 					</>
 				)}
@@ -54,8 +59,8 @@ const NavBar = ({setSongPage}) => {
 							</NavLink>
 						</div>
 						<li>
-							<NavLink to="/users" exact={true} activeClassName="active">
-								Users
+							<NavLink to="/developers" exact={true} activeClassName="active">
+								Developers
 							</NavLink>
 						</li>
 						<li>
