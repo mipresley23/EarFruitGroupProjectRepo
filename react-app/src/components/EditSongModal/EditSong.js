@@ -6,7 +6,7 @@ import { editSong, getSongs } from '../../store/songs';
 // import { login } from '../store/session';
 
 const EditSong = ({song, setShowModal}) => {
-    console.log(song)
+    // console.log(song)
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -51,73 +51,73 @@ const EditSong = ({song, setShowModal}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='song_form'>
+        { errors.length > 0 && <div className='song_form_errors'>
+            {errors.map((error, ind) => (
+                <div key={ind} className='song_form_error'>{error}</div>
+            ))}
+        </div> }
+
+        <div className='song_form_divs'>
+            <div className='sf_label'><label htmlFor='name'>Name</label></div>
+            <input
+                name='name'
+                type='text'
+                placeholder='Name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+        </div>
+        <div className='song_form_divs'>
+        <div className='sf_label'><label htmlFor='artist'>Artist</label></div>
+            <input
+                name='artist'
+                type='text'
+                placeholder='Artist'
+                value={artist}
+                onChange={(e) => setArtist(e.target.value)}
+            />
+        </div>
+        <div className='song_form_divs'>
+            <div className='sf_label'><label htmlFor='album'>Album</label></div>
+            <input
+                name='album'
+                type='text'
+                placeholder='Album'
+                value={album}
+                onChange={(e) => setAlbum(e.target.value)}
+            />
+        </div>
+        <div className='song_form_divs'>
+            <div className='sf_label'><label htmlFor='albumImgUrl'>Album Art URL</label></div>
+            <input
+                name='albumImgUrl'
+                type='text'
+                placeholder='(Optional) Album Art URL'
+                value={albumImgUrl}
+                onChange={(e) => setAlbumImgUrl(e.target.value)}
+            />
+        </div>
+        <div className='song_form_divs'>
+            <div className='sf_label'><label htmlFor='genre'>Genre</label></div>
+            <select
+                name='genre'
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
+            >
+                <option className='sf_option' value='Rock'>Rock</option>
+                <option className='sf_option' value='Pop'>Pop</option>
+                <option className='sf_option' value='Rap'>Rap</option>
+                <option className='sf_option' value='Electronic'>Electronic</option>
+                <option className='sf_option' value='Country'>Country</option>
+                <option className='sf_option' value='Classical'>Classical</option>
+                <option className='sf_option' value='Jazz'>Jazz</option>
+                <option className='sf_option' value='Blues'>Blues</option>
+                <option className='sf_option' value='Metal'>Metal</option>
+                <option className='sf_option' value='Other'>Other</option>
+            </select>
+        </div>
             <div>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div>
-            <div>
-                <label htmlFor='name'>Name</label>
-                <input
-                    name='name'
-                    type='text'
-                    placeholder='name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor='artist'>Artist</label>
-                <input
-                    name='artist'
-                    type='text'
-                    placeholder='artist'
-                    value={artist}
-                    onChange={(e) => setArtist(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor='album'>Album</label>
-                <input
-                    name='album'
-                    type='text'
-                    placeholder={album}
-                    value={album}
-                    onChange={(e) => setAlbum(e.target.value)}
-                />
-            </div>
-            <div >
-                <label htmlFor='albumImgUrl'>Album Art URL</label>
-                <input
-                    name='albumImgUrl'
-                    type='text'
-                    placeholder={albumImgUrl}
-                    value={albumImgUrl}
-                    onChange={e => setAlbumImgUrl(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor='genre'>Genre</label>
-                <select
-                    name='genre'
-                    value={genre}
-                    onChange={(e) => setGenre(e.target.value)}
-                >
-                    <option value='Rock'>Rock</option>
-                    <option value='Pop'>Pop</option>
-                    <option value='Rap'>Rap</option>
-                    <option value='Electronic'>Electronic</option>
-                    <option value='Country'>Country</option>
-                    <option value='Classical'>Classical</option>
-                    <option value='Jazz'>Jazz</option>
-                    <option value='Blues'>Blues</option>
-                    <option value='Metal'>Metal</option>
-                    <option value='Other'>Other</option>
-                </select>
-            </div>
-            <div>
-                <label htmlFor='source'>Upload</label>
                 <input
                     name='source'
                     hidden='hidden'
@@ -127,7 +127,7 @@ const EditSong = ({song, setShowModal}) => {
                     onChange={(e) => setSource(e.target.files[0])}
                 />
             </div>
-            <button type='submit' disabled={errors.length > 0}>Submit</button>
+            <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
         </form>
     );
 
