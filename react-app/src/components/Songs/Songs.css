@@ -1,3 +1,7 @@
+.fa-play, .fa-list{
+    margin: 0px 5px;
+}
+
 #songs {
     display: flex;
     flex-direction: column;
@@ -15,6 +19,7 @@
 #song {
     display: grid;
     grid-template-columns: 1fr 1fr 20fr 15fr 15fr 10fr 1fr 1fr;
+    align-items: center;
 }
 
 #artist-song {

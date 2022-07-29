@@ -39,30 +39,73 @@ function Songs({songPage}) {
         setAudios(Object.values(songs))
     }, [songs])
 
-    const handlePlaySong = async(e) => {
-        e.preventDefault();
-        setClearAudioList(true)
-        const audioArr = e.target.value.split(',')
-        console.log('audioArr: ', audioArr)
-        console.log('new audio aws source: ', audioArr[2])
-        setAudioList([])
-        if (audioArr[3]){
-            await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
-        }else{
-            await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
-        }
-    }
-    const handleAddToQueue = async(e) => {
-        e.preventDefault();
-        setClearAudioList(false)
-        const audioArr = e.target.value.split(',')
-        console.log('audioArr: ', audioArr)
-        console.log(audioList !== null)
-        console.log('audioListinQueueFunc: ', audioList)
-        if(audioList){
-            setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
-        }
-    }
+    // const handlePlaySong = async(e) => {
+    //     e.preventDefault();
+    //     setClearAudioList(true)
+    //     const audioArr = e.target.value.split(',')
+    //     console.log('audioArr: ', audioArr)
+    //     console.log('new audio aws source: ', audioArr[2])
+    //     setAudioList([])
+    //     if (audioArr[3]){
+    //         await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
+    //     }else{
+    //         await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
+    //     }
+    // }
+    // const handleAddToQueue = async(e) => {
+    //     e.preventDefault();
+    //     setClearAudioList(false)
+    //     const audioArr = e.target.value.split(',')
+    //     console.log('audioArr: ', audioArr)
+    //     console.log(audioList !== null)
+    //     console.log('audioListinQueueFunc: ', audioList)
+    //     if(audioList){
+    //         setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
+    //     }
+    // }
+
+    const handlePlaySong = async (value) => {
+		console.log(value);
+		setClearAudioList(true);
+		setAudioList([]);
+		if (value[3]) {
+			await setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: value[3],
+					musicSrc: value[2],
+				},
+			]);
+		} else {
+			await setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: circleLogo,
+					musicSrc: value[2],
+				},
+			]);
+		}
+	};
+
+	const handleAddToQueue = async (value) => {
+		setClearAudioList(false);
+		// const audioArr = e.target.value.split(',')
+		// console.log('audioArr: ', audioArr)
+		// console.log(audioList !== null)
+		// console.log('audioListinQueueFunc: ', audioList)
+		if (audioList) {
+			setAudioList([
+				{
+					name: value[0],
+					singer: value[1],
+					cover: value[3],
+					musicSrc: value[2],
+				},
+			]);
+		}
+	};
 
     console.log('audioList:', audioList)
     return (
@@ -91,8 +134,26 @@ function Songs({songPage}) {
                                     <p>{song.artist}</p>
                                     <p>{song.album}</p>
                                     <p>{song.genre}</p>
-                                    <input className='song-buttons' id='user-profile-play-button' type='image' src={playSongButton} value={[song.name, song.artist, song.source, song.albumImgUrl]} onClick={handlePlaySong}/>
-                                    <input className='song-buttons' id='user-profile-queue-button' value={[song.name, song.artist, song.source, song.albumImgUrl]} type='image' src={addToPlaylistButton} onClick={handleAddToQueue}/>
+                                    <i onClick={() =>
+                                        		handlePlaySong([
+                                        			song.name,
+                                        			song.artist,
+                                        			song.source,
+                                        			song.albumImgUrl,
+                                    		])
+                                    	}
+                                    	class="search-song-button fa-solid fa-play fa-xl"
+                                    />
+                                    <i onClick={() =>
+					                		handleAddToQueue([
+					                			song.name,
+					                			song.artist,
+					                			song.source,
+					                			song.albumImgUrl,
+					                		])
+					                	}
+					                	class="search-song-button fa-solid fa-list fa-xl"
+					                />
                                 </li>
                             </div>
 
