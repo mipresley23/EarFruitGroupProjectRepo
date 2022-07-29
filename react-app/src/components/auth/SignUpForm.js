@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -13,9 +13,21 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const errors = [];
+    if (!username) errors.push('A username is required.');
+    if (!email) errors.push('An email is required.');
+    if (!password) errors.push('A password is required.');
+    if (!repeatPassword) errors.push('Please repeat the password.');
+    if (password !== repeatPassword) errors.push('Password and repeated password must match.');
+    if (!(email.includes('@' ) && email.includes('.'))) errors.push('Must be a valid email address.')
+
+    setErrors(errors);
+  }, [username, email, password, repeatPassword]);
+
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (!errors.length) {
       const data = await dispatch(signUp(username, email, password, photoUrl));
       if (data) {
         setErrors(data)
