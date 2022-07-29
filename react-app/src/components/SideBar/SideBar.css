@@ -6,6 +6,7 @@
 }
 .side-bar-container h2 {
     margin-bottom: 40px;
+    position: relative;
 }
 
 .sidebar-link {
