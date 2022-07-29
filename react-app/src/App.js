@@ -75,9 +75,9 @@ function App() {
           <Route path='/playlists' exact={true} >
             <AllPlaylists />
           </Route>
-          <ProtectedRoute path='/playlists/:playlistId' exact={true} >
+          <Route path='/playlists/:playlistId' exact={true} >
             <EachPlaylist />
-          </ProtectedRoute>
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>

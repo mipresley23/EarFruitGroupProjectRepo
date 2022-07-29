@@ -3,8 +3,8 @@ from app.models import db, Playlist
 
 # Adds a demo playlist, you can add other playlists here if you want
 def seed_playlists():
-    lowkey = Playlist(
-        name='Lowkey', description='just chill', cover_img_url='https://i.scdn.co/image/ab67706f00000003e30928da232fef3e6c82dc71', user_Id=1)
+    hiphophits = Playlist(
+        name='Hip Hop Hits', description='just chill', cover_img_url='https://i.scdn.co/image/ab67706f00000003e30928da232fef3e6c82dc71', user_Id=1)
     ninties = Playlist(
         name="90's Hits", description='Best of the 90s', cover_img_url='https://i.scdn.co/image/ab67706c0000bebbd910bfd076b00aeede1c1ea7', user_Id=1)
     rockClassics = Playlist(
@@ -21,7 +21,7 @@ def seed_playlists():
         name="Krishna's Playlist", description='Vibes curated by Krishna', cover_img_url='https://cdn.iconscout.com/icon/free/png-256/k-characters-character-alphabet-letter-36028.png', user_Id=8)
 
 
-    db.session.add(lowkey)
+    db.session.add(hiphophits)
     db.session.add(ninties)
     db.session.add(rockClassics)
     db.session.add(tikTok)
