@@ -49,6 +49,9 @@
 	width: 90%;
 	height: 60%;
 	border-radius: 3%;
+	text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 ::-webkit-scrollbar-thumb {
