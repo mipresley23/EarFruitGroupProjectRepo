@@ -133,7 +133,7 @@ export default function SearchBar() {
 						}
 						class="search-song-button fa-solid fa-play fa-lg"
 					/>
-					<i
+					{/* <i
 						onClick={() =>
 							handleAddToQueue([
 								song.name,
@@ -143,7 +143,7 @@ export default function SearchBar() {
 							])
 						}
 						class="search-song-button fa-solid fa-list fa-lg"
-					></i>
+					></i> */}
 				</td>
 			</tr>
 

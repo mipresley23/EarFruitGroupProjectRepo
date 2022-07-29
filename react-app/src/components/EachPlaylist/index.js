@@ -11,6 +11,7 @@ import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
 import circleLogo from '../assets/circleLogo.jpeg';
+import HomePage from "../HomePage/HomePage";
 import AudioListProvider, { AudioListContext } from '../../context/audioList';
 
 const EachPlaylist = () => {
@@ -30,7 +31,7 @@ const EachPlaylist = () => {
 	const [description, setDescription] = useState(editPlaylist?.description);
 	const [image, setImage] = useState(editPlaylist?.cover_img_url);
 	const [imageError, setImageError] = useState(false);
-	const isOwner = sessionUser.id == editPlaylist?.user.id;
+	const isOwner = sessionUser?.id == editPlaylist?.user?.id;
 	const [addSong, setAddSong] = useState(false);
 	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
 
@@ -57,6 +58,14 @@ const EachPlaylist = () => {
 		setDescription(editPlaylist?.description);
 	}, [editPlaylist, sessionUser]);
 
+	useEffect(() => {
+		checkImage(image);
+	}, [image]);
+
+	if (!sessionUser) {
+		history.push('/')
+		return null
+	}
 	async function editNameBtn(e) {
 		setEditName(true);
 	}
@@ -116,9 +125,7 @@ const EachPlaylist = () => {
 		};
 		image.src = url;
 	}
-	useEffect(() => {
-		checkImage(image);
-	}, [image]);
+
 	// console.log(imageError)
 
 	const handlePlaySong = async (value) => {
