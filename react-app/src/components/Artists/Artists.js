@@ -78,14 +78,14 @@ function Artists ({songsArr, handlePlaySong, handleAddToQueue}) {
                             ])}
                             class="search-song-button fa-solid fa-play fa-xl"
                             />
-                            <i onClick={() => handleAddToQueue([
+                            {/* <i onClick={() => handleAddToQueue([
 					        	song.name,
 					        	song.artist,
 					        	song.source,
 					        	song.albumImgUrl,
 					        ])}
 					        class="search-song-button fa-solid fa-list fa-xl"
-					        />
+					        /> */}
                         </li>
                         ))}
                     </ul>
