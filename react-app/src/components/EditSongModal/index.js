@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditSong from './EditSong';
-import editButton from '../assets/edit_button.png';
+
 import './editModal.css';
 
 function EditSongModal({song}) {
@@ -10,10 +10,10 @@ function EditSongModal({song}) {
 
   return (
     <>
-      <button id='edit-modal-button' onClick={() => {
+      <i className="fas fa-edit fa-lg" onClick={() => {
         setShowModal(true)
 
-        }}><img id='edit-song-modal-button-img' src={editButton}></img></button>
+        }}></i>
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
