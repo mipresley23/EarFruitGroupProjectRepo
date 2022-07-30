@@ -4,6 +4,7 @@ import { getSongs } from "../../store/songs";
 import { NavLink } from "react-router-dom";
 import AudioListProvider, { AudioListContext } from '../../context/audioList';
 import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
+import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import "./SearchBar.css";
 
 export default function SearchBar() {
@@ -56,7 +57,7 @@ export default function SearchBar() {
 			>
 				<div className="playlist-card" key={playlist.name}>
 					<div className="playlist-card-contents">
-						<img src={playlist.cover_img_url} alt=''/>
+						<img src={playlist.cover_img_url?playlist.cover_img_url:defaultPlaylistImage} alt=''/>
 						<p id="playlist-name">{playlist.name}</p>
 						<p>By {playlist.user.username}</p>
 					</div>
