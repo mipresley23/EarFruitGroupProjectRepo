@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	thunkGetPlaylists,
@@ -10,8 +10,8 @@ import "./EachPlaylist.css";
 import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
-import circleLogo from "../assets/earfruit-kiwi-circle-logo.png";
-import AudioListProvider, { AudioListContext } from "../../context/audioList";
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
+import AudioListProvider, { AudioListContext } from '../../context/audioList';
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -32,8 +32,7 @@ const EachPlaylist = () => {
 	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser?.id == editPlaylist?.user?.id;
 	const [addSong, setAddSong] = useState(false);
-	const { audioList, setAudioList, clearAudioList, setClearAudioList } =
-		useContext(AudioListContext);
+	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
 		setEditName(false);
@@ -58,8 +57,12 @@ const EachPlaylist = () => {
 		setDescription(editPlaylist?.description);
 	}, [editPlaylist, sessionUser]);
 
+	useEffect(() => {
+		checkImage(image);
+	}, [image]);
+
 	if (!sessionUser) {
-		history.push("/login");
+		history.push('/login')
 		// return null
 	}
 	async function editNameBtn(e) {
@@ -74,7 +77,6 @@ const EachPlaylist = () => {
 
 	async function updatePlaylist(e) {
 		e.preventDefault();
-		// checkImage(image);
 		const playlist = {
 			id: playlistId,
 			name,
@@ -108,7 +110,22 @@ const EachPlaylist = () => {
 		await dispatch(thunkDeletePlaylist(playlistId));
 		history.push(`/`);
 	}
+	function checkImage(url) {
+		var image = new Image();
+		image.onload = function () {
+			if (this.width > 0) {
+				setImageError(false);
+				// console.log("image exists");
+			}
+		};
+		image.onerror = function () {
+			setImageError(true);
+			//   console.log("image doesn't exist");
+		};
+		image.src = url;
+	}
 
+	// console.log(imageError)
 
 	const handlePlaySong = async (value) => {
 		// console.log(value);
@@ -161,30 +178,25 @@ const EachPlaylist = () => {
 				</td>
 				<td className="search-song-album">{song.album}</td>
 				<td className="search-song-button-cont">
-					<i
-						onClick={() =>
+					<i onClick={() =>
 							handlePlaySong([
 								song.name,
 								song.artist,
 								song.source,
 								song.albumImgUrl,
 							])
-						}
-						class="search-song-button fa fa-play fa-xl"
-					></i>
-					{isOwner && (
-						<i
-							onClick={() => removeSongFromPlaylist(playlistId, song.id)}
-							class="search-song-button fa-solid fa-trash fa-xl"
-						></i>
-					)}
+						} class="search-song-button fa fa-play fa-xl"></i>
+					{isOwner && <i
+						onClick={() => removeSongFromPlaylist(playlistId, song.id)}
+						class="search-song-button fa-solid fa-trash fa-xl"
+					></i>}
 				</td>
 			</tr>
 		);
 	});
 	if (!editPlaylist) {
-		return null;
-	}
+		return (null)
+	};
 	return (
 		<div className="playlist-cont">
 			<div className="playlist-header">
@@ -211,9 +223,7 @@ const EachPlaylist = () => {
 						</button>
 					)}
 					{isOwner && editName && (
-						<button className="cancel-name-btn" onClick={cancelEditNameBtn}>
-							Cancel
-						</button>
+						<button className="cancel-name-btn" onClick={cancelEditNameBtn}>Cancel</button>
 					)}
 				</div>
 				<div className="playlist-description-cont">
@@ -303,10 +313,9 @@ const EachPlaylist = () => {
 					// 	Delete Playlist
 					// </button>
 					<i
-						// className="delete-playlist-btn fa-solid fa-trash fa-xl"
-						onClick={onDelete}
-						class="delete-playlist-btn fa-solid fa-trash-can fa-2x"
-					/>
+					// className="delete-playlist-btn fa-solid fa-trash fa-xl"
+					onClick={onDelete}
+					class="delete-playlist-btn fa-solid fa-trash-can fa-2x"/>
 				)}
 			</div>
 			<div className="playlist-search-song">
