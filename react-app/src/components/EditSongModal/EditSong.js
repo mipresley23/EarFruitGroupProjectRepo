@@ -42,21 +42,23 @@ const EditSong = ({song, setShowModal}) => {
         e.preventDefault();
         setFirstSubmit(true);
 
-        const Editedsong = {
-            id: song.id,
-            name,
-            album,
-            albumImgUrl,
-            genre,
-            artist,
-            source
-        };
+        if (!errors.length) {
+            const Editedsong = {
+                id: song.id,
+                name,
+                album,
+                albumImgUrl,
+                genre,
+                artist,
+                source
+            };
 
-        // console.log(song)
-        dispatch(editSong(Editedsong)).then(() => {
-            dispatch(getSongs());
-            setShowModal(false);
-        })
+            // console.log(song)
+            dispatch(editSong(Editedsong)).then(() => {
+                dispatch(getSongs());
+                setShowModal(false);
+            })
+        }
     }
 
     return (
@@ -136,7 +138,7 @@ const EditSong = ({song, setShowModal}) => {
                     onChange={(e) => setSource(e.target.files[0])}
                 />
             </div>
-            <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
+            <button type='submit' className='song_form_divs sf_submit'>Submit</button>
         </form>
     );
 
