@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { thunkGetPlaylists } from "../../store/playlists";
 import { getSongs } from "../../store/songs";
 import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
+import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import AudioListProvider, {AudioListContext} from '../../context/audioList';
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -34,6 +35,10 @@ function HomePage() {
 	const jazzSongs = songs && songs.filter(song => song.genre === 'Jazz')
 	const bluesSongs = songs && songs.filter(song => song.genre === 'Blues')
 	const metalSongs = songs && songs.filter(song => song.genre === 'Metal')
+  const [albumArt, setAlbumArt] = useState('https://protkd.com/wp-content/uploads/2017/04/default-image.jpg');
+
+
+
 
 	useEffect(() => {
 		dispatch(getSongs())
@@ -77,6 +82,8 @@ function HomePage() {
 	};
 
 
+
+
 	const sessionUser = useSelector((state) => state.session.user);
 
 		return(
@@ -90,7 +97,7 @@ function HomePage() {
 								<div>
 									<NavLink to={`playlists/${playlist.id}`}>
 										<div className='song-container'>
-											<img className='card-image' id='each-playlist-image' src={playlist.cover_img_url} alt={playlist.name}/>
+											<img className='card-image' id='each-playlist-image' src={playlist.cover_img_url ? playlist.cover_img_url : defaultPlaylistImage} alt={playlist.name}/>
 											<p id="playlist-card-name">{playlist.name}</p>
 											<p id="playlist-card-description">{playlist.description}</p>
 										</div>
@@ -107,7 +114,7 @@ function HomePage() {
 						{
 							rockSongs && rockSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
@@ -132,9 +139,9 @@ function HomePage() {
 						<h3>Pop</h3>
 						<div className='card-containers'>
 						{
-							rockSongs && rockSongs.map(song => (
+							popSongs && popSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
@@ -159,9 +166,9 @@ function HomePage() {
 						<h3>Rap</h3>
 						<div className='card-containers'>
 						{
-							rockSongs && rockSongs.map(song => (
+							rapSongs && rapSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
@@ -186,9 +193,9 @@ function HomePage() {
 						<h3>Electronic</h3>
 						<div className='card-containers'>
 						{
-							rockSongs && rockSongs.map(song => (
+							electronicSongs && electronicSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
@@ -213,9 +220,9 @@ function HomePage() {
 						<h3>Country</h3>
 						<div className='card-containers'>
 						{
-							rockSongs && rockSongs.map(song => (
+							countrySongs && countrySongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
@@ -240,9 +247,9 @@ function HomePage() {
 						<h3>Classical</h3>
 						<div className='card-containers'>
 						{
-							rockSongs && rockSongs.map(song => (
+							classicalSongs && classicalSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
@@ -267,9 +274,9 @@ function HomePage() {
 						<h3>Jazz</h3>
 						<div className='card-containers'>
 						{
-							rockSongs && rockSongs.map(song => (
+							jazzSongs && jazzSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
@@ -294,9 +301,9 @@ function HomePage() {
 						<h3>Blues</h3>
 						<div className='card-containers'>
 						{
-							rockSongs && rockSongs.map(song => (
+							bluesSongs && bluesSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
@@ -321,9 +328,9 @@ function HomePage() {
 						<h3>Metal</h3>
 						<div className='card-containers'>
 						{
-							rockSongs && rockSongs.map(song => (
+							metalSongs && metalSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl} alt={song.name}/>
+									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
 									<p>{song.name}</p>
 									<p>{song.artist}</p>
 									<i id="splash-play-button"
