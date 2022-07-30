@@ -108,7 +108,7 @@ function Songs({ songPage }) {
 		}
 	};
 	let songNum = 0;
-	const songList = songsArr.map((song) => {
+	const songList = songsArr.reverse().map((song) => {
 		songNum++;
 		return (
 			<tr className="search-song-row">
