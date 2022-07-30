@@ -10,6 +10,7 @@ const SignUpForm = () => {
   const [photoUrl, setPhotoUrl] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [firstSubmit, setFirstSubmit] = useState(false)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -39,6 +40,8 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    setFirstSubmit(true);
+
     if (!errors.length) {
       const data = await dispatch(signUp(username, email, password, photoUrl));
       if (data) {
@@ -74,7 +77,7 @@ const SignUpForm = () => {
   return (
     <div className='song_form_div'>
       <form onSubmit={onSignUp} className='song_form'>
-        { errors.length > 0 && <div className='song_form_errors'>
+        { (errors.length > 0 && firstSubmit) && <div className='song_form_errors'>
           {errors.map((error, ind) => (
             <div key={ind} className='song_form_error'>{error}</div>
           ))}

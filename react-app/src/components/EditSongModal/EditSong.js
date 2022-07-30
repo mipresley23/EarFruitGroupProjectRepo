@@ -19,6 +19,7 @@ const EditSong = ({song, setShowModal}) => {
     const [genre, setGenre] = useState(song?.genre);
     const [artist, setArtist] = useState(song?.artist);
     const [source, setSource] = useState(song?.source);
+    const [firstSubmit, setFirstSubmit] = useState(false);
 
     const validateImg = (url) => {
         let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
@@ -29,17 +30,18 @@ const EditSong = ({song, setShowModal}) => {
     useEffect(() => {
         const errors = [];
 
-        if (!name) errors.push('Name is required');
-        if (!artist) errors.push('artist is required');
-        if (!album) errors.push('album is required');
+        if (!name) errors.push('Name is required.');
+        if (!artist) errors.push('Artist is required.');
+        if (!album) errors.push('Album is required.');
         if (albumImgUrl.length > 0 && !(validateImg(albumImgUrl))) errors.push('Image url must a url and to a png, jpg, or jpeg.')
-        if (!genre) errors.push('genre is required');
+        if (!genre) errors.push('Genre is required.');
 
         setErrors(errors);
-    }, [name, album, genre, artist, source]);
+    }, [name, album, genre, artist, source, albumImgUrl]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setFirstSubmit(true);
 
         const Editedsong = {
             id: song.id,
@@ -60,7 +62,7 @@ const EditSong = ({song, setShowModal}) => {
 
     return (
         <form onSubmit={handleSubmit} className='song_form'>
-        { errors.length > 0 && <div className='song_form_errors'>
+        { (errors.length > 0 && firstSubmit) && <div className='song_form_errors'>
             {errors.map((error, ind) => (
                 <div key={ind} className='song_form_error'>{error}</div>
             ))}
