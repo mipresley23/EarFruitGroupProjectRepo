@@ -87,6 +87,7 @@ const SignUpForm = () => {
           <input
             type='text'
             name='username'
+            placeholder='Username'
             onChange={updateUsername}
             value={username}
           ></input>
@@ -96,6 +97,7 @@ const SignUpForm = () => {
           <input
             type='text'
             name='email'
+            placeholder='Email'
             onChange={updateEmail}
             value={email}
           ></input>
@@ -105,6 +107,7 @@ const SignUpForm = () => {
           <input
             type='text'
             name='photoUrl'
+            placeholder='(Optional) Profile Photo URL'
             onChange={updatePhotoUrl}
             value={photoUrl}
           ></input>
@@ -114,6 +117,7 @@ const SignUpForm = () => {
           <input
             type='password'
             name='password'
+            placeholder='Password'
             onChange={updatePassword}
             value={password}
           ></input>
@@ -123,6 +127,7 @@ const SignUpForm = () => {
           <input
             type='password'
             name='repeat_password'
+            placeholder='Repeated Password'
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
