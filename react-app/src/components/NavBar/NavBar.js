@@ -44,21 +44,11 @@ const NavBar = ({setSongPage}) => {
 								Sign Up
 							</NavLink>
 						</li>
-						<li>
-							<NavLink to="/developers" exact={true} activeClassName="active">
-								Developers
-							</NavLink>
-						</li>
 						<button id="demo-button" type="button" onClick={handleDemo}>Demo</button>
 					</>
 				)}
 				{isLoggedIn && (
 					<>
-						<li>
-							<NavLink to="/developers" exact={true} activeClassName="active">
-								Developers
-							</NavLink>
-						</li>
 						<div id="nav-bar-user-info" onClick={e => setShowMenu(!showMenu)}>
 								<img id='nav-bar-user-img' src={isLoggedIn.photo_url ? isLoggedIn.photo_url : photo_url} alt='navbar profile photo'/>
 								<li>{isLoggedIn.username}</li>

@@ -50,7 +50,7 @@ function Artists ({songsArr, handlePlaySong, handleAddToQueue}) {
         if(audioList){
             setClearAudioList(false)
             audioObj.forEach(song => {
-                console.log('SONG: ', song)
+                // console.log('SONG: ', song)
                 setAudioList([{name: song.name, singer: artist , cover: circleLogo, musicSrc: song.source}])
             })
         }

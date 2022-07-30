@@ -10,7 +10,7 @@ import "./EachPlaylist.css";
 import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
-import circleLogo from '../assets/circleLogo.jpeg';
+import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 import AudioListProvider, { AudioListContext } from '../../context/audioList';
 
 const EachPlaylist = () => {
@@ -33,7 +33,6 @@ const EachPlaylist = () => {
 	const isOwner = sessionUser?.id == editPlaylist?.user?.id;
 	const [addSong, setAddSong] = useState(false);
 	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
-
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
 		setEditName(false);
@@ -46,6 +45,7 @@ const EachPlaylist = () => {
 	useEffect(() => {
 		dispatch(thunkGetPlaylists());
 	}, [dispatch]);
+
 	useEffect(() => {
 		dispatch(thunkGetPlaylistSongs(playlistId));
 	}, [playlistId]);
@@ -128,7 +128,7 @@ const EachPlaylist = () => {
 	// console.log(imageError)
 
 	const handlePlaySong = async (value) => {
-		console.log(value);
+		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {
@@ -194,7 +194,9 @@ const EachPlaylist = () => {
 			</tr>
 		);
 	});
-	if (!editPlaylist) return null;
+	if (!editPlaylist) {
+		return (null)
+	};
 	return (
 		<div className="playlist-cont">
 			<div className="playlist-header">

@@ -50,19 +50,19 @@ const LoginForm = () => {
           ))}
         </div> }
         <div className='song_form_divs'>
-          <div className='sf_label'><label htmlFor='Email/Username'>Email/Username</label></div>
+          <div className='sf_label'><label htmlFor='email'>Email</label></div>
           <input
-            name='Email/Username'
+            name='email'
             type='text'
-            placeholder='Email or Username'
+            placeholder='Email'
             value={email}
             onChange={updateEmail}
           />
         </div>
         <div className='song_form_divs'>
-          <div className='sf_label'><label htmlFor='Password'>Password</label></div>
+          <div className='sf_label'><label htmlFor='email'>Password</label></div>
           <input
-            name='Password'
+            name='password'
             type='password'
             placeholder='Password'
             value={password}

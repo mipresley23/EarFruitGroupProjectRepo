@@ -12,7 +12,7 @@ function Albums ({songsArr, handlePlaySong, handleAddToQueue}) {
             albums[song?.album].push(song)
         }
     })
-    console.log(albums)
+    // console.log(albums)
 
     return (
             <ul id='albums'>

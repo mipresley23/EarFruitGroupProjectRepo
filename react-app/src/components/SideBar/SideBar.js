@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { thunkGetPlaylists, thunkAddPlaylist } from "../../store/playlists";
-import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
+import circleLogo from "../assets/earfruit-kiwi-circle-logo.png";
 import SongFormModal from "../SongFormModal";
-import wordLogo from '../assets/earfruit-logo.png';
-import playListImage from '../assets/my-playlist-img.png';
+import wordLogo from "../assets/earfruit-logo.png";
+import playListImage from "../assets/my-playlist-img.png";
 import "./SideBar.css";
 
 export default function SideBar() {
@@ -102,7 +102,75 @@ export default function SideBar() {
 					))}
 			</div>
 			<div className="about-cont">
-
+				<h3 className="about-header">Developers</h3>
+				<div className="about-div">
+					<p className="about-name">Jesse Njoroge</p>
+					<a
+						href="https://github.com/jnjoroge13"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-xl"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/jesse-njoroge/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-xl"></i>
+					</a>
+				</div>
+				<div className="about-div">
+					<p className="about-name">Michael Presly</p>
+					<a
+						href="https://github.com/mipresley23"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-xl"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/michael-presley-96729b235/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-xl"></i>
+					</a>
+				</div>
+				<div className="about-div">
+					<p className="about-name">Anthony Taylor</p>
+					<a
+						href="https://github.com/antt3"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-xl"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/anthony-t3/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-xl"></i>
+					</a>
+				</div>
+				<div className="about-div">
+					<p className="about-name">Jesse Njoroge</p>
+					<a
+						href="https://github.com/jnjoroge13"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-xl"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/jesse-njoroge/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-xl"></i>
+					</a>
+				</div>
 			</div>
 		</div>
 	);
