@@ -11,6 +11,7 @@ const NavBar = ({setSongPage}) => {
 
 	const [isSongs, setIsSongs] = useState(location.pathname.includes('songs'));
 	const [showMenu, setShowMenu] = useState(false)
+	const photo_url = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.repol.copl.ulaval.ca%2Fwp-content%2Fuploads%2F2019%2F01%2Fdefault-user-icon.jpg&f=1&nofb=1'
 
 	useEffect(() => {
 		if (location.pathname.includes('songs')) setIsSongs(true);
@@ -35,7 +36,7 @@ const NavBar = ({setSongPage}) => {
 					<>
 						<li>
 							<NavLink to="/login" exact={true} activeClassName="active">
-								Login
+								Log In
 							</NavLink>
 						</li>
 						<li>
@@ -49,7 +50,7 @@ const NavBar = ({setSongPage}) => {
 				{isLoggedIn && (
 					<>
 						<div id="nav-bar-user-info" onClick={e => setShowMenu(!showMenu)}>
-								<img id='nav-bar-user-img' src={isLoggedIn.photo_url} alt='navbar profile photo'/>
+								<img id='nav-bar-user-img' src={isLoggedIn.photo_url ? isLoggedIn.photo_url : photo_url} alt='navbar profile photo'/>
 								<li>{isLoggedIn.username}</li>
 							{showMenu && (
 								<ul id='profile-menu'>

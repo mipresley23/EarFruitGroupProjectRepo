@@ -11,6 +11,16 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const errorConverter = (err) => {
+    if (err === 'Email is not found.') {
+      return 'Email is incorrect.';
+    } else if (err === 'Email is required.') {
+      return 'Email/Username is required.'
+    } else {
+      return err
+    }
+  }
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -36,23 +46,23 @@ const LoginForm = () => {
       <form onSubmit={onLogin} className='song_form'>
         { errors.length > 0 && <div className='song_form_errors'>
           {errors.map((error, ind) => (
-            <div key={ind} className='song_form_error'>{error}</div>
+            <div key={ind} className='song_form_error'>{errorConverter(error)}</div>
           ))}
         </div> }
         <div className='song_form_divs'>
-          <div className='sf_label'><label htmlFor='email'>Email</label></div>
+          <div className='sf_label'><label htmlFor='Email/Username'>Email/Username</label></div>
           <input
-            name='email'
+            name='Email/Username'
             type='text'
-            placeholder='Email'
+            placeholder='Email or Username'
             value={email}
             onChange={updateEmail}
           />
         </div>
         <div className='song_form_divs'>
-          <div className='sf_label'><label htmlFor='password'>Password</label></div>
+          <div className='sf_label'><label htmlFor='Password'>Password</label></div>
           <input
-            name='password'
+            name='Password'
             type='password'
             placeholder='Password'
             value={password}

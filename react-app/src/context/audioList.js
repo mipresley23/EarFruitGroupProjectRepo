@@ -4,6 +4,7 @@ export const AudioListContext = createContext();
 
 export default function AudioListProvider(props) {
   const [audioList, setAudioList] = useState([]);
+  const [audioIndex, setAudioIndex] = useState(0);
   const [clearAudioList, setClearAudioList] = useState(false)
 
   return (
@@ -11,6 +12,8 @@ export default function AudioListProvider(props) {
       value={{
         audioList,
         setAudioList,
+        audioIndex,
+        setAudioIndex,
         clearAudioList,
         setClearAudioList
       }}

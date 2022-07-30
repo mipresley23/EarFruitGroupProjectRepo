@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { editSong, getSongs } from '../../store/songs';
-import '../songForm.css';
+import '../songForm.css'
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
 
@@ -19,41 +19,51 @@ const EditSong = ({song, setShowModal}) => {
     const [genre, setGenre] = useState(song?.genre);
     const [artist, setArtist] = useState(song?.artist);
     const [source, setSource] = useState(song?.source);
+    const [firstSubmit, setFirstSubmit] = useState(false);
 
+    const validateImg = (url) => {
+        let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
+        return re.test(url);
+    }
+    
     useEffect(() => {
         const errors = [];
 
-        if (!name) errors.push('Name is required');
-        if (!artist) errors.push('artist is required');
-        if (!album) errors.push('album is required');
-        if (!genre) errors.push('genre is required');
+        if (!name) errors.push('Name is required.');
+        if (!artist) errors.push('Artist is required.');
+        if (!album) errors.push('Album is required.');
+        if (albumImgUrl.length > 0 && !(validateImg(albumImgUrl))) errors.push('Image url must be a url to a png, jpg, or jpeg.');
+        if (!genre) errors.push('Genre is required.');
 
         setErrors(errors);
-    }, [name, album, genre, artist, source]);
+    }, [name, album, genre, artist, source, albumImgUrl]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setFirstSubmit(true);
 
-        const Editedsong = {
-            id: song.id,
-            name,
-            album,
-            albumImgUrl,
-            genre,
-            artist,
-            source
-        };
+        if (!errors.length) {
+            const Editedsong = {
+                id: song.id,
+                name,
+                album,
+                albumImgUrl,
+                genre,
+                artist,
+                source
+            };
 
-        // console.log(song)
-        dispatch(editSong(Editedsong)).then(() => {
-            dispatch(getSongs());
-            setShowModal(false);
-        })
+            // console.log(song)
+            dispatch(editSong(Editedsong)).then(() => {
+                dispatch(getSongs());
+                setShowModal(false);
+            })
+        }
     }
 
     return (
         <form onSubmit={handleSubmit} className='song_form'>
-        { errors.length > 0 && <div className='song_form_errors'>
+        { (errors.length > 0 && firstSubmit) && <div className='song_form_errors'>
             {errors.map((error, ind) => (
                 <div key={ind} className='song_form_error'>{error}</div>
             ))}
@@ -128,7 +138,7 @@ const EditSong = ({song, setShowModal}) => {
                     onChange={(e) => setSource(e.target.files[0])}
                 />
             </div>
-            <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
+            <button type='submit' className='song_form_divs sf_submit'>Submit</button>
         </form>
     );
 

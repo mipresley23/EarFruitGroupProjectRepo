@@ -45,9 +45,6 @@ export default function SideBar() {
 		setMyPlaylistNumber(i);
 	}, [i]);
 	const onSubmit = async (e) => {
-		if (!sessionUser) {
-			history.push("/login");
-		}
 		if (sessionUser) {
 			e.preventDefault();
 			setMyPlaylistNumber(i);
@@ -66,42 +63,43 @@ export default function SideBar() {
 	return (
 		<div className="side-bar-container">
 			{/* <h2>EarFruit</h2> */}
-			<div>
-				<div id="side-bar-logo-imgs">
-					<img id="side-bar-circle-logo" src={circleLogo} alt="circle logo" />
-					<p id="side-bar-word-logo">EarFruit</p>
-				</div>
-				<div className="side-bar-links">
-					<NavLink className="sidebar-link" to="/" exact={true}>
-						<i className="fa fa-home"></i>
-						Home
-					</NavLink>
-					<NavLink className="sidebar-link" to="/search" exact={true}>
-						<i className="fa fa-search"></i>
-						Search
-					</NavLink>
-					<NavLink className="sidebar-link" to="/songs" exact={true}>
-						<i className="fa fa-music"></i>
-						Songs
-					</NavLink>
-					<SongFormModal />
-					<div className="sidebar-link" onClick={onSubmit}>
-						<i className="fa fa-plus"></i>
-						Create Playlist
-					</div>
-				</div>
-				<div className="side-bar-playlist-list">
-					{sessionUser &&
-						usersPlaylists.map((playlist) => (
-							<NavLink
-								className="sidebar-link sidebar-playlist-link"
-								to={`/playlists/${playlist.id}`}
-								key={playlist.id}
-							>
-								{playlist.name}
-							</NavLink>
-						))}
-				</div>
+			<div id="side-bar-logo-imgs">
+				<img
+					id="side-bar-circle-logo"
+					src={circleLogo}
+					alt="circle logo"
+				/>
+				<p id="side-bar-word-logo">EarFruit</p>
+			</div>
+			<div className="side-bar-links"></div>
+			<NavLink className="sidebar-link" to="/" exact={true}>
+				<i className="fa fa-home"></i>
+				Home
+			</NavLink>
+			<NavLink className="sidebar-link" to="/search" exact={true}>
+				<i className="fa fa-search"></i>
+				Search
+			</NavLink>
+			<NavLink className="sidebar-link" to="/songs" exact={true}>
+				<i className="fa fa-music"></i>
+				Songs
+			</NavLink>
+			{ sessionUser && <SongFormModal /> }
+			{ sessionUser && <div className="sidebar-link" onClick={onSubmit}>
+				<i className="fa fa-plus"></i>
+				Create Playlist
+			</div> }
+			<div className="side-bar-playlist-list">
+				{sessionUser &&
+					usersPlaylists.map((playlist) => (
+						<NavLink
+							className="sidebar-link sidebar-playlist-link"
+							to={`/playlists/${playlist.id}`}
+							key={playlist.id}
+						>
+							{playlist.name}
+						</NavLink>
+					))}
 			</div>
 			<div className="about-cont">
 				<h3 className="about-header">Developers</h3>
