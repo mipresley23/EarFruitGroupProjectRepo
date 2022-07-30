@@ -83,7 +83,7 @@ const SignUpForm = () => {
           ))}
         </div> }
         <div className='song_form_divs'>
-          <div className='sf_label'><label>User Name</label></div>
+          <div className='sf_label'><label>Username</label></div>
           <input
             type='text'
             name='username'
