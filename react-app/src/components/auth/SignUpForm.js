@@ -13,11 +13,18 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const validateEmail = (email) => {
+    let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+   
+console.log(validateEmail('anystring@anystring.anystring'));
+
   useEffect(() => {
     const errors = [];
     if (!username) errors.push('A username is required.');
     if (!email) errors.push('An email is required.');
-    if (!(email.includes('@' ) && email.includes('.'))) errors.push('Must be a valid email address.')
+    if (!validateEmail(email)) errors.push('Must be a valid email address.');
     if (!password) errors.push('A password is required.');
     if (password.length < 6) errors.push('Password length must be at least 6 characters.')
     if (!repeatPassword) errors.push('Please repeat the password.');
