@@ -15,11 +15,18 @@ const SongForm = ({setShowModal}) => {
     const [genre, setGenre] = useState('Rock');
     const [artist, setArtist] = useState('');
     const [mp3, setMP3] = useState(null);
+    const [isMP3, setIsMP3] = useState(true);
     const [mp3Loading, setMP3Loading] = useState(false);
+    const [firstSubmit, setFirstSubmit] = useState(false);
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const validateImg = (url) => {
+        let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
+        return re.test(url);
+    }
 
     useEffect(() => {
         const errors = [];
@@ -27,64 +34,69 @@ const SongForm = ({setShowModal}) => {
         if (!name) errors.push('The song name is required.');
         if (!artist) errors.push('The artist is required.');
         if (!album) errors.push('The album is required.');
+        if (albumImgUrl.length > 0 && !(validateImg(albumImgUrl))) errors.push('Image url must a url and to a png, jpg, or jpeg.');
         if (!genre) errors.push('The genre is required.');
         if (!mp3) errors.push('The song mp3 is required.');
+        if (!isMP3) errors.push('The file must be an mp3.')
 
         setErrors(errors);
-    }, [name, album, genre, artist, mp3]);
+    }, [name, album, genre, artist, mp3, albumImgUrl, isMP3]);
 
     const handleClick = e => {
         e.preventDefault();
+        setIsMP3(true);
         hiddenFileInput.current.click();
       };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const errors = [];
+        setFirstSubmit(true);
 
-        const formData = new FormData();
-        formData.append("mp3", mp3);
+        if (!errors.length) {
 
-        setMP3Loading(true);
-        const res = await fetch('/api/songs/mp3', {
-            method: "POST",
-            body: formData
-        });
-        if (res.ok) {
-            const jsonRes = await res.json();
-            setMP3Loading(false);
-            // console.log('------jsonRes----', jsonRes.source)
+            const formData = new FormData();
+            formData.append("mp3", mp3);
 
-            const song = {
-                name,
-                album,
-                albumImgUrl,
-                genre,
-                artist,
-                source: jsonRes.source
-            };
+            setMP3Loading(true);
+            const res = await fetch('/api/songs/mp3', {
+                method: "POST",
+                body: formData
+            });
+            if (res.ok) {
+                const jsonRes = await res.json();
+                setMP3Loading(false);
+                // console.log('------jsonRes----', jsonRes.source)
 
-            // console.log('------song------', song)
-            const response = await dispatch(createSong(song));
+                const song = {
+                    name,
+                    album,
+                    albumImgUrl,
+                    genre,
+                    artist,
+                    source: jsonRes.source
+                };
 
-            if (response === 'Song Uploaded') {
-                setShowModal(false)
-                history.push('/songs');
+                // console.log('------song------', song)
+                const response = await dispatch(createSong(song));
+
+                if (response === 'Song Uploaded') {
+                    setShowModal(false)
+                    history.push('/songs');
+                }
+
             }
-
-        }
-        else {
-            setMP3Loading(false);
-            errors.push('The file must be an mp3.');
-            setErrors(errors);
-            // console.log("---error uploading song----", res)
+            else {
+                setMP3Loading(false);
+                setIsMP3(false);
+                // console.log("---error uploading song----", res)
+            }
         }
     }
 
     return (
         <div className='song_form_div'>
             <form onSubmit={handleSubmit} className='song_form'>
-                { errors.length > 0 && <div className='song_form_errors'>
+                { (errors.length > 0 && firstSubmit) && <div className='song_form_errors'>
                     {errors.map((error, ind) => (
                         <div key={ind} className='song_form_error'>{error}</div>
                     ))}
@@ -165,7 +177,7 @@ const SongForm = ({setShowModal}) => {
                 </div>
                 {mp3 && <p className='song_form_p'>{mp3.name}</p>}
                 {(mp3Loading) && <p className='song_form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
-                <button type='submit' disabled={errors.length > 0} className='song_form_divs sf_submit'>Submit</button>
+                <button type='submit' className='song_form_divs sf_submit'>Submit</button>
             </form>
         </div>
     );

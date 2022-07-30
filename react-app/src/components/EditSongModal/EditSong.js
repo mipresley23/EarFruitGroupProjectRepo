@@ -26,14 +26,13 @@ const EditSong = ({song, setShowModal}) => {
         return re.test(url);
     }
     
-
     useEffect(() => {
         const errors = [];
 
         if (!name) errors.push('Name is required.');
         if (!artist) errors.push('Artist is required.');
         if (!album) errors.push('Album is required.');
-        if (albumImgUrl.length > 0 && !(validateImg(albumImgUrl))) errors.push('Image url must a url and to a png, jpg, or jpeg.')
+        if (albumImgUrl.length > 0 && !(validateImg(albumImgUrl))) errors.push('Image url must be a url to a png, jpg, or jpeg.');
         if (!genre) errors.push('Genre is required.');
 
         setErrors(errors);
