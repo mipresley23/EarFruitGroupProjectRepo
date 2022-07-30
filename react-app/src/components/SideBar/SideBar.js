@@ -140,16 +140,16 @@ export default function SideBar() {
 					</a>
 				</div>
 				<div className="about-div">
-					<p className="about-name">Jesse Njoroge</p>
+					<p className="about-name">Anthony Taylor</p>
 					<a
-						href="https://github.com/jnjoroge13"
+						href="https://github.com/antt3"
 						target="_blank"
 						className="about-github"
 					>
 						<i class="about-github fa-brands fa-github fa-xl"></i>
 					</a>
 					<a
-						href="https://www.linkedin.com/in/jesse-njoroge/"
+						href="https://www.linkedin.com/in/anthony-t3/"
 						target="_blank"
 						className="about-linkedin"
 					>

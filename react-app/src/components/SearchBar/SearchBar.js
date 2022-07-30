@@ -66,7 +66,7 @@ export default function SearchBar() {
 	});
 
 	const handlePlaySong = async (value) => {
-		console.log(value);
+		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {
@@ -111,7 +111,7 @@ export default function SearchBar() {
 	let songNum = 0;
 	const songSearchResults = searchSongs.map((song) => {
 		// console.log(playlist);
-		console.log(song);
+		// console.log(song);
 		songNum++;
 		return (
 			<tr className="search-song-row">

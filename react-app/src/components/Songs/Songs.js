@@ -20,7 +20,7 @@ function Songs({ songPage }) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const songsArr = Object.values(songs);
-	console.log("songsArr: ", songsArr);
+	// console.log("songsArr: ", songsArr);
 
 	const { audioList, setAudioList, clearAudioList, setClearAudioList } =
 		useContext(AudioListContext);
@@ -30,7 +30,7 @@ function Songs({ songPage }) {
 	const [playButton, setPlayButton] = useState(false);
 
 	const [audios, setAudios] = useState([]);
-	console.log("audios: ", audios);
+	// console.log("audios: ", audios);
 
 	useEffect(() => {
 		dispatch(getSongs());
@@ -66,7 +66,7 @@ function Songs({ songPage }) {
 	// }
 
 	const handlePlaySong = async (value) => {
-		console.log(value);
+		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {
@@ -137,7 +137,7 @@ function Songs({ songPage }) {
 			</tr>
 		);
 	});
-	console.log("audioList:", audioList);
+	// console.log("audioList:", audioList);
 	return (
 		<>
 			{songPage === "artists" && (

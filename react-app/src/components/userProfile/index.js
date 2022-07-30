@@ -40,9 +40,9 @@ const UserProfile = () => {
   const thisUsersSongs = songs && songs.filter(song => song.user_Id.id == +userId)
 
   // console.log('thisUsersPlaylists: ',thisUsersPlaylists)
-  console.log('profile songs: ', songs)
-  console.log('thisUsersSongs: ', thisUsersSongs)
-  console.log('thisUsersPlaylists: ', thisUsersPlaylists)
+  // console.log('profile songs: ', songs)
+  // console.log('thisUsersSongs: ', thisUsersSongs)
+  // console.log('thisUsersPlaylists: ', thisUsersPlaylists)
 
   useEffect(() => {
     dispatch(getSongs())
@@ -83,9 +83,9 @@ const UserProfile = () => {
   const handlePlaySong = async(e) => {
     e.preventDefault();
     setClearAudioList(true)
-    console.log('play song target:', e.target.value)
+    // console.log('play song target:', e.target.value)
     const audioArr = e.target.value.split(',')
-    console.log('play song audioArr: ', audioArr)
+    // console.log('play song audioArr: ', audioArr)
     setAudioList([])
     await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
 }
@@ -93,7 +93,7 @@ const UserProfile = () => {
     e.preventDefault();
     setClearAudioList(false)
     const audioArr = e.target.value.split(',')
-    console.log('queue audioArr: ', audioArr)
+    // console.log('queue audioArr: ', audioArr)
     if(audioList){
         setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
     }

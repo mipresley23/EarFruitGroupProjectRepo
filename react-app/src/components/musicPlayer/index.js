@@ -7,7 +7,7 @@ import 'react-jinke-music-player/assets/index.css'
 const MusicPlayer = () => {
   const {audioList, clearAudioList} = useAudioList();
 
-  console.log('musicPlayer audioList: ', audioList)
+  // console.log('musicPlayer audioList: ', audioList)
 
   return (
     <div className="playbar w-100">

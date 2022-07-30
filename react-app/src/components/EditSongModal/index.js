@@ -5,7 +5,7 @@ import EditSong from './EditSong';
 import './editModal.css';
 
 function EditSongModal({song}) {
-  console.log(EditSong)
+  // console.log(EditSong)
   const [showModal, setShowModal] = useState(false);
 
   return (

@@ -60,6 +60,7 @@ body{
     margin-bottom: 80px;
     /* border: 2px solid white; */
     position: relative;
+    overflow-x: hidden;
 }
 
 .search-playlist-link {
