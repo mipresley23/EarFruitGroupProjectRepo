@@ -112,14 +112,31 @@ export default function SideBar() {
 						target="_blank"
 						className="about-github"
 					>
-						<i class="about-github fa-brands fa-github fa-lg"></i>
+						<i class="about-github fa-brands fa-github fa-xl"></i>
 					</a>
 					<a
 						href="https://www.linkedin.com/in/jesse-njoroge/"
 						target="_blank"
 						className="about-linkedin"
 					>
-						<i class="fa-brands fa-linkedin fa-lg"></i>
+						<i class="fa-brands fa-linkedin fa-xl"></i>
+					</a>
+				</div>
+				<div className="about-div">
+					<p className="about-name">Michael Presly</p>
+					<a
+						href="https://github.com/mipresley23"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-xl"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/michael-presley-96729b235/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-xl"></i>
 					</a>
 				</div>
 				<div className="about-div">
@@ -129,14 +146,14 @@ export default function SideBar() {
 						target="_blank"
 						className="about-github"
 					>
-						<i class="about-github fa-brands fa-github fa-lg"></i>
+						<i class="about-github fa-brands fa-github fa-xl"></i>
 					</a>
 					<a
 						href="https://www.linkedin.com/in/jesse-njoroge/"
 						target="_blank"
 						className="about-linkedin"
 					>
-						<i class="fa-brands fa-linkedin fa-lg"></i>
+						<i class="fa-brands fa-linkedin fa-xl"></i>
 					</a>
 				</div>
 				<div className="about-div">
@@ -146,31 +163,14 @@ export default function SideBar() {
 						target="_blank"
 						className="about-github"
 					>
-						<i class="about-github fa-brands fa-github fa-lg"></i>
+						<i class="about-github fa-brands fa-github fa-xl"></i>
 					</a>
 					<a
 						href="https://www.linkedin.com/in/jesse-njoroge/"
 						target="_blank"
 						className="about-linkedin"
 					>
-						<i class="fa-brands fa-linkedin fa-lg"></i>
-					</a>
-				</div>
-				<div className="about-div">
-					<p className="about-name">Jesse Njoroge</p>
-					<a
-						href="https://github.com/jnjoroge13"
-						target="_blank"
-						className="about-github"
-					>
-						<i class="about-github fa-brands fa-github fa-lg"></i>
-					</a>
-					<a
-						href="https://www.linkedin.com/in/jesse-njoroge/"
-						target="_blank"
-						className="about-linkedin"
-					>
-						<i class="fa-brands fa-linkedin fa-lg"></i>
+						<i class="fa-brands fa-linkedin fa-xl"></i>
 					</a>
 				</div>
 			</div>

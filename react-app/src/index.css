@@ -6,7 +6,7 @@ body{
     color: white;
     -webkit-font-smoothing: antialiased;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(0, 0, 0, 0.949);
+    background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.949) 12%, #121212ee);
     opacity: 1;
 
 }
@@ -47,7 +47,7 @@ body{
 
 .content {
     grid-area: content;
-    background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.949) 12%, #121212ee);
+    /* background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.949) 12%, #121212ee); */
     overflow-y: scroll;
     margin-bottom: 80px;
 }
@@ -58,7 +58,7 @@ body{
     background-color: #050203;
     overflow-y: scroll;
     margin-bottom: 80px;
-    border: 2px solid white;
+    /* border: 2px solid white; */
     position: relative;
 }
 
