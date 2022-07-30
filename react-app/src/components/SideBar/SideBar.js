@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { thunkGetPlaylists, thunkAddPlaylist } from "../../store/playlists";
-import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
+import circleLogo from "../assets/earfruit-kiwi-circle-logo.png";
 import SongFormModal from "../SongFormModal";
-import wordLogo from '../assets/earfruit-logo.png';
-import playListImage from '../assets/my-playlist-img.png';
+import wordLogo from "../assets/earfruit-logo.png";
+import playListImage from "../assets/my-playlist-img.png";
 import "./SideBar.css";
 
 export default function SideBar() {
@@ -66,46 +66,113 @@ export default function SideBar() {
 	return (
 		<div className="side-bar-container">
 			{/* <h2>EarFruit</h2> */}
-			<div id="side-bar-logo-imgs">
-				<img
-					id="side-bar-circle-logo"
-					src={circleLogo}
-					alt="circle logo"
-				/>
-				<p id="side-bar-word-logo">EarFruit</p>
-			</div>
-			<div className="side-bar-links"></div>
-			<NavLink className="sidebar-link" to="/" exact={true}>
-				<i className="fa fa-home"></i>
-				Home
-			</NavLink>
-			<NavLink className="sidebar-link" to="/search" exact={true}>
-				<i className="fa fa-search"></i>
-				Search
-			</NavLink>
-			<NavLink className="sidebar-link" to="/songs" exact={true}>
-				<i className="fa fa-music"></i>
-				Songs
-			</NavLink>
-			<SongFormModal />
-			<div className="sidebar-link" onClick={onSubmit}>
-				<i className="fa fa-plus"></i>
-				Create Playlist
-			</div>
-			<div className="side-bar-playlist-list">
-				{sessionUser &&
-					usersPlaylists.map((playlist) => (
-						<NavLink
-							className="sidebar-link sidebar-playlist-link"
-							to={`/playlists/${playlist.id}`}
-							key={playlist.id}
-						>
-							{playlist.name}
-						</NavLink>
-					))}
+			<div>
+				<div id="side-bar-logo-imgs">
+					<img id="side-bar-circle-logo" src={circleLogo} alt="circle logo" />
+					<p id="side-bar-word-logo">EarFruit</p>
+				</div>
+				<div className="side-bar-links">
+					<NavLink className="sidebar-link" to="/" exact={true}>
+						<i className="fa fa-home"></i>
+						Home
+					</NavLink>
+					<NavLink className="sidebar-link" to="/search" exact={true}>
+						<i className="fa fa-search"></i>
+						Search
+					</NavLink>
+					<NavLink className="sidebar-link" to="/songs" exact={true}>
+						<i className="fa fa-music"></i>
+						Songs
+					</NavLink>
+					<SongFormModal />
+					<div className="sidebar-link" onClick={onSubmit}>
+						<i className="fa fa-plus"></i>
+						Create Playlist
+					</div>
+				</div>
+				<div className="side-bar-playlist-list">
+					{sessionUser &&
+						usersPlaylists.map((playlist) => (
+							<NavLink
+								className="sidebar-link sidebar-playlist-link"
+								to={`/playlists/${playlist.id}`}
+								key={playlist.id}
+							>
+								{playlist.name}
+							</NavLink>
+						))}
+				</div>
 			</div>
 			<div className="about-cont">
-
+				<h3 className="about-header">Developers</h3>
+				<div className="about-div">
+					<p className="about-name">Jesse Njoroge</p>
+					<a
+						href="https://github.com/jnjoroge13"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-lg"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/jesse-njoroge/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-lg"></i>
+					</a>
+				</div>
+				<div className="about-div">
+					<p className="about-name">Jesse Njoroge</p>
+					<a
+						href="https://github.com/jnjoroge13"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-lg"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/jesse-njoroge/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-lg"></i>
+					</a>
+				</div>
+				<div className="about-div">
+					<p className="about-name">Jesse Njoroge</p>
+					<a
+						href="https://github.com/jnjoroge13"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-lg"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/jesse-njoroge/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-lg"></i>
+					</a>
+				</div>
+				<div className="about-div">
+					<p className="about-name">Jesse Njoroge</p>
+					<a
+						href="https://github.com/jnjoroge13"
+						target="_blank"
+						className="about-github"
+					>
+						<i class="about-github fa-brands fa-github fa-lg"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/jesse-njoroge/"
+						target="_blank"
+						className="about-linkedin"
+					>
+						<i class="fa-brands fa-linkedin fa-lg"></i>
+					</a>
+				</div>
 			</div>
 		</div>
 	);

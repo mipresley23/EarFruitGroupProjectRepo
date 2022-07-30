@@ -1,16 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-.side-bar-container,
+.side-bar-container{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    /* height: 100%; */
+    /* margin-bottom: 80px; */
+    border: 2px solid blue;
+}
 .side-bar-playlist-list{
     padding: 10px;
     display: flex;
     flex-direction: column;
 }
+
 .side-bar-container h2 {
     margin-bottom: 40px;
-    position: relative;
+    /* position: relative; */
 }
-
+.side-bar-links{
+    display: flex;
+    flex-direction: column;
+    height: 45%;
+    overflow-y: scroll;
+}
 .sidebar-link {
     margin-bottom: 20px;
     text-decoration: none;
@@ -68,8 +83,27 @@
     font-weight: 100;
 }
 
-/* .about-cont {
-    border-top: 2px solid rgba(128, 128, 128, 0.289);
+.about-cont {
+    /* border-top: 2px solid rgba(128, 128, 128, 0.289); */
     padding-top: 20px;
+    /* border: 2px solid blue; */
+    /* position:sticky; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    margin:0;
+    padding: 0;
+    z-index: 1;
+}
 
-} */
+.about-div {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+
+}
+
+.about-header {
+    text-align: center;
+}

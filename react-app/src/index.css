@@ -59,6 +59,7 @@ body{
     overflow-y: scroll;
     margin-bottom: 80px;
     border: 2px solid white;
+    position: relative;
 }
 
 .search-playlist-link {
