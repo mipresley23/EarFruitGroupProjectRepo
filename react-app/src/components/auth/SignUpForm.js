@@ -17,21 +17,25 @@ const SignUpForm = () => {
     let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   }
-   
-console.log(validateEmail('anystring@anystring.anystring'));
+
+  const validateImg = (url) => {
+    let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
+    return re.test(url);
+  }
 
   useEffect(() => {
     const errors = [];
     if (!username) errors.push('A username is required.');
     if (!email) errors.push('An email is required.');
     if (!validateEmail(email)) errors.push('Must be a valid email address.');
+    if (photoUrl.length > 0 && !(validateImg(photoUrl))) errors.push('Image url must a url and to a png, jpg, or jpeg.')
     if (!password) errors.push('A password is required.');
     if (password.length < 6) errors.push('Password length must be at least 6 characters.')
     if (!repeatPassword) errors.push('Please repeat the password.');
     if (password !== repeatPassword) errors.push('Password and repeated password must match.');
 
     setErrors(errors);
-  }, [username, email, password, repeatPassword]);
+  }, [username, email, password, repeatPassword, photoUrl]);
 
   const onSignUp = async (e) => {
     e.preventDefault();

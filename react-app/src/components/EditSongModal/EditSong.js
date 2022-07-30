@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { editSong, getSongs } from '../../store/songs';
-import '../songForm.css';
+import '../songForm.css'
 // import { Redirect } from 'react-router-dom';
 // import { login } from '../store/session';
 
@@ -20,12 +20,19 @@ const EditSong = ({song, setShowModal}) => {
     const [artist, setArtist] = useState(song?.artist);
     const [source, setSource] = useState(song?.source);
 
+    const validateImg = (url) => {
+        let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
+        return re.test(url);
+    }
+    
+
     useEffect(() => {
         const errors = [];
 
         if (!name) errors.push('Name is required');
         if (!artist) errors.push('artist is required');
         if (!album) errors.push('album is required');
+        if (albumImgUrl.length > 0 && !(validateImg(albumImgUrl))) errors.push('Image url must a url and to a png, jpg, or jpeg.')
         if (!genre) errors.push('genre is required');
 
         setErrors(errors);
