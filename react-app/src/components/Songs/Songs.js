@@ -1,16 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import AudioListProvider, { AudioListContext } from "../../context/audioList";
+import { AudioListContext } from "../../context/audioList";
 import { getSongs } from "../../store/songs";
 import Artists from "../Artists/Artists";
 import Albums from "../Albums/Albums";
 import EditSongModal from "../EditSongModal";
 import ConfirmDeleteModal from "../ConfirmDeleteModal";
-import ReactJkMusicPlayer from "react-jinke-music-player";
-import playSongButton from "../assets/play_button.png";
-import addToPlaylistButton from "../assets/addtoPlaylist.png";
 import circleLogo from "../assets/earfruit-kiwi-circle-logo.png";
 
 import "./Songs.css";
@@ -27,7 +23,6 @@ function Songs({ songPage }) {
 
 	const sessionUser = useSelector((state) => state.session.user);
 
-	const [playButton, setPlayButton] = useState(false);
 
 	const [audios, setAudios] = useState([]);
 	console.log("audios: ", audios);

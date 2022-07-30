@@ -8,6 +8,7 @@ import { getSongs } from '../../store/songs';
 import playButton from '../assets/play_button.png';
 import addToPlaylistButton from '../assets/addtoPlaylist.png';
 import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
+import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import './userProfile.css'
 
 const UserProfile = () => {
@@ -109,7 +110,7 @@ const UserProfile = () => {
               <div>
                 <NavLink to={`/playlists/${playlist.id}`}>
                   <div className='profile-playlists-container'>
-                    <img className='profile-playlist-cover-art' src={playlist.cover_img_url} alt='album cover' />
+                    <img className='profile-playlist-cover-art' src={playlist.cover_img_url ? playlist.cover_img_url : defaultPlaylistImage} alt='album cover' />
                     <p id='playlist-nav-link-text'>{playlist.name}</p>
                   </div>
                 </NavLink>

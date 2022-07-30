@@ -52,7 +52,7 @@ class Song(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), nullable=False)
   album = db.Column(db.String(50), nullable=False)
-  albumImgUrl = db.Column(db.String(2000))
+  albumImgUrl = db.Column(db.String(2000), nullable=True, default="https://wiki.theplaz.com/w/images/Windows_Media_Player_9_Default_Album_Art.jpg")
   genre = db.Column(db.String(25), nullable=False)
   artist = db.Column(db.String(50), nullable=False)
   source = db.Column(db.String(2000))
