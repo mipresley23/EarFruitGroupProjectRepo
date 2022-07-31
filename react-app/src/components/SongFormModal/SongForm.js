@@ -31,6 +31,9 @@ const SongForm = ({setShowModal}) => {
     useEffect(() => {
         const errors = [];
         if(name.length > 50) errors.push('The song name must be 50 characters or less.')
+        if(artist.length > 50) errors.push('Artist name must be 50 characters or less.')
+        if(album.length > 50) errors.push('Album name must be 50 characters or less.')
+        if(albumImgUrl.length > 2000) errors.push('Image url must be 2000 characters or less.')
         if (!name) errors.push('The song name is required.');
         if (!artist) errors.push('The artist is required.');
         if (!album) errors.push('The album is required.');
