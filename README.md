@@ -24,14 +24,29 @@
 
 ## Technologies Used
 
-> ### [React](https://reactjs.org/)
-> ### [Redux](https://redux.js.org/)
-> ### [Flask](https://flask.palletsprojects.com/en/2.1.x/)
-> ### [SQLAlchemy](https://docs.sqlalchemy.org/en/14/)
-> ### [Python](https://docs.python.org/3/)
-> ### [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-> ### [Alembic](https://alembic.sqlalchemy.org/en/latest/)
-> ### [WTForms](https://wtforms.readthedocs.io/en/3.0.x/)
+> [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" height=50px width=50px/>](https://reactjs.org/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=50px width=50px />](https://redux.js.org/)   [
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg" height=50px width=50px />](https://flask.palletsprojects.com/en/2.1.x/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original-wordmark.svg" height=50px width=50px />](https://docs.sqlalchemy.org/en/14/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" height=50px width=50px />](https://docs.python.org/3/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" height=50px width=50px />](https://developer.mozilla.org/en-US/docs/Web/JavaScript)   [Alembic](https://alembic.sqlalchemy.org/en/latest/)   [WTForms](https://wtforms.readthedocs.io/en/3.0.x/)
+
+
+## Description
+EarFruit is a Spotify clone, where users are allowed to browse songs by song title or have them grouped by artist or album title. Users who are signed up and logged in may add songs. They also may edit information about or delete songs that they've uploaded. Any users may listen to a song or any previously created playlist of songs, but users who are signed in may create their own playlists. The signed in user may also edit their own playlists. Signed in users may also include a picture upon signup that becomes their profile picture. Each user's profile includes information about the user, any playlists that user has created, as well as any songs that user has uploaded. 
+
+## Getting Started
+> * Begin by cloning this [repo.](https://github.com/mipresley23/EarFruitGroupProjectRepo)
+> * Travel to the project root directory and install dependencies by running the following commands.
+> > * pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+> * Create a .env file based on the example with your environment information
+> * Create your database with a user and password and ensure they match your .env file
+> * Enter your pipenv shell then create, migrate, and seed your database by running the following commands:
+> > * pipenv shell
+> > * flask db migrate
+> > * flask db upgrade
+> > * flask seed all
+> Next you may launch your backend server by running the command
+> > * flask run
+> * Next cd into the react-app directory and run the following commands to launch the front end server:
+> > * npm install
+> > * npm start
 
 ## Wireframe guides
 
@@ -51,17 +66,30 @@
 ![Screen Shot 2022-07-21 at 4 05 09 PM](https://user-images.githubusercontent.com/93172512/180329583-c546bdcc-ca82-4cb2-824f-ce28cfb5706f.png)
 
 ### Sign in Error
-![Screen Shot 2022-07-21 at 4 04 55 PM](https://user-images.githubusercontent.com/93172512/180329676-f9fb2fa8-b27e-4b89-91c8-d3ec5c4563f9.png)##
+![Screen Shot 2022-07-21 at 4 04 55 PM](https://user-images.githubusercontent.com/93172512/180329676-f9fb2fa8-b27e-4b89-91c8-d3ec5c4563f9.png)
 
-> * instructions for starting proj
+## Features
+### Signup
+![image](https://user-images.githubusercontent.com/59783664/182046326-f6c99a35-4a43-4fdf-a6eb-9b755c58e03c.png)
 
-> * description
+### Splash/Root Page showing Demo User
+![image](https://user-images.githubusercontent.com/59783664/182046430-b0d20a47-9092-42dc-a3c2-7351b02877cc.png)
 
-> * features w/screenshots
-> > * homepage
-> > * nav bar
-> > * etc
+### Profile Page
+![image](https://user-images.githubusercontent.com/59783664/182046464-1622eb66-ad3c-44fa-82d0-72b808fcc069.png)
 
-> * challenges
+### Add Song Form in front of All Songs Page
+![image](https://user-images.githubusercontent.com/59783664/182046524-4a7cab0b-6cb7-4755-95cb-fd980f4a00b9.png)
 
-> * particularly proud of feature/code
+### Create/Edit Playlist
+![image](https://user-images.githubusercontent.com/59783664/182046587-ea37b36d-7006-4a35-8787-75222ec3c116.png)
+
+### Music Player playing song
+![image](https://user-images.githubusercontent.com/59783664/182046613-489ddbc7-6977-422d-a0bf-0633344d1086.png)
+
+
+## Contributors
+### [Jesse Njoroge](https://github.com/jnjoroge13)
+### [Michael Presley](https://github.com/mipresley23)
+### [Anthony Taylor](https://github.com/antt3)
+### [Krishna Mulloth](https://github.com/kmulloth)
