@@ -121,7 +121,7 @@ export default function SideBar() {
 					</a>
 				</div>
 				<div className="about-div">
-					<p className="about-name">Michael Presly</p>
+					<p className="about-name">Michael Presley</p>
 					<a
 						href="https://github.com/mipresley23"
 						target="_blank"
