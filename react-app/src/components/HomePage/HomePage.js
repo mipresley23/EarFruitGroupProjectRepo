@@ -14,7 +14,7 @@ function HomePage() {
 
 	const dispatch = useDispatch()
 
-	const {setAudioList} = useAudioList();
+	const {setAudioList, setClearAudioList} = useAudioList();
 
 	const [playlists, setPlaylists] = useState([])
 	const [songs, setSongs] = useState([]);
