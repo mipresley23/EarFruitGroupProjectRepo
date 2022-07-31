@@ -6,6 +6,7 @@ export default function AudioListProvider(props) {
   const [audioList, setAudioList] = useState([]);
   const [audioIndex, setAudioIndex] = useState(0);
   const [clearAudioList, setClearAudioList] = useState(false)
+  const [quiteUpdate, setQuietUpdate] = useState(true)
 
   return (
     <AudioListContext.Provider
@@ -15,7 +16,9 @@ export default function AudioListProvider(props) {
         audioIndex,
         setAudioIndex,
         clearAudioList,
-        setClearAudioList
+        setClearAudioList,
+        quiteUpdate,
+        setQuietUpdate
       }}
       >
         {props.children}

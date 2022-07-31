@@ -7,7 +7,6 @@ import '../songForm.css'
 // import { login } from '../store/session';
 
 const EditSong = ({song, setShowModal}) => {
-    // console.log(song)
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -25,10 +24,14 @@ const EditSong = ({song, setShowModal}) => {
         let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
         return re.test(url);
     }
-    
+
     useEffect(() => {
         const errors = [];
 
+        if(name.length > 50) errors.push('The song name must be 50 characters or less.')
+        if(artist.length > 50) errors.push('Artist name must be 50 characters or less.')
+        if(album.length > 50) errors.push('Album name must be 50 characters or less.')
+        if(albumImgUrl.length > 2000) errors.push('Image url must be 2000 characters or less.')
         if (!name) errors.push('Name is required.');
         if (!artist) errors.push('Artist is required.');
         if (!album) errors.push('Album is required.');
@@ -53,7 +56,6 @@ const EditSong = ({song, setShowModal}) => {
                 source
             };
 
-            // console.log(song)
             dispatch(editSong(Editedsong)).then(() => {
                 dispatch(getSongs());
                 setShowModal(false);

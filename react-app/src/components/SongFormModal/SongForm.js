@@ -31,6 +31,9 @@ const SongForm = ({setShowModal}) => {
     useEffect(() => {
         const errors = [];
         if(name.length > 50) errors.push('The song name must be 50 characters or less.')
+        if(artist.length > 50) errors.push('Artist name must be 50 characters or less.')
+        if(album.length > 50) errors.push('Album name must be 50 characters or less.')
+        if(albumImgUrl.length > 2000) errors.push('Image url must be 2000 characters or less.')
         if (!name) errors.push('The song name is required.');
         if (!artist) errors.push('The artist is required.');
         if (!album) errors.push('The album is required.');
@@ -65,7 +68,6 @@ const SongForm = ({setShowModal}) => {
             if (res.ok) {
                 const jsonRes = await res.json();
                 setMP3Loading(false);
-                // console.log('------jsonRes----', jsonRes.source)
 
                 const song = {
                     name,
@@ -76,7 +78,6 @@ const SongForm = ({setShowModal}) => {
                     source: jsonRes.source
                 };
 
-                // console.log('------song------', song)
                 const response = await dispatch(createSong(song));
 
                 if (response === 'Song Uploaded') {
@@ -88,7 +89,7 @@ const SongForm = ({setShowModal}) => {
             else {
                 setMP3Loading(false);
                 setIsMP3(false);
-                // console.log("---error uploading song----", res)
+
             }
         }
     }

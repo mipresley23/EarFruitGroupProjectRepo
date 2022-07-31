@@ -41,10 +41,6 @@ const UserProfile = () => {
 	const thisUsersSongs =
 		songs && songs.filter((song) => song.user_Id.id == +userId);
 
-	// console.log('thisUsersPlaylists: ',thisUsersPlaylists)
-	// console.log('profile songs: ', songs)
-	// console.log('thisUsersSongs: ', thisUsersSongs)
-	// console.log('thisUsersPlaylists: ', thisUsersPlaylists)
 
 	useEffect(() => {
 		dispatch(getSongs());
@@ -71,7 +67,6 @@ const UserProfile = () => {
 	}, [playlistSelector]);
 
 	const handlePlaySong = async (value) => {
-		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {

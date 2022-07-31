@@ -11,7 +11,7 @@ import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
 import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
-import AudioListProvider, { AudioListContext } from '../../context/audioList';
+import { useAudioList } from '../../context/audioList';
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -22,7 +22,6 @@ const EachPlaylist = () => {
 	const sessionUser = useSelector((state) => state.session.user);
 	const editPlaylist = useSelector((state) => state.playlists[playlistId]);
 	const playlistSongs = Object.values(useSelector((state) => state.songs));
-	// console.log(playlistSongs);
 	const [editName, setEditName] = useState(false);
 	const [editImage, setEditImage] = useState(false);
 	const [editDescription, setEditDescription] = useState(false);
@@ -32,7 +31,12 @@ const EachPlaylist = () => {
 	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser?.id == editPlaylist?.user?.id;
 	const [addSong, setAddSong] = useState(false);
-	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
+	const { setAudioList, setQuietUpdate, setClearAudioList} = useAudioList();
+
+	const playlistAudioList = []
+
+
+
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
 		setEditName(false);
@@ -83,7 +87,7 @@ const EachPlaylist = () => {
 			description,
 			cover_img_url: image,
 		};
-		// console.log(playlist);
+
 		if (name.length == 0) {
 			alert("Playlist must have a name");
 		} else {
@@ -115,20 +119,16 @@ const EachPlaylist = () => {
 		image.onload = function () {
 			if (this.width > 0) {
 				setImageError(false);
-				// console.log("image exists");
 			}
 		};
 		image.onerror = function () {
 			setImageError(true);
-			//   console.log("image doesn't exist");
 		};
 		image.src = url;
 	}
 
-	// console.log(imageError)
 
 	const handlePlaySong = async (value) => {
-		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {
@@ -152,6 +152,14 @@ const EachPlaylist = () => {
 		}
 	};
 
+	const handlePlayAll = async () => {
+		setClearAudioList(true)
+		setAudioList([])
+		setQuietUpdate(false)
+		playlistSongs && playlistSongs.map(playlistSong => playlistAudioList.push({name: playlistSong.name, cover: playlistSong.albumImgUrl, singer: playlistSong.artist, musicSrc: playlistSong.source}))
+		await setAudioList(playlistAudioList)
+	}
+
 	const openSearchBar = () => {
 		setAddSong(true);
 	};
@@ -162,7 +170,6 @@ const EachPlaylist = () => {
 	};
 
 	const removeSongFromPlaylist = async (playlistId, songId) => {
-		// await dispatch(thunkAddPlaylistSongs(playlistId, songId))
 		await fetch(`/api/playlists/delete-song/${playlistId}/${songId}`);
 		dispatch(thunkGetPlaylistSongs(playlistId));
 	};
@@ -243,6 +250,7 @@ const EachPlaylist = () => {
 								</h3>
 							)}
 
+
 							{isOwner && !editDescription && description?.length == 0 && (
 								<button onClick={editDescriptionBtn}>Add a Description</button>
 							)}
@@ -270,10 +278,13 @@ const EachPlaylist = () => {
 						<li className="playlist-username">
 							{<h3>{editPlaylist?.user.username}</h3>}
 						</li>
+						<div id="playlist-playall-button">
+							<i onClick={handlePlayAll} class="search-song-button fa fa-play fa-xl"></i>
+							<label>Play All</label>
+						</div>
 					</ul>
 				</div>
 				<div className="playlist-image">
-					{/* {console.log(imageError)} */}
 					{!imageError && <img src={editPlaylist?.cover_img_url} />}
 					{imageError && <img src={defaultPlaylistImage} />}
 					{isOwner && !editImage && (

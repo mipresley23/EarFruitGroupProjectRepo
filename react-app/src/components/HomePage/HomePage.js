@@ -5,8 +5,8 @@ import { thunkGetPlaylists } from "../../store/playlists";
 import { getSongs } from "../../store/songs";
 import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
 import defaultPlaylistImage from "../assets/my-playlist-img.png";
-import AudioListProvider, {AudioListContext} from '../../context/audioList';
-import SearchBar from "../SearchBar/SearchBar";
+import {useAudioList} from '../../context/audioList';
+import { getUsersThunk } from "../../store/Users";
 
 import './HomePage.css'
 
@@ -14,19 +14,23 @@ function HomePage() {
 
 	const dispatch = useDispatch()
 
-	const {audioList, setAudioList, clearAudioList, setClearAudioList} = useContext(AudioListContext)
+	const {setAudioList} = useAudioList();
 
 	const [playlists, setPlaylists] = useState([])
 	const [songs, setSongs] = useState([]);
+	const [users, setUsers] = useState([]);
+
+
 
 
 	const playlistSelector = useSelector(state => state.playlists)
 	const songSelector = useSelector(state => state.songs)
+	const userSelector = useSelector(state => state.users)
+	const sessionUser = useSelector((state) => state.session.user);
 
 
 	const rockSongs = songs && songs.filter(song => song.genre === 'Rock')
-	// console.log('splash songs: ', songs)
-	// console.log('rock songs: ', rockSongs)
+
 	const popSongs = songs && songs.filter(song => song.genre === 'Pop')
 	const rapSongs = songs && songs.filter(song => song.genre === 'Rap')
 	const electronicSongs = songs && songs.filter(song => song.genre === 'Electronic')
@@ -37,7 +41,32 @@ function HomePage() {
 	const metalSongs = songs && songs.filter(song => song.genre === 'Metal')
   const [albumArt, setAlbumArt] = useState('https://protkd.com/wp-content/uploads/2017/04/default-image.jpg');
 
+	let randomUserId;
 
+	if(sessionUser){
+		randomUserId = Math.floor(Math.random() * (users.length) + 1);
+	}
+
+	let randomUser;
+
+	if(sessionUser){
+		randomUser = users && users.find(user => user.id === randomUserId && user.id !== sessionUser.id)
+	}else{
+		randomUser = users && users.find(user => user.id === 1)
+	}
+
+	const randomUserPlaylists = playlists && playlists.filter(playlist => playlist.user.id === randomUserId)
+
+
+
+
+	useEffect(() => {
+		dispatch(getUsersThunk())
+	},[dispatch])
+
+	useEffect(() => {
+		setUsers(Object.values(userSelector))
+	}, [userSelector])
 
 
 	useEffect(() => {
@@ -57,7 +86,6 @@ function HomePage() {
 	}, [playlistSelector])
 
 	const handlePlaySong = async (value) => {
-		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {
@@ -84,7 +112,7 @@ function HomePage() {
 
 
 
-	const sessionUser = useSelector((state) => state.session.user);
+
 
 		return(
 			<div>
@@ -108,6 +136,8 @@ function HomePage() {
 					</div>
 				</div>
 				<div>
+				</div>
+				<div>
 					<div className="genre-container">
 						<h3>Rock</h3>
 						<div className='card-containers'>
@@ -115,8 +145,10 @@ function HomePage() {
 							rockSongs && rockSongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([
@@ -142,8 +174,10 @@ function HomePage() {
 							popSongs && popSongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([
@@ -169,8 +203,10 @@ function HomePage() {
 							rapSongs && rapSongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([
@@ -196,8 +232,10 @@ function HomePage() {
 							electronicSongs && electronicSongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([
@@ -223,8 +261,10 @@ function HomePage() {
 							countrySongs && countrySongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([
@@ -250,8 +290,10 @@ function HomePage() {
 							classicalSongs && classicalSongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([
@@ -277,8 +319,10 @@ function HomePage() {
 							jazzSongs && jazzSongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([
@@ -304,8 +348,10 @@ function HomePage() {
 							bluesSongs && bluesSongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([
@@ -331,8 +377,10 @@ function HomePage() {
 							metalSongs && metalSongs.map(song => (
 								<div className='song-container'>
 									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
-									<p>{song.name}</p>
-									<p>{song.artist}</p>
+									<div className="splash-song-info">
+										<p>{song.name}</p>
+										<p>{song.artist}</p>
+									</div>
 									<i id="splash-play-button"
 						onClick={() =>
 							handlePlaySong([

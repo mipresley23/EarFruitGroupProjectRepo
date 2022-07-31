@@ -18,13 +18,12 @@ export default function SearchBar() {
 			song.name.toUpperCase().includes(search.toUpperCase()) ||
 			song.artist.toUpperCase().includes(search.toUpperCase())
 	);
-	// console.log(searchSongs);
+
 	const { audioList, setAudioList, clearAudioList, setClearAudioList } =
 		useContext(AudioListContext);
 
 	async function onSubmit(e) {
 		e.preventDefault();
-		// console.log(search);
 		async function fetchData() {
 			const response = await fetch(`/api/playlists/${search}`);
 			const responseData = await response.json();
@@ -38,18 +37,15 @@ export default function SearchBar() {
 	}, [dispatch]);
 
 	useEffect(() => {
-		// console.log(search);
 		async function fetchData() {
 			const response = await fetch(`/api/playlists/${search}`);
 			const responseData = await response.json();
-			// console.log(responseData.playlists)
 			setSearchResultsArray(responseData.playlists);
 		}
 		fetchData();
 	}, [search]);
 
 	const playlistSearchResults = searchResultsArray.map((playlist) => {
-		// console.log(playlist);
 		return (
 			<NavLink
 				className="search-playlist-link"
@@ -67,7 +63,6 @@ export default function SearchBar() {
 	});
 
 	const handlePlaySong = async (value) => {
-		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {
@@ -93,10 +88,6 @@ export default function SearchBar() {
 
 	const handleAddToQueue = async (value) => {
 		setClearAudioList(false);
-		// const audioArr = e.target.value.split(',')
-		// console.log('audioArr: ', audioArr)
-		// console.log(audioList !== null)
-		// console.log('audioListinQueueFunc: ', audioList)
 		if (audioList) {
 			setAudioList([
 				{
@@ -111,8 +102,6 @@ export default function SearchBar() {
 
 	let songNum = 0;
 	const songSearchResults = searchSongs.map((song) => {
-		// console.log(playlist);
-		// console.log(song);
 		songNum++;
 		return (
 			<tr className="search-song-row">

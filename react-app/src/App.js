@@ -65,9 +65,9 @@ function App() {
           <Route path='/' exact={true} >
             <HomePage/>
           </Route>
-          <ProtectedRoute path='/songs' exact={true} >
+          <Route path='/songs' exact={true} >
             <Songs songPage={songPage} />
-          </ProtectedRoute>
+          </Route>
           <Route path='/playlists' exact={true} >
             <AllPlaylists />
           </Route>

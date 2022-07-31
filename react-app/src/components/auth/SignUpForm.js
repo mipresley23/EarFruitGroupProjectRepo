@@ -34,6 +34,10 @@ const SignUpForm = () => {
     if (password.length < 6) errors.push('Password length must be at least 6 characters.')
     if (!repeatPassword) errors.push('Please repeat the password.');
     if (password !== repeatPassword) errors.push('Password and repeated password must match.');
+    if(username.length > 40) errors.push('Username must be 40 characters or less.')
+    if(email.length > 255) errors.push('Email length must be 255 characters or less.')
+    if(password.length > 255) errors.push('Password length must be 255 characters or less.')
+    if(photoUrl.length > 2000) errors.push('Photo url must be 2000 characters or less.')
 
     setErrors(errors);
   }, [username, email, password, repeatPassword, photoUrl]);
