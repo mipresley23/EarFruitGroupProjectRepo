@@ -33,9 +33,10 @@ const EachPlaylist = () => {
 	const [addSong, setAddSong] = useState(false);
 	const { setAudioList, setQuietUpdate, setClearAudioList} = useAudioList();
 
-	const playlistAudioList = []
+	// const playlistAudioList = []
+	// console.log(playlistSongs)
 
-
+	// const thisPlaylistsSongs = playlistSongs && playlistSongs.filter(playlist => )
 
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
@@ -152,13 +153,13 @@ const EachPlaylist = () => {
 		}
 	};
 
-	const handlePlayAll = async () => {
-		setClearAudioList(true)
-		setAudioList([])
-		setQuietUpdate(false)
-		playlistSongs && playlistSongs.map(playlistSong => playlistAudioList.push({name: playlistSong.name, cover: playlistSong.albumImgUrl, singer: playlistSong.artist, musicSrc: playlistSong.source}))
-		await setAudioList(playlistAudioList)
-	}
+	// const handlePlayAll = async () => {
+	// 	setClearAudioList(true)
+	// 	setAudioList([])
+	// 	setQuietUpdate(false)
+	// 	playlistSongs && playlistSongs.map(playlistSong => playlistAudioList.push({name: playlistSong.name, cover: playlistSong.albumImgUrl, singer: playlistSong.artist, musicSrc: playlistSong.source}))
+	// 	await setAudioList(playlistAudioList)
+	// }
 
 	const openSearchBar = () => {
 		setAddSong(true);
@@ -176,6 +177,8 @@ const EachPlaylist = () => {
 	let songNum = 0;
 	const playlistSongList = playlistSongs.map((song) => {
 		songNum++;
+
+
 		return (
 			<tr className="search-song-row">
 				<td className="search-song-number">{songNum}</td>
@@ -278,10 +281,10 @@ const EachPlaylist = () => {
 						<li className="playlist-username">
 							{<h3>{editPlaylist?.user.username}</h3>}
 						</li>
-						<div id="playlist-playall-button">
+						{/* <div id="playlist-playall-button">
 							<i onClick={handlePlayAll} class="search-song-button fa fa-play fa-xl"></i>
 							<label>Play All</label>
-						</div>
+						</div> */}
 					</ul>
 				</div>
 				<div className="playlist-image">
