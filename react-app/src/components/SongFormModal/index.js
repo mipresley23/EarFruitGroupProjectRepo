@@ -6,7 +6,7 @@ import '../songForm.css';
 import '../SideBar/SideBar.css'
 
 function SongFormModal() {
-  // console.log(SongForm)
+
   const [showModal, setShowModal] = useState(false);
 
   return (

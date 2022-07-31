@@ -10,8 +10,6 @@ function ConfirmDelete({ song, setShowModal }) {
     const formData = new FormData();
       formData.append("source", song.source);
 
-      // console.log('---------song.source-----------', song);
-
     const awsRes = await fetch('/api/songs/mp3', {
       method: "DELETE",
       headers: {
@@ -19,8 +17,7 @@ function ConfirmDelete({ song, setShowModal }) {
       },
       body: formData
     });
-    // console.log('--------awsRes------', awsRes)
-    
+
     if(awsRes.ok) {
 
       const res = await dispatch(deleteSong(song.id))

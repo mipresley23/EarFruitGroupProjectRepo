@@ -25,8 +25,7 @@ function HomePage() {
 
 
 	const rockSongs = songs && songs.filter(song => song.genre === 'Rock')
-	// console.log('splash songs: ', songs)
-	// console.log('rock songs: ', rockSongs)
+
 	const popSongs = songs && songs.filter(song => song.genre === 'Pop')
 	const rapSongs = songs && songs.filter(song => song.genre === 'Rap')
 	const electronicSongs = songs && songs.filter(song => song.genre === 'Electronic')
@@ -57,7 +56,6 @@ function HomePage() {
 	}, [playlistSelector])
 
 	const handlePlaySong = async (value) => {
-		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {

@@ -9,7 +9,6 @@ function AlbumModal({album, albums, handlePlaySong, handleAddToQueue}) {
 
   useEffect(() => {
     albums[album].forEach(song => {
-      // console.log(song.albumImgUrl)
       if (song.albumImgUrl) setAlbumArt(song.albumImgUrl)
     })
   }, [albums, album])

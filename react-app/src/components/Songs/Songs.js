@@ -16,7 +16,6 @@ function Songs({ songPage }) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const songsArr = Object.values(songs);
-	// console.log("songsArr: ", songsArr);
 
 	const { audioList, setAudioList, clearAudioList, setClearAudioList } =
 		useContext(AudioListContext);
@@ -25,7 +24,6 @@ function Songs({ songPage }) {
 
 
 	const [audios, setAudios] = useState([]);
-	// console.log("audios: ", audios);
 
 	useEffect(() => {
 		dispatch(getSongs());
@@ -35,33 +33,8 @@ function Songs({ songPage }) {
 		setAudios(Object.values(songs));
 	}, [songs]);
 
-	// const handlePlaySong = async(e) => {
-	//     e.preventDefault();
-	//     setClearAudioList(true)
-	//     const audioArr = e.target.value.split(',')
-	//     console.log('audioArr: ', audioArr)
-	//     console.log('new audio aws source: ', audioArr[2])
-	//     setAudioList([])
-	//     if (audioArr[3]){
-	//         await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
-	//     }else{
-	//         await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
-	//     }
-	// }
-	// const handleAddToQueue = async(e) => {
-	//     e.preventDefault();
-	//     setClearAudioList(false)
-	//     const audioArr = e.target.value.split(',')
-	//     console.log('audioArr: ', audioArr)
-	//     console.log(audioList !== null)
-	//     console.log('audioListinQueueFunc: ', audioList)
-	//     if(audioList){
-	//         setAudioList([{name: audioArr[0], singer: audioArr[1], cover: audioArr[3], musicSrc: audioArr[2]}])
-	//     }
-	// }
 
 	const handlePlaySong = async (value) => {
-		// console.log(value);
 		setClearAudioList(true);
 		setAudioList([]);
 		if (value[3]) {
@@ -87,10 +60,6 @@ function Songs({ songPage }) {
 
 	const handleAddToQueue = async (value) => {
 		setClearAudioList(false);
-		// const audioArr = e.target.value.split(',')
-		// console.log('audioArr: ', audioArr)
-		// console.log(audioList !== null)
-		// console.log('audioListinQueueFunc: ', audioList)
 		if (audioList) {
 			setAudioList([
 				{
@@ -132,7 +101,7 @@ function Songs({ songPage }) {
 			</tr>
 		);
 	});
-	// console.log("audioList:", audioList);
+
 	return (
 		<>
 			{songPage === "artists" && (
@@ -215,6 +184,5 @@ function Songs({ songPage }) {
 	);
 }
 
-// (e) => console.log(e.target.value)
 
 export default Songs;

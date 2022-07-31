@@ -35,9 +35,7 @@ export default function PlaylistForm() {
             description,
             cover_img_url: coverUrl
         }
-        // dispatch(thunkAddPlaylist(playlist))
         const newPlaylist = await dispatch(thunkAddPlaylist(playlist))
-        // console.log('ADD PLAYLIST RESPONSE!!!!!!!!!!!!!!!:',newPlaylist)
         if (newPlaylist) {
             history.push(`/playlists/${newPlaylist.id}`)
         }

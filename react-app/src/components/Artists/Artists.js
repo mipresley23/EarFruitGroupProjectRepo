@@ -18,39 +18,17 @@ function Artists ({songsArr, handlePlaySong, handleAddToQueue}) {
             artists[song?.artist].push(song)
         }
     })
-    // console.log('ARTISTS', artists['Jimi Hendrix'])
 
-    // const handlePlaySong = async(e) => {
-    //     e.preventDefault();
-    //     setClearAudioList(true)
-    //     const audioArr = e.target.value.split(',')
-    //     // console.log('audioArr: ', audioArr)
-    //     setAudioList([])
-    //     await setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
-    // }
-
-    // const handleAddToQueue = async(e) => {
-    //     e.preventDefault();
-    //     setClearAudioList(false)
-    //     const audioArr = e.target.value.split(',')
-    //     // console.log('audioArr: ', audioArr)
-    //     // console.log(audioList !== null)
-    //     // console.log('audioListinQueueFunc: ', audioList)
-    //     if(audioList){
-    //         setAudioList([{name: audioArr[0], singer: audioArr[1], cover: circleLogo, musicSrc: audioArr[2]}])
-    //     }
-    // }
 
     const handleAddListtoQueue = async(e) => {
         e.preventDefault();
         const artist = e.target.value
         const audioObj = artists[artist]
-        // console.log('audioObj: ', audioObj)
+
 
         if(audioList){
             setClearAudioList(false)
             audioObj.forEach(song => {
-                // console.log('SONG: ', song)
                 setAudioList([{name: song.name, singer: artist , cover: circleLogo, musicSrc: song.source}])
             })
         }

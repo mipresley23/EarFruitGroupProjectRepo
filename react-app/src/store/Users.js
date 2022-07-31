@@ -20,8 +20,6 @@ export const getUsersThunk = (users) => async(dispatch) => {
 }
 
 export const editUserThunk = (user, photo_url) => async(dispatch) => {
-  // console.log('edit thunk user: ', user)
-  // console.log('thunk user id: ', user.id)
   const { photo_url } = user
   const res = await fetch(`/api/users/${user.id}`, {
     method: "PUT",
@@ -34,7 +32,6 @@ export const editUserThunk = (user, photo_url) => async(dispatch) => {
   })
   if(res.ok){
     const data = await res.json()
-    // console.log('thunk data:', data)
     dispatch(editUser(data))
     return res
   }
@@ -47,17 +44,13 @@ export default function userReducer(state = {}, action) {
   let newState = {...state}
   switch(action.type) {
     case GET_ALL_USERS:
-      // console.log("action: ", action.users.users)
       action.users.users.forEach(user => {
         newState[user.id] = user
       })
-      // console.log('newState:', newState)
       return newState;
 
     case EDIT_USER:
-      // console.log('edit action: ', action)
       newState[action.user.id] = action.user
-      // console.log('edit action: ', action)
       newState[action.user.photo_url] = action.user
       return newState
     default:

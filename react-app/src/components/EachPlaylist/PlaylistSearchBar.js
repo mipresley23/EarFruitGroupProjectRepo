@@ -15,19 +15,17 @@ export default function PlaylistSearchBar({ func }) {
 			song.name.toUpperCase().includes(search.toUpperCase()) ||
 			song.artist.toUpperCase().includes(search.toUpperCase())
 	);
-	// console.log(searchSongs);
 
 	useEffect(() => {
 		dispatch(getSongs());
 	}, [dispatch]);
 
 	const addSongToPlaylist = async (playlistId, songId) => {
-		// await dispatch(thunkAddPlaylistSongs(playlistId, songId))
 		await fetch(`/api/playlists/add-song/${playlistId}/${songId}`);
 		func();
 	};
 	// const songSearchResults = searchSongs.map((song) => {
-	// 	// console.log(playlist);
+
 	// 	return (
 
 	// 		<div className="song-card" key={song.name}>
@@ -45,7 +43,6 @@ export default function PlaylistSearchBar({ func }) {
 	// });
 	let songNum = 0;
 	const songSearchResults = searchSongs.map((song) => {
-		// console.log(playlist);
 		songNum++;
 		return (
 			<tr className="search-song-row">
@@ -64,7 +61,6 @@ export default function PlaylistSearchBar({ func }) {
 
 	async function onSubmit(e) {
 		e.preventDefault();
-		// console.log(search);
 		dispatch(getSongs());
 	}
 

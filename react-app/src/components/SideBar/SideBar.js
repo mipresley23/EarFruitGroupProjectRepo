@@ -35,9 +35,9 @@ export default function SideBar() {
 	usersPlaylists?.map((playlists) =>
 		userPlaylistNameArray.push(playlists.name)
 	);
-	// console.log(userPlaylistNameArray)
+
 	let i = 1;
-	// console.log(userPlaylistNameArray.includes(`My Playlist #${i}`))
+
 	while (userPlaylistNameArray.includes(`My Playlist #${i}`)) {
 		i++;
 	}
@@ -48,7 +48,7 @@ export default function SideBar() {
 		if (sessionUser) {
 			e.preventDefault();
 			setMyPlaylistNumber(i);
-			// console.log(myPlaylistNumber)
+
 			const playlist = {
 				name: `My Playlist #${myPlaylistNumber}`,
 				description: `${sessionUser.username}'s Playlist`,

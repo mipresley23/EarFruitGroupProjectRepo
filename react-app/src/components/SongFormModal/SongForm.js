@@ -65,7 +65,6 @@ const SongForm = ({setShowModal}) => {
             if (res.ok) {
                 const jsonRes = await res.json();
                 setMP3Loading(false);
-                // console.log('------jsonRes----', jsonRes.source)
 
                 const song = {
                     name,
@@ -76,7 +75,6 @@ const SongForm = ({setShowModal}) => {
                     source: jsonRes.source
                 };
 
-                // console.log('------song------', song)
                 const response = await dispatch(createSong(song));
 
                 if (response === 'Song Uploaded') {
@@ -88,7 +86,7 @@ const SongForm = ({setShowModal}) => {
             else {
                 setMP3Loading(false);
                 setIsMP3(false);
-                // console.log("---error uploading song----", res)
+
             }
         }
     }
