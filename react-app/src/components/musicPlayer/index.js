@@ -2,10 +2,12 @@ import React, {useState} from "react";
 import { useAudioList } from "../../context/audioList";
 import ReactJkMusicPlayer from 'react-jinke-music-player'
 import 'react-jinke-music-player/assets/index.css'
+import { useSelector } from "react-redux";
 
 
 const MusicPlayer = () => {
   const {audioList, clearAudioList, quietUpdate} = useAudioList();
+
 
 
   return (
