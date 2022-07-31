@@ -18,14 +18,14 @@ function HomePage() {
 
 	const [playlists, setPlaylists] = useState([])
 	const [songs, setSongs] = useState([]);
-	const [users, setUsers] = useState([]);
+
 
 
 
 
 	const playlistSelector = useSelector(state => state.playlists)
 	const songSelector = useSelector(state => state.songs)
-	const userSelector = useSelector(state => state.users)
+
 	const sessionUser = useSelector((state) => state.session.user);
 
 
@@ -41,32 +41,7 @@ function HomePage() {
 	const metalSongs = songs && songs.filter(song => song.genre === 'Metal')
   const [albumArt, setAlbumArt] = useState('https://protkd.com/wp-content/uploads/2017/04/default-image.jpg');
 
-	let randomUserId;
 
-	if(sessionUser){
-		randomUserId = Math.floor(Math.random() * (users.length) + 1);
-	}
-
-	let randomUser;
-
-	if(sessionUser){
-		randomUser = users && users.find(user => user.id === randomUserId && user.id !== sessionUser.id)
-	}else{
-		randomUser = users && users.find(user => user.id === 1)
-	}
-
-	const randomUserPlaylists = playlists && playlists.filter(playlist => playlist.user.id === randomUserId)
-
-
-
-
-	useEffect(() => {
-		dispatch(getUsersThunk())
-	},[dispatch])
-
-	useEffect(() => {
-		setUsers(Object.values(userSelector))
-	}, [userSelector])
 
 
 	useEffect(() => {
@@ -122,7 +97,7 @@ function HomePage() {
 						<div className='card-containers' id="generic-playlist-container">
 						{
 							playlists && playlists.map(playlist => (
-								<div>
+								<div id="splash-each-playlist-container">
 									<NavLink to={`playlists/${playlist.id}`}>
 										<div className='song-container'>
 											<img className='card-image' id='each-playlist-image' src={playlist.cover_img_url ? playlist.cover_img_url : defaultPlaylistImage} alt={playlist.name}/>

@@ -11,15 +11,35 @@ const NavBar = ({setSongPage}) => {
 
 	const [isSongs, setIsSongs] = useState(location.pathname.includes('songs'));
 	const [showMenu, setShowMenu] = useState(false)
-	const photo_url = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.repol.copl.ulaval.ca%2Fwp-content%2Fuploads%2F2019%2F01%2Fdefault-user-icon.jpg&f=1&nofb=1'
+	const [imageError, setImageError] = useState(false);
+	const [image, setImage] = useState("https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg");
+
 
 	useEffect(() => {
 		if (location.pathname.includes('songs')) setIsSongs(true);
 		else setIsSongs(false);
 	}, [location]);
 
+	useEffect(() => {
+		checkImage(image);
+	}, [image]);
+
+
 	const handleDemo = () => {
 		return dispatch(sessionActions.loginDemo());
+	}
+
+	function checkImage(url) {
+		var image = new Image();
+		image.onload = function () {
+			if (this.width > 0) {
+				setImageError(false);
+			}
+		};
+		image.onerror = function () {
+			setImageError(true);
+		};
+		setImage(url);
 	}
 
 	return (
@@ -50,7 +70,7 @@ const NavBar = ({setSongPage}) => {
 				{isLoggedIn && (
 					<>
 						<div id="nav-bar-user-info" onClick={e => setShowMenu(!showMenu)}>
-								<img id='nav-bar-user-img' src={isLoggedIn.photo_url ? isLoggedIn.photo_url : photo_url} alt='navbar profile photo'/>
+								<img id='nav-bar-user-img' src={image} alt='navbar profile photo'/>
 								<li>{isLoggedIn.username}</li>
 							{showMenu && (
 								<ul id='profile-menu'>
