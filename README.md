@@ -57,7 +57,7 @@ EarFruit is a Spotify clone, where users are allowed to browse songs by song tit
 ![image](https://user-images.githubusercontent.com/59783664/180311035-670c723f-c5ed-4d85-8737-f3a8b1f99894.png)
 
 ### Playlist/Song/Profile Pages
-![image](https://user-images.githubusercontent.com/59783664/180312282-2d64b072-1186-4c87-95d5-56522b636275.png)
+![image](https://user-images.githubusercontent.com/59783664/182166874-49fce589-f12d-41eb-bac3-f6ea078c7b8c.png)
 
 ### Signup Page
 ![Screen Shot 2022-07-21 at 4 05 33 PM](https://user-images.githubusercontent.com/93172512/180329561-cf9e320a-75d9-4ae5-9c70-96807139641b.png)
