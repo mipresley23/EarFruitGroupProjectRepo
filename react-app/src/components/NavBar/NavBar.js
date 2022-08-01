@@ -12,7 +12,12 @@ const NavBar = ({setSongPage}) => {
 	const [isSongs, setIsSongs] = useState(location.pathname.includes('songs'));
 	const [showMenu, setShowMenu] = useState(false)
 	const [imageError, setImageError] = useState(false);
-	const [image, setImage] = useState("https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg");
+	const [image, setImage] = useState();
+	const [imagewidth, setImageWidth] = useState(0);
+
+
+
+	const profileImg = isLoggedIn && isLoggedIn.photo_url
 
 
 	useEffect(() => {
@@ -21,8 +26,12 @@ const NavBar = ({setSongPage}) => {
 	}, [location]);
 
 	useEffect(() => {
-		checkImage(image);
-	}, [image]);
+		if (profileImg && checkImage(profileImg)){
+		 (setImage(isLoggedIn.photo_url))
+		}else{
+			setImage("https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg")
+		}
+	}, [profileImg])
 
 
 	const handleDemo = () => {
@@ -30,17 +39,11 @@ const NavBar = ({setSongPage}) => {
 	}
 
 	function checkImage(url) {
-		var image = new Image();
-		image.onload = function () {
-			if (this.width > 0) {
-				setImageError(false);
-			}
-		};
-		image.onerror = function () {
-			setImageError(true);
-		};
-		setImage(url);
-	}
+    var image = new Image();
+    image.src = url
+		return image.width
+    }
+
 
 	return (
 		<nav className="nav-container">

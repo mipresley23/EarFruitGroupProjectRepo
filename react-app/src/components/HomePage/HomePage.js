@@ -41,7 +41,13 @@ function HomePage() {
 	const metalSongs = songs && songs.filter(song => song.genre === 'Metal')
   const [albumArt, setAlbumArt] = useState('https://protkd.com/wp-content/uploads/2017/04/default-image.jpg');
 
-
+	useEffect(() => {
+		songs.forEach(song => {
+      checkImage(song.albumImgUrl)
+      if (checkImage(song.albumImgUrl)) setAlbumArt(song.albumImgUrl)
+      else setAlbumArt()
+    })
+	}, [])
 
 
 	useEffect(() => {
@@ -84,6 +90,12 @@ function HomePage() {
 		}
 	};
 
+	function checkImage(url) {
+    var image = new Image();
+    image.src = url
+		return image.width
+    }
+
 
 
 
@@ -119,7 +131,7 @@ function HomePage() {
 						{
 							rockSongs && rockSongs.map(song => (
 								<div className='song-container'>
-									<img className='card-image' src={song.albumImgUrl ? song.albumImgUrl : albumArt} alt={song.name}/>
+									<img className='card-image' src={checkImage(song.albumImgUrl) ? song.albumImgUrl : 'https://protkd.com/wp-content/uploads/2017/04/default-image.jpg'} alt={song.name}/>
 									<div className="splash-song-info">
 										<p>{song.name}</p>
 										<p>{song.artist}</p>

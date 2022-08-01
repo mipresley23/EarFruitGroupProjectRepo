@@ -34,7 +34,6 @@ const EachPlaylist = () => {
 	const { setAudioList, setQuietUpdate, setClearAudioList} = useAudioList();
 
 	// const playlistAudioList = []
-	// console.log(playlistSongs)
 
 	// const thisPlaylistsSongs = playlistSongs && playlistSongs.filter(playlist => )
 
