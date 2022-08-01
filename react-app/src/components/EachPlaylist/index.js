@@ -36,7 +36,7 @@ const EachPlaylist = () => {
 	// const playlistAudioList = []
 
 	// const thisPlaylistsSongs = playlistSongs && playlistSongs.filter(playlist => playlist.playlist === +playlistId)
-	console.log()
+	// console.log()
 
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
