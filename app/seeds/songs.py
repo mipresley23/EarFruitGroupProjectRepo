@@ -127,7 +127,7 @@ def seedSongs():
   lucille= Song(
     name='Lucille', album='Lucille', albumImgUrl='https://upload.wikimedia.org/wikipedia/en/2/25/Lucille_%28B.B._King_album%29_cover.jpg', genre='Blues', artist='B.B. King', source='http://ear-fruit-bucket.s3.amazonaws.com/a17062c4e4724b8687b20bd9c98523bd.mp3', user_Id=1)
   rockmebaby= Song(
-    name='Rock Me Baby (Live)', album='	Live At Royal Albert Hall 2011', albumImgUrl='https://albumartexchange.com/coverart/gallery/bb/bbking_liveattheroyalalbert_4d51.jpg', genre='Blues', artist='B.B. King', source='http://ear-fruit-bucket.s3.amazonaws.com/5d47473d6b394ad38d9af27674a99353.mp3', user_Id=2)
+    name='Rock Me Baby (Live)', album='Live At Royal Albert Hall 2011', albumImgUrl='https://images6.fanpop.com/image/photos/40600000/B-B-King-josepinejackson-40601441-615-454.jpg', genre='Blues', artist='B.B. King', source='http://ear-fruit-bucket.s3.amazonaws.com/5d47473d6b394ad38d9af27674a99353.mp3', user_Id=2)
   homechicago= Song(
     name='Sweet Home Chicago', album='The Blues Brothers Soundtrack', albumImgUrl='https://i.discogs.com/vS1guTRnXRxtFGlr4eMqDl1gJTPqmPuAUg-7q363fDY/rs:fit/g:sm/q:90/h:600/w:589/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUzNzAz/Mi0xNDEyNDU0MTcx/LTM2NjIuanBlZw.jpeg', genre='Blues', artist='The Blues Brothers', source='http://ear-fruit-bucket.s3.amazonaws.com/ba59410eae70474b88669714ae96d267.mp3', user_Id=2)
   sweetangel= Song(

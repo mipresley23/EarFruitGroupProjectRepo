@@ -26,23 +26,23 @@ const NavBar = ({setSongPage}) => {
 	}, [location]);
 
 	useEffect(() => {
-		if (profileImg && checkImage(profileImg)){
-		 (setImage(isLoggedIn.photo_url))
+		if (profileImg){
+		 setImage(profileImg)
 		}else{
 			setImage("https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg")
 		}
-	}, [profileImg])
+	}, [])
 
 
 	const handleDemo = () => {
 		return dispatch(sessionActions.loginDemo());
 	}
 
-	function checkImage(url) {
-    var image = new Image();
-    image.src = url
-		return image.width
-    }
+	// function checkImage(url) {
+  //   var image = new Image();
+  //   image.src = url
+	// 	return image.width
+  //   }
 
 
 	return (

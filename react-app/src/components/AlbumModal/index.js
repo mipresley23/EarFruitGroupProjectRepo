@@ -10,20 +10,22 @@ function AlbumModal({album, albums, handlePlaySong, handleAddToQueue}) {
 
   useEffect(() => {
     albums[album].forEach(song => {
-      checkImage(song.albumImgUrl)
-      if (checkImage(song.albumImgUrl)) setAlbumArt(song.albumImgUrl)
-      else setAlbumArt('https://protkd.com/wp-content/uploads/2017/04/default-image.jpg')
+      if(song.albumImgUrl){
+        setAlbumArt(song.albumImgUrl)
+      }else{
+        setAlbumArt('https://protkd.com/wp-content/uploads/2017/04/default-image.jpg')
+      }
     })
   }, [albums, album])
 
 
 
 
-  function checkImage(url) {
-    var image = new Image();
-    image.src = url
-    return image.width
-    }
+  // function checkImage(url) {
+  //   var image = new Image();
+  //   image.src = url
+  //   return image.width
+  //   }
 
 
 		// image.onload = function () {
