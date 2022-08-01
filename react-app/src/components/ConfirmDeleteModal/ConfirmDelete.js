@@ -36,7 +36,7 @@ function ConfirmDelete({ song, setShowModal }) {
         onSubmit={(e) => handleSubmit(e)}
       >
         <p>Are you sure you want to Delete this song?</p>
-        <button type="submit" value="Delete song">
+        <button className='song_form_divs sf_submit' type="submit" value="Delete song">
           Yes
         </button>
       </form>

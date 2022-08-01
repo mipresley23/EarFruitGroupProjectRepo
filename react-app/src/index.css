@@ -67,17 +67,14 @@ body{
     text-decoration: none;
 }
 
-/* button {
-	border-radius: 15px;
-	padding: 5px;
-	border: 0;
-	font-size: 1rem;
-	font-family: Helvetica, sans-serif;
-	cursor: pointer;
-    transition: all .06s ease-in;
-}
+/* button{
+    width: 100px;
+    height: 36px;
+    font-size: 18px;
+    border-radius: 9px;
+} */
 
-button:hover {
+/* button:hover {
 	background-color: rgb(29, 185, 84);
 	color: white;
 } */
