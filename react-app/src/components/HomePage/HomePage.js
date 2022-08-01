@@ -93,7 +93,6 @@ function HomePage() {
 	function checkImage(url) {
     var image = new Image();
     image.src = url
-		console.log(image.width)
 		return image.width
     }
 

@@ -15,7 +15,7 @@ const NavBar = ({setSongPage}) => {
 	const [image, setImage] = useState();
 	const [imagewidth, setImageWidth] = useState(0);
 
-	console.log(isLoggedIn)
+
 
 	const profileImg = isLoggedIn && isLoggedIn.photo_url
 
@@ -41,7 +41,6 @@ const NavBar = ({setSongPage}) => {
 	function checkImage(url) {
     var image = new Image();
     image.src = url
-		console.log(image.width)
 		return image.width
     }
 
