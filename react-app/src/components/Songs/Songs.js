@@ -16,6 +16,7 @@ function Songs({ songPage }) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const songsArr = Object.values(songs);
+	const [albumArt, setAlbumArt] = useState()
 
 	const { audioList, setAudioList, clearAudioList, setClearAudioList } =
 		useContext(AudioListContext);
