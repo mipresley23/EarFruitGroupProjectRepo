@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	thunkGetPlaylists,
@@ -10,8 +10,8 @@ import "./EachPlaylist.css";
 import defaultPlaylistImage from "../assets/my-playlist-img.png";
 import { thunkGetPlaylistSongs } from "../../store/songs";
 import PlaylistSearchBar from "./PlaylistSearchBar";
-import circleLogo from '../assets/earfruit-kiwi-circle-logo.png';
-import { useAudioList } from '../../context/audioList';
+import circleLogo from "../assets/earfruit-kiwi-circle-logo.png";
+import { useAudioList } from "../../context/audioList";
 
 const EachPlaylist = () => {
 	const { playlistId } = useParams();
@@ -31,11 +31,9 @@ const EachPlaylist = () => {
 	const [imageError, setImageError] = useState(false);
 	const isOwner = sessionUser?.id == editPlaylist?.user?.id;
 	const [addSong, setAddSong] = useState(false);
-	const { setAudioList, setQuietUpdate, setClearAudioList} = useAudioList();
+	const { setAudioList, setQuietUpdate, setClearAudioList } = useAudioList();
 
-	const playlistAudioList = []
-
-
+	const playlistAudioList = [];
 
 	//If you click on another playlist while editing will close edit input
 	useEffect(() => {
@@ -66,7 +64,7 @@ const EachPlaylist = () => {
 	}, [image]);
 
 	if (!sessionUser) {
-		history.push('/login')
+		history.push("/login");
 		// return null
 	}
 	async function editNameBtn(e) {
@@ -85,7 +83,7 @@ const EachPlaylist = () => {
 			id: playlistId,
 			name,
 			description,
-			cover_img_url: image,
+			cover_img_url: (imageError ? 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg' : image),
 		};
 
 		if (name.length == 0) {
@@ -116,17 +114,16 @@ const EachPlaylist = () => {
 	}
 	function checkImage(url) {
 		var image = new Image();
-		image.onload = function () {
-			if (this.width > 0) {
-				setImageError(false);
-			}
-		};
-		image.onerror = function () {
-			setImageError(true);
-		};
 		image.src = url;
+		// console.log(image)
+		if (image.width > 0) {
+			setImageError(false);
+			console.log('good image')
+		} else {
+			setImageError(true);
+			console.log('bad image')
+		}
 	}
-
 
 	const handlePlaySong = async (value) => {
 		setClearAudioList(true);
@@ -153,12 +150,20 @@ const EachPlaylist = () => {
 	};
 
 	const handlePlayAll = async () => {
-		setClearAudioList(true)
-		setAudioList([])
-		setQuietUpdate(false)
-		playlistSongs && playlistSongs.map(playlistSong => playlistAudioList.push({name: playlistSong.name, cover: playlistSong.albumImgUrl, singer: playlistSong.artist, musicSrc: playlistSong.source}))
-		await setAudioList(playlistAudioList)
-	}
+		setClearAudioList(true);
+		setAudioList([]);
+		setQuietUpdate(false);
+		playlistSongs &&
+			playlistSongs.map((playlistSong) =>
+				playlistAudioList.push({
+					name: playlistSong.name,
+					cover: playlistSong.albumImgUrl,
+					singer: playlistSong.artist,
+					musicSrc: playlistSong.source,
+				})
+			);
+		await setAudioList(playlistAudioList);
+	};
 
 	const openSearchBar = () => {
 		setAddSong(true);
@@ -185,25 +190,30 @@ const EachPlaylist = () => {
 				</td>
 				<td className="search-song-album">{song.album}</td>
 				<td className="search-song-button-cont">
-					<i onClick={() =>
+					<i
+						onClick={() =>
 							handlePlaySong([
 								song.name,
 								song.artist,
 								song.source,
 								song.albumImgUrl,
 							])
-						} class="search-song-button fa fa-play fa-xl"></i>
-					{isOwner && <i
-						onClick={() => removeSongFromPlaylist(playlistId, song.id)}
-						class="search-song-button fa-solid fa-trash fa-xl"
-					></i>}
+						}
+						class="search-song-button fa fa-play fa-xl"
+					></i>
+					{isOwner && (
+						<i
+							onClick={() => removeSongFromPlaylist(playlistId, song.id)}
+							class="search-song-button fa-solid fa-trash fa-xl"
+						></i>
+					)}
 				</td>
 			</tr>
 		);
 	});
 	if (!editPlaylist) {
-		return (null)
-	};
+		return null;
+	}
 	return (
 		<div className="playlist-cont">
 			<div className="playlist-header">
@@ -230,7 +240,9 @@ const EachPlaylist = () => {
 						</button>
 					)}
 					{isOwner && editName && (
-						<button className="cancel-name-btn" onClick={cancelEditNameBtn}>Cancel</button>
+						<button className="cancel-name-btn" onClick={cancelEditNameBtn}>
+							Cancel
+						</button>
 					)}
 				</div>
 				<div className="playlist-description-cont">
@@ -249,7 +261,6 @@ const EachPlaylist = () => {
 									{editPlaylist?.description}
 								</h3>
 							)}
-
 
 							{isOwner && !editDescription && description?.length == 0 && (
 								<button onClick={editDescriptionBtn}>Add a Description</button>
@@ -279,14 +290,17 @@ const EachPlaylist = () => {
 							{<h3>{editPlaylist?.user.username}</h3>}
 						</li>
 						<div id="playlist-playall-button">
-							<i onClick={handlePlayAll} class="search-song-button fa fa-play fa-xl"></i>
+							<i
+								onClick={handlePlayAll}
+								class="search-song-button fa fa-play fa-xl"
+							></i>
 							<label>Play All</label>
 						</div>
 					</ul>
 				</div>
 				<div className="playlist-image">
-					{!imageError && <img src={editPlaylist?.cover_img_url} />}
-					{imageError && <img src={defaultPlaylistImage} />}
+					{<img src={editPlaylist?.cover_img_url} />}
+					{/* {imageError && <img src={defaultPlaylistImage} />} */}
 					{isOwner && !editImage && (
 						<button className="edit-image-btn" onClick={editImageBtn}>
 							<i class="fa fa-edit fa-lg"></i>
@@ -324,9 +338,10 @@ const EachPlaylist = () => {
 					// 	Delete Playlist
 					// </button>
 					<i
-					// className="delete-playlist-btn fa-solid fa-trash fa-xl"
-					onClick={onDelete}
-					class="delete-playlist-btn fa-solid fa-trash-can fa-2x"/>
+						// className="delete-playlist-btn fa-solid fa-trash fa-xl"
+						onClick={onDelete}
+						class="delete-playlist-btn fa-solid fa-trash-can fa-2x"
+					/>
 				)}
 			</div>
 			<div className="playlist-search-song">
