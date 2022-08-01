@@ -185,14 +185,14 @@ margin: 0;
 	color: white;
 }
 .edit-image-cancel-btn {
+	background-color: rgb(207,207,207);
 	border-top-right-radius: 150px;
 	border-bottom-right-radius: 150px;
-	background-color: rgb(167, 167, 167);
 	border: 0px;
 }
 
 .edit-image-update-btn {
-	background-color: rgb(167, 167, 167);
+	background-color: rgb(207,207,207);
 	border: 0px;
 	border-right: 1px solid black;
 	cursor: pointer;
