@@ -5,9 +5,9 @@ from app.models import db, Playlist
 # Adds a demo playlist, you can add other playlists here if you want
 def seed_playlists():
     hiphophits = Playlist(
-        name='Hip Hop Hits', description='Best Hip Hop Hits', cover_img_url='https://i.scdn.co/image/ab67706f00000003e30928da232fef3e6c82dc71', user_Id=1)
+        name='Hip Hop Hits', description='Best Hip Hop Hits', cover_img_url='https://mpchipper.s3.us-east-2.amazonaws.com/9d52e006eb9e40f2b615a9c8bbac22d0.jpg', user_Id=1)
     ninties = Playlist(
-        name="90's Hits", description='Best of the 90s', cover_img_url='https://i.scdn.co/image/ab67706c0000bebbd910bfd076b00aeede1c1ea7', user_Id=1)
+        name="90's Hits", description='Best of the 90s', cover_img_url='https://mpchipper.s3.us-east-2.amazonaws.com/b3ae6820d0da4d778c59a8dffdabd7a8.png', user_Id=1)
     rockClassics = Playlist(
         name="Rock Classics", description='All the fundemental rock hits', cover_img_url='https://cdn.djcity.com.au/wp-content/uploads/2020/06/20174607/MAX-GigKit-Red-Stratocaster-Electric-Guitar-Pack-2.jpg', user_Id=1)
     toppop = Playlist(
